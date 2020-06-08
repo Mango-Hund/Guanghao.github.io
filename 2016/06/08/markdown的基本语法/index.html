@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      414 字
+      368 字
     </span>
   
 
@@ -204,19 +204,26 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><ul>
-<li>1     * 1</li>
-<li>2     * 2</li>
-<li>3     * 3</li>
+              <h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><pre><code class="hljs clean">#一级标题  
+##二级标题  
+###三级标题  
+####四级标题  
+#####五级标题  
+######六级标题</code></pre>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><ul>
+<li>1     <code>* 1</code></li>
+<li>2     <code>* 2</code></li>
+<li>3     <code>* 3</code></li>
 </ul>
 <ol>
 <li>1.</li>
 <li>2.</li>
-<li>3.<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2>只需要在文本前加入&gt;即可<blockquote>
+<li>3.</li>
+</ol>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>只需要在文本前加入&gt;即可</p>
+<blockquote>
 <p>这里是引用 </p>
 </blockquote>
-</li>
-</ol>
 <p>注意符合和文本间要空格</p>
 <h2 id="插入图片和链接"><a href="#插入图片和链接" class="headerlink" title="插入图片和链接"></a>插入图片和链接</h2><p>插入链接 [超链接名] (链接地址 “超链接title”)  </p>
 <p>插入图片<br><img src="图片地址" srcset="/img/loading.gif" alt="图片alt" title="&#39;图片title&#39;"><br>图片alt就是显示在图片下面的文字，相当于对图片内容的解释。<br>图片title是图片的标题，当鼠标移到图片上时显示的内容。title可加可不加。</p>
@@ -256,11 +263,7 @@
 <p>第二行分割表头和内容。<br><code>-</code>有一个就行，为了对齐，多加了几个<br>文字默认居左<br>-两边加：表示文字居中<br>-右边加：表示文字居右<br>原生的语法两边都要用 | 包起来</p>
 <h2 id="粗体和斜体"><a href="#粗体和斜体" class="headerlink" title="粗体和斜体"></a>粗体和斜体</h2><p>用两个<code>*</code>包起来<br><strong>这是加粗的文字</strong><br>用一个<code>*</code>包起来<br><em>这是倾斜的文字</em><br>用<strong><em>包起来  
 </em></strong>这是斜体加粗的文字<em>*</em><br>用～包起来<br><del>这是加删除线的文字</del></p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>单行代码之间用反引号包起来<br>代码块两边分别用三个反引号包起来，且两边的反引号单独占一行<br>(<code>)
-  代码...
-  代码...
-  代码...
-(</code>)<br>注：为了防止转译，前后三个反引号处加了小括号，实际是没有的。这里只是用来演示，实际中去掉两边小括号即可。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>单行代码之间用反引号包起来<br>代码块两边分别用三个反引号包起来，且两边的反引号单独占一行<br><code>``` </code><br>  代码…<br>  代码…<br>  代码…<br><code>``` </code></p>
 <h2 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h2><p>只需要三个<em>*</em></p>
 <hr>
 
