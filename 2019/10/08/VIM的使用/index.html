@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>markdown的基本语法 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Hao-Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/escape_velocity.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2019-10-08 20:27">
+      2019年10月8日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h3 id="光标命令"><a href="#光标命令" class="headerlink" title="光标命令"></a>光标命令</h3><pre><code class="hljs properties"><span class="hljs-attr">h</span> <span class="hljs-string">左移一个字符</span>
+<span class="hljs-attr">l</span> <span class="hljs-string">右移一个字符</span>
+<span class="hljs-attr">j</span> <span class="hljs-string">下移一行</span>
+<span class="hljs-attr">k</span> <span class="hljs-string">上移一行</span>
+<span class="hljs-attr">w</span> <span class="hljs-string">前移一个单词，光标停在下一个单词开头</span>
+<span class="hljs-attr">W</span> <span class="hljs-string">移动下一个单词开头，但忽略一些标点</span>
+<span class="hljs-attr">e</span> <span class="hljs-string">前移一个单词，光标停在下一个单词末尾</span>
+<span class="hljs-attr">E</span> <span class="hljs-string">移动到下一个单词末尾，如果词尾有标点，则移动到标点</span>
+<span class="hljs-attr">b</span> <span class="hljs-string">后移一个单词，光标停在上一个单词开头</span>
+<span class="hljs-attr">B</span> <span class="hljs-string">移动到上一个单词开头，忽略一些标点</span>
+<span class="hljs-meta">(</span> <span class="hljs-string">前移1句</span>
+<span class="hljs-meta">)</span> <span class="hljs-string">后移1句</span>
+<span class="hljs-meta">&#123;</span> <span class="hljs-string">前移1段</span>
+<span class="hljs-meta">&#125;</span> <span class="hljs-string">后移1段​</span></code></pre>
+<h3 id="滚屏命令"><a href="#滚屏命令" class="headerlink" title="滚屏命令"></a>滚屏命令</h3><pre><code class="hljs properties"><span class="hljs-meta">ctrl+f</span> <span class="hljs-string">下翻一屏</span>
+<span class="hljs-meta">ctrl+b</span> <span class="hljs-string">上翻一屏</span>
+<span class="hljs-meta">ctrl+d</span> <span class="hljs-string">下翻半屏</span>
+<span class="hljs-meta">ctrl+u</span> <span class="hljs-string">上翻半屏</span>
+<span class="hljs-meta">ctrl+e</span> <span class="hljs-string">向下滚动一行</span>
+<span class="hljs-meta">ctrl+y</span> <span class="hljs-string">向上滚动一行</span>
+<span class="hljs-meta">n%</span> <span class="hljs-string">到文件n%的位置</span>
+<span class="hljs-attr">zz</span> <span class="hljs-string">将当前行移动到屏幕中央</span>
+<span class="hljs-attr">zt</span> <span class="hljs-string">将当前行移动到屏幕顶端</span>
+<span class="hljs-attr">zb</span> <span class="hljs-string">将当前行移动到屏幕底端​</span></code></pre>
+<h3 id="插入命令"><a href="#插入命令" class="headerlink" title="插入命令"></a>插入命令</h3><pre><code class="hljs excel">第一部分 基本插入
+I 在当前行第一个非空字符前插入
+gI 在当前行第一列插入
+a 在光标后插入
+A 在当前行最后插入
+o 在下面新建一行插入
+O 在上面新建一行插入
+第二部分 改写插入
+c[<span class="hljs-built_in">n</span>]w 改写光标后<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)个词
+c[<span class="hljs-built_in">n</span>]l 改写光标后<span class="hljs-built_in">n</span>个字母,l (vim中光标右移一个字符命令)
+c[<span class="hljs-built_in">n</span>]h 改写光标前<span class="hljs-built_in">n</span>个字母, h (vim中光标左移一个字符命令)
+[<span class="hljs-built_in">n</span>]cc 修改当前[<span class="hljs-built_in">n</span>]行
+[<span class="hljs-built_in">n</span>]s 以输入的文本替代光标之后<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)个字符，相当于c[<span class="hljs-built_in">n</span>]l
+[<span class="hljs-built_in">n</span>]S 删除指定数目的行，并以所输入文本代替之​</code></pre>
+<h3 id="复制命令"><a href="#复制命令" class="headerlink" title="复制命令"></a>复制命令</h3><pre><code class="hljs excel">y 复制在可视模式下选中的文本
+yy <span class="hljs-built_in">or</span> Y 复制整行文本
+y[<span class="hljs-built_in">n</span>]w 复制一(<span class="hljs-built_in">n</span>)个词
+y[<span class="hljs-built_in">n</span>]l 复制光标右边<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)个字符
+y[<span class="hljs-built_in">n</span>]h 复制光标左边<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)个字符
+y$ 从光标当前位置复制到行尾
+<span class="hljs-symbol">y0</span> 从光标当前位置复制到行首​﻿​</code></pre>
+<h3 id="剪切和粘贴命令"><a href="#剪切和粘贴命令" class="headerlink" title="剪切和粘贴命令"></a>剪切和粘贴命令</h3><pre><code class="hljs excel">[<span class="hljs-built_in">n</span>]x 剪切光标右边<span class="hljs-built_in">n</span>个字符，相当于d[<span class="hljs-built_in">n</span>]l
+[<span class="hljs-built_in">n</span>]X 剪切光标左边<span class="hljs-built_in">n</span>个字符，相当于d[<span class="hljs-built_in">n</span>]h
+p 在光标之后粘贴
+P 在光标之前粘贴​</code></pre>
+<h3 id="删除命令"><a href="#删除命令" class="headerlink" title="删除命令"></a>删除命令</h3><pre><code class="hljs excel">d 删除（剪切）在可视模式下选中的文本
+d$ <span class="hljs-built_in">or</span> D 删除（剪切）当前位置到行尾的内容
+d[<span class="hljs-built_in">n</span>]w 删除（剪切）<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)个单词
+d[<span class="hljs-built_in">n</span>]l 删除（剪切）光标右边<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)个字符
+d[<span class="hljs-built_in">n</span>]h 删除（剪切）光标左边<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)个字符
+<span class="hljs-symbol">d0</span> 删除（剪切）当前位置到行首的内容
+[<span class="hljs-built_in">n</span>] dd 删除（剪切）<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)行​</code></pre>
+<h3 id="撤销命令"><a href="#撤销命令" class="headerlink" title="撤销命令"></a>撤销命令</h3><pre><code class="hljs properties"><span class="hljs-attr">u</span> <span class="hljs-string">撤销最后执行的命令</span>
+<span class="hljs-attr">U</span> <span class="hljs-string">撤销对整行的修改​</span></code></pre>
+<h3 id="查找命令"><a href="#查找命令" class="headerlink" title="查找命令"></a>查找命令</h3><pre><code class="hljs applescript">/<span class="hljs-built_in">word</span> 在后面的文本中查找<span class="hljs-built_in">word</span>
+?<span class="hljs-built_in">word</span> 在前面的文本中查找<span class="hljs-built_in">word</span>
+/pattern/+<span class="hljs-built_in">number</span> 将光标停在包含pattern的行后面第<span class="hljs-built_in">number</span>行上
+/pattern/-<span class="hljs-built_in">number</span> 将光标停在包含pattern的行前面第<span class="hljs-built_in">number</span>行上
+n 向后查找下一个
+N 向前查找下一个​</code></pre>
+<h3 id="替换命令"><a href="#替换命令" class="headerlink" title="替换命令"></a>替换命令</h3><pre><code class="hljs elixir"><span class="hljs-symbol">:s/old/new/g</span> 可以替换 old 为 new
+替换两行之间出现的每个匹配串，操作如下
+<span class="hljs-symbol">:</span><span class="hljs-comment">#,#s/old/new/g 其中 #,# 代表的是替换操作的若干行中首尾两行的行号。</span>
+<span class="hljs-symbol">:%s/old/new/g</span> 则是替换整个文件中的每个匹配串。
+<span class="hljs-symbol">:%s/old/new/gc</span> 会找到整个文件中的每个匹配串，并且对每个匹配串提示是否进行替换。</code></pre>
+<h3 id="排版命令"><a href="#排版命令" class="headerlink" title="排版命令"></a>排版命令</h3><pre><code class="hljs ruby">&lt;&lt; 向左缩进一个shiftwidth
+<span class="hljs-meta">&gt;&gt;</span> 向右缩进一个shiftwidth
+<span class="hljs-symbol">:ce</span>(nter) 本行文字居中
+<span class="hljs-symbol">:le</span>(ft) 本行文字靠左
+<span class="hljs-symbol">:ri</span>(ght) 本行文字靠右</code></pre>
+<h3 id="命令行中分屏打开多文件"><a href="#命令行中分屏打开多文件" class="headerlink" title="命令行中分屏打开多文件"></a>命令行中分屏打开多文件</h3><pre><code class="hljs css"><span class="hljs-selector-tag">-o</span> 水平分屏
+<span class="hljs-selector-tag">vim</span> <span class="hljs-selector-tag">-o</span><span class="hljs-selector-attr">[n]</span> <span class="hljs-selector-tag">file1</span> <span class="hljs-selector-attr">[file2 ...]</span>
+<span class="hljs-selector-tag">-O</span> 垂直分屏
+<span class="hljs-selector-tag">vim</span> <span class="hljs-selector-tag">-O</span><span class="hljs-selector-attr">[n]</span> <span class="hljs-selector-tag">file1</span> <span class="hljs-selector-attr">[file2 ...]</span></code></pre>
+<h3 id="vim中命令模式分屏"><a href="#vim中命令模式分屏" class="headerlink" title="vim中命令模式分屏"></a>vim中命令模式分屏</h3><ol>
+<li>垂直分屏<pre><code class="hljs vim">:<span class="hljs-keyword">vs</span> [<span class="hljs-keyword">file</span>]
+:<span class="hljs-keyword">vs</span> 将当前文件垂直分屏
+:<span class="hljs-keyword">vs</span> <span class="hljs-keyword">file</span> 创建新文件并垂直分屏</code></pre></li>
+<li>水平分屏<pre><code class="hljs vim">:<span class="hljs-keyword">sv</span> [<span class="hljs-keyword">file</span>]
+:<span class="hljs-keyword">sv</span> 将当前文件水平分屏
+:<span class="hljs-keyword">sv</span> <span class="hljs-keyword">file</span> 创建新文件并水平分屏</code></pre>
+</li>
+</ol>
+<h3 id="分屏屏间光标移动"><a href="#分屏屏间光标移动" class="headerlink" title="分屏屏间光标移动"></a>分屏屏间光标移动</h3><ol>
+<li>分屏间循环移动光标<br><code>ctrl-w ctrl-w</code></li>
+<li>光标移到右边的屏中<br><code>ctrl+w l</code></li>
+<li>光标移到左边的屏中<br><code>ctrl+w h</code></li>
+<li>光标移到上面的屏中<br><code>ctrl+w k</code></li>
+<li>光标移到下边的屏中<br><code>ctrl+w j</code></li>
+<li>光标移到下一个屏中<br><code>ctrl+w w</code></li>
+<li>把光标移到上一个屏中<br><code>ctrl+w p</code></li>
+</ol>
+<h3 id="分屏的移动"><a href="#分屏的移动" class="headerlink" title="分屏的移动"></a>分屏的移动</h3><p>四个键位同上相比均换成了大写</p>
+<ol>
+<li>把当前分屏移动到最左边<br><code>ctrl+w H</code></li>
+<li>把当前分屏移动到上面并扩展到整屏的宽度<br><code>ctrl+w K</code></li>
+<li>把当前分屏移动到最下边<br><code>ctrl+w J</code> </li>
+<li>把当前分屏移动到最右边<br><code>ctrl+w L</code> </li>
+</ol>
+<h3 id="关闭分屏"><a href="#关闭分屏" class="headerlink" title="关闭分屏"></a>关闭分屏</h3><ol>
+<li>关闭当前子屏<br><code>ctrl+wc</code></li>
+<li>关闭当前子屏，若为最后一个，则退出vim<br><code>ctrl+w q</code> </li>
+<li>hide<br><code>:hide 关闭当前窗口</code> </li>
+<li>only<br><code>:only 仅保持此窗口开启</code></li>
+</ol>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/tool/">tool</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/vim/">vim</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/06/07/hello-world/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2019/06/08/markdown%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">
+                        <span class="hidden-mobile">markdown的基本语法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "markdown的基本语法&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
