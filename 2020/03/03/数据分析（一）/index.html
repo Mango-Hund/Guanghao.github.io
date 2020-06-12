@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>数据分析（一） - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Hao-Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/escape_velocity.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-03-03 15:45">
+      2020年3月3日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      63
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h3 id="主题思想"><a href="#主题思想" class="headerlink" title="主题思想"></a>主题思想</h3><p><img src="/img/data/01.png" srcset="/img/loading.gif" alt="图1"><br>一个数据表达一个含义————-&gt;一组数据表达一个或多个含义：与一组数据相关的那些事儿，即如何理解数据表达的含义</p>
+<p>编程工具<br>使用Anaconda IDE集成开发工具<br>需要理解和掌握如下工具的使用：conda、Spyder、IPython<br>常用的python IDE工具<br>IDLE 自带的、默认的、常用的，入门级编写工具，适合入门，300行以内<br>Sublime Text 专为程序员设计，有多种功能和风格<br>Wine 公司维护，收费，适合多人共同开发<br>VS &amp; PTVS<br>Eclipse PyDev 需要一定的能力配置<br>PyCharm 社区版免费<br>Canopy 公司维护，工具收费<br>Anaconda 免费开源  </p>
+<h3 id="Anaconda的基本使用"><a href="#Anaconda的基本使用" class="headerlink" title="Anaconda的基本使用"></a>Anaconda的基本使用</h3><p>conda 是一个工具，用于包管理和环境<br>包管理和pip类似，管理Python的第三方库<br>环境管理包括能够允许用户使用不同版本的python，并能够灵活切换<br>anaconda: 一个集合，包括conda、某版本的python、一批第三方库等<br>IPython 的？命令，可以查看参数<br>IPython <code>%run</code> 用于运行.py程序 （%run在一个空的命名空间执行%）<br><img src="/img/data/02.png" srcset="/img/loading.gif" alt="图2"> </p>
+<h3 id="数据的维度"><a href="#数据的维度" class="headerlink" title="数据的维度"></a>数据的维度</h3><p>维度：是一组数据的组织形式<br>一维数据<br>由对等关系的有序和无序数据构成，采用线性方式组织，对应列表、数组和集合等概念。<br>列表和数组<br>都是一组数据的有序结构<br>区别：列表数据类型可以不同 数组数据类型相同<br>二维数据<br>由多个一维数据构成，是一维数据的组合形式，表格是典型的二维数据，其中，表头是二维数据的一部分<br>多维数据<br>由一维或二维数据在新维度上扩展而成<br>高维数据<br>仅利用最基本的二元关系展示数据间的复杂结构（键值对）<br>一维数据：列表和集合类型<br>二维数据：列表类型<br>多维类型：列表类型<br>高维类型：字典类型或者数据表示格式   </p>
+<h3 id="Numpy库"><a href="#Numpy库" class="headerlink" title="Numpy库"></a>Numpy库</h3><p>是一个开源的python科学计算基础库<br>一个强大的N维数组对象 ndarray<br>广播功能函数<br>整合C/C++/Fortran代码的工具<br>线性代数、傅立叶变换、随机数生成等功能<br>Numpy是SciPy、Pandas等数据处理或科学计算库的基础<br><code>import numpy as np</code><br>尽管别名可以省略或者更改，建议使用上述约定的别名<br>N维数组对象：ndarray<br>例子：计算A2+B3，其中，A、B是一维数组<br><pre><code class="hljs angelscript">def pySum():
+    a = [<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3.4</span>]
+    b = [<span class="hljs-number">9</span>,<span class="hljs-number">8</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>,<span class="hljs-number">5</span>]
+    c = []
+    
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(a)):
+        c.append(a[i]**<span class="hljs-number">2</span>+b[i]**<span class="hljs-number">3</span>)
+    <span class="hljs-keyword">return</span> c
+print(pySum)</code></pre><br>numpy的方法：<br><pre><code class="hljs angelscript"><span class="hljs-keyword">import</span> numpy as np
+
+def npSum():
+    a = np.<span class="hljs-built_in">array</span>([<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>])
+    b = np.<span class="hljs-built_in">array</span>([<span class="hljs-number">9</span>,<span class="hljs-number">8</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>,<span class="hljs-number">5</span>])
+    c = a**<span class="hljs-number">2</span> + b**<span class="hljs-number">3</span>
+    
+    <span class="hljs-keyword">return</span> c
+
+print(npSum())</code></pre><br>数组对象可以去掉元素间运算所需的循环，使一维向量更像单个数据<br>设置专门的数组对象，经过优化，可以提升这类应用的运算速度<br>观察：科学计算时，一个维度所有数据的类型往往是相同的<br>数组对象采用相同的数据类型，有助于节省运算和存储空间<br>ndarray是一个多维数组对象，由两部分构成：<br>实际的数据<br>描述这些数据的元数据（数据维度、数据类型等等）<br>ndarray数组一般要求所有元素类型相同（同质），数组下标从0开始<br><code>np.array()</code>生成一个ndarray数组，ndarray在程序中的别名是array<br><code>np.array()</code>输出成[]形式，元素用空格分割。<br>轴（axis）：保存数据的维度    秩（rank）：轴的数量（几个维度）<br><img src="/img/data/03.png" srcset="/img/loading.gif" alt="图3"><br><pre><code class="hljs angelscript">In [<span class="hljs-number">6</span>]: a = np.<span class="hljs-built_in">array</span>([[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>],[<span class="hljs-number">9</span>,<span class="hljs-number">8</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>,<span class="hljs-number">5</span>]])
+
+In [<span class="hljs-number">7</span>]: a.ndim
+Out[<span class="hljs-number">7</span>]: <span class="hljs-number">2</span>
+
+In [<span class="hljs-number">8</span>]: a.shape
+Out[<span class="hljs-number">8</span>]: (<span class="hljs-number">2</span>, <span class="hljs-number">5</span>)
+
+In [<span class="hljs-number">9</span>]: a.size
+Out[<span class="hljs-number">9</span>]: <span class="hljs-number">10</span>
+
+In [<span class="hljs-number">10</span>]: a.dtype
+Out[<span class="hljs-number">10</span>]: dtype(<span class="hljs-string">'int64'</span>)
+
+In [<span class="hljs-number">11</span>]: a.itemsize
+Out[<span class="hljs-number">11</span>]: <span class="hljs-number">8</span></code></pre><br>ndarray的元素类型<br><img src="/img/data/04.png" srcset="/img/loading.gif" alt="图4"><br><img src="/img/data/05.png" srcset="/img/loading.gif" alt="图5"><br><img src="/img/data/06.png" srcset="/img/loading.gif" alt="图6">   </p>
+<h4 id="ndarray数组的创建方法"><a href="#ndarray数组的创建方法" class="headerlink" title="ndarray数组的创建方法"></a>ndarray数组的创建方法</h4><ol>
+<li>从python中的列表、元组等类型创建ndarray数组<br><code>x = np,array(list/tuple)</code><br><code>x = np.array(list/tuple, dtype= np.float32)</code><br>当np.array()不指定dtype时，NumPy将根据数据情况关联一个dtype类型。<br><img src="/img/data/07.png" srcset="/img/loading.gif" alt="图7"><br>2）使用numpy中函数创建ndarray数组，如arange, ones,zeros等<br><img src="/img/data/08.png" srcset="/img/loading.gif" alt="图8">   <pre><code class="hljs angelscript">n [<span class="hljs-number">12</span>]: np.arange(<span class="hljs-number">15</span>)
+Out[<span class="hljs-number">12</span>]: <span class="hljs-built_in">array</span>([ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>,  <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>,  <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>,  <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>, <span class="hljs-number">13</span>, <span class="hljs-number">14</span>])
+
+In [<span class="hljs-number">13</span>]: np.ones((<span class="hljs-number">4</span>,<span class="hljs-number">5</span>))
+Out[<span class="hljs-number">13</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
+       [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
+       [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
+       [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>]])
+
+In [<span class="hljs-number">14</span>]: np.zeros((<span class="hljs-number">4</span>,<span class="hljs-number">5</span>))
+Out[<span class="hljs-number">14</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],
+       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],
+       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],
+       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]])
+
+In [<span class="hljs-number">15</span>]: np.eye(<span class="hljs-number">5</span>)
+Out[<span class="hljs-number">15</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">1.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],
+       [<span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],
+       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>],
+       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">0.</span>],
+       [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>]])
+
+In [<span class="hljs-number">17</span>]: np.ones((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>))
+Out[<span class="hljs-number">17</span>]: 
+<span class="hljs-built_in">array</span>([[[<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
+        [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
+        [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>]],
+
+       [[<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
+        [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
+        [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>]]])</code></pre>
+<img src="/img/data/09.png" srcset="/img/loading.gif" alt="图9"><br><img src="/img/data/10.png" srcset="/img/loading.gif" alt="图10">  <pre><code class="hljs angelscript">In [<span class="hljs-number">18</span>]: a = np.linspace(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>,<span class="hljs-number">4</span>)
+
+In [<span class="hljs-number">19</span>]: a
+Out[<span class="hljs-number">19</span>]: <span class="hljs-built_in">array</span>([ <span class="hljs-number">1.</span>,  <span class="hljs-number">4.</span>,  <span class="hljs-number">7.</span>, <span class="hljs-number">10.</span>])
+
+In [<span class="hljs-number">20</span>]: a = np.linspace(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>,<span class="hljs-number">4</span>, endpoint=False)
+
+In [<span class="hljs-number">21</span>]: a
+Out[<span class="hljs-number">21</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">1.</span>  , <span class="hljs-number">3.25</span>, <span class="hljs-number">5.5</span> , <span class="hljs-number">7.75</span>])
+
+In [<span class="hljs-number">22</span>]: b  = np.linspace(<span class="hljs-number">1</span>,<span class="hljs-number">10</span>,<span class="hljs-number">4</span>)
+
+In [<span class="hljs-number">23</span>]: c = np.concatenate((a,b))
+
+In [<span class="hljs-number">24</span>]: c
+Out[<span class="hljs-number">24</span>]: <span class="hljs-built_in">array</span>([ <span class="hljs-number">1.</span>  ,  <span class="hljs-number">3.25</span>,  <span class="hljs-number">5.5</span> ,  <span class="hljs-number">7.75</span>,  <span class="hljs-number">1.</span>  ,  <span class="hljs-number">4.</span>  ,  <span class="hljs-number">7.</span>  , <span class="hljs-number">10.</span>  ])</code></pre>
+ndarray数组的维度变换<br><img src="/img/data/11.png" srcset="/img/loading.gif" alt="图11"><br><code>new_a = a.astype(new_type)</code><br>astype()方法一定会创建新的数组（原始数据的一个拷贝），即两个类型一致。<br>ndarray数组向列表的转换<br><code>ls = a.tolist</code><br>从字节流（raw bytes）中创建ndarray数组<br>从文件中读取特定格式，创建ndarray数组  </li>
+</ol>
+<p>数组的索引和切片<br>一维数组的索引和切片，与python的列表类似<br><pre><code class="hljs angelscript">In [<span class="hljs-number">25</span>]: a = np.<span class="hljs-built_in">array</span>([<span class="hljs-number">9</span>,<span class="hljs-number">8</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>,<span class="hljs-number">5</span>])
+
+In [<span class="hljs-number">26</span>]: a[<span class="hljs-number">2</span>]
+Out[<span class="hljs-number">26</span>]: <span class="hljs-number">7</span>
+
+In [<span class="hljs-number">27</span>]: a[<span class="hljs-number">1</span>:<span class="hljs-number">4</span>:<span class="hljs-number">2</span>]   #起始编号：终止编号（不含）：步长<span class="hljs-number">3</span>元素冒号分割
+Out[<span class="hljs-number">27</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">8</span>, <span class="hljs-number">6</span>])</code></pre><br>多维数组的索引：<br><pre><code class="hljs angelscript">In [<span class="hljs-number">28</span>]: a = np.arange(<span class="hljs-number">24</span>).reshape((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>))
+
+In [<span class="hljs-number">29</span>]: a
+Out[<span class="hljs-number">29</span>]: 
+<span class="hljs-built_in">array</span>([[[ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>],
+        [ <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>,  <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>],
+        [ <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>]],
+
+       [[<span class="hljs-number">12</span>, <span class="hljs-number">13</span>, <span class="hljs-number">14</span>, <span class="hljs-number">15</span>],
+        [<span class="hljs-number">16</span>, <span class="hljs-number">17</span>, <span class="hljs-number">18</span>, <span class="hljs-number">19</span>],
+        [<span class="hljs-number">20</span>, <span class="hljs-number">21</span>, <span class="hljs-number">22</span>, <span class="hljs-number">23</span>]]])
+
+In [<span class="hljs-number">30</span>]: a[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]
+Out[<span class="hljs-number">30</span>]: <span class="hljs-number">23</span>
+
+In [<span class="hljs-number">31</span>]: a[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>]
+Out[<span class="hljs-number">31</span>]: <span class="hljs-number">6</span>
+
+In [<span class="hljs-number">32</span>]: a[<span class="hljs-number">-1</span>, <span class="hljs-number">-2</span> , <span class="hljs-number">-3</span>]
+Out[<span class="hljs-number">32</span>]: <span class="hljs-number">17</span></code></pre><br>多维数组的切片：<br><pre><code class="hljs angelscript">In [<span class="hljs-number">33</span>]: a[:, <span class="hljs-number">1</span>, <span class="hljs-number">-3</span>]      #选取一个维度用：
+Out[<span class="hljs-number">33</span>]: <span class="hljs-built_in">array</span>([ <span class="hljs-number">5</span>, <span class="hljs-number">17</span>])
+
+In [<span class="hljs-number">34</span>]: a[:, <span class="hljs-number">1</span>:<span class="hljs-number">3</span>, :]             #每个维度切片与一维数组相同
+Out[<span class="hljs-number">34</span>]: 
+<span class="hljs-built_in">array</span>([[[ <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>,  <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>],
+        [ <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>]],
+
+       [[<span class="hljs-number">16</span>, <span class="hljs-number">17</span>, <span class="hljs-number">18</span>, <span class="hljs-number">19</span>],
+        [<span class="hljs-number">20</span>, <span class="hljs-number">21</span>, <span class="hljs-number">22</span>, <span class="hljs-number">23</span>]]])
+
+In [<span class="hljs-number">35</span>]: a[:,:,::<span class="hljs-number">2</span>]    #每个维度可以使用步长跳跃切片
+Out[<span class="hljs-number">35</span>]: 
+<span class="hljs-built_in">array</span>([[[ <span class="hljs-number">0</span>,  <span class="hljs-number">2</span>],
+        [ <span class="hljs-number">4</span>,  <span class="hljs-number">6</span>],
+        [ <span class="hljs-number">8</span>, <span class="hljs-number">10</span>]],
+
+       [[<span class="hljs-number">12</span>, <span class="hljs-number">14</span>],
+        [<span class="hljs-number">16</span>, <span class="hljs-number">18</span>],</code></pre></p>
+<h4 id="narrray数组的运算"><a href="#narrray数组的运算" class="headerlink" title="narrray数组的运算"></a>narrray数组的运算</h4><p>数组与标量之间的运算<br>数组与标量之间的运算作用于数组的每一个元素<br><pre><code class="hljs angelscript"> a.mean()
+Out[<span class="hljs-number">36</span>]: <span class="hljs-number">11.5</span>
+
+In [<span class="hljs-number">37</span>]: a = a/a.mean()
+
+In [<span class="hljs-number">38</span>]: a
+Out[<span class="hljs-number">38</span>]: 
+<span class="hljs-built_in">array</span>([[[<span class="hljs-number">0.</span>        , <span class="hljs-number">0.08695652</span>, <span class="hljs-number">0.17391304</span>, <span class="hljs-number">0.26086957</span>],
+        [<span class="hljs-number">0.34782609</span>, <span class="hljs-number">0.43478261</span>, <span class="hljs-number">0.52173913</span>, <span class="hljs-number">0.60869565</span>],
+        [<span class="hljs-number">0.69565217</span>, <span class="hljs-number">0.7826087</span> , <span class="hljs-number">0.86956522</span>, <span class="hljs-number">0.95652174</span>]],
+
+       [[<span class="hljs-number">1.04347826</span>, <span class="hljs-number">1.13043478</span>, <span class="hljs-number">1.2173913</span> , <span class="hljs-number">1.30434783</span>],
+        [<span class="hljs-number">1.39130435</span>, <span class="hljs-number">1.47826087</span>, <span class="hljs-number">1.56521739</span>, <span class="hljs-number">1.65217391</span>],
+        [<span class="hljs-number">1.73913043</span>, <span class="hljs-number">1.82608696</span>, <span class="hljs-number">1.91304348</span>, <span class="hljs-number">2.</span>        ]]])</code></pre><br>对ndarray中的数据执行元素极运算的函数<br><img src="/img/data/12.png" srcset="/img/loading.gif" alt="图12"><br><img src="/img/data/13.png" srcset="/img/loading.gif" alt="图13"><br><pre><code class="hljs angelscript">In [<span class="hljs-number">41</span>]: a = np.arange(<span class="hljs-number">24</span>).reshape((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>))
+
+In [<span class="hljs-number">42</span>]: a
+Out[<span class="hljs-number">42</span>]: 
+<span class="hljs-built_in">array</span>([[[ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>],
+        [ <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>,  <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>],
+        [ <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>]],
+
+       [[<span class="hljs-number">12</span>, <span class="hljs-number">13</span>, <span class="hljs-number">14</span>, <span class="hljs-number">15</span>],
+        [<span class="hljs-number">16</span>, <span class="hljs-number">17</span>, <span class="hljs-number">18</span>, <span class="hljs-number">19</span>],
+        [<span class="hljs-number">20</span>, <span class="hljs-number">21</span>, <span class="hljs-number">22</span>, <span class="hljs-number">23</span>]]])
+
+In [<span class="hljs-number">43</span>]: np.square(a)
+Out[<span class="hljs-number">43</span>]: 
+<span class="hljs-built_in">array</span>([[[  <span class="hljs-number">0</span>,   <span class="hljs-number">1</span>,   <span class="hljs-number">4</span>,   <span class="hljs-number">9</span>],
+        [ <span class="hljs-number">16</span>,  <span class="hljs-number">25</span>,  <span class="hljs-number">36</span>,  <span class="hljs-number">49</span>],
+        [ <span class="hljs-number">64</span>,  <span class="hljs-number">81</span>, <span class="hljs-number">100</span>, <span class="hljs-number">121</span>]],
+
+       [[<span class="hljs-number">144</span>, <span class="hljs-number">169</span>, <span class="hljs-number">196</span>, <span class="hljs-number">225</span>],
+        [<span class="hljs-number">256</span>, <span class="hljs-number">289</span>, <span class="hljs-number">324</span>, <span class="hljs-number">361</span>],
+        [<span class="hljs-number">400</span>, <span class="hljs-number">441</span>, <span class="hljs-number">484</span>, <span class="hljs-number">529</span>]]])
+
+In [<span class="hljs-number">44</span>]: a = sqrt(a)
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+&lt;ipython-input<span class="hljs-number">-44</span><span class="hljs-number">-7803</span>baeb8559&gt; <span class="hljs-keyword">in</span> &lt;module&gt;()
+----&gt; <span class="hljs-number">1</span> a = sqrt(a)
+
+NameError: name <span class="hljs-string">'sqrt'</span> <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> defined
+
+In [<span class="hljs-number">45</span>]: a = np.sqrt(a)
+
+In [<span class="hljs-number">46</span>]: a
+Out[<span class="hljs-number">46</span>]: 
+<span class="hljs-built_in">array</span>([[[<span class="hljs-number">0.</span>        , <span class="hljs-number">1.</span>        , <span class="hljs-number">1.41421356</span>, <span class="hljs-number">1.73205081</span>],
+        [<span class="hljs-number">2.</span>        , <span class="hljs-number">2.23606798</span>, <span class="hljs-number">2.44948974</span>, <span class="hljs-number">2.64575131</span>],
+        [<span class="hljs-number">2.82842712</span>, <span class="hljs-number">3.</span>        , <span class="hljs-number">3.16227766</span>, <span class="hljs-number">3.31662479</span>]],
+
+       [[<span class="hljs-number">3.46410162</span>, <span class="hljs-number">3.60555128</span>, <span class="hljs-number">3.74165739</span>, <span class="hljs-number">3.87298335</span>],
+        [<span class="hljs-number">4.</span>        , <span class="hljs-number">4.12310563</span>, <span class="hljs-number">4.24264069</span>, <span class="hljs-number">4.35889894</span>],
+        [<span class="hljs-number">4.47213595</span>, <span class="hljs-number">4.58257569</span>, <span class="hljs-number">4.69041576</span>, <span class="hljs-number">4.79583152</span>]]])
+
+In [<span class="hljs-number">47</span>]: np.modf(a)
+Out[<span class="hljs-number">47</span>]: 
+(<span class="hljs-built_in">array</span>([[[<span class="hljs-number">0.</span>        , <span class="hljs-number">0.</span>        , <span class="hljs-number">0.41421356</span>, <span class="hljs-number">0.73205081</span>],
+         [<span class="hljs-number">0.</span>        , <span class="hljs-number">0.23606798</span>, <span class="hljs-number">0.44948974</span>, <span class="hljs-number">0.64575131</span>],
+         [<span class="hljs-number">0.82842712</span>, <span class="hljs-number">0.</span>        , <span class="hljs-number">0.16227766</span>, <span class="hljs-number">0.31662479</span>]],
+ 
+        [[<span class="hljs-number">0.46410162</span>, <span class="hljs-number">0.60555128</span>, <span class="hljs-number">0.74165739</span>, <span class="hljs-number">0.87298335</span>],
+         [<span class="hljs-number">0.</span>        , <span class="hljs-number">0.12310563</span>, <span class="hljs-number">0.24264069</span>, <span class="hljs-number">0.35889894</span>],
+         [<span class="hljs-number">0.47213595</span>, <span class="hljs-number">0.58257569</span>, <span class="hljs-number">0.69041576</span>, <span class="hljs-number">0.79583152</span>]]]),
+ <span class="hljs-built_in">array</span>([[[<span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>],
+         [<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>],
+         [<span class="hljs-number">2.</span>, <span class="hljs-number">3.</span>, <span class="hljs-number">3.</span>, <span class="hljs-number">3.</span>]],
+ 
+        [[<span class="hljs-number">3.</span>, <span class="hljs-number">3.</span>, <span class="hljs-number">3.</span>, <span class="hljs-number">3.</span>],
+         [<span class="hljs-number">4.</span>, <span class="hljs-number">4.</span>, <span class="hljs-number">4.</span>, <span class="hljs-number">4.</span>],
+         [<span class="hljs-number">4.</span>, <span class="hljs-number">4.</span>, <span class="hljs-number">4.</span>, <span class="hljs-number">4.</span>]]]))
+In [<span class="hljs-number">48</span>]: b = a[<span class="hljs-number">1</span>, :, :]
+
+In [<span class="hljs-number">49</span>]: b
+Out[<span class="hljs-number">49</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">3.46410162</span>, <span class="hljs-number">3.60555128</span>, <span class="hljs-number">3.74165739</span>, <span class="hljs-number">3.87298335</span>],
+       [<span class="hljs-number">4.</span>        , <span class="hljs-number">4.12310563</span>, <span class="hljs-number">4.24264069</span>, <span class="hljs-number">4.35889894</span>],
+       [<span class="hljs-number">4.47213595</span>, <span class="hljs-number">4.58257569</span>, <span class="hljs-number">4.69041576</span>, <span class="hljs-number">4.79583152</span>]])</code></pre><br>NumPy二元函数<br><img src="/img/data/14.png" srcset="/img/loading.gif" alt="图14"><br><pre><code class="hljs yaml"> <span class="hljs-string">In</span> <span class="hljs-string">[53]:</span> <span class="hljs-string">a</span> <span class="hljs-string">=</span> <span class="hljs-string">np.arange(24).reshape((2,3,4))</span>
+
+<span class="hljs-string">In</span> <span class="hljs-string">[54]:</span> <span class="hljs-string">a</span>
+<span class="hljs-string">Out[54]:</span> 
+<span class="hljs-string">array([[[</span> <span class="hljs-number">0</span><span class="hljs-string">,</span>  <span class="hljs-number">1</span><span class="hljs-string">,</span>  <span class="hljs-number">2</span><span class="hljs-string">,</span>  <span class="hljs-number">3</span><span class="hljs-string">],</span>
+        <span class="hljs-string">[</span> <span class="hljs-number">4</span><span class="hljs-string">,</span>  <span class="hljs-number">5</span><span class="hljs-string">,</span>  <span class="hljs-number">6</span><span class="hljs-string">,</span>  <span class="hljs-number">7</span><span class="hljs-string">],</span>
+        <span class="hljs-string">[</span> <span class="hljs-number">8</span><span class="hljs-string">,</span>  <span class="hljs-number">9</span><span class="hljs-string">,</span> <span class="hljs-number">10</span><span class="hljs-string">,</span> <span class="hljs-number">11</span><span class="hljs-string">]],</span>
+
+       <span class="hljs-string">[[12,</span> <span class="hljs-number">13</span><span class="hljs-string">,</span> <span class="hljs-number">14</span><span class="hljs-string">,</span> <span class="hljs-number">15</span><span class="hljs-string">],</span>
+        <span class="hljs-string">[16,</span> <span class="hljs-number">17</span><span class="hljs-string">,</span> <span class="hljs-number">18</span><span class="hljs-string">,</span> <span class="hljs-number">19</span><span class="hljs-string">],</span>
+        <span class="hljs-string">[20,</span> <span class="hljs-number">21</span><span class="hljs-string">,</span> <span class="hljs-number">22</span><span class="hljs-string">,</span> <span class="hljs-number">23</span><span class="hljs-string">]]])</span>
+
+<span class="hljs-string">In</span> <span class="hljs-string">[55]:</span> <span class="hljs-string">b</span> <span class="hljs-string">=</span> <span class="hljs-string">np.sqrt(a)</span>
+
+<span class="hljs-string">In</span> <span class="hljs-string">[56]:</span> <span class="hljs-string">b</span>
+<span class="hljs-string">Out[56]:</span> 
+<span class="hljs-string">array([[[0.</span>        <span class="hljs-string">,</span> <span class="hljs-number">1</span><span class="hljs-string">.</span>        <span class="hljs-string">,</span> <span class="hljs-number">1.41421356</span><span class="hljs-string">,</span> <span class="hljs-number">1.73205081</span><span class="hljs-string">],</span>
+        <span class="hljs-string">[2.</span>        <span class="hljs-string">,</span> <span class="hljs-number">2.23606798</span><span class="hljs-string">,</span> <span class="hljs-number">2.44948974</span><span class="hljs-string">,</span> <span class="hljs-number">2.64575131</span><span class="hljs-string">],</span>
+        <span class="hljs-string">[2.82842712,</span> <span class="hljs-number">3</span><span class="hljs-string">.</span>        <span class="hljs-string">,</span> <span class="hljs-number">3.16227766</span><span class="hljs-string">,</span> <span class="hljs-number">3.31662479</span><span class="hljs-string">]],</span>
+
+       <span class="hljs-string">[[3.46410162,</span> <span class="hljs-number">3.60555128</span><span class="hljs-string">,</span> <span class="hljs-number">3.74165739</span><span class="hljs-string">,</span> <span class="hljs-number">3.87298335</span><span class="hljs-string">],</span>
+        <span class="hljs-string">[4.</span>        <span class="hljs-string">,</span> <span class="hljs-number">4.12310563</span><span class="hljs-string">,</span> <span class="hljs-number">4.24264069</span><span class="hljs-string">,</span> <span class="hljs-number">4.35889894</span><span class="hljs-string">],</span>
+        <span class="hljs-string">[4.47213595,</span> <span class="hljs-number">4.58257569</span><span class="hljs-string">,</span> <span class="hljs-number">4.69041576</span><span class="hljs-string">,</span> <span class="hljs-number">4.79583152</span><span class="hljs-string">]]])</span>
+
+<span class="hljs-string">In</span> <span class="hljs-string">[57]:</span> <span class="hljs-string">np.maximum(a,b)</span>
+<span class="hljs-string">Out[57]:</span> 
+<span class="hljs-string">array([[[</span> <span class="hljs-number">0</span><span class="hljs-string">.,</span>  <span class="hljs-number">1</span><span class="hljs-string">.,</span>  <span class="hljs-number">2</span><span class="hljs-string">.,</span>  <span class="hljs-number">3</span><span class="hljs-string">.],</span>
+        <span class="hljs-string">[</span> <span class="hljs-number">4</span><span class="hljs-string">.,</span>  <span class="hljs-number">5</span><span class="hljs-string">.,</span>  <span class="hljs-number">6</span><span class="hljs-string">.,</span>  <span class="hljs-number">7</span><span class="hljs-string">.],</span>
+        <span class="hljs-string">[</span> <span class="hljs-number">8</span><span class="hljs-string">.,</span>  <span class="hljs-number">9</span><span class="hljs-string">.,</span> <span class="hljs-number">10</span><span class="hljs-string">.,</span> <span class="hljs-number">11</span><span class="hljs-string">.]],</span>
+
+       <span class="hljs-string">[[12.,</span> <span class="hljs-number">13</span><span class="hljs-string">.,</span> <span class="hljs-number">14</span><span class="hljs-string">.,</span> <span class="hljs-number">15</span><span class="hljs-string">.],</span>
+        <span class="hljs-string">[16.,</span> <span class="hljs-number">17</span><span class="hljs-string">.,</span> <span class="hljs-number">18</span><span class="hljs-string">.,</span> <span class="hljs-number">19</span><span class="hljs-string">.],</span>
+        <span class="hljs-string">[20.,</span> <span class="hljs-number">21</span><span class="hljs-string">.,</span> <span class="hljs-number">22</span><span class="hljs-string">.,</span> <span class="hljs-number">23</span><span class="hljs-string">.]]])</span>
+
+<span class="hljs-string">In</span> <span class="hljs-string">[58]:</span> <span class="hljs-string">a&gt;b</span>
+<span class="hljs-string">Out[58]:</span> 
+<span class="hljs-string">array([[[False,</span> <span class="hljs-literal">False</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">],</span>
+        <span class="hljs-string">[</span> <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">],</span>
+        <span class="hljs-string">[</span> <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">]],</span>
+
+       <span class="hljs-string">[[</span> <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">],</span>
+        <span class="hljs-string">[</span> <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">],</span>
+        <span class="hljs-string">[</span> <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">]]])</span></code></pre></p>
+<h4 id="NumPy文件存放与读取"><a href="#NumPy文件存放与读取" class="headerlink" title="NumPy文件存放与读取"></a>NumPy文件存放与读取</h4><p>CSV（Comma-Separated Value, 逗号分割值）<br>CSV是一种常见的文件格式，用来存储批量数据<br>CSV文件<br><code>np.savetxt(frame,array,fmt=&#39;%.18e&#39;, delimiter=None)</code><br>frame: 文件、字符串或者产生器，可以是.gz或.bz2的压缩文件<br>array: 存入文件的数组<br>fmt: 写入文件的格式,例如：%d %.2f %.18e<br>delimiter: 分割字符串，默认是空格<br><code>np.loadtxt(frame, dtype=np.float, delimiter=None, unpack=False)</code><br>unpack:如果True，读入属性将分别写入不同的变量<br><pre><code class="hljs angelscript">a = np.arange(<span class="hljs-number">100</span>).reshape(<span class="hljs-number">5</span>,<span class="hljs-number">20</span>)
+&gt;&gt;&gt; np.savetxt(<span class="hljs-string">'a.csv'</span>, a, fmt=<span class="hljs-string">'%d'</span>, delimiter=<span class="hljs-string">','</span>)
+&gt;&gt;&gt; b = np.loadtxt(<span class="hljs-string">'a.csv'</span>,delimiter=<span class="hljs-string">','</span>)
+&gt;&gt;&gt; b
+<span class="hljs-built_in">array</span>([[ <span class="hljs-number">0.</span>,  <span class="hljs-number">1.</span>,  <span class="hljs-number">2.</span>,  <span class="hljs-number">3.</span>,  <span class="hljs-number">4.</span>,  <span class="hljs-number">5.</span>,  <span class="hljs-number">6.</span>,  <span class="hljs-number">7.</span>,  <span class="hljs-number">8.</span>,  <span class="hljs-number">9.</span>, <span class="hljs-number">10.</span>, <span class="hljs-number">11.</span>, <span class="hljs-number">12.</span>,
+        <span class="hljs-number">13.</span>, <span class="hljs-number">14.</span>, <span class="hljs-number">15.</span>, <span class="hljs-number">16.</span>, <span class="hljs-number">17.</span>, <span class="hljs-number">18.</span>, <span class="hljs-number">19.</span>],
+       [<span class="hljs-number">20.</span>, <span class="hljs-number">21.</span>, <span class="hljs-number">22.</span>, <span class="hljs-number">23.</span>, <span class="hljs-number">24.</span>, <span class="hljs-number">25.</span>, <span class="hljs-number">26.</span>, <span class="hljs-number">27.</span>, <span class="hljs-number">28.</span>, <span class="hljs-number">29.</span>, <span class="hljs-number">30.</span>, <span class="hljs-number">31.</span>, <span class="hljs-number">32.</span>,
+        <span class="hljs-number">33.</span>, <span class="hljs-number">34.</span>, <span class="hljs-number">35.</span>, <span class="hljs-number">36.</span>, <span class="hljs-number">37.</span>, <span class="hljs-number">38.</span>, <span class="hljs-number">39.</span>],
+       [<span class="hljs-number">40.</span>, <span class="hljs-number">41.</span>, <span class="hljs-number">42.</span>, <span class="hljs-number">43.</span>, <span class="hljs-number">44.</span>, <span class="hljs-number">45.</span>, <span class="hljs-number">46.</span>, <span class="hljs-number">47.</span>, <span class="hljs-number">48.</span>, <span class="hljs-number">49.</span>, <span class="hljs-number">50.</span>, <span class="hljs-number">51.</span>, <span class="hljs-number">52.</span>,
+        <span class="hljs-number">53.</span>, <span class="hljs-number">54.</span>, <span class="hljs-number">55.</span>, <span class="hljs-number">56.</span>, <span class="hljs-number">57.</span>, <span class="hljs-number">58.</span>, <span class="hljs-number">59.</span>],
+       [<span class="hljs-number">60.</span>, <span class="hljs-number">61.</span>, <span class="hljs-number">62.</span>, <span class="hljs-number">63.</span>, <span class="hljs-number">64.</span>, <span class="hljs-number">65.</span>, <span class="hljs-number">66.</span>, <span class="hljs-number">67.</span>, <span class="hljs-number">68.</span>, <span class="hljs-number">69.</span>, <span class="hljs-number">70.</span>, <span class="hljs-number">71.</span>, <span class="hljs-number">72.</span>,
+        <span class="hljs-number">73.</span>, <span class="hljs-number">74.</span>, <span class="hljs-number">75.</span>, <span class="hljs-number">76.</span>, <span class="hljs-number">77.</span>, <span class="hljs-number">78.</span>, <span class="hljs-number">79.</span>],
+       [<span class="hljs-number">80.</span>, <span class="hljs-number">81.</span>, <span class="hljs-number">82.</span>, <span class="hljs-number">83.</span>, <span class="hljs-number">84.</span>, <span class="hljs-number">85.</span>, <span class="hljs-number">86.</span>, <span class="hljs-number">87.</span>, <span class="hljs-number">88.</span>, <span class="hljs-number">89.</span>, <span class="hljs-number">90.</span>, <span class="hljs-number">91.</span>, <span class="hljs-number">92.</span>,
+        <span class="hljs-number">93.</span>, <span class="hljs-number">94.</span>, <span class="hljs-number">95.</span>, <span class="hljs-number">96.</span>, <span class="hljs-number">97.</span>, <span class="hljs-number">98.</span>, <span class="hljs-number">99.</span>]])
+&gt;&gt;&gt; b = np.loadtxt(<span class="hljs-string">'a.csv'</span>,dtype=np.<span class="hljs-built_in">int</span>, delimiter=<span class="hljs-string">','</span>)
+&gt;&gt;&gt; b
+<span class="hljs-built_in">array</span>([[ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>,  <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>,  <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>,  <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>, <span class="hljs-number">13</span>, <span class="hljs-number">14</span>, <span class="hljs-number">15</span>,
+        <span class="hljs-number">16</span>, <span class="hljs-number">17</span>, <span class="hljs-number">18</span>, <span class="hljs-number">19</span>],
+       [<span class="hljs-number">20</span>, <span class="hljs-number">21</span>, <span class="hljs-number">22</span>, <span class="hljs-number">23</span>, <span class="hljs-number">24</span>, <span class="hljs-number">25</span>, <span class="hljs-number">26</span>, <span class="hljs-number">27</span>, <span class="hljs-number">28</span>, <span class="hljs-number">29</span>, <span class="hljs-number">30</span>, <span class="hljs-number">31</span>, <span class="hljs-number">32</span>, <span class="hljs-number">33</span>, <span class="hljs-number">34</span>, <span class="hljs-number">35</span>,
+        <span class="hljs-number">36</span>, <span class="hljs-number">37</span>, <span class="hljs-number">38</span>, <span class="hljs-number">39</span>],
+       [<span class="hljs-number">40</span>, <span class="hljs-number">41</span>, <span class="hljs-number">42</span>, <span class="hljs-number">43</span>, <span class="hljs-number">44</span>, <span class="hljs-number">45</span>, <span class="hljs-number">46</span>, <span class="hljs-number">47</span>, <span class="hljs-number">48</span>, <span class="hljs-number">49</span>, <span class="hljs-number">50</span>, <span class="hljs-number">51</span>, <span class="hljs-number">52</span>, <span class="hljs-number">53</span>, <span class="hljs-number">54</span>, <span class="hljs-number">55</span>,
+        <span class="hljs-number">56</span>, <span class="hljs-number">57</span>, <span class="hljs-number">58</span>, <span class="hljs-number">59</span>],
+       [<span class="hljs-number">60</span>, <span class="hljs-number">61</span>, <span class="hljs-number">62</span>, <span class="hljs-number">63</span>, <span class="hljs-number">64</span>, <span class="hljs-number">65</span>, <span class="hljs-number">66</span>, <span class="hljs-number">67</span>, <span class="hljs-number">68</span>, <span class="hljs-number">69</span>, <span class="hljs-number">70</span>, <span class="hljs-number">71</span>, <span class="hljs-number">72</span>, <span class="hljs-number">73</span>, <span class="hljs-number">74</span>, <span class="hljs-number">75</span>,
+        <span class="hljs-number">76</span>, <span class="hljs-number">77</span>, <span class="hljs-number">78</span>, <span class="hljs-number">79</span>],
+       [<span class="hljs-number">80</span>, <span class="hljs-number">81</span>, <span class="hljs-number">82</span>, <span class="hljs-number">83</span>, <span class="hljs-number">84</span>, <span class="hljs-number">85</span>, <span class="hljs-number">86</span>, <span class="hljs-number">87</span>, <span class="hljs-number">88</span>, <span class="hljs-number">89</span>, <span class="hljs-number">90</span>, <span class="hljs-number">91</span>, <span class="hljs-number">92</span>, <span class="hljs-number">93</span>, <span class="hljs-number">94</span>, <span class="hljs-number">95</span>,
+        <span class="hljs-number">96</span>, <span class="hljs-number">97</span>, <span class="hljs-number">98</span>, <span class="hljs-number">99</span>]])</code></pre><br>CSV只能有效的存储一维和二维数组  </p>
+<p>多维数组的存取<br>a.tofile(frame, sep=’’, format=’%s’)<br>frame:文件、字符串<br>sep: 数据分割字符串，如果是空串，写入文件为二进制<br>format：写入数据的格式<br><pre><code class="hljs ruby"><span class="hljs-meta">&gt;&gt;</span>&gt; c = np.arange(<span class="hljs-number">100</span>).reshape(<span class="hljs-number">5</span>,<span class="hljs-number">10</span>,<span class="hljs-number">2</span>)
+<span class="hljs-meta">&gt;&gt;</span>&gt; c.tofile(<span class="hljs-string">"c.dat"</span>, format=<span class="hljs-string">'%d'</span>)</code></pre><br><code>np.fromfile(frame, dtype= float, count=-1, sep=&#39;&#39;)</code><br>count: 读入元素的个数，-1表示读入整个文件<br><pre><code class="hljs lsl">&gt;&gt;&gt; c.tofile(<span class="hljs-string">"c.dat"</span>, sep=<span class="hljs-string">","</span>, format='%d')
+&gt;&gt;&gt; d = np.fromfile(<span class="hljs-string">"c.dat"</span>, dtype=np.int, sep=<span class="hljs-string">","</span>)
+&gt;&gt;&gt; d
+array([ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>,  <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>,  <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>,  <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>, <span class="hljs-number">13</span>, <span class="hljs-number">14</span>, <span class="hljs-number">15</span>, <span class="hljs-number">16</span>,
+       <span class="hljs-number">17</span>, <span class="hljs-number">18</span>, <span class="hljs-number">19</span>, <span class="hljs-number">20</span>, <span class="hljs-number">21</span>, <span class="hljs-number">22</span>, <span class="hljs-number">23</span>, <span class="hljs-number">24</span>, <span class="hljs-number">25</span>, <span class="hljs-number">26</span>, <span class="hljs-number">27</span>, <span class="hljs-number">28</span>, <span class="hljs-number">29</span>, <span class="hljs-number">30</span>, <span class="hljs-number">31</span>, <span class="hljs-number">32</span>, <span class="hljs-number">33</span>,
+       <span class="hljs-number">34</span>, <span class="hljs-number">35</span>, <span class="hljs-number">36</span>, <span class="hljs-number">37</span>, <span class="hljs-number">38</span>, <span class="hljs-number">39</span>, <span class="hljs-number">40</span>, <span class="hljs-number">41</span>, <span class="hljs-number">42</span>, <span class="hljs-number">43</span>, <span class="hljs-number">44</span>, <span class="hljs-number">45</span>, <span class="hljs-number">46</span>, <span class="hljs-number">47</span>, <span class="hljs-number">48</span>, <span class="hljs-number">49</span>, <span class="hljs-number">50</span>,
+       <span class="hljs-number">51</span>, <span class="hljs-number">52</span>, <span class="hljs-number">53</span>, <span class="hljs-number">54</span>, <span class="hljs-number">55</span>, <span class="hljs-number">56</span>, <span class="hljs-number">57</span>, <span class="hljs-number">58</span>, <span class="hljs-number">59</span>, <span class="hljs-number">60</span>, <span class="hljs-number">61</span>, <span class="hljs-number">62</span>, <span class="hljs-number">63</span>, <span class="hljs-number">64</span>, <span class="hljs-number">65</span>, <span class="hljs-number">66</span>, <span class="hljs-number">67</span>,
+       <span class="hljs-number">68</span>, <span class="hljs-number">69</span>, <span class="hljs-number">70</span>, <span class="hljs-number">71</span>, <span class="hljs-number">72</span>, <span class="hljs-number">73</span>, <span class="hljs-number">74</span>, <span class="hljs-number">75</span>, <span class="hljs-number">76</span>, <span class="hljs-number">77</span>, <span class="hljs-number">78</span>, <span class="hljs-number">79</span>, <span class="hljs-number">80</span>, <span class="hljs-number">81</span>, <span class="hljs-number">82</span>, <span class="hljs-number">83</span>, <span class="hljs-number">84</span>,
+       <span class="hljs-number">85</span>, <span class="hljs-number">86</span>, <span class="hljs-number">87</span>, <span class="hljs-number">88</span>, <span class="hljs-number">89</span>, <span class="hljs-number">90</span>, <span class="hljs-number">91</span>, <span class="hljs-number">92</span>, <span class="hljs-number">93</span>, <span class="hljs-number">94</span>, <span class="hljs-number">95</span>, <span class="hljs-number">96</span>, <span class="hljs-number">97</span>, <span class="hljs-number">98</span>, <span class="hljs-number">99</span>])
+&gt;&gt;&gt; d = np.fromfile(<span class="hljs-string">"c.dat"</span>, dtype=np.int, sep=<span class="hljs-string">","</span>).reshape(<span class="hljs-number">5</span>,<span class="hljs-number">10</span>,<span class="hljs-number">2</span>)
+&gt;&gt;&gt; d
+array([[[ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>],
+        [ <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>],
+        [ <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>],
+        [ <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>],
+        [ <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>],
+        [<span class="hljs-number">10</span>, <span class="hljs-number">11</span>],
+        [<span class="hljs-number">12</span>, <span class="hljs-number">13</span>],
+        [<span class="hljs-number">14</span>, <span class="hljs-number">15</span>],
+        [<span class="hljs-number">16</span>, <span class="hljs-number">17</span>],
+        [<span class="hljs-number">18</span>, <span class="hljs-number">19</span>]],
+
+       [[<span class="hljs-number">20</span>, <span class="hljs-number">21</span>],
+        [<span class="hljs-number">22</span>, <span class="hljs-number">23</span>],
+        [<span class="hljs-number">24</span>, <span class="hljs-number">25</span>],
+        [<span class="hljs-number">26</span>, <span class="hljs-number">27</span>],
+        [<span class="hljs-number">28</span>, <span class="hljs-number">29</span>],
+        [<span class="hljs-number">30</span>, <span class="hljs-number">31</span>],
+        [<span class="hljs-number">32</span>, <span class="hljs-number">33</span>],
+        [<span class="hljs-number">34</span>, <span class="hljs-number">35</span>],
+        [<span class="hljs-number">36</span>, <span class="hljs-number">37</span>],
+        [<span class="hljs-number">38</span>, <span class="hljs-number">39</span>]],
+
+       [[<span class="hljs-number">40</span>, <span class="hljs-number">41</span>],
+        [<span class="hljs-number">42</span>, <span class="hljs-number">43</span>],
+        [<span class="hljs-number">44</span>, <span class="hljs-number">45</span>],
+        [<span class="hljs-number">46</span>, <span class="hljs-number">47</span>],
+        [<span class="hljs-number">48</span>, <span class="hljs-number">49</span>],
+        [<span class="hljs-number">50</span>, <span class="hljs-number">51</span>],
+        [<span class="hljs-number">52</span>, <span class="hljs-number">53</span>],
+        [<span class="hljs-number">54</span>, <span class="hljs-number">55</span>],
+        [<span class="hljs-number">56</span>, <span class="hljs-number">57</span>],
+        [<span class="hljs-number">58</span>, <span class="hljs-number">59</span>]],
+
+       [[<span class="hljs-number">60</span>, <span class="hljs-number">61</span>],
+        [<span class="hljs-number">62</span>, <span class="hljs-number">63</span>],
+        [<span class="hljs-number">64</span>, <span class="hljs-number">65</span>],
+        [<span class="hljs-number">66</span>, <span class="hljs-number">67</span>],
+        [<span class="hljs-number">68</span>, <span class="hljs-number">69</span>],
+        [<span class="hljs-number">70</span>, <span class="hljs-number">71</span>],
+        [<span class="hljs-number">72</span>, <span class="hljs-number">73</span>],
+        [<span class="hljs-number">74</span>, <span class="hljs-number">75</span>],
+        [<span class="hljs-number">76</span>, <span class="hljs-number">77</span>],
+        [<span class="hljs-number">78</span>, <span class="hljs-number">79</span>]],
+
+       [[<span class="hljs-number">80</span>, <span class="hljs-number">81</span>],
+        [<span class="hljs-number">82</span>, <span class="hljs-number">83</span>],
+        [<span class="hljs-number">84</span>, <span class="hljs-number">85</span>],
+        [<span class="hljs-number">86</span>, <span class="hljs-number">87</span>],
+        [<span class="hljs-number">88</span>, <span class="hljs-number">89</span>],
+        [<span class="hljs-number">90</span>, <span class="hljs-number">91</span>],
+        [<span class="hljs-number">92</span>, <span class="hljs-number">93</span>],
+        [<span class="hljs-number">94</span>, <span class="hljs-number">95</span>],
+        [<span class="hljs-number">96</span>, <span class="hljs-number">97</span>],
+        [<span class="hljs-number">98</span>, <span class="hljs-number">99</span>]]])</code></pre><br>该方法需要读取时知道存入文件时数组的维度和元素类型<br> <code>a.tofile()</code>和<code>np.fromefile()</code>需要配合使用<br>可以通过元数据文件来存储额外信息  </p>
+<p>Numpy的便捷文件存取<br><code>np.save(frame,array)</code>或者<code>np.savez(fname,array)</code><br>frame:文件名，以.npy为扩展名，压缩扩展名为.npz<br>array:数组变量<br>np.load（frame）<br>frame：文件名，以.npy为扩展名，压缩扩展名为.npz<br><pre><code class="hljs lsl">&gt;&gt;&gt; a = np.arange(<span class="hljs-number">100</span>).reshape(<span class="hljs-number">5</span>,<span class="hljs-number">10</span>,<span class="hljs-number">2</span>)
+&gt;&gt;&gt; np.save(<span class="hljs-string">"a.npy"</span>, a)
+&gt;&gt;&gt; b =np.load(<span class="hljs-string">"a.npy"</span>)
+&gt;&gt;&gt; b
+array([[[ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>],
+        [ <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>],
+        [ <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>],
+        [ <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>],
+        [ <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>],
+        [<span class="hljs-number">10</span>, <span class="hljs-number">11</span>],
+        [<span class="hljs-number">12</span>, <span class="hljs-number">13</span>],
+        [<span class="hljs-number">14</span>, <span class="hljs-number">15</span>],
+        [<span class="hljs-number">16</span>, <span class="hljs-number">17</span>],
+        [<span class="hljs-number">18</span>, <span class="hljs-number">19</span>]],
+
+       [[<span class="hljs-number">20</span>, <span class="hljs-number">21</span>],
+        [<span class="hljs-number">22</span>, <span class="hljs-number">23</span>],
+        [<span class="hljs-number">24</span>, <span class="hljs-number">25</span>],
+        [<span class="hljs-number">26</span>, <span class="hljs-number">27</span>],
+        [<span class="hljs-number">28</span>, <span class="hljs-number">29</span>],
+        [<span class="hljs-number">30</span>, <span class="hljs-number">31</span>],
+        [<span class="hljs-number">32</span>, <span class="hljs-number">33</span>],
+        [<span class="hljs-number">34</span>, <span class="hljs-number">35</span>],
+        [<span class="hljs-number">36</span>, <span class="hljs-number">37</span>],
+        [<span class="hljs-number">38</span>, <span class="hljs-number">39</span>]],
+
+       [[<span class="hljs-number">40</span>, <span class="hljs-number">41</span>],
+        [<span class="hljs-number">42</span>, <span class="hljs-number">43</span>],
+        [<span class="hljs-number">44</span>, <span class="hljs-number">45</span>],
+        [<span class="hljs-number">46</span>, <span class="hljs-number">47</span>],
+        [<span class="hljs-number">48</span>, <span class="hljs-number">49</span>],
+        [<span class="hljs-number">50</span>, <span class="hljs-number">51</span>],
+        [<span class="hljs-number">52</span>, <span class="hljs-number">53</span>],
+        [<span class="hljs-number">54</span>, <span class="hljs-number">55</span>],
+        [<span class="hljs-number">56</span>, <span class="hljs-number">57</span>],
+        [<span class="hljs-number">58</span>, <span class="hljs-number">59</span>]],
+
+       [[<span class="hljs-number">60</span>, <span class="hljs-number">61</span>],
+        [<span class="hljs-number">62</span>, <span class="hljs-number">63</span>],
+        [<span class="hljs-number">64</span>, <span class="hljs-number">65</span>],
+        [<span class="hljs-number">66</span>, <span class="hljs-number">67</span>],
+        [<span class="hljs-number">68</span>, <span class="hljs-number">69</span>],
+        [<span class="hljs-number">70</span>, <span class="hljs-number">71</span>],
+        [<span class="hljs-number">72</span>, <span class="hljs-number">73</span>],
+        [<span class="hljs-number">74</span>, <span class="hljs-number">75</span>],
+        [<span class="hljs-number">76</span>, <span class="hljs-number">77</span>],
+        [<span class="hljs-number">78</span>, <span class="hljs-number">79</span>]],
+
+       [[<span class="hljs-number">80</span>, <span class="hljs-number">81</span>],
+        [<span class="hljs-number">82</span>, <span class="hljs-number">83</span>],
+        [<span class="hljs-number">84</span>, <span class="hljs-number">85</span>],
+        [<span class="hljs-number">86</span>, <span class="hljs-number">87</span>],
+        [<span class="hljs-number">88</span>, <span class="hljs-number">89</span>],
+        [<span class="hljs-number">90</span>, <span class="hljs-number">91</span>],
+        [<span class="hljs-number">92</span>, <span class="hljs-number">93</span>],
+        [<span class="hljs-number">94</span>, <span class="hljs-number">95</span>],
+        [<span class="hljs-number">96</span>, <span class="hljs-number">97</span>],
+        [<span class="hljs-number">98</span>, <span class="hljs-number">99</span>]]])</code></pre><br>np.random的随机数函数<br><img src="/img/data/15.png" srcset="/img/loading.gif" alt="图15"><br><img src="/img/data/16.png" srcset="/img/loading.gif" alt="图16"><br><pre><code class="hljs angelscript"> &gt;&gt;&gt; a = np.random.randint(<span class="hljs-number">100</span>,<span class="hljs-number">200</span>,(<span class="hljs-number">3</span>,<span class="hljs-number">4</span>))
+&gt;&gt;&gt; a
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">168</span>, <span class="hljs-number">133</span>, <span class="hljs-number">164</span>, <span class="hljs-number">186</span>],
+       [<span class="hljs-number">137</span>, <span class="hljs-number">111</span>, <span class="hljs-number">144</span>, <span class="hljs-number">114</span>],
+       [<span class="hljs-number">180</span>, <span class="hljs-number">138</span>, <span class="hljs-number">123</span>, <span class="hljs-number">189</span>]])
+&gt;&gt;&gt; np.random.shuffle(a)
+&gt;&gt;&gt; a
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">180</span>, <span class="hljs-number">138</span>, <span class="hljs-number">123</span>, <span class="hljs-number">189</span>],
+       [<span class="hljs-number">168</span>, <span class="hljs-number">133</span>, <span class="hljs-number">164</span>, <span class="hljs-number">186</span>],
+       [<span class="hljs-number">137</span>, <span class="hljs-number">111</span>, <span class="hljs-number">144</span>, <span class="hljs-number">114</span>]])
+&gt;&gt;&gt; np.random.shuffle(a)
+&gt;&gt;&gt; a
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">180</span>, <span class="hljs-number">138</span>, <span class="hljs-number">123</span>, <span class="hljs-number">189</span>],
+       [<span class="hljs-number">137</span>, <span class="hljs-number">111</span>, <span class="hljs-number">144</span>, <span class="hljs-number">114</span>],
+       [<span class="hljs-number">168</span>, <span class="hljs-number">133</span>, <span class="hljs-number">164</span>, <span class="hljs-number">186</span>]])
+In [<span class="hljs-number">1</span>]: <span class="hljs-keyword">import</span> numpy as np
+In [<span class="hljs-number">2</span>]: a = np.random.randint(<span class="hljs-number">100</span>,<span class="hljs-number">200</span>,(<span class="hljs-number">3</span>,<span class="hljs-number">4</span>))
+In [<span class="hljs-number">3</span>]: a
+Out[<span class="hljs-number">3</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">116</span>, <span class="hljs-number">105</span>, <span class="hljs-number">108</span>, <span class="hljs-number">111</span>],
+       [<span class="hljs-number">177</span>, <span class="hljs-number">161</span>, <span class="hljs-number">133</span>, <span class="hljs-number">153</span>],
+       [<span class="hljs-number">199</span>, <span class="hljs-number">172</span>, <span class="hljs-number">130</span>, <span class="hljs-number">104</span>]])
+In [<span class="hljs-number">4</span>]: np.random.permutation(a)
+Out[<span class="hljs-number">4</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">177</span>, <span class="hljs-number">161</span>, <span class="hljs-number">133</span>, <span class="hljs-number">153</span>],
+       [<span class="hljs-number">116</span>, <span class="hljs-number">105</span>, <span class="hljs-number">108</span>, <span class="hljs-number">111</span>],
+       [<span class="hljs-number">199</span>, <span class="hljs-number">172</span>, <span class="hljs-number">130</span>, <span class="hljs-number">104</span>]])
+In [<span class="hljs-number">5</span>]: a
+Out[<span class="hljs-number">5</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">116</span>, <span class="hljs-number">105</span>, <span class="hljs-number">108</span>, <span class="hljs-number">111</span>],
+       [<span class="hljs-number">177</span>, <span class="hljs-number">161</span>, <span class="hljs-number">133</span>, <span class="hljs-number">153</span>],
+       [<span class="hljs-number">199</span>, <span class="hljs-number">172</span>, <span class="hljs-number">130</span>, <span class="hljs-number">104</span>]])
+In [<span class="hljs-number">8</span>]: b = np.random.randint(<span class="hljs-number">100</span>,<span class="hljs-number">200</span>,(<span class="hljs-number">8</span>,))
+In [<span class="hljs-number">9</span>]: b
+Out[<span class="hljs-number">9</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">106</span>, <span class="hljs-number">108</span>, <span class="hljs-number">169</span>, <span class="hljs-number">160</span>, <span class="hljs-number">105</span>, <span class="hljs-number">181</span>, <span class="hljs-number">195</span>, <span class="hljs-number">165</span>])
+In [<span class="hljs-number">10</span>]: np.random.choice(b,(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>))
+Out[<span class="hljs-number">10</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">195</span>, <span class="hljs-number">105</span>],
+       [<span class="hljs-number">108</span>, <span class="hljs-number">106</span>],
+       [<span class="hljs-number">169</span>, <span class="hljs-number">108</span>]])
+In [<span class="hljs-number">13</span>]: np.random.choice(b, (<span class="hljs-number">3</span>,<span class="hljs-number">2</span>), replace=False)
+Out[<span class="hljs-number">13</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">181</span>, <span class="hljs-number">106</span>],
+       [<span class="hljs-number">195</span>, <span class="hljs-number">165</span>],
+       [<span class="hljs-number">105</span>, <span class="hljs-number">160</span>]])
+In [<span class="hljs-number">15</span>]: np.random.choice(b,(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>), p=b/np.sum(b))
+Out[<span class="hljs-number">15</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">105</span>, <span class="hljs-number">108</span>],
+       [<span class="hljs-number">181</span>, <span class="hljs-number">169</span>],
+       [<span class="hljs-number">169</span>, <span class="hljs-number">165</span>]])
+In [<span class="hljs-number">17</span>]: p=b/np.sum(b)
+In [<span class="hljs-number">18</span>]: p
+Out[<span class="hljs-number">18</span>]: 
+<span class="hljs-built_in">array</span>([<span class="hljs-number">0.08915055</span>, <span class="hljs-number">0.09083263</span>, <span class="hljs-number">0.14213625</span>, <span class="hljs-number">0.13456686</span>, <span class="hljs-number">0.0883095</span> ,
+       <span class="hljs-number">0.15222876</span>, <span class="hljs-number">0.16400336</span>, <span class="hljs-number">0.13877208</span>])</code></pre><br><img src="/img/data/17.png" srcset="/img/loading.gif" alt="图17"><br><pre><code class="hljs angelscript">
+In [<span class="hljs-number">20</span>]: <span class="hljs-keyword">import</span> numpy as np
+In [<span class="hljs-number">21</span>]: u = np.random.uniform(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,(<span class="hljs-number">3</span>,<span class="hljs-number">4</span>))
+In [<span class="hljs-number">22</span>]: u
+Out[<span class="hljs-number">22</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">1.55342812</span>, <span class="hljs-number">9.66284631</span>, <span class="hljs-number">9.35205728</span>, <span class="hljs-number">4.35551918</span>],
+       [<span class="hljs-number">5.80542662</span>, <span class="hljs-number">3.67044365</span>, <span class="hljs-number">6.99966878</span>, <span class="hljs-number">9.01022477</span>],
+       [<span class="hljs-number">9.40537026</span>, <span class="hljs-number">8.69429305</span>, <span class="hljs-number">2.4411329</span> , <span class="hljs-number">2.42999845</span>]])
+In [<span class="hljs-number">23</span>]: n = np.random.normal(<span class="hljs-number">10</span>,<span class="hljs-number">5</span>,(<span class="hljs-number">3</span>,<span class="hljs-number">4</span>))
+In [<span class="hljs-number">24</span>]: n
+Out[<span class="hljs-number">25</span>]:
+<span class="hljs-built_in">array</span>([[ <span class="hljs-number">8.79560911</span>, <span class="hljs-number">12.64784441</span>, <span class="hljs-number">14.08858882</span>,  <span class="hljs-number">7.24640246</span>],
+       [<span class="hljs-number">11.0859235</span> , <span class="hljs-number">13.34351634</span>,  <span class="hljs-number">6.48576609</span>, <span class="hljs-number">16.38133251</span>],
+       [ <span class="hljs-number">8.22931202</span>,  <span class="hljs-number">9.23737404</span>, <span class="hljs-number">12.66597265</span>,  <span class="hljs-number">3.07189174</span>]])</code></pre></p>
+<h4 id="NumPy的统计函数"><a href="#NumPy的统计函数" class="headerlink" title="NumPy的统计函数"></a>NumPy的统计函数</h4><p><img src="/img/data/18.png" srcset="/img/loading.gif" alt="图18"><br><pre><code class="hljs angelscript"> In [<span class="hljs-number">26</span>]: a = np.arange(<span class="hljs-number">15</span>).reshape(<span class="hljs-number">3</span>,<span class="hljs-number">5</span>)
+In [<span class="hljs-number">27</span>]: a
+Out[<span class="hljs-number">27</span>]: 
+<span class="hljs-built_in">array</span>([[ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>,  <span class="hljs-number">4</span>],
+       [ <span class="hljs-number">5</span>,  <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>,  <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>],
+       [<span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>, <span class="hljs-number">13</span>, <span class="hljs-number">14</span>]])
+
+In [<span class="hljs-number">29</span>]: np.sum(a)
+Out[<span class="hljs-number">29</span>]: <span class="hljs-number">105</span>
+
+In [<span class="hljs-number">30</span>]: np.mean(a,axis = <span class="hljs-number">1</span>)
+Out[<span class="hljs-number">30</span>]: <span class="hljs-built_in">array</span>([ <span class="hljs-number">2.</span>,  <span class="hljs-number">7.</span>, <span class="hljs-number">12.</span>])
+
+In [<span class="hljs-number">31</span>]: np.mean(a,axis = <span class="hljs-number">0</span>)
+Out[<span class="hljs-number">31</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">5.</span>, <span class="hljs-number">6.</span>, <span class="hljs-number">7.</span>, <span class="hljs-number">8.</span>, <span class="hljs-number">9.</span>])
+
+In [<span class="hljs-number">33</span>]: np.average(a, axis=<span class="hljs-number">0</span>,weights=[<span class="hljs-number">10</span>,<span class="hljs-number">5</span>,<span class="hljs-number">1</span>])
+Out[<span class="hljs-number">33</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">2.1875</span>, <span class="hljs-number">3.1875</span>, <span class="hljs-number">4.1875</span>, <span class="hljs-number">5.1875</span>, <span class="hljs-number">6.1875</span>])
+
+In [<span class="hljs-number">34</span>]: np.std(a)
+Out[<span class="hljs-number">34</span>]: <span class="hljs-number">4.320493798938574</span>
+
+In [<span class="hljs-number">35</span>]: np.var(a)
+Out[<span class="hljs-number">35</span>]: <span class="hljs-number">18.666666666666668</span></code></pre><br><img src="/img/data/19.png" srcset="/img/loading.gif" alt="图19"><br><pre><code class="hljs angelscript">In [<span class="hljs-number">38</span>]: b = np.arange(<span class="hljs-number">15</span>,<span class="hljs-number">0</span>,<span class="hljs-number">-1</span>).reshape(<span class="hljs-number">3</span>,<span class="hljs-number">5</span>)
+
+In [<span class="hljs-number">39</span>]: b
+Out[<span class="hljs-number">39</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">15</span>, <span class="hljs-number">14</span>, <span class="hljs-number">13</span>, <span class="hljs-number">12</span>, <span class="hljs-number">11</span>],
+       [<span class="hljs-number">10</span>,  <span class="hljs-number">9</span>,  <span class="hljs-number">8</span>,  <span class="hljs-number">7</span>,  <span class="hljs-number">6</span>],
+       [ <span class="hljs-number">5</span>,  <span class="hljs-number">4</span>,  <span class="hljs-number">3</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">1</span>]])
+
+In [<span class="hljs-number">40</span>]: np.max(b)
+Out[<span class="hljs-number">40</span>]: <span class="hljs-number">15</span>
+
+In [<span class="hljs-number">41</span>]: np.argmax(b)
+Out[<span class="hljs-number">41</span>]: <span class="hljs-number">0</span>
+
+In [<span class="hljs-number">42</span>]: np.unravel_index(np.argmax(b), b.shape)
+Out[<span class="hljs-number">42</span>]: (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)
+
+In [<span class="hljs-number">43</span>]: np.ptp(b)
+Out[<span class="hljs-number">43</span>]: <span class="hljs-number">14</span>
+
+In [<span class="hljs-number">45</span>]: np.median(b)
+Out[<span class="hljs-number">45</span>]: <span class="hljs-number">8.0</span></code></pre></p>
+<h4 id="NumPy的梯度函数"><a href="#NumPy的梯度函数" class="headerlink" title="NumPy的梯度函数"></a>NumPy的梯度函数</h4><p><img src="/img/data/20.png" srcset="/img/loading.gif" alt="图20"><br>梯度：连续值之间的变化率，即斜率。<br>XY坐标轴中连续三个X坐标对应的Y轴值：a, b, c， 其中b的梯度是（c-a）/2<br><pre><code class="hljs angelscript">In [<span class="hljs-number">46</span>]: c = np.random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">20</span>,(<span class="hljs-number">5</span>))
+
+In [<span class="hljs-number">47</span>]: c
+Out[<span class="hljs-number">47</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">13</span>, <span class="hljs-number">13</span>,  <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>, <span class="hljs-number">11</span>])
+
+In [<span class="hljs-number">49</span>]: np.gradient(c)
+Out[<span class="hljs-number">49</span>]: <span class="hljs-built_in">array</span>([ <span class="hljs-number">0.</span> , <span class="hljs-number">-4.5</span>, <span class="hljs-number">-4.</span> ,  <span class="hljs-number">3.5</span>,  <span class="hljs-number">6.</span> ])
+
+In [<span class="hljs-number">50</span>]: d = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">20</span>, (<span class="hljs-number">5</span>))
+
+In [<span class="hljs-number">51</span>]: d
+Out[<span class="hljs-number">51</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">13</span>, <span class="hljs-number">14</span>, <span class="hljs-number">13</span>, <span class="hljs-number">10</span>,  <span class="hljs-number">1</span>])
+
+In [<span class="hljs-number">52</span>]: np.gradient(d)
+Out[<span class="hljs-number">52</span>]: <span class="hljs-built_in">array</span>([ <span class="hljs-number">1.</span>,  <span class="hljs-number">0.</span>, <span class="hljs-number">-2.</span>, <span class="hljs-number">-6.</span>, <span class="hljs-number">-9.</span>])
+
+In [<span class="hljs-number">56</span>]: e = np.random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">50</span> ,(<span class="hljs-number">3</span>,<span class="hljs-number">5</span>))
+
+In [<span class="hljs-number">57</span>]: e
+Out[<span class="hljs-number">57</span>]: 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">42</span>,  <span class="hljs-number">5</span>, <span class="hljs-number">25</span>,  <span class="hljs-number">0</span>, <span class="hljs-number">23</span>],
+       [<span class="hljs-number">35</span>, <span class="hljs-number">18</span>, <span class="hljs-number">30</span>,  <span class="hljs-number">6</span>,  <span class="hljs-number">6</span>],
+       [<span class="hljs-number">15</span>, <span class="hljs-number">43</span>,  <span class="hljs-number">5</span>, <span class="hljs-number">19</span>, <span class="hljs-number">43</span>]])
+
+In [<span class="hljs-number">59</span>]: np.gradient(e)
+Out[<span class="hljs-number">59</span>]: 
+[<span class="hljs-built_in">array</span>([[ <span class="hljs-number">-7.</span> ,  <span class="hljs-number">13.</span> ,   <span class="hljs-number">5.</span> ,   <span class="hljs-number">6.</span> , <span class="hljs-number">-17.</span> ],
+        [<span class="hljs-number">-13.5</span>,  <span class="hljs-number">19.</span> , <span class="hljs-number">-10.</span> ,   <span class="hljs-number">9.5</span>,  <span class="hljs-number">10.</span> ],   #最外层维度的梯度值
+        [<span class="hljs-number">-20.</span> ,  <span class="hljs-number">25.</span> , <span class="hljs-number">-25.</span> ,  <span class="hljs-number">13.</span> ,  <span class="hljs-number">37.</span> ]]),
+ <span class="hljs-built_in">array</span>([[<span class="hljs-number">-37.</span> ,  <span class="hljs-number">-8.5</span>,  <span class="hljs-number">-2.5</span>,  <span class="hljs-number">-1.</span> ,  <span class="hljs-number">23.</span> ],
+        [<span class="hljs-number">-17.</span> ,  <span class="hljs-number">-2.5</span>,  <span class="hljs-number">-6.</span> , <span class="hljs-number">-12.</span> ,   <span class="hljs-number">0.</span> ],   #第二层维度的梯度
+        [ <span class="hljs-number">28.</span> ,  <span class="hljs-number">-5.</span> , <span class="hljs-number">-12.</span> ,  <span class="hljs-number">19.</span> ,  <span class="hljs-number">24.</span> ]])]</code></pre></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/study/">study</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                      <a class="hover-with-bg" href="/tags/numpy/">numpy</a>
+                    
+                      <a class="hover-with-bg" href="/tags/matplotlib/">matplotlib</a>
+                    
+                      <a class="hover-with-bg" href="/tags/pandas/">pandas</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/03/13/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据分析（二）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/02/20/%E7%88%AC%E8%99%AB%EF%BC%88%E4%BA%8C%EF%BC%89/">
+                        <span class="hidden-mobile">爬虫（二）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "数据分析（一）&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

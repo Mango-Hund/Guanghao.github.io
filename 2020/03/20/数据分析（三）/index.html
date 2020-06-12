@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>数据分析（三） - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Hao-Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/escape_velocity.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-03-20 16:45">
+      2020年3月20日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      50
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h3 id="Pandas-库的引用"><a href="#Pandas-库的引用" class="headerlink" title="Pandas 库的引用"></a>Pandas 库的引用</h3><p>Pandas是Python第三方库，提供高性能易用数据类型和分析工具。<br><code>import pandas as pd</code><br>Pandas 基于Numpy实现，常与Numpy和Matplotlib一同使用<br>两个数据类型：Series, DataFrame<br>基于上述数据类型的各类操作<br>基本操作、运算操作、特征类操作、关联类操作<br>NumPy               Pandas<br>基础数据类型          扩展数据类型<br>关注数据的结构表达     关注数据的应用表达<br>维度：数据间关系       数据与索引间关系   </p>
+<p>Pandas库中的Series类型,由一组数据与之相关的数据索引组成<br>index_0 —-&gt;data_a<br>index_1 —-&gt;data_b<br>index_2 —-&gt;data_c<br>index_3 —-&gt;data_d<br><pre><code class="hljs angelscript">In [<span class="hljs-number">1</span>]: <span class="hljs-keyword">import</span> pandas as pd
+
+In [<span class="hljs-number">2</span>]: a = pd.Series([<span class="hljs-number">9</span>, <span class="hljs-number">8</span>, <span class="hljs-number">7</span>, <span class="hljs-number">6</span>])
+
+In [<span class="hljs-number">3</span>]: a
+Out[<span class="hljs-number">3</span>]: 
+<span class="hljs-number">0</span>    <span class="hljs-number">9</span>
+<span class="hljs-number">1</span>    <span class="hljs-number">8</span>
+<span class="hljs-number">2</span>    <span class="hljs-number">7</span>
+<span class="hljs-number">3</span>    <span class="hljs-number">6</span>
+dtype: <span class="hljs-built_in">int</span>64
+In [<span class="hljs-number">4</span>]: a = pd.Series([<span class="hljs-number">9</span>, <span class="hljs-number">8</span>, <span class="hljs-number">7</span>, <span class="hljs-number">6</span>], index=[<span class="hljs-string">"a"</span>, <span class="hljs-string">"b"</span>, <span class="hljs-string">"c"</span>, <span class="hljs-string">"d"</span>]) 
+
+In [<span class="hljs-number">5</span>]: a
+Out[<span class="hljs-number">5</span>]: 
+a    <span class="hljs-number">9</span>
+b    <span class="hljs-number">8</span>
+c    <span class="hljs-number">7</span>
+d    <span class="hljs-number">6</span>
+dtype: <span class="hljs-built_in">int</span>64</code></pre><br>从标量值创建<br><pre><code class="hljs angelscript">In [<span class="hljs-number">7</span>]: <span class="hljs-keyword">import</span> pandas as pd
+
+In [<span class="hljs-number">8</span>]: s = pd.Series(<span class="hljs-number">25</span>, index=[<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>])
+
+In [<span class="hljs-number">9</span>]: s
+Out[<span class="hljs-number">9</span>]: 
+a    <span class="hljs-number">25</span>
+b    <span class="hljs-number">25</span>
+c    <span class="hljs-number">25</span>
+dtype: <span class="hljs-built_in">int</span>64</code></pre><br>从字典类型创建<br><pre><code class="hljs angelscript">In [<span class="hljs-number">10</span>]: d = pd.Series(&#123;<span class="hljs-string">'a'</span>:<span class="hljs-number">9</span>, <span class="hljs-string">'b'</span>:<span class="hljs-number">8</span>, <span class="hljs-string">'c'</span>:<span class="hljs-number">7</span>&#125;)
+
+In [<span class="hljs-number">11</span>]: d
+Out[<span class="hljs-number">11</span>]: 
+a    <span class="hljs-number">9</span>
+b    <span class="hljs-number">8</span>
+c    <span class="hljs-number">7</span>
+dtype: <span class="hljs-built_in">int</span>64
+
+In [<span class="hljs-number">12</span>]: e = pd.Series(&#123;<span class="hljs-string">'a'</span>:<span class="hljs-number">9</span>, <span class="hljs-string">'b'</span>:<span class="hljs-number">8</span>, <span class="hljs-string">'c'</span>:<span class="hljs-number">7</span>&#125;, index=[<span class="hljs-string">'c'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'d'</span>]) #index从字典中进行选择操作
+
+In [<span class="hljs-number">13</span>]: e
+Out[<span class="hljs-number">13</span>]: 
+c    <span class="hljs-number">7.0</span>
+a    <span class="hljs-number">9.0</span>
+b    <span class="hljs-number">8.0</span>
+d    NaN
+dtype: <span class="hljs-built_in">float</span>64</code></pre><br>从ndarray类型创建<br><pre><code class="hljs angelscript">In [<span class="hljs-number">14</span>]: <span class="hljs-keyword">import</span> pandas as pd
+
+In [<span class="hljs-number">15</span>]: <span class="hljs-keyword">import</span> numpy as np
+
+In [<span class="hljs-number">16</span>]: n = pd.Series(np.arange(<span class="hljs-number">5</span>))
+
+In [<span class="hljs-number">17</span>]: n
+Out[<span class="hljs-number">17</span>]: 
+<span class="hljs-number">0</span>    <span class="hljs-number">0</span>
+<span class="hljs-number">1</span>    <span class="hljs-number">1</span>
+<span class="hljs-number">2</span>    <span class="hljs-number">2</span>
+<span class="hljs-number">3</span>    <span class="hljs-number">3</span>
+<span class="hljs-number">4</span>    <span class="hljs-number">4</span>
+dtype: <span class="hljs-built_in">int</span>64</code></pre><br>Series类型的基本操作<br><pre><code class="hljs angelscript">In [<span class="hljs-number">19</span>]: a
+Out[<span class="hljs-number">19</span>]: 
+a    <span class="hljs-number">9</span>
+b    <span class="hljs-number">8</span>
+c    <span class="hljs-number">7</span>
+d    <span class="hljs-number">6</span>
+dtype: <span class="hljs-built_in">int</span>64
+
+In [<span class="hljs-number">20</span>]: b.index
+In [<span class="hljs-number">21</span>]: a.index
+Out[<span class="hljs-number">21</span>]: Index([<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>], dtype=<span class="hljs-string">'object'</span>)            #.index 获得索引/.valus获得数据
+In [<span class="hljs-number">22</span>]: a.values
+Out[<span class="hljs-number">22</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">9</span>, <span class="hljs-number">8</span>, <span class="hljs-number">7</span>, <span class="hljs-number">6</span>])</code></pre><br><pre><code class="hljs angelscript">In [<span class="hljs-number">27</span>]: b = pd.Series([<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>], index=[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>])
+
+In [<span class="hljs-number">28</span>]: b
+Out[<span class="hljs-number">28</span>]: 
+a    <span class="hljs-number">8</span>
+b    <span class="hljs-number">9</span>
+c    <span class="hljs-number">7</span>
+d    <span class="hljs-number">6</span>
+dtype: <span class="hljs-built_in">int</span>64
+
+In [<span class="hljs-number">29</span>]: b[<span class="hljs-string">'b'</span>]         #自动索引和自定义索引并存
+Out[<span class="hljs-number">29</span>]: <span class="hljs-number">9</span>
+
+In [<span class="hljs-number">30</span>]: b[<span class="hljs-number">1</span>]
+Out[<span class="hljs-number">30</span>]: <span class="hljs-number">9</span>
+
+In [<span class="hljs-number">31</span>]: b[[<span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-number">0</span>]]        #两套索引并存，但不能混合使用
+Out[<span class="hljs-number">31</span>]: 
+c    <span class="hljs-number">7.0</span>
+d    <span class="hljs-number">6.0</span>
+<span class="hljs-number">0</span>    NaN
+dtype: <span class="hljs-built_in">float</span>64
+
+In [<span class="hljs-number">32</span>]: b[[<span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'a'</span>]]   
+Out[<span class="hljs-number">32</span>]: 
+c    <span class="hljs-number">7</span>
+d    <span class="hljs-number">6</span>
+a    <span class="hljs-number">8</span>
+dtype: <span class="hljs-built_in">int</span>64</code></pre><br>Series类型的操作类似于ndarray类型<br>索引方法相同，采用[]<br>NumPy中运算和操作可用于Series类型<br>可以通过自定义索引的列表进行切片<br>可以通过自动索引进行切片，如果含有自定义索引，它们也会被保留下来<br><pre><code class="hljs angelscript">In [<span class="hljs-number">34</span>]: <span class="hljs-keyword">import</span> pandas as pd
+
+In [<span class="hljs-number">35</span>]: <span class="hljs-keyword">import</span> numpy as np
+
+In [<span class="hljs-number">36</span>]: b = pd.Series([<span class="hljs-number">9</span>,<span class="hljs-number">8</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>], [<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>,<span class="hljs-string">'d'</span>])
+
+In [<span class="hljs-number">37</span>]: b
+Out[<span class="hljs-number">37</span>]: 
+a    <span class="hljs-number">9</span>
+b    <span class="hljs-number">8</span>
+c    <span class="hljs-number">7</span>
+d    <span class="hljs-number">6</span>
+dtype: <span class="hljs-built_in">int</span>64
+
+In [<span class="hljs-number">38</span>]: b[<span class="hljs-number">3</span>]
+Out[<span class="hljs-number">38</span>]: <span class="hljs-number">6</span>
+
+In [<span class="hljs-number">39</span>]: b[:<span class="hljs-number">3</span>]
+Out[<span class="hljs-number">39</span>]: 
+a    <span class="hljs-number">9</span>
+b    <span class="hljs-number">8</span>
+c    <span class="hljs-number">7</span>
+dtype: <span class="hljs-built_in">int</span>64
+
+In [<span class="hljs-number">41</span>]: b[b &gt; b.median()]
+Out[<span class="hljs-number">41</span>]: 
+a    <span class="hljs-number">9</span>
+b    <span class="hljs-number">8</span>
+dtype: <span class="hljs-built_in">int</span>64
+
+In [<span class="hljs-number">42</span>]: np.exp(b)
+Out[<span class="hljs-number">42</span>]: 
+a    <span class="hljs-number">8103.083928</span>
+b    <span class="hljs-number">2980.957987</span>
+c    <span class="hljs-number">1096.633158</span>
+d     <span class="hljs-number">403.428793</span>
+dtype: <span class="hljs-built_in">float</span>64
+
+In [<span class="hljs-number">43</span>]: <span class="hljs-string">'c'</span> <span class="hljs-keyword">in</span> b
+Out[<span class="hljs-number">43</span>]: True
+
+In [<span class="hljs-number">44</span>]: <span class="hljs-number">0</span> <span class="hljs-keyword">in</span> b           #<span class="hljs-keyword">in</span>判断自定义索引在不在
+Out[<span class="hljs-number">44</span>]: False
+
+In [<span class="hljs-number">45</span>]: b.<span class="hljs-keyword">get</span>(<span class="hljs-string">'f'</span>, <span class="hljs-number">100</span>)  #从b中提取f的值并返回，但f中为空，第二个参数<span class="hljs-number">100</span>,所以返回了<span class="hljs-number">100</span>
+Out[<span class="hljs-number">45</span>]: <span class="hljs-number">100</span>
+
+#Series + Series
+In [<span class="hljs-number">47</span>]: <span class="hljs-keyword">import</span> pandas as pd
+
+In [<span class="hljs-number">48</span>]: a = pd.Series([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], [<span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'e'</span>])
+
+In [<span class="hljs-number">49</span>]: b = pd.Series([<span class="hljs-number">9</span>,<span class="hljs-number">8</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>],[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>])
+
+In [<span class="hljs-number">50</span>]: a + b 
+Out[<span class="hljs-number">50</span>]: 
+a    NaN
+b    NaN
+c    <span class="hljs-number">8.0</span>
+d    <span class="hljs-number">8.0</span>
+e    NaN
+dtype: <span class="hljs-built_in">float</span>64</code></pre><br>Series类型在运算中会自动对齐不同索引的数据<br>Series对象和索引都可以有一个名字，存储在属性.name中<br>Series对象可以随时修改并立刻生效<br><pre><code class="hljs angelscript">In [<span class="hljs-number">53</span>]: <span class="hljs-keyword">import</span> pandas as pd
+
+In [<span class="hljs-number">54</span>]: b = pd.Series([<span class="hljs-number">9</span>,<span class="hljs-number">8</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>],[<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>,<span class="hljs-string">'d'</span>])
+
+In [<span class="hljs-number">55</span>]: b[<span class="hljs-string">'a'</span>]
+Out[<span class="hljs-number">55</span>]: <span class="hljs-number">9</span>
+
+In [<span class="hljs-number">56</span>]: b[<span class="hljs-string">'a'</span>] = <span class="hljs-number">15</span>
+
+In [<span class="hljs-number">57</span>]: b.name = <span class="hljs-string">"Series"</span>
+
+In [<span class="hljs-number">58</span>]: b
+Out[<span class="hljs-number">58</span>]: 
+a    <span class="hljs-number">15</span>
+b     <span class="hljs-number">8</span>
+c     <span class="hljs-number">7</span>
+d     <span class="hljs-number">6</span>
+Name: Series, dtype: <span class="hljs-built_in">int</span>64
+
+In [<span class="hljs-number">59</span>]: b[<span class="hljs-string">'a'</span>, <span class="hljs-string">'c'</span>] = <span class="hljs-number">20</span>
+
+In [<span class="hljs-number">60</span>]: b
+Out[<span class="hljs-number">60</span>]: 
+a    <span class="hljs-number">20</span>
+b     <span class="hljs-number">8</span>
+c    <span class="hljs-number">20</span>
+d     <span class="hljs-number">6</span>
+Name: Series, dtype: <span class="hljs-built_in">int</span>64</code></pre></p>
+<p>Pandas库的DataFrame类型<br>DataFrame类型由共同相同索引的一组列组成<br>index_0 —-&gt;data_a     data_1            data_w<br>index_1 —-&gt;data_b     data_2     ….   data_x<br>index_2 —-&gt;data_c     data_3            data_y<br>index_3 —-&gt;data_d     data_4            data_z<br>DataFrame是一个表格型的数据类型，每列值类型可以不同<br>DataFrame既有行索引、也有列索引<br>DataFrame常用于表达二维数据，但可以表达多维数据<br>可以由：  </p>
+<ul>
+<li>二维ndarray对象  </li>
+<li>由一维ndarray、列表、字典、元组或者Series构成的字典  </li>
+<li>Series类型  </li>
+<li>其他的DaraFrame类型 </li>
+</ul>
+<h4 id="Pandas库的DataFrame类型"><a href="#Pandas库的DataFrame类型" class="headerlink" title="Pandas库的DataFrame类型"></a>Pandas库的DataFrame类型</h4><p>DataFrame类型由共同相同索引的一组列组成<br>index_0 —-&gt;data_a     data_1            data_w<br>index_1 —-&gt;data_b     data_2     ….   data_x<br>index_2 —-&gt;data_c     data_3            data_y<br>index_3 —-&gt;data_d     data_4            data_z<br>DataFrame是一个表格型的数据类型，每列值类型可以不同<br>DataFrame既有行索引、也有列索引<br>DataFrame常用于表达二维数据，但可以表达多维数据<br>可以由：<br><em>二维ndarray对象
+</em>由一维ndarray、列表、字典、元组或者Series构成的字典<br><em>Series类型
+</em>其他的DaraFrame类型</p>
+<p>二维ndarray对象创建<br><pre><code class="hljs angelscript">In [<span class="hljs-number">62</span>]: <span class="hljs-keyword">import</span> pandas as pd
+
+In [<span class="hljs-number">63</span>]: <span class="hljs-keyword">import</span> numpy as np
+
+In [<span class="hljs-number">64</span>]: d = pd.DataFrame(np.arange(<span class="hljs-number">10</span>).reshape(<span class="hljs-number">2</span>,<span class="hljs-number">5</span>))
+
+In [<span class="hljs-number">65</span>]: d
+Out[<span class="hljs-number">65</span>]: 
+   <span class="hljs-number">0</span>  <span class="hljs-number">1</span>  <span class="hljs-number">2</span>  <span class="hljs-number">3</span>  <span class="hljs-number">4</span>
+<span class="hljs-number">0</span>  <span class="hljs-number">0</span>  <span class="hljs-number">1</span>  <span class="hljs-number">2</span>  <span class="hljs-number">3</span>  <span class="hljs-number">4</span>
+<span class="hljs-number">1</span>  <span class="hljs-number">5</span>  <span class="hljs-number">6</span>  <span class="hljs-number">7</span>  <span class="hljs-number">8</span>  <span class="hljs-number">9</span>
+
+In [<span class="hljs-number">66</span>]:</code></pre><br>从一维ndarray对象字典创建<br><pre><code class="hljs prolog"><span class="hljs-symbol">In</span> [<span class="hljs-number">67</span>]: dt = &#123;<span class="hljs-string">'one'</span>: pd.<span class="hljs-symbol">Series</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span> ,<span class="hljs-number">3</span>], index=[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>]), <span class="hljs-string">'two'</span>:pd.<span class="hljs-symbol">Series</span>
+    ...: ([<span class="hljs-number">9</span>,<span class="hljs-number">8</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>], index=[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>])&#125;
+
+<span class="hljs-symbol">In</span> [<span class="hljs-number">68</span>]: d = pd.<span class="hljs-symbol">DataFrame</span>(dt)
+
+<span class="hljs-symbol">In</span> [<span class="hljs-number">69</span>]: d
+<span class="hljs-symbol">Out</span>[<span class="hljs-number">69</span>]: 
+   one  two
+a  <span class="hljs-number">1.0</span>    <span class="hljs-number">9</span>
+b  <span class="hljs-number">2.0</span>    <span class="hljs-number">8</span>
+c  <span class="hljs-number">3.0</span>    <span class="hljs-number">7</span>
+d  <span class="hljs-symbol">NaN</span>    <span class="hljs-number">6</span>
+
+<span class="hljs-symbol">In</span> [<span class="hljs-number">70</span>]: d = pd.<span class="hljs-symbol">DataFrame</span>(dt, index=[<span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>], columns=[<span class="hljs-string">'two'</span>, <span class="hljs-string">'three'</span>])
+
+<span class="hljs-symbol">In</span> [<span class="hljs-number">71</span>]: d
+<span class="hljs-symbol">Out</span>[<span class="hljs-number">71</span>]: 
+   two three
+b    <span class="hljs-number">8</span>   <span class="hljs-symbol">NaN</span>
+c    <span class="hljs-number">7</span>   <span class="hljs-symbol">NaN</span>
+d    <span class="hljs-number">6</span>   <span class="hljs-symbol">NaN</span></code></pre><br>从列表类型的字典创建<br><pre><code class="hljs prolog"><span class="hljs-symbol">In</span> [<span class="hljs-number">73</span>]: dl = &#123;<span class="hljs-string">'one'</span>: [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>], <span class="hljs-string">'two'</span>:[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>]&#125;
+<span class="hljs-symbol">In</span> [<span class="hljs-number">75</span>]: d = pd.<span class="hljs-symbol">DataFrame</span>(dl, index = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>])
+
+<span class="hljs-symbol">In</span> [<span class="hljs-number">76</span>]: d
+<span class="hljs-symbol">Out</span>[<span class="hljs-number">76</span>]: 
+   one two
+a    <span class="hljs-number">1</span>   a
+b    <span class="hljs-number">2</span>   b
+c    <span class="hljs-number">3</span>   c
+d    <span class="hljs-number">4</span>   d
+
+<span class="hljs-symbol">In</span> [<span class="hljs-number">77</span>]:</code></pre><br><img src="/img/data/43.png" srcset="/img/loading.gif" alt="图43"><br>如何改变Series和DataFrame对象？<br>增加或重排：重新索引  .reindex()能够改变或重排Series和DataFrame索引<br><img src="/img/data/44.png" srcset="/img/loading.gif" alt="图44"><br><img src="/img/data/45.png" srcset="/img/loading.gif" alt="图45"><br><img src="/img/data/46.png" srcset="/img/loading.gif" alt="图46"><br>Series 和DataFrame的索引是Index类型<br>Index对象是不可修改类型<br><img src="/img/data/47.png" srcset="/img/loading.gif" alt="图47"><br><img src="/img/data/48.png" srcset="/img/loading.gif" alt="图48"><br>使用.drop()能够删除Series和DataFrame指定行或列索引<br><img src="/img/data/49.png" srcset="/img/loading.gif" alt="图49">   </p>
+<h4 id="Pandas库的算术运算法则"><a href="#Pandas库的算术运算法则" class="headerlink" title="Pandas库的算术运算法则"></a>Pandas库的算术运算法则</h4><p>算术运算根据行列索引，补齐后运算，运算默认产生浮点数<br>补齐时缺项填充NaN（空值）<br>二维和一维、一维和零维间为广播运算<br>采用+-*/符号进行的二元运算产生新的对象<br><pre><code class="hljs angelscript">In [<span class="hljs-number">78</span>]: <span class="hljs-keyword">import</span> pandas as pd
+
+In [<span class="hljs-number">79</span>]: <span class="hljs-keyword">import</span> numpy as np
+
+In [<span class="hljs-number">80</span>]: a = pd.DataFrame(np.arange(<span class="hljs-number">12</span>).reshape(<span class="hljs-number">3</span>,<span class="hljs-number">4</span>))
+
+In [<span class="hljs-number">81</span>]: a
+Out[<span class="hljs-number">81</span>]: 
+   <span class="hljs-number">0</span>  <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>
+<span class="hljs-number">0</span>  <span class="hljs-number">0</span>  <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>
+<span class="hljs-number">1</span>  <span class="hljs-number">4</span>  <span class="hljs-number">5</span>   <span class="hljs-number">6</span>   <span class="hljs-number">7</span>
+<span class="hljs-number">2</span>  <span class="hljs-number">8</span>  <span class="hljs-number">9</span>  <span class="hljs-number">10</span>  <span class="hljs-number">11</span>
+
+In [<span class="hljs-number">82</span>]: b = pd.DataFrame(np.arange(<span class="hljs-number">20</span>).reshape(<span class="hljs-number">4</span>,<span class="hljs-number">5</span>))
+
+In [<span class="hljs-number">83</span>]: b
+Out[<span class="hljs-number">83</span>]: 
+    <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+<span class="hljs-number">0</span>   <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+<span class="hljs-number">1</span>   <span class="hljs-number">5</span>   <span class="hljs-number">6</span>   <span class="hljs-number">7</span>   <span class="hljs-number">8</span>   <span class="hljs-number">9</span>
+<span class="hljs-number">2</span>  <span class="hljs-number">10</span>  <span class="hljs-number">11</span>  <span class="hljs-number">12</span>  <span class="hljs-number">13</span>  <span class="hljs-number">14</span>
+<span class="hljs-number">3</span>  <span class="hljs-number">15</span>  <span class="hljs-number">16</span>  <span class="hljs-number">17</span>  <span class="hljs-number">18</span>  <span class="hljs-number">19</span>
+
+In [<span class="hljs-number">84</span>]: a + b 
+Out[<span class="hljs-number">84</span>]: 
+      <span class="hljs-number">0</span>     <span class="hljs-number">1</span>     <span class="hljs-number">2</span>     <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+<span class="hljs-number">0</span>   <span class="hljs-number">0.0</span>   <span class="hljs-number">2.0</span>   <span class="hljs-number">4.0</span>   <span class="hljs-number">6.0</span> NaN
+<span class="hljs-number">1</span>   <span class="hljs-number">9.0</span>  <span class="hljs-number">11.0</span>  <span class="hljs-number">13.0</span>  <span class="hljs-number">15.0</span> NaN
+<span class="hljs-number">2</span>  <span class="hljs-number">18.0</span>  <span class="hljs-number">20.0</span>  <span class="hljs-number">22.0</span>  <span class="hljs-number">24.0</span> NaN
+<span class="hljs-number">3</span>   NaN   NaN   NaN   NaN NaN
+
+In [<span class="hljs-number">85</span>]: a * b
+Out[<span class="hljs-number">85</span>]: 
+      <span class="hljs-number">0</span>     <span class="hljs-number">1</span>      <span class="hljs-number">2</span>      <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+<span class="hljs-number">0</span>   <span class="hljs-number">0.0</span>   <span class="hljs-number">1.0</span>    <span class="hljs-number">4.0</span>    <span class="hljs-number">9.0</span> NaN
+<span class="hljs-number">1</span>  <span class="hljs-number">20.0</span>  <span class="hljs-number">30.0</span>   <span class="hljs-number">42.0</span>   <span class="hljs-number">56.0</span> NaN
+<span class="hljs-number">2</span>  <span class="hljs-number">80.0</span>  <span class="hljs-number">99.0</span>  <span class="hljs-number">120.0</span>  <span class="hljs-number">143.0</span> NaN
+<span class="hljs-number">3</span>   NaN   NaN    NaN    NaN NaN</code></pre><br><img src="/img/data/50.png" srcset="/img/loading.gif" alt="图50"><br><pre><code class="hljs angelscript">In [<span class="hljs-number">86</span>]: b.add(a, fill_value = <span class="hljs-number">100</span>)
+Out[<span class="hljs-number">86</span>]: 
+       <span class="hljs-number">0</span>      <span class="hljs-number">1</span>      <span class="hljs-number">2</span>      <span class="hljs-number">3</span>      <span class="hljs-number">4</span>
+<span class="hljs-number">0</span>    <span class="hljs-number">0.0</span>    <span class="hljs-number">2.0</span>    <span class="hljs-number">4.0</span>    <span class="hljs-number">6.0</span>  <span class="hljs-number">104.0</span>
+<span class="hljs-number">1</span>    <span class="hljs-number">9.0</span>   <span class="hljs-number">11.0</span>   <span class="hljs-number">13.0</span>   <span class="hljs-number">15.0</span>  <span class="hljs-number">109.0</span>
+<span class="hljs-number">2</span>   <span class="hljs-number">18.0</span>   <span class="hljs-number">20.0</span>   <span class="hljs-number">22.0</span>   <span class="hljs-number">24.0</span>  <span class="hljs-number">114.0</span>
+<span class="hljs-number">3</span>  <span class="hljs-number">115.0</span>  <span class="hljs-number">116.0</span>  <span class="hljs-number">117.0</span>  <span class="hljs-number">118.0</span>  <span class="hljs-number">119.0</span>
+
+In [<span class="hljs-number">87</span>]: b.mul(a, fill_value = <span class="hljs-number">0</span>)
+Out[<span class="hljs-number">87</span>]: 
+      <span class="hljs-number">0</span>     <span class="hljs-number">1</span>      <span class="hljs-number">2</span>      <span class="hljs-number">3</span>    <span class="hljs-number">4</span>
+<span class="hljs-number">0</span>   <span class="hljs-number">0.0</span>   <span class="hljs-number">1.0</span>    <span class="hljs-number">4.0</span>    <span class="hljs-number">9.0</span>  <span class="hljs-number">0.0</span>
+<span class="hljs-number">1</span>  <span class="hljs-number">20.0</span>  <span class="hljs-number">30.0</span>   <span class="hljs-number">42.0</span>   <span class="hljs-number">56.0</span>  <span class="hljs-number">0.0</span>
+<span class="hljs-number">2</span>  <span class="hljs-number">80.0</span>  <span class="hljs-number">99.0</span>  <span class="hljs-number">120.0</span>  <span class="hljs-number">143.0</span>  <span class="hljs-number">0.0</span>
+<span class="hljs-number">3</span>   <span class="hljs-number">0.0</span>   <span class="hljs-number">0.0</span>    <span class="hljs-number">0.0</span>    <span class="hljs-number">0.0</span>  <span class="hljs-number">0.0</span></code></pre><br>fill_value 参数代替NaN，代替后参与运算<br><pre><code class="hljs angelscript">In [<span class="hljs-number">88</span>]: b
+Out[<span class="hljs-number">88</span>]: 
+    <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+<span class="hljs-number">0</span>   <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+<span class="hljs-number">1</span>   <span class="hljs-number">5</span>   <span class="hljs-number">6</span>   <span class="hljs-number">7</span>   <span class="hljs-number">8</span>   <span class="hljs-number">9</span>
+<span class="hljs-number">2</span>  <span class="hljs-number">10</span>  <span class="hljs-number">11</span>  <span class="hljs-number">12</span>  <span class="hljs-number">13</span>  <span class="hljs-number">14</span>
+<span class="hljs-number">3</span>  <span class="hljs-number">15</span>  <span class="hljs-number">16</span>  <span class="hljs-number">17</span>  <span class="hljs-number">18</span>  <span class="hljs-number">19</span>
+
+In [<span class="hljs-number">89</span>]: c = pd.Series(np.arange(<span class="hljs-number">4</span>))
+
+In [<span class="hljs-number">90</span>]: c
+Out[<span class="hljs-number">90</span>]: 
+<span class="hljs-number">0</span>    <span class="hljs-number">0</span>
+<span class="hljs-number">1</span>    <span class="hljs-number">1</span>
+<span class="hljs-number">2</span>    <span class="hljs-number">2</span>
+<span class="hljs-number">3</span>    <span class="hljs-number">3</span>
+dtype: <span class="hljs-built_in">int</span>64
+
+In [<span class="hljs-number">91</span>]: c <span class="hljs-number">-10</span>
+Out[<span class="hljs-number">91</span>]: 
+<span class="hljs-number">0</span>   <span class="hljs-number">-10</span>
+<span class="hljs-number">1</span>    <span class="hljs-number">-9</span>
+<span class="hljs-number">2</span>    <span class="hljs-number">-8</span>
+<span class="hljs-number">3</span>    <span class="hljs-number">-7</span>
+dtype: <span class="hljs-built_in">int</span>64
+
+In [<span class="hljs-number">92</span>]: b - c
+Out[<span class="hljs-number">92</span>]: 
+      <span class="hljs-number">0</span>     <span class="hljs-number">1</span>     <span class="hljs-number">2</span>     <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+<span class="hljs-number">0</span>   <span class="hljs-number">0.0</span>   <span class="hljs-number">0.0</span>   <span class="hljs-number">0.0</span>   <span class="hljs-number">0.0</span> NaN
+<span class="hljs-number">1</span>   <span class="hljs-number">5.0</span>   <span class="hljs-number">5.0</span>   <span class="hljs-number">5.0</span>   <span class="hljs-number">5.0</span> NaN
+<span class="hljs-number">2</span>  <span class="hljs-number">10.0</span>  <span class="hljs-number">10.0</span>  <span class="hljs-number">10.0</span>  <span class="hljs-number">10.0</span> NaN
+<span class="hljs-number">3</span>  <span class="hljs-number">15.0</span>  <span class="hljs-number">15.0</span>  <span class="hljs-number">15.0</span>  <span class="hljs-number">15.0</span> NaN</code></pre><br>不同维度间为广播运算，一维Series默认在轴1参与运算<br>比较运算<br>同维度运算，尺寸一致<br>不同维度运算为广播运算，运算在轴1<br>Python 数据特征的提取<br> Pandas库的数据排序<br><code>.sort_index()方法在指定轴上根据索引进行排序，默认升序</code><br><code>.sort_index(axis=,ascending=True)</code><br><pre><code class="hljs angelscript">In [<span class="hljs-number">94</span>]: <span class="hljs-keyword">import</span> pandas as pd
+
+In [<span class="hljs-number">95</span>]: <span class="hljs-keyword">import</span> numpy as np
+
+In [<span class="hljs-number">96</span>]: b = pd.DataFrame(np.arange(<span class="hljs-number">20</span>).reshape(<span class="hljs-number">4</span>,<span class="hljs-number">5</span>),index=[<span class="hljs-string">'c'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'b'</span>])
+
+In [<span class="hljs-number">97</span>]: b
+Out[<span class="hljs-number">97</span>]: 
+    <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+c   <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+a   <span class="hljs-number">5</span>   <span class="hljs-number">6</span>   <span class="hljs-number">7</span>   <span class="hljs-number">8</span>   <span class="hljs-number">9</span>
+d  <span class="hljs-number">10</span>  <span class="hljs-number">11</span>  <span class="hljs-number">12</span>  <span class="hljs-number">13</span>  <span class="hljs-number">14</span>
+b  <span class="hljs-number">15</span>  <span class="hljs-number">16</span>  <span class="hljs-number">17</span>  <span class="hljs-number">18</span>  <span class="hljs-number">19</span>
+
+In [<span class="hljs-number">99</span>]: b.sort_index()
+Out[<span class="hljs-number">99</span>]: 
+    <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+a   <span class="hljs-number">5</span>   <span class="hljs-number">6</span>   <span class="hljs-number">7</span>   <span class="hljs-number">8</span>   <span class="hljs-number">9</span>
+b  <span class="hljs-number">15</span>  <span class="hljs-number">16</span>  <span class="hljs-number">17</span>  <span class="hljs-number">18</span>  <span class="hljs-number">19</span>
+c   <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+d  <span class="hljs-number">10</span>  <span class="hljs-number">11</span>  <span class="hljs-number">12</span>  <span class="hljs-number">13</span>  <span class="hljs-number">14</span>
+
+In [<span class="hljs-number">100</span>]: b.sort_index(ascending=True)
+Out[<span class="hljs-number">100</span>]: 
+    <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+a   <span class="hljs-number">5</span>   <span class="hljs-number">6</span>   <span class="hljs-number">7</span>   <span class="hljs-number">8</span>   <span class="hljs-number">9</span>
+b  <span class="hljs-number">15</span>  <span class="hljs-number">16</span>  <span class="hljs-number">17</span>  <span class="hljs-number">18</span>  <span class="hljs-number">19</span>
+c   <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+d  <span class="hljs-number">10</span>  <span class="hljs-number">11</span>  <span class="hljs-number">12</span>  <span class="hljs-number">13</span>  <span class="hljs-number">14</span>
+
+In [<span class="hljs-number">101</span>]: b.sort_index(ascending=False)
+Out[<span class="hljs-number">101</span>]: 
+    <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+d  <span class="hljs-number">10</span>  <span class="hljs-number">11</span>  <span class="hljs-number">12</span>  <span class="hljs-number">13</span>  <span class="hljs-number">14</span>
+c   <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+b  <span class="hljs-number">15</span>  <span class="hljs-number">16</span>  <span class="hljs-number">17</span>  <span class="hljs-number">18</span>  <span class="hljs-number">19</span>
+a   <span class="hljs-number">5</span>   <span class="hljs-number">6</span>   <span class="hljs-number">7</span>   <span class="hljs-number">8</span>   <span class="hljs-number">9</span>
+
+In [<span class="hljs-number">102</span>]: b.sort_index(axis=<span class="hljs-number">1</span>, ascending=False)
+Out[<span class="hljs-number">102</span>]: 
+    <span class="hljs-number">4</span>   <span class="hljs-number">3</span>   <span class="hljs-number">2</span>   <span class="hljs-number">1</span>   <span class="hljs-number">0</span>
+c   <span class="hljs-number">4</span>   <span class="hljs-number">3</span>   <span class="hljs-number">2</span>   <span class="hljs-number">1</span>   <span class="hljs-number">0</span>
+a   <span class="hljs-number">9</span>   <span class="hljs-number">8</span>   <span class="hljs-number">7</span>   <span class="hljs-number">6</span>   <span class="hljs-number">5</span>
+d  <span class="hljs-number">14</span>  <span class="hljs-number">13</span>  <span class="hljs-number">12</span>  <span class="hljs-number">11</span>  <span class="hljs-number">10</span>
+b  <span class="hljs-number">19</span>  <span class="hljs-number">18</span>  <span class="hljs-number">17</span>  <span class="hljs-number">16</span>  <span class="hljs-number">15</span></code></pre><br><code>.sort_value()</code>方法在指定轴上根据数值进行排序，默认升序<br><code>Series.sort_values(axis=0, ascending=True)</code><br><code>DataFrame.sort_values(by, axis = 0, ascending=True)</code><br>by : axis轴上某个索引或者索引列表<br><pre><code class="hljs angelscript">In [<span class="hljs-number">105</span>]: c = b.sort_values(<span class="hljs-number">2</span>, ascending=False)
+
+In [<span class="hljs-number">106</span>]: c
+Out[<span class="hljs-number">106</span>]: 
+    <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+b  <span class="hljs-number">15</span>  <span class="hljs-number">16</span>  <span class="hljs-number">17</span>  <span class="hljs-number">18</span>  <span class="hljs-number">19</span>
+d  <span class="hljs-number">10</span>  <span class="hljs-number">11</span>  <span class="hljs-number">12</span>  <span class="hljs-number">13</span>  <span class="hljs-number">14</span>
+a   <span class="hljs-number">5</span>   <span class="hljs-number">6</span>   <span class="hljs-number">7</span>   <span class="hljs-number">8</span>   <span class="hljs-number">9</span>
+c   <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+
+In [<span class="hljs-number">107</span>]: c = b.sort_values(<span class="hljs-string">'a'</span>, axis=<span class="hljs-number">1</span>, ascending=False)
+
+In [<span class="hljs-number">108</span>]: c
+Out[<span class="hljs-number">108</span>]: 
+    <span class="hljs-number">4</span>   <span class="hljs-number">3</span>   <span class="hljs-number">2</span>   <span class="hljs-number">1</span>   <span class="hljs-number">0</span>
+c   <span class="hljs-number">4</span>   <span class="hljs-number">3</span>   <span class="hljs-number">2</span>   <span class="hljs-number">1</span>   <span class="hljs-number">0</span>
+a   <span class="hljs-number">9</span>   <span class="hljs-number">8</span>   <span class="hljs-number">7</span>   <span class="hljs-number">6</span>   <span class="hljs-number">5</span>
+d  <span class="hljs-number">14</span>  <span class="hljs-number">13</span>  <span class="hljs-number">12</span>  <span class="hljs-number">11</span>  <span class="hljs-number">10</span>
+b  <span class="hljs-number">19</span>  <span class="hljs-number">18</span>  <span class="hljs-number">17</span>  <span class="hljs-number">16</span>  <span class="hljs-number">15</span></code></pre><br>NaN统一放到末尾  </p>
+<h4 id="Pandas基本分析函数"><a href="#Pandas基本分析函数" class="headerlink" title="Pandas基本分析函数"></a>Pandas基本分析函数</h4><p>适用于Series和DataFrame类型<br><img src="/img/data/51.png" srcset="/img/loading.gif" alt="图51"><br><img src="/img/data/52.png" srcset="/img/loading.gif" alt="图52"><br><pre><code class="hljs angelscript">In [<span class="hljs-number">109</span>]: c =pd.Series([<span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">7</span>, <span class="hljs-number">6</span>], index=[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>])
+
+In [<span class="hljs-number">110</span>]: c
+Out[<span class="hljs-number">110</span>]: 
+a    <span class="hljs-number">8</span>
+b    <span class="hljs-number">9</span>
+c    <span class="hljs-number">7</span>
+d    <span class="hljs-number">6</span>
+dtype: <span class="hljs-built_in">int</span>64
+
+In [<span class="hljs-number">111</span>]: c.describe()
+Out[<span class="hljs-number">111</span>]: 
+count    <span class="hljs-number">4.000000</span>
+mean     <span class="hljs-number">7.500000</span>
+std      <span class="hljs-number">1.290994</span>
+min      <span class="hljs-number">6.000000</span>
+<span class="hljs-number">25</span>%      <span class="hljs-number">6.750000</span>
+<span class="hljs-number">50</span>%      <span class="hljs-number">7.500000</span>
+<span class="hljs-number">75</span>%      <span class="hljs-number">8.250000</span>
+max      <span class="hljs-number">9.000000</span>
+dtype: <span class="hljs-built_in">float</span>64</code></pre><br>只适用于Series类型</p>
+<p><img src="/img/data/53.png" srcset="/img/loading.gif" alt="图53">   </p>
+<p>数据的累计统计分析<br>适用于Series和DataFrame类型<br><img src="/img/data/54.png" srcset="/img/loading.gif" alt="图54"><br><pre><code class="hljs angelscript"> In [<span class="hljs-number">1</span>]: <span class="hljs-keyword">import</span> pandas as pd
+
+In [<span class="hljs-number">2</span>]: <span class="hljs-keyword">import</span> numpy as np
+
+In [<span class="hljs-number">3</span>]: b = pd.DataFrame(np.arange(<span class="hljs-number">20</span>).reshape(<span class="hljs-number">4</span>,<span class="hljs-number">5</span>),index=[<span class="hljs-string">'c'</span>,<span class="hljs-string">'a'</span>,<span class="hljs-string">'d'</span>,<span class="hljs-string">'b'</span>])
+
+In [<span class="hljs-number">4</span>]: b
+Out[<span class="hljs-number">4</span>]: 
+    <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+c   <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+a   <span class="hljs-number">5</span>   <span class="hljs-number">6</span>   <span class="hljs-number">7</span>   <span class="hljs-number">8</span>   <span class="hljs-number">9</span>
+d  <span class="hljs-number">10</span>  <span class="hljs-number">11</span>  <span class="hljs-number">12</span>  <span class="hljs-number">13</span>  <span class="hljs-number">14</span>
+b  <span class="hljs-number">15</span>  <span class="hljs-number">16</span>  <span class="hljs-number">17</span>  <span class="hljs-number">18</span>  <span class="hljs-number">19</span>
+
+In [<span class="hljs-number">5</span>]: b.cumsum()
+Out[<span class="hljs-number">5</span>]: 
+    <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+c   <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+a   <span class="hljs-number">5</span>   <span class="hljs-number">7</span>   <span class="hljs-number">9</span>  <span class="hljs-number">11</span>  <span class="hljs-number">13</span>
+d  <span class="hljs-number">15</span>  <span class="hljs-number">18</span>  <span class="hljs-number">21</span>  <span class="hljs-number">24</span>  <span class="hljs-number">27</span>
+b  <span class="hljs-number">30</span>  <span class="hljs-number">34</span>  <span class="hljs-number">38</span>  <span class="hljs-number">42</span>  <span class="hljs-number">46</span>
+
+In [<span class="hljs-number">6</span>]: b.cumprod()
+Out[<span class="hljs-number">6</span>]: 
+   <span class="hljs-number">0</span>     <span class="hljs-number">1</span>     <span class="hljs-number">2</span>     <span class="hljs-number">3</span>     <span class="hljs-number">4</span>
+c  <span class="hljs-number">0</span>     <span class="hljs-number">1</span>     <span class="hljs-number">2</span>     <span class="hljs-number">3</span>     <span class="hljs-number">4</span>
+a  <span class="hljs-number">0</span>     <span class="hljs-number">6</span>    <span class="hljs-number">14</span>    <span class="hljs-number">24</span>    <span class="hljs-number">36</span>
+d  <span class="hljs-number">0</span>    <span class="hljs-number">66</span>   <span class="hljs-number">168</span>   <span class="hljs-number">312</span>   <span class="hljs-number">504</span>
+b  <span class="hljs-number">0</span>  <span class="hljs-number">1056</span>  <span class="hljs-number">2856</span>  <span class="hljs-number">5616</span>  <span class="hljs-number">9576</span>
+
+In [<span class="hljs-number">7</span>]: b.cummin()
+Out[<span class="hljs-number">7</span>]: 
+   <span class="hljs-number">0</span>  <span class="hljs-number">1</span>  <span class="hljs-number">2</span>  <span class="hljs-number">3</span>  <span class="hljs-number">4</span>
+c  <span class="hljs-number">0</span>  <span class="hljs-number">1</span>  <span class="hljs-number">2</span>  <span class="hljs-number">3</span>  <span class="hljs-number">4</span>
+a  <span class="hljs-number">0</span>  <span class="hljs-number">1</span>  <span class="hljs-number">2</span>  <span class="hljs-number">3</span>  <span class="hljs-number">4</span>
+d  <span class="hljs-number">0</span>  <span class="hljs-number">1</span>  <span class="hljs-number">2</span>  <span class="hljs-number">3</span>  <span class="hljs-number">4</span>
+b  <span class="hljs-number">0</span>  <span class="hljs-number">1</span>  <span class="hljs-number">2</span>  <span class="hljs-number">3</span>  <span class="hljs-number">4</span>
+
+In [<span class="hljs-number">8</span>]: b.cummax()
+Out[<span class="hljs-number">8</span>]: 
+    <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+c   <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+a   <span class="hljs-number">5</span>   <span class="hljs-number">6</span>   <span class="hljs-number">7</span>   <span class="hljs-number">8</span>   <span class="hljs-number">9</span>
+d  <span class="hljs-number">10</span>  <span class="hljs-number">11</span>  <span class="hljs-number">12</span>  <span class="hljs-number">13</span>  <span class="hljs-number">14</span>
+b  <span class="hljs-number">15</span>  <span class="hljs-number">16</span>  <span class="hljs-number">17</span>  <span class="hljs-number">18</span>  <span class="hljs-number">19</span></code></pre><br>适用于Series和DataFrame类型，滚动计算（窗口计算）<br><img src="/img/data/55.png" srcset="/img/loading.gif" alt="图55"><br><pre><code class="hljs angelscript"> In [<span class="hljs-number">10</span>]: <span class="hljs-keyword">import</span> pandas as pd
+
+In [<span class="hljs-number">11</span>]: <span class="hljs-keyword">import</span> numpy as np
+
+In [<span class="hljs-number">12</span>]: b = pd.DataFrame(np.arange(<span class="hljs-number">20</span>).reshape(<span class="hljs-number">4</span>,<span class="hljs-number">5</span>),index=[<span class="hljs-string">'c'</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'d'</span>, <span class="hljs-string">'b'</span>])
+
+In [<span class="hljs-number">13</span>]: b
+Out[<span class="hljs-number">13</span>]: 
+    <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+c   <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
+a   <span class="hljs-number">5</span>   <span class="hljs-number">6</span>   <span class="hljs-number">7</span>   <span class="hljs-number">8</span>   <span class="hljs-number">9</span>
+d  <span class="hljs-number">10</span>  <span class="hljs-number">11</span>  <span class="hljs-number">12</span>  <span class="hljs-number">13</span>  <span class="hljs-number">14</span>
+b  <span class="hljs-number">15</span>  <span class="hljs-number">16</span>  <span class="hljs-number">17</span>  <span class="hljs-number">18</span>  <span class="hljs-number">19</span>
+
+In [<span class="hljs-number">14</span>]: b.rolling(<span class="hljs-number">2</span>).sum()
+Out[<span class="hljs-number">14</span>]: 
+      <span class="hljs-number">0</span>     <span class="hljs-number">1</span>     <span class="hljs-number">2</span>     <span class="hljs-number">3</span>     <span class="hljs-number">4</span>
+c   NaN   NaN   NaN   NaN   NaN
+a   <span class="hljs-number">5.0</span>   <span class="hljs-number">7.0</span>   <span class="hljs-number">9.0</span>  <span class="hljs-number">11.0</span>  <span class="hljs-number">13.0</span>
+d  <span class="hljs-number">15.0</span>  <span class="hljs-number">17.0</span>  <span class="hljs-number">19.0</span>  <span class="hljs-number">21.0</span>  <span class="hljs-number">23.0</span>
+b  <span class="hljs-number">25.0</span>  <span class="hljs-number">27.0</span>  <span class="hljs-number">29.0</span>  <span class="hljs-number">31.0</span>  <span class="hljs-number">33.0</span>
+
+In [<span class="hljs-number">15</span>]: b.rolling(<span class="hljs-number">3</span>).sum()
+Out[<span class="hljs-number">15</span>]: 
+      <span class="hljs-number">0</span>     <span class="hljs-number">1</span>     <span class="hljs-number">2</span>     <span class="hljs-number">3</span>     <span class="hljs-number">4</span>
+c   NaN   NaN   NaN   NaN   NaN
+a   NaN   NaN   NaN   NaN   NaN
+d  <span class="hljs-number">15.0</span>  <span class="hljs-number">18.0</span>  <span class="hljs-number">21.0</span>  <span class="hljs-number">24.0</span>  <span class="hljs-number">27.0</span>
+b  <span class="hljs-number">30.0</span>  <span class="hljs-number">33.0</span>  <span class="hljs-number">36.0</span>  <span class="hljs-number">39.0</span>  <span class="hljs-number">42.0</span></code></pre></p>
+<h4 id="数据的相关分析"><a href="#数据的相关分析" class="headerlink" title="数据的相关分析"></a>数据的相关分析</h4><p>两个事物，表示为X和Y，如何判断它们之间的相关性？  </p>
+<ul>
+<li>X增大，Y增大，两个变量正相关  </li>
+<li>X增大，Y减小，两个变量负相关  </li>
+<li>X增大，Y无视，两个变量不相关<br>斜方差<br>两个事物，表示为X和Y<br><img src="/img/data/56.png" srcset="/img/loading.gif" alt="图56"><br>Pearson相关系数<br><img src="/img/data/57.png" srcset="/img/loading.gif" alt="图57"><br><img src="/img/data/58.png" srcset="/img/loading.gif" alt="图58"> <pre><code class="hljs 1c">In [<span class="hljs-number">17</span>]: hprice = pd.Series([<span class="hljs-number">3.04</span>,<span class="hljs-number">22.93</span>,<span class="hljs-number">12.75</span>,<span class="hljs-number">22.6</span>,<span class="hljs-number">12.33</span>], index = ['<span class="hljs-number">2008</span>','<span class="hljs-number">2009</span>',
+    ...: '<span class="hljs-number">2010</span>', '<span class="hljs-number">2011</span>', '<span class="hljs-number">2012</span>'])
+
+In [<span class="hljs-number">18</span>]: m2 = pd.Series([<span class="hljs-number">8.18</span>,<span class="hljs-number">18.38</span>,<span class="hljs-number">9.13</span>,<span class="hljs-number">7.82</span>,<span class="hljs-number">6.69</span>], index=['<span class="hljs-number">2008</span>','<span class="hljs-number">2009</span>', '<span class="hljs-number">2010</span>',
+    ...: '<span class="hljs-number">2011</span>', '<span class="hljs-number">2012</span>'])
+
+
+In [<span class="hljs-number">20</span>]: hprice.corr(m2)
+Out[<span class="hljs-number">20</span>]: <span class="hljs-number">0.5239439145220387</span></code></pre></li>
+</ul>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/study/">study</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                      <a class="hover-with-bg" href="/tags/numpy/">numpy</a>
+                    
+                      <a class="hover-with-bg" href="/tags/matplotlib/">matplotlib</a>
+                    
+                      <a class="hover-with-bg" href="/tags/pandas/">pandas</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/03/13/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/">
+                        <span class="hidden-mobile">数据分析（二）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "数据分析（三）&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
