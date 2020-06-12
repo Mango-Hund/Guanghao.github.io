@@ -5,12 +5,26 @@
   
   <entry>
     <title>吴恩达机器学习（一）</title>
-    <link href="/2020/06/12/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <url>/2020/06/12/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <link href="/2020/06/10/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <url>/2020/06/10/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h3 id="欢迎"><a href="#欢迎" class="headerlink" title="欢迎"></a>欢迎</h3><h4 id="什么是机器学习"><a href="#什么是机器学习" class="headerlink" title="什么是机器学习"></a>什么是机器学习</h4><p> A computer program is said to learn from experience E with respect  to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E.<br>Supervised learning 监督学习<br>监督学习是指我们给算法一个数据集，其中包含了正确的答案（回归问题、分类问题 ）<br>Unsupervisef learning  无监督学习<br>聚类算法：探究数据集中的数据结构，数据是没有什么标签的，将数据进行归类</p><h4 id="模型描述"><a href="#模型描述" class="headerlink" title="模型描述"></a>模型描述</h4><p>房价预测模型<br><img src="/img/machine-learning/01.png" srcset="/img/loading.gif" alt="图一"></p>]]></content>
     
     
+    <categories>
+      
+      <category>study</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Python</tag>
+      
+      <tag>machine-learning</tag>
+      
+    </tags>
     
   </entry>
   
