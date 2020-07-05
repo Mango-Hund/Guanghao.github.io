@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>归档 - Liu&#39;s blog</title>
+  <title>Liu&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -42,7 +42,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 100vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -143,6 +143,10 @@
           </div>
 
           
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
         </div>
       </div>
     </div>
@@ -152,39 +156,73 @@
     
       <div class="container nopadding-md">
         <div class="py-5" id="board"
-          >
+          style=margin-top:0>
           
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">共计 11 篇文章</p>
-  <hr>
-  
+
+  <div class="row mx-auto index-card">
     
-      
-      <p class="h5">2019</p>
     
-    <a href="/2019/11/15/%E5%A5%BD%E7%94%A8%E7%9A%84git/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Git&amp;Github</span>
-      <span style="float: right;">11-15</span>
-    </a>
-  
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/06/08/markdown%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" target="_self">
+          <img src="/img/markdown.png" srcset="/img/loading.gif" alt="markdown的基本语法">
+        </a>
+      </div>
     
-    <a href="/2019/10/08/VIM%E7%9A%84%E4%BD%BF%E7%94%A8/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">VIM的使用</span>
-      <span style="float: right;">10-08</span>
-    </a>
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a class="index-header" href="/2019/06/08/markdown%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">markdown的基本语法</a>
+
+      <a href="/2019/06/08/markdown%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" class="index-excerpt">
+        
+        
+          
+        
+        <div>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档，了不起！</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-06-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/tool/">tool</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/markdown/">markdown</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
   
-    
-    <a href="/2019/06/08/markdown%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">markdown的基本语法</span>
-      <span style="float: right;">06-08</span>
-    </a>
-  
-</div>
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 
@@ -277,7 +315,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "Technologie verändert die Zukunft&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
