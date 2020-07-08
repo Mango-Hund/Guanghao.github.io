@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      1.7k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      22
+      23
        分钟
     </span>
   
@@ -206,7 +206,7 @@
             <article class="markdown-body">
               <h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>分类问题，例如<br>Email: 垃圾邮件/不是垃圾邮件<br>Online：信息是真的/信息是假的<br>Tumor：良性的/恶性的<br>$y=\{0,1\}$<br>0:Negative Class负类/1:Positive Class正类<br><img src="/img/machine-learning/09.png" srcset="/img/loading.gif" alt="图9"><br>将分类器的输出$h_\theta(x)$阀值定位0.5<br>如果$h_\theta\geq0.5$,预测’y=1’<br>如果$h_\theta&lt;0.5$,预测‘y=0’ </p>
 <h4 id="假设陈述"><a href="#假设陈述" class="headerlink" title="假设陈述"></a>假设陈述</h4><p>逻辑分类模型<br>我们想要$0\leq h_\theta(x) \leq 1$<br>$h_\theta(x)=g(\theta^Tx)$<br>$g(z)=\frac{1}{1+e^{-z}}$ z是实数 ，g(z)一端趋向1一端趋向0。<br>关于假设h(x)函数的解释：<br>$h_\theta(x)$= 输入x对于y=1的估计概率<br>举例：如果 $x=\begin{bmatrix}x_0 \\ x_1\end{bmatrix}=\begin{bmatrix}1 \\ tumorSize \end{bmatrix}$<br>$h_\theta(x)=0.7$<br>可以说明病人的肿瘤有70%的概率为恶性肿瘤。<br>当特征变量为x，变量的参数为$\theta$，可以表示‘y=1’或‘y=0’的概率为：  </p>
-<script type="math/tex; mode=display">h_\theta(x)=P(y=1|x;\theta)</script><script type="math/tex; mode=display">P(y=0|x;\theta)+P(y=1|x;\theta)=1</script><script type="math/tex; mode=display">P(y=0|x;\theta)=1-P(y=1|x;\theta)</script><h4 id="决策界限（decision-boundary）"><a href="#决策界限（decision-boundary）" class="headerlink" title="决策界限（decision boundary）"></a>决策界限（decision boundary）</h4><p>分类函数：<br>$h_\theta(x)=g(\theta^Tx)=P(y=1|x;\theta)$<br>$g(z)=\frac{1}{1+e^{-z}}$<br><img src="/img/machine-learning/10.png" srcset="/img/loading.gif" alt="图10"><br>$g(z)\geq0.5$ when $z \geq 0$。$h_\theta(x)=g(\theta^Tx)\geq0.5$ when $\theta^T\geq0$<br>假设：预测“y=1” 如果$h_\theta(x)\geq0.5$<br>预测“y=0” 如果$h_\theta(x)&lt;0.5$<br><img src="/img/machine-learning/11.png" srcset="/img/loading.gif" alt="图11"><br>假设$h_\theta(x)=g(\theta_0+\theta x_1+\theta x_2)$,并且已知$\theta^T=\begin{bmatrix}-3 &amp; 1 &amp; 1\end{bmatrix}$<br>可以预测”y=1”, 如果 $-3+x_1+x_2\geq0$，也就是$x_1+x_2\geq3$<br><img src="/img/machine-learning/12.png" srcset="/img/loading.gif" alt="图12"><br>$h_\theta(x)=g(\theta_0+\theta_1x_1+\theta_2x_2+\theta_3x_1^2+\theta_4x_4^2)$<br>$\theta^T=\begin{bmatrix}-1 &amp; 0 &amp; 0 &amp; 1 &amp;1\end{bmatrix}$<br>预测“y=1”，如果$-1+x_1^2+x_2^2\geq0$，可改写为$x_1^2+x_2^2\geq0$<br>一旦有了参数$\theta$，决策边界就可以确定了。</p>
+<script type="math/tex; mode=display">h_\theta(x)=P(y=1|x;\theta)</script><script type="math/tex; mode=display">P(y=0|x;\theta)+P(y=1|x;\theta)=1</script><script type="math/tex; mode=display">P(y=0|x;\theta)=1-P(y=1|x;\theta)</script><h4 id="决策界限（decision-boundary）"><a href="#决策界限（decision-boundary）" class="headerlink" title="决策界限（decision boundary）"></a>决策界限（decision boundary）</h4><p>分类函数：<br>$h_\theta(x)=g(\theta^Tx)=P(y=1|x;\theh<br>ta)$<br>$g(z)=\frac{1}{1+e^{-z}}$<br><img src="/img/machine-learning/10.png" srcset="/img/loading.gif" alt="图10"><br>$g(z)\geq0.5$ when $z \geq 0$。$h_\theta(x)=g(\theta^Tx)\geq0.5$ when $\theta^T\geq0$<br>假设：预测“y=1” 如果$h_\theta(x)\geq0.5$<br>预测“y=0” 如果$h_\theta(x)&lt;0.5$<br><img src="/img/machine-learning/11.png" srcset="/img/loading.gif" alt="图11"><br>假设$h_\theta(x)=g(\theta_0+\theta x_1+\theta x_2)$,并且已知$\theta^T=\begin{bmatrix}-3 &amp; 1 &amp; 1\end{bmatrix}$<br>可以预测”y=1”, 如果 $-3+x_1+x_2\geq0$，也就是$x_1+x_2\geq3$<br><img src="/img/machine-learning/12.png" srcset="/img/loading.gif" alt="图12"><br>$h_\theta(x)=g(\theta_0+\theta_1x_1+\theta_2x_2+\theta_3x_1^2+\theta_4x_4^2)$<br>$\theta^T=\begin{bmatrix}-1 &amp; 0 &amp; 0 &amp; 1 &amp;1\end{bmatrix}$<br>预测“y=1”，如果$-1+x_1^2+x_2^2\geq0$，可改写为$x_1^2+x_2^2\geq0$<br>一旦有了参数$\theta$，决策边界就可以确定了。</p>
 <h4 id="代价函数"><a href="#代价函数" class="headerlink" title="代价函数"></a>代价函数</h4><p>训练集：{$(x^{(1)},y^{(1)}),(x^{(2)},y^{(2)}),…,(x^{(m)},y^{(m)})$}<br>m个特征 $x\in\begin{bmatrix}x_0\\x_1\...\\x_n\end{bmatrix}$<br>$x_0=1,y\in\{0,1\}$  </p>
 <script type="math/tex; mode=display">h_\theta(x)=\frac{1}{1+e^{-\theta^Tx}}</script><p>我们应该怎么去确定参数$\theta$呢？<br>代价函数：<br>线性回归：</p>
 <script type="math/tex; mode=display">J(\theta)=\frac{1}{m}\sum^m_{i=1}\frac{1}{2}(h_\theta(x^{(i)})-y^{(i)})^2</script><p>平均误差平方可以写为：    </p>
@@ -258,9 +258,12 @@ initialTheta = zeros(<span class="hljs-number">2</span>,<span class="hljs-number
 <p><img src="/img/machine-learning/20.png" srcset="/img/loading.gif" alt="图20"><br>假设我们在函数中加入惩罚项，使得$\theta_3$,$\theta_4$非常小</p>
 <script type="math/tex; mode=display">\min\limits_\theta\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2</script><script type="math/tex; mode=display">\min\limits_\theta\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2+1000\theta_3^2+1000\theta_4^2</script><p>要想改写后的代价函数尽可能小，那么$\theta_3$,$\theta_4$的值都要尽量接近于0。也就是说我们只需要多余项的参数足够小，这样就可以避免过拟合。<br>将参数的值减小，我们会得到一个更简单的假设模型，也更不容易出现过拟合的现象。<br>举例房屋问题：</p>
 <ul>
-<li>特征：$x_1,x_2,…,x_100$</li>
-<li>参数：$\theta$  </li>
+<li>特征：$x_1,x_2,…,x_{100}$</li>
+<li>参数：$\theta_0$,$\theta_1$,$\theta_2$,…,$\theta_{100}$ </li>
 </ul>
+<p>这里有很多特征量，并且我们一时间无法筛查出哪些是不相关的  </p>
+<script type="math/tex; mode=display">J(\theta)=\frac{1}{2m}\sum^m_{i=1}(h(x^{(i)})-y^{(i)})^2</script><p>改写代价函数为(正则化)：</p>
+<script type="math/tex; mode=display">J(\theta)=\frac{1}{2m}[\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2+\lambda\sum^n_{j=1}\theta_j^2]</script><p>$\lambda$称为正则化系数，它的作用是控制两个不同目标之间的取舍。  </p>
 
             </article>
             <hr>
@@ -292,6 +295,12 @@ initialTheta = zeros(<span class="hljs-number">2</span>,<span class="hljs-number
                 <div class="post-prevnext row">
                   <div class="post-prev col-6">
                     
+                    
+                      <a href="/2020/06/10/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">吴恩达机器学习（二）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </div>
                   <div class="post-next col-6">
