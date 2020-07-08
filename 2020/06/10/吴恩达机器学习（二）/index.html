@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>VIM的使用 - Liu&#39;s blog</title>
+  <title>吴恩达机器学习（二） - Liu&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2019-10-08 20:27">
-      2019年10月8日 晚上
+    <time datetime="2020-06-10 19:45">
+      2020年6月10日 晚上
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.3k 字
+      1.5k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15
+      22
        分钟
     </span>
   
@@ -204,115 +204,63 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h3 id="光标命令"><a href="#光标命令" class="headerlink" title="光标命令"></a>光标命令</h3><pre><code class="hljs properties"><span class="hljs-attr">h</span> <span class="hljs-string">左移一个字符</span>
-<span class="hljs-attr">l</span> <span class="hljs-string">右移一个字符</span>
-<span class="hljs-attr">j</span> <span class="hljs-string">下移一行</span>
-<span class="hljs-attr">k</span> <span class="hljs-string">上移一行</span>
-<span class="hljs-attr">w</span> <span class="hljs-string">前移一个单词，光标停在下一个单词开头</span>
-<span class="hljs-attr">W</span> <span class="hljs-string">移动下一个单词开头，但忽略一些标点</span>
-<span class="hljs-attr">e</span> <span class="hljs-string">前移一个单词，光标停在下一个单词末尾</span>
-<span class="hljs-attr">E</span> <span class="hljs-string">移动到下一个单词末尾，如果词尾有标点，则移动到标点</span>
-<span class="hljs-attr">b</span> <span class="hljs-string">后移一个单词，光标停在上一个单词开头</span>
-<span class="hljs-attr">B</span> <span class="hljs-string">移动到上一个单词开头，忽略一些标点</span>
-<span class="hljs-meta">(</span> <span class="hljs-string">前移1句</span>
-<span class="hljs-meta">)</span> <span class="hljs-string">后移1句</span>
-<span class="hljs-meta">&#123;</span> <span class="hljs-string">前移1段</span>
-<span class="hljs-meta">&#125;</span> <span class="hljs-string">后移1段​</span></code></pre>
-<h3 id="滚屏命令"><a href="#滚屏命令" class="headerlink" title="滚屏命令"></a>滚屏命令</h3><pre><code class="hljs properties"><span class="hljs-meta">ctrl+f</span> <span class="hljs-string">下翻一屏</span>
-<span class="hljs-meta">ctrl+b</span> <span class="hljs-string">上翻一屏</span>
-<span class="hljs-meta">ctrl+d</span> <span class="hljs-string">下翻半屏</span>
-<span class="hljs-meta">ctrl+u</span> <span class="hljs-string">上翻半屏</span>
-<span class="hljs-meta">ctrl+e</span> <span class="hljs-string">向下滚动一行</span>
-<span class="hljs-meta">ctrl+y</span> <span class="hljs-string">向上滚动一行</span>
-<span class="hljs-meta">n%</span> <span class="hljs-string">到文件n%的位置</span>
-<span class="hljs-attr">zz</span> <span class="hljs-string">将当前行移动到屏幕中央</span>
-<span class="hljs-attr">zt</span> <span class="hljs-string">将当前行移动到屏幕顶端</span>
-<span class="hljs-attr">zb</span> <span class="hljs-string">将当前行移动到屏幕底端​</span></code></pre>
-<h3 id="插入命令"><a href="#插入命令" class="headerlink" title="插入命令"></a>插入命令</h3><pre><code class="hljs excel">第一部分 基本插入
-I 在当前行第一个非空字符前插入
-gI 在当前行第一列插入
-a 在光标后插入
-A 在当前行最后插入
-o 在下面新建一行插入
-O 在上面新建一行插入
-第二部分 改写插入
-c[<span class="hljs-built_in">n</span>]w 改写光标后<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)个词
-c[<span class="hljs-built_in">n</span>]l 改写光标后<span class="hljs-built_in">n</span>个字母,l (vim中光标右移一个字符命令)
-c[<span class="hljs-built_in">n</span>]h 改写光标前<span class="hljs-built_in">n</span>个字母, h (vim中光标左移一个字符命令)
-[<span class="hljs-built_in">n</span>]cc 修改当前[<span class="hljs-built_in">n</span>]行
-[<span class="hljs-built_in">n</span>]s 以输入的文本替代光标之后<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)个字符，相当于c[<span class="hljs-built_in">n</span>]l
-[<span class="hljs-built_in">n</span>]S 删除指定数目的行，并以所输入文本代替之​</code></pre>
-<h3 id="复制命令"><a href="#复制命令" class="headerlink" title="复制命令"></a>复制命令</h3><pre><code class="hljs excel">y 复制在可视模式下选中的文本
-yy <span class="hljs-built_in">or</span> Y 复制整行文本
-y[<span class="hljs-built_in">n</span>]w 复制一(<span class="hljs-built_in">n</span>)个词
-y[<span class="hljs-built_in">n</span>]l 复制光标右边<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)个字符
-y[<span class="hljs-built_in">n</span>]h 复制光标左边<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)个字符
-y$ 从光标当前位置复制到行尾
-<span class="hljs-symbol">y0</span> 从光标当前位置复制到行首​﻿​</code></pre>
-<h3 id="剪切和粘贴命令"><a href="#剪切和粘贴命令" class="headerlink" title="剪切和粘贴命令"></a>剪切和粘贴命令</h3><pre><code class="hljs excel">[<span class="hljs-built_in">n</span>]x 剪切光标右边<span class="hljs-built_in">n</span>个字符，相当于d[<span class="hljs-built_in">n</span>]l
-[<span class="hljs-built_in">n</span>]X 剪切光标左边<span class="hljs-built_in">n</span>个字符，相当于d[<span class="hljs-built_in">n</span>]h
-p 在光标之后粘贴
-P 在光标之前粘贴​</code></pre>
-<h3 id="删除命令"><a href="#删除命令" class="headerlink" title="删除命令"></a>删除命令</h3><pre><code class="hljs excel">d 删除（剪切）在可视模式下选中的文本
-d$ <span class="hljs-built_in">or</span> D 删除（剪切）当前位置到行尾的内容
-d[<span class="hljs-built_in">n</span>]w 删除（剪切）<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)个单词
-d[<span class="hljs-built_in">n</span>]l 删除（剪切）光标右边<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)个字符
-d[<span class="hljs-built_in">n</span>]h 删除（剪切）光标左边<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)个字符
-<span class="hljs-symbol">d0</span> 删除（剪切）当前位置到行首的内容
-[<span class="hljs-built_in">n</span>] dd 删除（剪切）<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)行​</code></pre>
-<h3 id="撤销命令"><a href="#撤销命令" class="headerlink" title="撤销命令"></a>撤销命令</h3><pre><code class="hljs properties"><span class="hljs-attr">u</span> <span class="hljs-string">撤销最后执行的命令</span>
-<span class="hljs-attr">U</span> <span class="hljs-string">撤销对整行的修改​</span></code></pre>
-<h3 id="查找命令"><a href="#查找命令" class="headerlink" title="查找命令"></a>查找命令</h3><pre><code class="hljs applescript">/<span class="hljs-built_in">word</span> 在后面的文本中查找<span class="hljs-built_in">word</span>
-?<span class="hljs-built_in">word</span> 在前面的文本中查找<span class="hljs-built_in">word</span>
-/pattern/+<span class="hljs-built_in">number</span> 将光标停在包含pattern的行后面第<span class="hljs-built_in">number</span>行上
-/pattern/-<span class="hljs-built_in">number</span> 将光标停在包含pattern的行前面第<span class="hljs-built_in">number</span>行上
-n 向后查找下一个
-N 向前查找下一个​</code></pre>
-<h3 id="替换命令"><a href="#替换命令" class="headerlink" title="替换命令"></a>替换命令</h3><pre><code class="hljs elixir"><span class="hljs-symbol">:s/old/new/g</span> 可以替换 old 为 new
-替换两行之间出现的每个匹配串，操作如下
-<span class="hljs-symbol">:</span><span class="hljs-comment">#,#s/old/new/g 其中 #,# 代表的是替换操作的若干行中首尾两行的行号。</span>
-<span class="hljs-symbol">:%s/old/new/g</span> 则是替换整个文件中的每个匹配串。
-<span class="hljs-symbol">:%s/old/new/gc</span> 会找到整个文件中的每个匹配串，并且对每个匹配串提示是否进行替换。</code></pre>
-<h3 id="排版命令"><a href="#排版命令" class="headerlink" title="排版命令"></a>排版命令</h3><pre><code class="hljs ruby">&lt;&lt; 向左缩进一个shiftwidth
-<span class="hljs-meta">&gt;&gt;</span> 向右缩进一个shiftwidth
-<span class="hljs-symbol">:ce</span>(nter) 本行文字居中
-<span class="hljs-symbol">:le</span>(ft) 本行文字靠左
-<span class="hljs-symbol">:ri</span>(ght) 本行文字靠右</code></pre>
-<h3 id="命令行中分屏打开多文件"><a href="#命令行中分屏打开多文件" class="headerlink" title="命令行中分屏打开多文件"></a>命令行中分屏打开多文件</h3><pre><code class="hljs css"><span class="hljs-selector-tag">-o</span> 水平分屏
-<span class="hljs-selector-tag">vim</span> <span class="hljs-selector-tag">-o</span><span class="hljs-selector-attr">[n]</span> <span class="hljs-selector-tag">file1</span> <span class="hljs-selector-attr">[file2 ...]</span>
-<span class="hljs-selector-tag">-O</span> 垂直分屏
-<span class="hljs-selector-tag">vim</span> <span class="hljs-selector-tag">-O</span><span class="hljs-selector-attr">[n]</span> <span class="hljs-selector-tag">file1</span> <span class="hljs-selector-attr">[file2 ...]</span></code></pre>
-<h3 id="vim中命令模式分屏"><a href="#vim中命令模式分屏" class="headerlink" title="vim中命令模式分屏"></a>vim中命令模式分屏</h3><ol>
-<li>垂直分屏<pre><code class="hljs vim">:<span class="hljs-keyword">vs</span> [<span class="hljs-keyword">file</span>]
-:<span class="hljs-keyword">vs</span> 将当前文件垂直分屏
-:<span class="hljs-keyword">vs</span> <span class="hljs-keyword">file</span> 创建新文件并垂直分屏</code></pre></li>
-<li>水平分屏<pre><code class="hljs vim">:<span class="hljs-keyword">sv</span> [<span class="hljs-keyword">file</span>]
-:<span class="hljs-keyword">sv</span> 将当前文件水平分屏
-:<span class="hljs-keyword">sv</span> <span class="hljs-keyword">file</span> 创建新文件并水平分屏</code></pre>
+              <h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>分类问题，例如<br>Email: 垃圾邮件/不是垃圾邮件<br>Online：信息是真的/信息是假的<br>Tumor：良性的/恶性的<br>$y=\{0,1\}$<br>0:Negative Class负类/1:Positive Class正类<br><img src="/img/machine-learning/09.png" srcset="/img/loading.gif" alt="图9"><br>将分类器的输出$h_\theta(x)$阀值定位0.5<br>如果$h_\theta\geq0.5$,预测’y=1’<br>如果$h_\theta&lt;0.5$,预测‘y=0’ </p>
+<h4 id="假设陈述"><a href="#假设陈述" class="headerlink" title="假设陈述"></a>假设陈述</h4><p>逻辑分类模型<br>我们想要$0\leq h_\theta(x) \leq 1$<br>$h_\theta(x)=g(\theta^Tx)$<br>$g(z)=\frac{1}{1+e^{-z}}$ z是实数 ，g(z)一端趋向1一端趋向0。<br>关于假设h(x)函数的解释：<br>$h_\theta(x)$= 输入x对于y=1的估计概率<br>举例：如果 $x=\begin{bmatrix}x_0 \\ x_1\end{bmatrix}=\begin{bmatrix}1 \\ tumorSize \end{bmatrix}$<br>$h_\theta(x)=0.7$<br>可以说明病人的肿瘤有70%的概率为恶性肿瘤。<br>当特征变量为x，变量的参数为$\theta$，可以表示‘y=1’或‘y=0’的概率为：  </p>
+<script type="math/tex; mode=display">h_\theta(x)=P(y=1|x;\theta)</script><script type="math/tex; mode=display">P(y=0|x;\theta)+P(y=1|x;\theta)=1</script><script type="math/tex; mode=display">P(y=0|x;\theta)=1-P(y=1|x;\theta)</script><h4 id="决策界限（decision-boundary）"><a href="#决策界限（decision-boundary）" class="headerlink" title="决策界限（decision boundary）"></a>决策界限（decision boundary）</h4><p>分类函数：<br>$h_\theta(x)=g(\theta^Tx)=P(y=1|x;\theta)$<br>$g(z)=\frac{1}{1+e^{-z}}$<br><img src="/img/machine-learning/10.png" srcset="/img/loading.gif" alt="图10"><br>$g(z)\geq0.5$ when $z \geq 0$。$h_\theta(x)=g(\theta^Tx)\geq0.5$ when $\theta^T\geq0$<br>假设：预测“y=1” 如果$h_\theta(x)\geq0.5$<br>预测“y=0” 如果$h_\theta(x)&lt;0.5$<br><img src="/img/machine-learning/11.png" srcset="/img/loading.gif" alt="图11"><br>假设$h_\theta(x)=g(\theta_0+\theta x_1+\theta x_2)$,并且已知$\theta^T=\begin{bmatrix}-3 &amp; 1 &amp; 1\end{bmatrix}$<br>可以预测”y=1”, 如果 $-3+x_1+x_2\geq0$，也就是$x_1+x_2\geq3$<br><img src="/img/machine-learning/12.png" srcset="/img/loading.gif" alt="图12"><br>$h_\theta(x)=g(\theta_0+\theta_1x_1+\theta_2x_2+\theta_3x_1^2+\theta_4x_4^2)$<br>$\theta^T=\begin{bmatrix}-1 &amp; 0 &amp; 0 &amp; 1 &amp;1\end{bmatrix}$<br>预测“y=1”，如果$-1+x_1^2+x_2^2\geq0$，可改写为$x_1^2+x_2^2\geq0$<br>一旦有了参数$\theta$，决策边界就可以确定了。</p>
+<h4 id="代价函数"><a href="#代价函数" class="headerlink" title="代价函数"></a>代价函数</h4><p>训练集：{$(x^{(1)},y^{(1)}),(x^{(2)},y^{(2)}),…,(x^{(m)},y^{(m)})$}<br>m个特征 $x\in\begin{bmatrix}x_0\\x_1\...\\x_n\end{bmatrix}$<br>$x_0=1,y\in\{0,1\}$  </p>
+<script type="math/tex; mode=display">h_\theta(x)=\frac{1}{1+e^{-\theta^Tx}}</script><p>我们应该怎么去确定参数$\theta$呢？<br>代价函数：<br>线性回归：</p>
+<script type="math/tex; mode=display">J(\theta)=\frac{1}{m}\sum^m_{i=1}\frac{1}{2}(h_\theta(x^{(i)})-y^{(i)})^2</script><p>平均误差平方可以写为：    </p>
+<script type="math/tex; mode=display">Cost(h_\theta(x^{(i)}),y^{(i)})=\frac{1}{2}(h_\theta(x^{(i)})-y^{(i)})^2</script><p>如果直接代入，画出代价函数（优化目标函数如左图，有很多局部最优，且是非凸函数）<br><img src="/img/machine-learning/13.png" srcset="/img/loading.gif" alt="图13"><br>逻辑回归代价函数</p>
+<script type="math/tex; mode=display">Cost(h_\theta(x),y)=\begin{cases}
+-log(h_\theta(x)&if&y=1\\
+-log(1-h_\theta(x))&if&y=0
+\end{cases}</script><p><img src="/img/machine-learning/14.png" srcset="/img/loading.gif" alt="图14"><br>搞错的代价是巨大的<br><img src="/img/machine-learning/15.png" srcset="/img/loading.gif" alt="图15">    </p>
+<h4 id="简化代价函数与梯度下降"><a href="#简化代价函数与梯度下降" class="headerlink" title="简化代价函数与梯度下降"></a>简化代价函数与梯度下降</h4><p>逻辑回归代价函数（优化目标函数）</p>
+<script type="math/tex; mode=display">J(\theta)=\frac{1}{m}\sum^m_{i=1}Cost(h_\theta(x^{(i)}),y^{(i)})</script><script type="math/tex; mode=display">Cost(h_\theta(x),y)=\begin{cases}
+-log(h_\theta(x)&if&y=1\\
+-log(1-h_\theta(x))&if&y=0
+\end{cases}</script><p>Note:y=0 or 1 always<br>简化$Cost(h_\theta(x),y)=-ylog(h_\theta(x))-(1-y)log(1-h_\theta(x))$<br>由此我们可以得到：  </p>
+<script type="math/tex; mode=display">J(\theta)=-\frac{1}{m}[\sum^m_{i-1}y^{(i)}logh_\theta(x^{(i)})+(1-y^{(i)})log(1-h_\theta(x^{(i)}))]</script><p>为了拟合出参数$\theta$,我们应该找出让$J(\theta)$取得最小值的参数$\theta$：<br>$\min\limits_\theta J(\theta)$<br>得到了参数，当我们输入一组新的特征去预测时<br>输出：$h_\theta(x)=\frac{1}{1+e^{-\theta^Tx}}$<br>使用梯度下降法来找出代价函数的最小值</p>
+<script type="math/tex; mode=display">J(\theta)=-\frac{1}{m}[\sum^m_{i-1}y^{(i)}logh_\theta(x^{(i)})+(1-y^{(i)})log(1-h_\theta(x^{(i)}))]</script><p>想要得到$\min\limits_\theta J(\theta)$：<br>Repeat{</p>
+<script type="math/tex; mode=display">\theta_j:\theta_j-\alpha\frac{\partial}{\partial\theta_j}J(\theta)=\theta_j-\alpha\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x_j^{(i)}</script><p>(同时更新所有的$\theta_j$)<br>}<br>它与线性回归的参数求解公式一样，但是因为线性回归和逻辑回归所设定的假设函数不一样，一个是$h_\theta(x)=\theta^Tx$,一个是$h_\theta(x)=\frac{1}{1+e^{-\theta^Tx}}$.  </p>
+<h4 id="高级优化"><a href="#高级优化" class="headerlink" title="高级优化"></a>高级优化</h4><p>优化算法<br>代价函数$J(\theta)$,想得到$\min\limits_\theta J(\theta)$<br>当我们输入参数$\theta$的时候，我们可以使用代码计算  </p>
+<ul>
+<li>$J(\theta)$</li>
+<li>$\frac{\partial}{\partial\theta_j}J(\theta)\quad (for\quad j=0,1,2…,n)$<br>梯度下降：<br>Repeat { <script type="math/tex; mode=display">\theta_j:\theta_j-\alpha\frac{\partial}{\partial\theta_j}J(\theta)</script>}<br><img src="/img/machine-learning/16.png" srcset="/img/loading.gif" alt="图16"><br>(共轭梯度法、BFGS、L-BFGS)<br>举例：<br>$\theta=\begin{bmatrix}\theta_1 \\ \theta_2\end{bmatrix}$<br>$J(\theta)=(\theta_1-5)^2+(\theta_2-5)^2$<br>$\frac{\partial}{\partial\theta_1}J(\theta)=2(\theta_1-5)$<br>$\frac{\partial}{\partial\theta_2}J(\theta)=2(\theta_2-5)$    <pre><code class="hljs lsl">funtion[jVal,gradient]
+        = costFunction(theta)
+    jVal = (theta(<span class="hljs-number">1</span>)<span class="hljs-number">-5</span>)^<span class="hljs-number">2</span> + ...
+    (theta(<span class="hljs-number">2</span>)<span class="hljs-number">-5</span>)^<span class="hljs-number">2</span>;
+    gradient = zeros(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>);
+    gradient(<span class="hljs-number">1</span>) = <span class="hljs-number">2</span>*(theta(<span class="hljs-number">1</span>)<span class="hljs-number">-5</span>);
+    gradient(<span class="hljs-number">2</span>) = <span class="hljs-number">2</span>*(theta(<span class="hljs-number">2</span>)<span class="hljs-number">-5</span>);
+options = optimst('GradObj', 'on','MaxIter','<span class="hljs-number">100</span>');
+initialTheta = zeros(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>);
+[optTheta, functionVal, exitFlag] ...
+    =fminunc(@costFunction,initialTheta,options)</code></pre>
 </li>
-</ol>
-<h3 id="分屏屏间光标移动"><a href="#分屏屏间光标移动" class="headerlink" title="分屏屏间光标移动"></a>分屏屏间光标移动</h3><ol>
-<li>分屏间循环移动光标<br><code>ctrl-w ctrl-w</code></li>
-<li>光标移到右边的屏中<br><code>ctrl+w l</code></li>
-<li>光标移到左边的屏中<br><code>ctrl+w h</code></li>
-<li>光标移到上面的屏中<br><code>ctrl+w k</code></li>
-<li>光标移到下边的屏中<br><code>ctrl+w j</code></li>
-<li>光标移到下一个屏中<br><code>ctrl+w w</code></li>
-<li>把光标移到上一个屏中<br><code>ctrl+w p</code></li>
-</ol>
-<h3 id="分屏的移动"><a href="#分屏的移动" class="headerlink" title="分屏的移动"></a>分屏的移动</h3><p>四个键位同上相比均换成了大写</p>
+</ul>
+<h4 id="多元算法"><a href="#多元算法" class="headerlink" title="多元算法"></a>多元算法</h4><p>多元分类问题<br>Email 标签归类：工作、朋友、家庭和爱好<br>医学诊断：没有生病、感冒、发烧<br>天气：晴朗、多云、下雨、下雪<br><img src="/img/machine-learning/17.png" srcset="/img/loading.gif" alt="图17"><br><img src="/img/machine-learning/18.png" srcset="/img/loading.gif" alt="图18"><br>训练一个逻辑回归分类器$h_\theta^{(i)}(x)$对每一个种类进行预测。<br>新输入一个x去做分类预测，取$\max\limits_ih_\theta^{(i)}(x)$即最大值，有最好分类效果的分类器。</p>
+<h3 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h3><h4 id="过拟合问题"><a href="#过拟合问题" class="headerlink" title="过拟合问题"></a>过拟合问题</h4><p><img src="/img/machine-learning/19.png" srcset="/img/loading.gif" alt="图19"><br>欠拟合/正常拟合与过拟合<br>如果我们具有太多的特征，则学习的假设可能非常适合训练集，但无法归纳为新的示例（在新示例上预测价格,无法泛化一般化去预测）<br><img src="/img/machine-learning/20.png" srcset="/img/loading.gif" alt="图20"><br>有两个办法防止过拟合</p>
 <ol>
-<li>把当前分屏移动到最左边<br><code>ctrl+w H</code></li>
-<li>把当前分屏移动到上面并扩展到整屏的宽度<br><code>ctrl+w K</code></li>
-<li>把当前分屏移动到最下边<br><code>ctrl+w J</code> </li>
-<li>把当前分屏移动到最右边<br><code>ctrl+w L</code> </li>
+<li>减少特征的数量</li>
 </ol>
-<h3 id="关闭分屏"><a href="#关闭分屏" class="headerlink" title="关闭分屏"></a>关闭分屏</h3><ol>
-<li>关闭当前子屏<br><code>ctrl+wc</code></li>
-<li>关闭当前子屏，若为最后一个，则退出vim<br><code>ctrl+w q</code> </li>
-<li>hide<br><code>:hide 关闭当前窗口</code> </li>
-<li>only<br><code>:only 仅保持此窗口开启</code></li>
+<ul>
+<li>人为的删除某些特征变量</li>
+<li>模型选择算法</li>
+</ul>
+<ol>
+<li>正则化</li>
 </ol>
+<ul>
+<li>保留所有的特征变量，但是减少参数值的大小</li>
+<li>这个方法非常有效，当我们有很多特征变量时，每个变量都可以对预测做出贡献  </li>
+</ul>
+<p><img src="/img/machine-learning/20.png" srcset="/img/loading.gif" alt="图20"><br>假设我们在函数中加入惩罚项，使得$\theta_3$,$\theta_4$非常小</p>
+<script type="math/tex; mode=display">\min\limits_\theta\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2</script><script type="math/tex; mode=display">\min\limits_\theta\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2+1000\theta_3^2+1000\theta_4^2</script><p>要想改写后的代价函数尽可能小，那么$\theta_3$,$\theta_4$的值都要尽量接近于0。也就是说我们只需要多余项的参数足够小，这样就可以避免过拟合。<br>将参数的值减小，我们会得到一个更简单的假设模型，也更不容易出现过拟合的现象。<br>举例房屋问题：</p>
+<ul>
+<li>特征：$x_1,x_2,…,x_100$</li>
+<li>参数：$\theta$  </li>
+</ul>
 
             </article>
             <hr>
@@ -322,7 +270,7 @@ N 向前查找下一个​</code></pre>
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/tool/">tool</a>
+                      <a class="hover-with-bg" href="/categories/study/">study</a>
                     
                   </div>
                 
@@ -330,7 +278,9 @@ N 向前查找下一个​</code></pre>
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/vim/">vim</a>
+                      <a class="hover-with-bg" href="/tags/Python/">Python</a>
+                    
+                      <a class="hover-with-bg" href="/tags/machine-learning/">machine-learning</a>
                     
                   </div>
                 
@@ -343,18 +293,12 @@ N 向前查找下一个​</code></pre>
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2019/11/15/%E5%A5%BD%E7%94%A8%E7%9A%84git/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Git&Github</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2019/06/08/markdown%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">
-                        <span class="hidden-mobile">markdown的基本语法</span>
+                      <a href="/2020/06/10/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/">
+                        <span class="hidden-mobile">吴恩达机器学习（一）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -604,7 +548,7 @@ N 向前查找下一个​</code></pre>
       if ('true' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/2019/10/08/VIM%E7%9A%84%E4%BD%BF%E7%94%A8/');
+          var target = decodeURI('/2020/06/10/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89/');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -698,7 +642,7 @@ N 向前查找下一个​</code></pre>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "VIM的使用&nbsp;",
+        "吴恩达机器学习（二）&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -759,6 +703,45 @@ N 向前查找下一个​</code></pre>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
 
 
 
