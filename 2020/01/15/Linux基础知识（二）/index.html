@@ -4,21 +4,6 @@
 
 
 
-<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
-  <style>
-      .pace .pace-progress {
-          background: #1E92FB; /*进度条颜色*/
-          height: 3px;
-      }
-      .pace .pace-progress-inner {
-           box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
-      }
-      .pace .pace-activity {
-          border-top-color: #1E92FB;    /*上边框颜色*/
-          border-left-color: #1E92FB;    /*左边框颜色*/
-      }
-  </style>
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
@@ -63,7 +48,10 @@
   <script  src="/js/utils.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
 
-
+{% if theme.canvas_nest %}
+<script type="text/javascript"
+color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+{% endif %}
 <body>
   <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
@@ -222,9 +210,9 @@
 <h4 id="组"><a href="#组" class="headerlink" title="组"></a>组</h4><p>为了方便用户管理，提出了组的概念，在实际应用中，可以针对组设置好权限，然后将不同的用户添加 到对应的组中，从而不用依次为每一个用户设置权限<br><img src="/img/linux/21.png" srcset="/img/loading.gif" alt="图21"></p>
 <h4 id="ls-l扩展"><a href="#ls-l扩展" class="headerlink" title="ls-l扩展"></a>ls-l扩展</h4><p><img src="/img/linux/22.png" srcset="/img/loading.gif" alt="图22"><br>ls-l可以查看文件夹下文件的详细信息，从左到右依次是：<br>权限，读一个字符如果是d 表示目录<br>硬链接数 通俗地讲，就是有多少钟方式，可以访问当前的目录/文件<br>拥有者，家目录下 文件/目录的拥有者通常都是当前用户<br>组，在Linux中，很多时候，会出现组名和用户名相同的情况<br>大小<br>时间<br>名称<br><img src="/img/linux/23.png" srcset="/img/loading.gif" alt="图23"></p>
 <h4 id="chmod简单使用（重要）"><a href="#chmod简单使用（重要）" class="headerlink" title="chmod简单使用（重要）"></a>chmod简单使用（重要）</h4><p>chmod可以修改 用户/组 对 文件/目录的权限<br>命令格式如下：<br><code>chmod +/- rwx 文件名|目录名</code>  </p>
-<h4 id="超级用户"><a href="#超级用户" class="headerlink" title="超级用户"></a>超级用户</h4><p>Linux系统中root账号通常用于系统的维护和管理，对操作系统的所有资源 具有所有访问权限<br>在大多数版本的linux中，都不推荐直接使用root账号登录系统<br>在Linux安装的过程中，系统会自动创建一个用户账号，而这个默认的用户就称为标准用<code>sudo</code><br>su是 substitute user 的缩写，表示使用另一个用户的身份<br>sudo命令用来以其他身份来执行命令，预设的身份是 root<br>用户使用sudo时，必须先输入密码。之后会有5分钟的有效期限，超过期限必须重新输入密码  </p>
+<h4 id="超级用户"><a href="#超级用户" class="headerlink" title="超级用户"></a>超级用户</h4><p>Linux系统中root账号通常用于系统的维护和管理，对操作系统的所有资源 具有所有访问权限<br>在大多数版本的linux中，都不推荐直接使用root账号登录系统<br>在Linux安装的过程中，系统会自动创建一个用户账号，而这个默认的用户就称为标准用<code>sudo </code><br>su是 substitute user 的缩写，表示使用另一个用户的身份<br>sudo命令用来以其他身份来执行命令，预设的身份是 root<br>用户使用sudo时，必须先输入密码。之后会有5分钟的有效期限，超过期限必须重新输入密码  </p>
 <h4 id="组管理-终端命令"><a href="#组管理-终端命令" class="headerlink" title="组管理 终端命令"></a>组管理 终端命令</h4><p>创建组/删除组的终端命令都需要通过sudo来执行<br><img src="/img/linux/24.png" srcset="/img/loading.gif" alt="图24">  </p>
-<h4 id="用户管理-终端命令"><a href="#用户管理-终端命令" class="headerlink" title="用户管理 终端命令"></a>用户管理 终端命令</h4><p><img src="/img/linux/25.png" srcset="/img/loading.gif" alt="图25"><br>创建用户时，如果忘记添加-m选项指定新用户的家目录—最简单的方法就是删除用户，重新创建<br>创建用户时，默认会创建一个和用户名同名的组名<br>用户信息保存在/etc/passwd文件中  </p>
+<h4 id="用户管理-终端命令"><a href="#用户管理-终端命令" class="headerlink" title="用户管理 终端命令"></a>用户管理 终端命令</h4><p><img src="/img/linux/25.png" srcset="/img/loading.gif" alt="图25"><br>创建用户时，如果忘记添加-m选项指定新用户的家目录–最简单的方法就是删除用户，重新创建<br>创建用户时，默认会创建一个和用户名同名的组名<br>用户信息保存在/etc/passwd文件中  </p>
 <h4 id="查看用户信息"><a href="#查看用户信息" class="headerlink" title="查看用户信息"></a>查看用户信息</h4><p><img src="/img/linux/26.png" srcset="/img/loading.gif" alt="图26"><br>passwd文件<br>/etc/passwd文件存放的时用户的信息，由6个分号组成的7个信息，分别是  </p>
 <ol>
 <li>用户名</li>
@@ -241,19 +229,17 @@
 <h4 id="修改文件权限"><a href="#修改文件权限" class="headerlink" title="修改文件权限"></a>修改文件权限</h4><p><img src="/img/linux/30.png" srcset="/img/loading.gif" alt="图30"><br>命令的格式如下：<br><img src="/img/linux/31.png" srcset="/img/loading.gif" alt="图31"><br>hmod在设置权限的时候，可以简单的使用三个数字分别对应拥有者/组和其他 用户的权限<br>直接修改文件|目录 读【写】执行权限，但是不能精确到拥有者【组】其他chmod +/-rwx 文件名|目录名<br><img src="/img/linux/32.png" srcset="/img/loading.gif" alt="图32"></p>
 <h3 id="系统信息相关命令"><a href="#系统信息相关命令" class="headerlink" title="系统信息相关命令"></a>系统信息相关命令</h3><p><img src="/img/linux/33.png" srcset="/img/loading.gif" alt="图33"><br>本节内容主要是为了方便通过远程终端维护服务器时，查看服务器上当前 系统日期和时间/磁盘空间占用情况/程序执行情况<br>本小节学习的终端命令基本都是查询命令，通过这些命令对系统资源的使用情况有个了解  </p>
 <h4 id="时间和日期"><a href="#时间和日期" class="headerlink" title="时间和日期"></a>时间和日期</h4><p><img src="/img/linux/34.png" srcset="/img/loading.gif" alt="图34"></p>
-<h4 id="磁盘信息"><a href="#磁盘信息" class="headerlink" title="磁盘信息"></a>磁盘信息</h4><p><img src="/img/linux/35.png" srcset="/img/loading.gif" alt="图35"><br><code>-h</code>以人性化方式显示文件大小  </p>
+<h4 id="磁盘信息"><a href="#磁盘信息" class="headerlink" title="磁盘信息"></a>磁盘信息</h4><p><img src="/img/linux/35.png" srcset="/img/loading.gif" alt="图35"><br><code>-h </code>以人性化方式显示文件大小  </p>
 <h4 id="进程信息"><a href="#进程信息" class="headerlink" title="进程信息"></a>进程信息</h4><p>所谓进程就是 通俗地说就是 当前正在执行的一个程序<br>默认只会显示当前用户通过终端启动的应用程序<br>ps选项说明功能<br><img src="/img/linux/36.png" srcset="/img/loading.gif" alt="图36"><br>使用kill命令的时候，最好只终止当前用户开启的进程，而不要终止root身份开启的进程<br>否则可能导致系统崩溃<br>要推出top 输入一个q即可  </p>
 <h3 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h3><p>目标：<br>查找文件：<code>find</code><br>软链接：<code>ln</code><br>打包和压缩： <code>tar</code><br>软件安装：<code>apt-get</code></p>
-<h4 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h4><p>find命令功能非常强大，通常用来在 特定目录下 搜索 符合条件的文件<br><code>find 【路径】 - name “*.py”</code> 查找指定路径下扩展名是 .py 的文件，包括子目录  </p>
+<h4 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h4><p>find命令功能非常强大，通常用来在 特定目录下 搜索 符合条件的文件<br><code>find 【路径】 - name “*.py” </code> 查找指定路径下扩展名是 .py 的文件，包括子目录  </p>
 <ul>
 <li>如果省略路径，表示在当前文件夹下查找</li>
 <li>之前学习的通配符，在使用find命令时同时使用</li>
 </ul>
 <h4 id="软链接"><a href="#软链接" class="headerlink" title="软链接"></a>软链接</h4><p><code>ln -s</code> 被链接的源文件  链接文件<br>建立文件的软链接，用通俗的方式讲类似于 Windows下的快捷方式<br>注意：<br>没有 -s选项建立的是一个硬链接文件，两个文件占用相同大小的硬盘空间，工作中机会不会建立文件的硬链接<br>源文件要使用绝对路径，不能使用相对路径，这样方便移动链接文件后，仍能够正常使用  </p>
 <p>硬链接<br>在Linux中，文件名和文件数据是分开存储的<br><img src="/img/linux/37.png" srcset="/img/loading.gif" alt="图37"><br>在linux中，只有文件的硬链接数==0才会被删除<br>使用ls -l可以查看一个文件的硬链接的数量   </p>
-<h4 id="打包压缩"><a href="#打包压缩" class="headerlink" title="打包压缩"></a>打包压缩</h4><p>打包压缩是日常工作中备份文件的一种方式在不同的操作系统中，常用的打包方式是不同的<br>windows 常用rar<br>mac常用 zip<br>linux常用tar.gz<br>打包/解包<br>tar是Linux中常用的备份工具，此命令可以把一系列文件打包到一个大文件中，也可以把一个打包的大文件恢复成一系列文件<br>tar的命令格式如下：  </p>
-<h1 id="打包文件"><a href="#打包文件" class="headerlink" title="打包文件"></a>打包文件</h1><p><code>tar -cvf 打包文件.tar 被打包文件/路径....</code>  </p>
-<h1 id="解包文件"><a href="#解包文件" class="headerlink" title="解包文件"></a>解包文件</h1><p><code>tar -xvf 打包文件.tar</code><br><img src="/img/linux/38.png" srcset="/img/loading.gif" alt="图38">  </p>
+<h4 id="打包压缩"><a href="#打包压缩" class="headerlink" title="打包压缩"></a>打包压缩</h4><p>打包压缩是日常工作中备份文件的一种方式在不同的操作系统中，常用的打包方式是不同的<br>windows 常用rar<br>mac常用 zip<br>linux常用tar.gz<br>打包/解包<br>tar是Linux中常用的备份工具，此命令可以把一系列文件打包到一个大文件中，也可以把一个打包的大文件恢复成一系列文件<br>tar的命令格式如下：<br>#打包文件<br><code>tar -cvf 打包文件.tar 被打包文件/路径....</code><br>#解包文件<br><code>tar -xvf 打包文件.tar</code><br><img src="/img/linux/38.png" srcset="/img/loading.gif" alt="图38">  </p>
 <ol>
 <li>压缩/解压缩<br>tar与gzip命令结合可以实现文件的打包和压缩<br>tar只负责打包，但不压缩<br>用gzip压缩tar打包后的文件，其扩展名一般用xxx.tar.gz<br>在Linux中，最常见的压缩文件格式就是xxx.tar.gz<br>在tar命令中，有一个-z的选项可以调用gzip。从而方便的实现压缩和解压缩的功能<br><img src="/img/linux/39.png" srcset="/img/loading.gif" alt="图38"><br>C 解压缩到指定的路径，要解压缩的目录必须存在 </li>
 <li>bzip2<br>tar和bzip2命令结合使用同样可以打包和压缩，其扩展名为xxx.tar.bz2<br>在tar命令中有个选项-j可以调用bzip2，从而可以方便的实现压缩和解压缩的功能<br><img src="/img/linux/40.png" srcset="/img/loading.gif" alt="图40"></li>
