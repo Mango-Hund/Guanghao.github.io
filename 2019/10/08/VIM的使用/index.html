@@ -2,7 +2,8 @@
 <html lang="zh-CN">
 
 
-
+<!-- 样式一（鼠标点击更换样式） -->
+<script src="https://g.joyinshare.com/hc/ribbon.min.js" type="text/javascript"></script>
 
 <head>
   <meta charset="UTF-8">
@@ -216,7 +217,6 @@
 <span class="hljs-meta">)</span> <span class="hljs-string">后移1句</span>
 <span class="hljs-meta">&#123;</span> <span class="hljs-string">前移1段</span>
 <span class="hljs-meta">&#125;</span> <span class="hljs-string">后移1段​</span></code></pre>
-
 <h3 id="滚屏命令"><a href="#滚屏命令" class="headerlink" title="滚屏命令"></a>滚屏命令</h3><pre><code class="hljs properties"><span class="hljs-meta">ctrl+f</span> <span class="hljs-string">下翻一屏</span>
 <span class="hljs-meta">ctrl+b</span> <span class="hljs-string">上翻一屏</span>
 <span class="hljs-meta">ctrl+d</span> <span class="hljs-string">下翻半屏</span>
@@ -227,7 +227,6 @@
 <span class="hljs-attr">zz</span> <span class="hljs-string">将当前行移动到屏幕中央</span>
 <span class="hljs-attr">zt</span> <span class="hljs-string">将当前行移动到屏幕顶端</span>
 <span class="hljs-attr">zb</span> <span class="hljs-string">将当前行移动到屏幕底端​</span></code></pre>
-
 <h3 id="插入命令"><a href="#插入命令" class="headerlink" title="插入命令"></a>插入命令</h3><pre><code class="hljs excel">第一部分 基本插入
 I 在当前行第一个非空字符前插入
 gI 在当前行第一列插入
@@ -242,7 +241,6 @@ c[<span class="hljs-built_in">n</span>]h 改写光标前<span class="hljs-built_
 [<span class="hljs-built_in">n</span>]cc 修改当前[<span class="hljs-built_in">n</span>]行
 [<span class="hljs-built_in">n</span>]s 以输入的文本替代光标之后<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)个字符，相当于c[<span class="hljs-built_in">n</span>]l
 [<span class="hljs-built_in">n</span>]S 删除指定数目的行，并以所输入文本代替之​</code></pre>
-
 <h3 id="复制命令"><a href="#复制命令" class="headerlink" title="复制命令"></a>复制命令</h3><pre><code class="hljs excel">y 复制在可视模式下选中的文本
 yy <span class="hljs-built_in">or</span> Y 复制整行文本
 y[<span class="hljs-built_in">n</span>]w 复制一(<span class="hljs-built_in">n</span>)个词
@@ -250,12 +248,10 @@ y[<span class="hljs-built_in">n</span>]l 复制光标右边<span class="hljs-num
 y[<span class="hljs-built_in">n</span>]h 复制光标左边<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)个字符
 y$ 从光标当前位置复制到行尾
 <span class="hljs-symbol">y0</span> 从光标当前位置复制到行首​﻿​</code></pre>
-
 <h3 id="剪切和粘贴命令"><a href="#剪切和粘贴命令" class="headerlink" title="剪切和粘贴命令"></a>剪切和粘贴命令</h3><pre><code class="hljs excel">[<span class="hljs-built_in">n</span>]x 剪切光标右边<span class="hljs-built_in">n</span>个字符，相当于d[<span class="hljs-built_in">n</span>]l
 [<span class="hljs-built_in">n</span>]X 剪切光标左边<span class="hljs-built_in">n</span>个字符，相当于d[<span class="hljs-built_in">n</span>]h
 p 在光标之后粘贴
 P 在光标之前粘贴​</code></pre>
-
 <h3 id="删除命令"><a href="#删除命令" class="headerlink" title="删除命令"></a>删除命令</h3><pre><code class="hljs excel">d 删除（剪切）在可视模式下选中的文本
 d$ <span class="hljs-built_in">or</span> D 删除（剪切）当前位置到行尾的内容
 d[<span class="hljs-built_in">n</span>]w 删除（剪切）<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)个单词
@@ -263,34 +259,28 @@ d[<span class="hljs-built_in">n</span>]l 删除（剪切）光标右边<span cla
 d[<span class="hljs-built_in">n</span>]h 删除（剪切）光标左边<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)个字符
 <span class="hljs-symbol">d0</span> 删除（剪切）当前位置到行首的内容
 [<span class="hljs-built_in">n</span>] dd 删除（剪切）<span class="hljs-number">1</span>(<span class="hljs-built_in">n</span>)行​</code></pre>
-
 <h3 id="撤销命令"><a href="#撤销命令" class="headerlink" title="撤销命令"></a>撤销命令</h3><pre><code class="hljs properties"><span class="hljs-attr">u</span> <span class="hljs-string">撤销最后执行的命令</span>
 <span class="hljs-attr">U</span> <span class="hljs-string">撤销对整行的修改​</span></code></pre>
-
 <h3 id="查找命令"><a href="#查找命令" class="headerlink" title="查找命令"></a>查找命令</h3><pre><code class="hljs applescript">/<span class="hljs-built_in">word</span> 在后面的文本中查找<span class="hljs-built_in">word</span>
 ?<span class="hljs-built_in">word</span> 在前面的文本中查找<span class="hljs-built_in">word</span>
 /pattern/+<span class="hljs-built_in">number</span> 将光标停在包含pattern的行后面第<span class="hljs-built_in">number</span>行上
 /pattern/-<span class="hljs-built_in">number</span> 将光标停在包含pattern的行前面第<span class="hljs-built_in">number</span>行上
 n 向后查找下一个
 N 向前查找下一个​</code></pre>
-
 <h3 id="替换命令"><a href="#替换命令" class="headerlink" title="替换命令"></a>替换命令</h3><pre><code class="hljs elixir"><span class="hljs-symbol">:s/old/new/g</span> 可以替换 old 为 new
 替换两行之间出现的每个匹配串，操作如下
 <span class="hljs-symbol">:</span><span class="hljs-comment">#,#s/old/new/g 其中 #,# 代表的是替换操作的若干行中首尾两行的行号。</span>
 <span class="hljs-symbol">:%s/old/new/g</span> 则是替换整个文件中的每个匹配串。
 <span class="hljs-symbol">:%s/old/new/gc</span> 会找到整个文件中的每个匹配串，并且对每个匹配串提示是否进行替换。</code></pre>
-
 <h3 id="排版命令"><a href="#排版命令" class="headerlink" title="排版命令"></a>排版命令</h3><pre><code class="hljs ruby">&lt;&lt; 向左缩进一个shiftwidth
 <span class="hljs-meta">&gt;&gt;</span> 向右缩进一个shiftwidth
 <span class="hljs-symbol">:ce</span>(nter) 本行文字居中
 <span class="hljs-symbol">:le</span>(ft) 本行文字靠左
 <span class="hljs-symbol">:ri</span>(ght) 本行文字靠右</code></pre>
-
 <h3 id="命令行中分屏打开多文件"><a href="#命令行中分屏打开多文件" class="headerlink" title="命令行中分屏打开多文件"></a>命令行中分屏打开多文件</h3><pre><code class="hljs css"><span class="hljs-selector-tag">-o</span> 水平分屏
 <span class="hljs-selector-tag">vim</span> <span class="hljs-selector-tag">-o</span><span class="hljs-selector-attr">[n]</span> <span class="hljs-selector-tag">file1</span> <span class="hljs-selector-attr">[file2 ...]</span>
 <span class="hljs-selector-tag">-O</span> 垂直分屏
 <span class="hljs-selector-tag">vim</span> <span class="hljs-selector-tag">-O</span><span class="hljs-selector-attr">[n]</span> <span class="hljs-selector-tag">file1</span> <span class="hljs-selector-attr">[file2 ...]</span></code></pre>
-
 <h3 id="vim中命令模式分屏"><a href="#vim中命令模式分屏" class="headerlink" title="vim中命令模式分屏"></a>vim中命令模式分屏</h3><ol>
 <li>垂直分屏<pre><code class="hljs vim">:<span class="hljs-keyword">vs</span> [<span class="hljs-keyword">file</span>]
 :<span class="hljs-keyword">vs</span> 将当前文件垂直分屏
@@ -298,7 +288,6 @@ N 向前查找下一个​</code></pre>
 <li>水平分屏<pre><code class="hljs vim">:<span class="hljs-keyword">sv</span> [<span class="hljs-keyword">file</span>]
 :<span class="hljs-keyword">sv</span> 将当前文件水平分屏
 :<span class="hljs-keyword">sv</span> <span class="hljs-keyword">file</span> 创建新文件并水平分屏</code></pre>
-
 </li>
 </ol>
 <h3 id="分屏屏间光标移动"><a href="#分屏屏间光标移动" class="headerlink" title="分屏屏间光标移动"></a>分屏屏间光标移动</h3><ol>
@@ -313,7 +302,7 @@ N 向前查找下一个​</code></pre>
 <h3 id="分屏的移动"><a href="#分屏的移动" class="headerlink" title="分屏的移动"></a>分屏的移动</h3><p>四个键位同上相比均换成了大写</p>
 <ol>
 <li>把当前分屏移动到最左边<br><code>ctrl+w H</code></li>
-<li>把当前分屏移动到上面并扩展到整屏的宽度<br><code>ctrl+w K </code></li>
+<li>把当前分屏移动到上面并扩展到整屏的宽度<br><code>ctrl+w K</code></li>
 <li>把当前分屏移动到最下边<br><code>ctrl+w J</code> </li>
 <li>把当前分屏移动到最右边<br><code>ctrl+w L</code> </li>
 </ol>
