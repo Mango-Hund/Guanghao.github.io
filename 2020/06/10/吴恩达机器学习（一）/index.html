@@ -4,7 +4,21 @@
 
 
 
-
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+  <style>
+      .pace .pace-progress {
+          background: #1E92FB; /*进度条颜色*/
+          height: 3px;
+      }
+      .pace .pace-progress-inner {
+           box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+          border-top-color: #1E92FB;    /*上边框颜色*/
+          border-left-color: #1E92FB;    /*左边框颜色*/
+      }
+  </style>
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
@@ -163,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2k 字
+      1.9k 字
     </span>
   
 
@@ -173,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      28
+      27
        分钟
     </span>
   
@@ -205,28 +219,45 @@
             
             <article class="markdown-body">
               <h3 id="1-欢迎"><a href="#1-欢迎" class="headerlink" title="1 欢迎"></a>1 欢迎</h3><h4 id="1-1-什么是机器学习"><a href="#1-1-什么是机器学习" class="headerlink" title="1.1 什么是机器学习"></a>1.1 什么是机器学习</h4><p> A computer program is said to learn from experience E with respect  to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E.<br>Supervised learning 监督学习<br>监督学习是指我们给算法一个数据集，其中包含了正确的答案（回归问题、分类问题 ）<br>Unsupervisef learning  无监督学习<br>聚类算法：探究数据集中的数据结构，数据是没有什么标签的，将数据进行归类<br>强化学习：是指智能系统在与环境的连续互动中学习最优行为测略的机器学习问题，本质是学习最优打序管决策<br><img src="/img/machine-learning/01.png" srcset="/img/loading.gif" alt="图1">  </p>
-<h3 id="2-单变量线性回归"><a href="#2-单变量线性回归" class="headerlink" title="2 单变量线性回归"></a>2 单变量线性回归</h3><h4 id="2-1-代价函数"><a href="#2-1-代价函数" class="headerlink" title="2.1 代价函数"></a>2.1 代价函数</h4><p>$$h_\theta(x)=\theta_0+\theta_1x$$<br>把$\theta$称为模型参数 Parameter<br>假设函数不同，参数也不同<br>在线性回归中，训练集给出一些点，我们要选择最能拟合的假设函数，合理预测y值<br>$$\sum^m_{i=1}(h_\theta(x^{(i)-y^{(i)}}))^2$$<br>预测值和实际值的差的平方误差和或者说预测价格与实际卖出价格的差的平方。m是训练集的容量。<br>代价函数也称平均误差函数，可写作<br>$$J(\theta_0,\theta_1)=\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)-y^{(i)}}))^2$$<br>我们要做的是关于$\theta_0$和$\theta_1$对函数$J(\theta_0,\theta_1)$求最小值。<br>Hypothesis: $h_\theta(x)=\theta_0+\theta_1x$<br>Parameters: $\theta_0,\theta_1$<br>Cost Function: $J(\theta_0,\theta_1)=\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2$<br>Goal: $minimize_{\theta_0,\theta_1} J(\theta_0,\theta_1)$<br>代价函数=优化目标<br><img src="/img/machine-learning/02.png" srcset="/img/loading.gif" alt="图2"><br><img src="/img/machine-learning/03.png" srcset="/img/loading.gif" alt="图3">   </p>
+<h3 id="2-单变量线性回归"><a href="#2-单变量线性回归" class="headerlink" title="2 单变量线性回归"></a>2 单变量线性回归</h3><h4 id="2-1-代价函数"><a href="#2-1-代价函数" class="headerlink" title="2.1 代价函数"></a>2.1 代价函数</h4><script type="math/tex; mode=display">h_\theta(x)=\theta_0+\theta_1x</script><p>把$\theta$称为模型参数 Parameter<br>假设函数不同，参数也不同<br>在线性回归中，训练集给出一些点，我们要选择最能拟合的假设函数，合理预测y值</p>
+<script type="math/tex; mode=display">\sum^m_{i=1}(h_\theta(x^{(i)-y^{(i)}}))^2</script><p>预测值和实际值的差的平方误差和或者说预测价格与实际卖出价格的差的平方。m是训练集的容量。<br>代价函数也称平均误差函数，可写作</p>
+<script type="math/tex; mode=display">J(\theta_0,\theta_1)=\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)-y^{(i)}}))^2</script><p>我们要做的是关于$\theta_0$和$\theta_1$对函数$J(\theta_0,\theta_1)$求最小值。<br>Hypothesis: $h_\theta(x)=\theta_0+\theta_1x$<br>Parameters: $\theta_0,\theta_1$<br>Cost Function: $J(\theta_0,\theta_1)=\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2$<br>Goal: $minimize_{\theta_0,\theta_1} J(\theta_0,\theta_1)$<br>代价函数=优化目标<br><img src="/img/machine-learning/02.png" srcset="/img/loading.gif" alt="图2"><br><img src="/img/machine-learning/03.png" srcset="/img/loading.gif" alt="图3">   </p>
 <h4 id="2-2-梯度下降"><a href="#2-2-梯度下降" class="headerlink" title="2.2 梯度下降"></a>2.2 梯度下降</h4><p>用梯度下降算法最小化任意函数J<br>Have some function $J(\theta_0,\theta_1)$<br>Want $min{J(\theta_0,\theta_1})$<br><strong>Outline:</strong></p>
 <ul>
 <li>Start with some $\theta_0,\theta_1$</li>
 <li>Keep changing $\theta_0,\theta_1$ to reduce $J(\theta_0,\theta_1)$ until we hopefully end up at a minimum</li>
 </ul>
-<p><img src="/img/machine-learning/04.png" srcset="/img/loading.gif" alt="图4"><br>$\theta_0$和$\theta_1$在水平轴上，函数J在垂直坐标轴上，图形表面高度则是J的值。我们从$\theta_0$和$\theta_1$的某个值出发，对其两个赋初值，从这个函数表面的某个点出发。<br>Gradient descent algorithm<br>repeat until convergence{<br>$$\theta_j:=\theta_j-\alpha\frac{\partial}{\partial\theta_j}J(\theta_0,\theta_1)\quad(for\quad j=0 \quad and \quad j=1)$$<br>}  </p>
+<p><img src="/img/machine-learning/04.png" srcset="/img/loading.gif" alt="图4"><br>$\theta_0$和$\theta_1$在水平轴上，函数J在垂直坐标轴上，图形表面高度则是J的值。我们从$\theta_0$和$\theta_1$的某个值出发，对其两个赋初值，从这个函数表面的某个点出发。<br>Gradient descent algorithm<br>repeat until convergence{ </p>
+<script type="math/tex; mode=display">\theta_j:=\theta_j-\alpha\frac{\partial}{\partial\theta_j}J(\theta_0,\theta_1)\quad(for\quad j=0 \quad and \quad j=1)</script><p>}  </p>
 <hr>
 <p>Corret: Simultaneous update<br>$temp0:=\theta_0-\alpha\frac{\partial}{\partial\theta_0}J(\theta_0,\theta_1)$<br>$temp1:=\theta_1-\alpha\frac{\partial}{\partial\theta_1}J(\theta_0,\theta_1)$<br>$\theta_0:=temp0$<br>$\theta_1:=temp1$<br>用“:=”表示赋值，是一个赋值运算符，这里的$\alpha$是一个被称为学习率的数字，用来控制，梯度下降时，我们迈出多大的步子。<br>我们要同时更新$\theta_0,\theta_1$，同步更新<br>导数项代表该点的斜率<br><img src="/img/machine-learning/05.png" srcset="/img/loading.gif" alt="图5"><br>$\theta_1:=\theta_1\alpha\frac{\partial}{\partial\theta_1}J(\theta_1)$<br>If $\alpha$ is too small,gradient descent can be slow.<br>If $\alpha$ is too large,gradient descent can overshoot the minimum. It may fail to converge, or even diverge.</p>
-<h4 id="2-3-线性回归的梯度下降"><a href="#2-3-线性回归的梯度下降" class="headerlink" title="2.3 线性回归的梯度下降"></a>2.3 线性回归的梯度下降</h4><p>将梯度函数和代价函数结合得到线性回归的算法<br>Gradient descent algorithm<br>repeat until convergence{<br>$$\theta_j:=\theta_j-\alpha\frac{\partial}{\partial\theta_j}J(\theta_0,\theta_1)\quad(for\quad j=0 \quad and \quad j=1)$$<br>}<br>Linear Regression Model<br>Hypothesis:<br>$$h_\theta(x)=\theta_0+\theta_1x$$<br>Cost Function:<br>$$J(\theta_0,\theta_1)=\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2$$<br>关键问题在导数项：<br>$$\frac{\partial}{\partial\theta_j}J(\theta_0,\theta_1) = \frac{\partial}{\partial\theta_j}\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)-y^{(i)}}))^2=\frac{\partial}{\partial\theta_j}\frac{1}{2m}\sum^m_{i=1}(\theta_0+\theta_1x^{i}-y^{i})^2$$<br>$$j=0 : \frac{\partial}{\partial\theta_0}J(\theta_0,\theta_1)=\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})$$<br>$$j=1 : \frac{\partial}{\partial\theta_1}J(\theta_0,\theta_1)=\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}$$<br>不断重复同步更新：<br>repeat until convergence<br>$$\theta_0:=\theta_0-\alpha\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})$$<br>$$\theta_1=\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}$$<br>我们学习出的算法叫做：Batch梯度下降法 </p>
+<h4 id="2-3-线性回归的梯度下降"><a href="#2-3-线性回归的梯度下降" class="headerlink" title="2.3 线性回归的梯度下降"></a>2.3 线性回归的梯度下降</h4><p>将梯度函数和代价函数结合得到线性回归的算法<br>Gradient descent algorithm<br>repeat until convergence{ </p>
+<script type="math/tex; mode=display">\theta_j:=\theta_j-\alpha\frac{\partial}{\partial\theta_j}J(\theta_0,\theta_1)\quad(for\quad j=0 \quad and \quad j=1)</script><p>}<br>Linear Regression Model<br>Hypothesis:</p>
+<script type="math/tex; mode=display">h_\theta(x)=\theta_0+\theta_1x</script><p>Cost Function: </p>
+<script type="math/tex; mode=display">J(\theta_0,\theta_1)=\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2</script><p>关键问题在导数项：</p>
+<script type="math/tex; mode=display">\frac{\partial}{\partial\theta_j}J(\theta_0,\theta_1) = \frac{\partial}{\partial\theta_j}\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)-y^{(i)}}))^2=\frac{\partial}{\partial\theta_j}\frac{1}{2m}\sum^m_{i=1}(\theta_0+\theta_1x^{i}-y^{i})^2</script><script type="math/tex; mode=display">j=0 : \frac{\partial}{\partial\theta_0}J(\theta_0,\theta_1)=\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})</script><script type="math/tex; mode=display">j=1 : \frac{\partial}{\partial\theta_1}J(\theta_0,\theta_1)=\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}</script><p>不断重复同步更新：<br>repeat until convergence</p>
+<script type="math/tex; mode=display">\theta_0:=\theta_0-\alpha\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})</script><script type="math/tex; mode=display">\theta_1=\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}</script><p>我们学习出的算法叫做：Batch梯度下降法 </p>
 <h3 id="3-线性代数回顾"><a href="#3-线性代数回顾" class="headerlink" title="3 线性代数回顾"></a>3 线性代数回顾</h3><h4 id="3-1-矩阵和向量"><a href="#3-1-矩阵和向量" class="headerlink" title="3.1 矩阵和向量"></a>3.1 矩阵和向量</h4><p>矩阵：由数字组成的阵列，并写在方括号里<br>矩阵的维数应该写作：行<em>列<br>向量：n</em>1行的矩阵，有n个元素，R^n<br>一般用大写字母表示矩阵  </p>
-<h4 id="3-2-加法和标量乘法"><a href="#3-2-加法和标量乘法" class="headerlink" title="3.2 加法和标量乘法"></a>3.2 加法和标量乘法</h4><p>加法：<br>$$\begin{bmatrix} 1 &amp; 0 \ 2 &amp; 5 \ 3 &amp; 1\end{bmatrix}+\begin{bmatrix} 4 &amp; 0.5 \ 2 &amp; 5 \ 0 &amp; 1\end{bmatrix}=\begin{bmatrix} 5 &amp; 0.5 \ 4 &amp; 10 \ 3 &amp; 2\end{bmatrix}$$<br>这两个矩阵的每一个元素都逐个相加<br>标量乘法：<br>将标量与矩阵中每一个元素相乘 </p>
+<h4 id="3-2-加法和标量乘法"><a href="#3-2-加法和标量乘法" class="headerlink" title="3.2 加法和标量乘法"></a>3.2 加法和标量乘法</h4><p>加法：</p>
+<script type="math/tex; mode=display">\begin{bmatrix} 1 & 0 \\ 2 & 5 \\ 3 & 1\end{bmatrix}+\begin{bmatrix} 4 & 0.5 \\ 2 & 5 \\ 0 & 1\end{bmatrix}=\begin{bmatrix} 5 & 0.5 \\ 4 & 10 \\ 3 & 2\end{bmatrix}</script><p>这两个矩阵的每一个元素都逐个相加<br>标量乘法：<br>将标量与矩阵中每一个元素相乘 </p>
 <h4 id="3-3-矩阵向量乘法"><a href="#3-3-矩阵向量乘法" class="headerlink" title="3.3 矩阵向量乘法"></a>3.3 矩阵向量乘法</h4><p>一个矩阵与向量相乘<br>m*n矩阵乘n*1向量 等于m*1向量<br>To get $y_i$,multiply A’s $i^{th}$ row with elements of vector x, and add them up.</p>
 <h4 id="3-4-矩阵乘法"><a href="#3-4-矩阵乘法" class="headerlink" title="3.4 矩阵乘法"></a>3.4 矩阵乘法</h4><p>能够相乘的矩阵，需要满足矩阵的维度相互匹配<br><img src="/img/machine-learning/06.png" srcset="/img/loading.gif" alt="图6">  </p>
-<h4 id="3-5-矩阵乘法的特征"><a href="#3-5-矩阵乘法的特征" class="headerlink" title="3.5 矩阵乘法的特征"></a>3.5 矩阵乘法的特征</h4><p>标量的运算，乘法可以满足交换律，但是这个不能应用在矩阵运算中<br>矩阵运算满足结合律<br>特征矩阵：Identity Matrix<br>$$\begin{bmatrix} 1 &amp; 0 &amp; 0\ 0 &amp; 1 &amp; 0 \ 0 &amp; 0 &amp;1\end{bmatrix}$$<br>对角线上都是1,其他位置都是0,对于任何矩阵A<br>$$A\cdot I = I \cdot A = A$$</p>
-<h4 id="3-6-逆和转置"><a href="#3-6-逆和转置" class="headerlink" title="3.6 逆和转置"></a>3.6 逆和转置</h4><p>如果A矩阵是一个m$\times$m的矩阵(square)，而且它存在一个逆矩阵，<br>$$AA^{-1}=A^{-1}A=I$$<br>$$\begin{bmatrix} 3 &amp; 4 \ 2 &amp; 16 \end{bmatrix}\begin{bmatrix} 0.4 &amp; -0.1 \ -0.05 &amp; 0.075 \end{bmatrix} = \begin{bmatrix} 1 &amp; 0 \ 0 &amp; 1 \end{bmatrix} = I_{2\times 2}$$<br>不存在逆矩阵的矩阵称作奇异矩阵  其值无限接近0<br>转置矩阵：<br>$$A=\begin{bmatrix} 1 &amp; 2 &amp; 0 \ 3 &amp; 5 &amp; 9\end{bmatrix}$$<br>$$A^T=\begin{bmatrix} 1 &amp; 3 \ 2 &amp; 5 \ 0 &amp; 9 \end{bmatrix}$$</p>
-<h3 id="4-多变量线性回归"><a href="#4-多变量线性回归" class="headerlink" title="4 多变量线性回归"></a>4 多变量线性回归</h3><h4 id="4-1-多功能"><a href="#4-1-多功能" class="headerlink" title="4.1 多功能"></a>4.1 多功能</h4><p>n = number of features<br>$x^{(i)}$ = input(features) of i^{th} training example<br>$x^{(i)}_j$ =value of feature j in i^{th} training example  </p>
-<p>假设函数：<br>$$h_\theta(x)=\theta_0+\theta_1x_1+\theta_2x_2+…+\theta_nx_n$$<br>为了方便，定义 $x_0=1$<br>$$h_\theta(x)=\theta_0x_0+\theta_1x_1+\theta_2x_2+…+\theta_nx_n$$</p>
-<h4 id="4-2-多元梯度下降法"><a href="#4-2-多元梯度下降法" class="headerlink" title="4.2 多元梯度下降法"></a>4.2 多元梯度下降法</h4><p>假设函数：$h_\theta(x)=\theta^Tx\theta_0x_0+\theta_1x_1+\theta_2x_2+…+\theta_nx_n$<br>参数： $\theta_0,\theta_1,…,\theta_n$<br>代价函数：$J(\theta_0,\theta_1,…,\theta_n)=\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2$<br>梯度下降：<br>Repeat<br>$$\theta_j:=\theta_j-\alpha\frac{\partial}{\partial\theta_j}J(\theta_0,…,\theta_n)$$<br>simultaneously update for every j = 0,…,n<br>New algorithm(n&gt;=1);<br>Repeat<br>$$\theta_j:=\theta_j-\alpha\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}$$<br>同时更新$\theta_j$, j=1,2,…,n<br>函数的特征需要保证相似的大小<br><strong>Mean normalizaton</strong><br>Replace $x_i$ with $x_i-\mu_i(平均值)$ to make features have approximately zero mean  (Do not apply to $x_0=1$)<br>例如$x_1$的范围是$0&lt;x_1\leq2000$, $x2$的范围是$0&lt;x_2\leq5$<br>特征缩放<br>$x_1=\frac{size-1000}{2000}$<br>$x_2=\frac{bedrooms-2}{5}$<br>$$-0.5\leq x_1\leq0.5, -0.5 \leq x_2\leq0.5$$</p>
-<p>怎么样选择学习率$\alpha$</p>
-<h4 id="4-3-特征和多项目式回归"><a href="#4-3-特征和多项目式回归" class="headerlink" title="4.3 特征和多项目式回归"></a>4.3 特征和多项目式回归</h4><p>趋势可能是曲线，所以需要多项式，例如：<br>$$\theta_0+\theta_1x+\theta_2x^2$$<br><img src="/img/machine-learning/07.png" srcset="/img/loading.gif" alt="图7"></p>
-<h3 id="5-正规方程"><a href="#5-正规方程" class="headerlink" title="5 正规方程"></a>5 正规方程</h3><p>对于某些线性回归问题，正规方程会给我们更好的方法来求得$\theta$的最优值。<br>使用解析的方式，跟递归不同，正规方程只需要一次就可求解<br>$\theta\in R^{n+1} \quad J(\theta_0,\theta_1,…,\theta_m)=\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y{(i)})^2$<br>$$\frac{\partial}{\partial\theta_j}J(\theta)=…=0 \qquad (for\quad every\quad j)$$<br>solve for $\theta_0,\theta_1,..,\theta_n$<br><img src="/img/machine-learning/08.png" srcset="/img/loading.gif" alt="图8"><br>增加一列$x_0$，它的取值永远是1<br>$X=\begin{bmatrix}1 &amp; 2104 &amp; 5 &amp; 1 &amp; 45 \ 1 &amp; 1416 &amp; 3 &amp; 2 &amp; 40 \ 1 &amp; 1534 &amp; 3 &amp; 2 &amp; 30 \ 1 &amp; 852 &amp; 2 &amp; 1 &amp; 36\end{bmatrix}\qquad y=\begin{bmatrix}460 \232 \315 \178 \end{bmatrix}$<br>$$\theta=(X^TX)^{-1}X^Ty$$<br>使用正规方程不需要特征缩放，但递归下降算法适用于处理大量的数据，大于一万，小于一万用正规方程即可。<br>在矩阵方程不可逆的时候，使用程序可以正常计算出来（伪逆），这是技术性进阶的数学原因。而不可能逆有两种原因，数值的单位不一样，还有就是样本数太少，想求的参数太多，这样可以删除某些多余的特征。  </p>
+<h4 id="3-5-矩阵乘法的特征"><a href="#3-5-矩阵乘法的特征" class="headerlink" title="3.5 矩阵乘法的特征"></a>3.5 矩阵乘法的特征</h4><p>标量的运算，乘法可以满足交换律，但是这个不能应用在矩阵运算中<br>矩阵运算满足结合律<br>特征矩阵：Identity Matrix</p>
+<script type="math/tex; mode=display">\begin{bmatrix} 1 & 0 & 0\\ 0 & 1 & 0 \\ 0 & 0 &1\end{bmatrix}</script><p>对角线上都是1,其他位置都是0,对于任何矩阵A </p>
+<script type="math/tex; mode=display">A\cdot I = I \cdot A = A</script><h4 id="3-6-逆和转置"><a href="#3-6-逆和转置" class="headerlink" title="3.6 逆和转置"></a>3.6 逆和转置</h4><p>如果A矩阵是一个m$\times$m的矩阵(square)，而且它存在一个逆矩阵，</p>
+<script type="math/tex; mode=display">AA^{-1}=A^{-1}A=I</script><script type="math/tex; mode=display">\begin{bmatrix} 3 & 4 \\ 2 & 16 \end{bmatrix}\begin{bmatrix} 0.4 & -0.1 \\ -0.05 & 0.075 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} = I_{2\times 2}</script><p>不存在逆矩阵的矩阵称作奇异矩阵  其值无限接近0<br>转置矩阵：  </p>
+<script type="math/tex; mode=display">A=\begin{bmatrix} 1 & 2 & 0 \\ 3 & 5 & 9\end{bmatrix}</script><script type="math/tex; mode=display">A^T=\begin{bmatrix} 1 & 3 \\ 2 & 5 \\ 0 & 9 \end{bmatrix}</script><h3 id="4-多变量线性回归"><a href="#4-多变量线性回归" class="headerlink" title="4 多变量线性回归"></a>4 多变量线性回归</h3><h4 id="4-1-多功能"><a href="#4-1-多功能" class="headerlink" title="4.1 多功能"></a>4.1 多功能</h4><p>n = number of features<br>$x^{(i)}$ = input(features) of i^{th} training example<br>$x^{(i)}_j$ =value of feature j in i^{th} training example  </p>
+<p>假设函数：</p>
+<script type="math/tex; mode=display">h_\theta(x)=\theta_0+\theta_1x_1+\theta_2x_2+...+\theta_nx_n</script><p>为了方便，定义 $x_0=1$</p>
+<script type="math/tex; mode=display">h_\theta(x)=\theta_0x_0+\theta_1x_1+\theta_2x_2+...+\theta_nx_n</script><h4 id="4-2-多元梯度下降法"><a href="#4-2-多元梯度下降法" class="headerlink" title="4.2 多元梯度下降法"></a>4.2 多元梯度下降法</h4><p>假设函数：$h_\theta(x)=\theta^Tx\theta_0x_0+\theta_1x_1+\theta_2x_2+…+\theta_nx_n$<br>参数： $\theta_0,\theta_1,…,\theta_n$<br>代价函数：$J(\theta_0,\theta_1,…,\theta_n)=\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2$<br>梯度下降：<br>Repeat  </p>
+<script type="math/tex; mode=display">\theta_j:=\theta_j-\alpha\frac{\partial}{\partial\theta_j}J(\theta_0,...,\theta_n)</script><p>simultaneously update for every j = 0,…,n<br>New algorithm(n&gt;=1);<br>Repeat  </p>
+<script type="math/tex; mode=display">\theta_j:=\theta_j-\alpha\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}</script><p>同时更新$\theta_j$, j=1,2,…,n<br>函数的特征需要保证相似的大小<br><strong>Mean normalizaton</strong><br>Replace $x_i$ with $x_i-\mu_i(平均值)$ to make features have approximately zero mean  (Do not apply to $x_0=1$)<br>例如$x_1$的范围是$0&lt;x_1\leq2000$, $x2$的范围是$0&lt;x_2\leq5$<br>特征缩放<br>$x_1=\frac{size-1000}{2000}$<br>$x_2=\frac{bedrooms-2}{5}$</p>
+<script type="math/tex; mode=display">-0.5\leq x_1\leq0.5, -0.5 \leq x_2\leq0.5</script><p>怎么样选择学习率$\alpha$</p>
+<h4 id="4-3-特征和多项目式回归"><a href="#4-3-特征和多项目式回归" class="headerlink" title="4.3 特征和多项目式回归"></a>4.3 特征和多项目式回归</h4><p>趋势可能是曲线，所以需要多项式，例如：</p>
+<script type="math/tex; mode=display">\theta_0+\theta_1x+\theta_2x^2</script><p><img src="/img/machine-learning/07.png" srcset="/img/loading.gif" alt="图7"></p>
+<h3 id="5-正规方程"><a href="#5-正规方程" class="headerlink" title="5 正规方程"></a>5 正规方程</h3><p>对于某些线性回归问题，正规方程会给我们更好的方法来求得$\theta$的最优值。<br>使用解析的方式，跟递归不同，正规方程只需要一次就可求解<br>$\theta\in R^{n+1} \quad J(\theta_0,\theta_1,…,\theta_m)=\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y{(i)})^2$</p>
+<script type="math/tex; mode=display">\frac{\partial}{\partial\theta_j}J(\theta)=...=0 \qquad (for\quad every\quad j)</script><p>solve for $\theta_0,\theta_1,..,\theta_n$<br><img src="/img/machine-learning/08.png" srcset="/img/loading.gif" alt="图8"><br>增加一列$x_0$，它的取值永远是1<br>$X=\begin{bmatrix}1 &amp; 2104 &amp; 5 &amp; 1 &amp; 45 \\ 1 &amp; 1416 &amp; 3 &amp; 2 &amp; 40 \\ 1 &amp; 1534 &amp; 3 &amp; 2 &amp; 30 \\ 1 &amp; 852 &amp; 2 &amp; 1 &amp; 36\end{bmatrix}\qquad y=\begin{bmatrix}460 \\232 \\315 \\178 \end{bmatrix}$  </p>
+<script type="math/tex; mode=display">\theta=(X^TX)^{-1}X^Ty</script><p>使用正规方程不需要特征缩放，但递归下降算法适用于处理大量的数据，大于一万，小于一万用正规方程即可。<br>在矩阵方程不可逆的时候，使用程序可以正常计算出来（伪逆），这是技术性进阶的数学原因。而不可能逆有两种原因，数值的单位不一样，还有就是样本数太少，想求的参数太多，这样可以删除某些多余的特征。  </p>
 
             </article>
             <hr>

@@ -4,7 +4,21 @@
 
 
 
-
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+  <style>
+      .pace .pace-progress {
+          background: #1E92FB; /*进度条颜色*/
+          height: 3px;
+      }
+      .pace .pace-progress-inner {
+           box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+      }
+      .pace .pace-activity {
+          border-top-color: #1E92FB;    /*上边框颜色*/
+          border-left-color: #1E92FB;    /*左边框颜色*/
+      }
+  </style>
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
@@ -204,12 +218,11 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h3 id="主题思想"><a href="#主题思想" class="headerlink" title="主题思想"></a>主题思想</h3><p><img src="/img/data/01.png" srcset="/img/loading.gif" alt="图1"><br>一个数据表达一个含义———&gt;一组数据表达一个或多个含义：与一组数据相关的那些事儿，即如何理解数据表达的含义</p>
+              <h3 id="主题思想"><a href="#主题思想" class="headerlink" title="主题思想"></a>主题思想</h3><p><img src="/img/data/01.png" srcset="/img/loading.gif" alt="图1"><br>一个数据表达一个含义————-&gt;一组数据表达一个或多个含义：与一组数据相关的那些事儿，即如何理解数据表达的含义</p>
 <p>编程工具<br>使用Anaconda IDE集成开发工具<br>需要理解和掌握如下工具的使用：conda、Spyder、IPython<br>常用的python IDE工具<br>IDLE 自带的、默认的、常用的，入门级编写工具，适合入门，300行以内<br>Sublime Text 专为程序员设计，有多种功能和风格<br>Wine 公司维护，收费，适合多人共同开发<br>VS &amp; PTVS<br>Eclipse PyDev 需要一定的能力配置<br>PyCharm 社区版免费<br>Canopy 公司维护，工具收费<br>Anaconda 免费开源  </p>
-<h3 id="Anaconda的基本使用"><a href="#Anaconda的基本使用" class="headerlink" title="Anaconda的基本使用"></a>Anaconda的基本使用</h3><p>conda 是一个工具，用于包管理和环境<br>包管理和pip类似，管理Python的第三方库<br>环境管理包括能够允许用户使用不同版本的python，并能够灵活切换<br>anaconda: 一个集合，包括conda、某版本的python、一批第三方库等<br>IPython 的？命令，可以查看参数<br>IPython <code>%run </code> 用于运行.py程序 （%run在一个空的命名空间执行%）<br><img src="/img/data/02.png" srcset="/img/loading.gif" alt="图2"> </p>
+<h3 id="Anaconda的基本使用"><a href="#Anaconda的基本使用" class="headerlink" title="Anaconda的基本使用"></a>Anaconda的基本使用</h3><p>conda 是一个工具，用于包管理和环境<br>包管理和pip类似，管理Python的第三方库<br>环境管理包括能够允许用户使用不同版本的python，并能够灵活切换<br>anaconda: 一个集合，包括conda、某版本的python、一批第三方库等<br>IPython 的？命令，可以查看参数<br>IPython <code>%run</code> 用于运行.py程序 （%run在一个空的命名空间执行%）<br><img src="/img/data/02.png" srcset="/img/loading.gif" alt="图2"> </p>
 <h3 id="数据的维度"><a href="#数据的维度" class="headerlink" title="数据的维度"></a>数据的维度</h3><p>维度：是一组数据的组织形式<br>一维数据<br>由对等关系的有序和无序数据构成，采用线性方式组织，对应列表、数组和集合等概念。<br>列表和数组<br>都是一组数据的有序结构<br>区别：列表数据类型可以不同 数组数据类型相同<br>二维数据<br>由多个一维数据构成，是一维数据的组合形式，表格是典型的二维数据，其中，表头是二维数据的一部分<br>多维数据<br>由一维或二维数据在新维度上扩展而成<br>高维数据<br>仅利用最基本的二元关系展示数据间的复杂结构（键值对）<br>一维数据：列表和集合类型<br>二维数据：列表类型<br>多维类型：列表类型<br>高维类型：字典类型或者数据表示格式   </p>
-<h3 id="Numpy库"><a href="#Numpy库" class="headerlink" title="Numpy库"></a>Numpy库</h3><p>是一个开源的python科学计算基础库<br>一个强大的N维数组对象 ndarray<br>广播功能函数<br>整合C/C++/Fortran代码的工具<br>线性代数、傅立叶变换、随机数生成等功能<br>Numpy是SciPy、Pandas等数据处理或科学计算库的基础<br><code>import numpy as np</code><br>尽管别名可以省略或者更改，建议使用上述约定的别名<br>N维数组对象：ndarray<br>例子：计算A2+B3，其中，A、B是一维数组  </p>
-<pre><code class="hljs angelscript">def pySum():
+<h3 id="Numpy库"><a href="#Numpy库" class="headerlink" title="Numpy库"></a>Numpy库</h3><p>是一个开源的python科学计算基础库<br>一个强大的N维数组对象 ndarray<br>广播功能函数<br>整合C/C++/Fortran代码的工具<br>线性代数、傅立叶变换、随机数生成等功能<br>Numpy是SciPy、Pandas等数据处理或科学计算库的基础<br><code>import numpy as np</code><br>尽管别名可以省略或者更改，建议使用上述约定的别名<br>N维数组对象：ndarray<br>例子：计算A2+B3，其中，A、B是一维数组<br><pre><code class="hljs angelscript">def pySum():
     a = [<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3.4</span>]
     b = [<span class="hljs-number">9</span>,<span class="hljs-number">8</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>,<span class="hljs-number">5</span>]
     c = []
@@ -217,9 +230,7 @@
     <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(a)):
         c.append(a[i]**<span class="hljs-number">2</span>+b[i]**<span class="hljs-number">3</span>)
     <span class="hljs-keyword">return</span> c
-print(pySum)</code></pre>
-<p>numpy的方法：</p>
-<pre><code class="hljs angelscript"><span class="hljs-keyword">import</span> numpy as np
+print(pySum)</code></pre><br>numpy的方法：<br><pre><code class="hljs angelscript"><span class="hljs-keyword">import</span> numpy as np
 
 def npSum():
     a = np.<span class="hljs-built_in">array</span>([<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>])
@@ -228,9 +239,7 @@ def npSum():
     
     <span class="hljs-keyword">return</span> c
 
-print(npSum())</code></pre>
-<p>数组对象可以去掉元素间运算所需的循环，使一维向量更像单个数据<br>设置专门的数组对象，经过优化，可以提升这类应用的运算速度<br>观察：科学计算时，一个维度所有数据的类型往往是相同的<br>数组对象采用相同的数据类型，有助于节省运算和存储空间<br>ndarray是一个多维数组对象，由两部分构成：<br>实际的数据<br>描述这些数据的元数据（数据维度、数据类型等等）<br>ndarray数组一般要求所有元素类型相同（同质），数组下标从0开始<br><code>np.array()</code>生成一个ndarray数组，ndarray在程序中的别名是array<br><code>np.array()</code>输出成[]形式，元素用空格分割。<br>轴（axis）：保存数据的维度    秩（rank）：轴的数量（几个维度）<br><img src="/img/data/03.png" srcset="/img/loading.gif" alt="图3">   </p>
-<pre><code class="hljs angelscript">In [<span class="hljs-number">6</span>]: a = np.<span class="hljs-built_in">array</span>([[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>],[<span class="hljs-number">9</span>,<span class="hljs-number">8</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>,<span class="hljs-number">5</span>]])
+print(npSum())</code></pre><br>数组对象可以去掉元素间运算所需的循环，使一维向量更像单个数据<br>设置专门的数组对象，经过优化，可以提升这类应用的运算速度<br>观察：科学计算时，一个维度所有数据的类型往往是相同的<br>数组对象采用相同的数据类型，有助于节省运算和存储空间<br>ndarray是一个多维数组对象，由两部分构成：<br>实际的数据<br>描述这些数据的元数据（数据维度、数据类型等等）<br>ndarray数组一般要求所有元素类型相同（同质），数组下标从0开始<br><code>np.array()</code>生成一个ndarray数组，ndarray在程序中的别名是array<br><code>np.array()</code>输出成[]形式，元素用空格分割。<br>轴（axis）：保存数据的维度    秩（rank）：轴的数量（几个维度）<br><img src="/img/data/03.png" srcset="/img/loading.gif" alt="图3"><br><pre><code class="hljs angelscript">In [<span class="hljs-number">6</span>]: a = np.<span class="hljs-built_in">array</span>([[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>],[<span class="hljs-number">9</span>,<span class="hljs-number">8</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>,<span class="hljs-number">5</span>]])
 
 In [<span class="hljs-number">7</span>]: a.ndim
 Out[<span class="hljs-number">7</span>]: <span class="hljs-number">2</span>
@@ -245,8 +254,7 @@ In [<span class="hljs-number">10</span>]: a.dtype
 Out[<span class="hljs-number">10</span>]: dtype(<span class="hljs-string">'int64'</span>)
 
 In [<span class="hljs-number">11</span>]: a.itemsize
-Out[<span class="hljs-number">11</span>]: <span class="hljs-number">8</span></code></pre>
-<p>ndarray的元素类型<br><img src="/img/data/04.png" srcset="/img/loading.gif" alt="图4"><br><img src="/img/data/05.png" srcset="/img/loading.gif" alt="图5"><br><img src="/img/data/06.png" srcset="/img/loading.gif" alt="图6">   </p>
+Out[<span class="hljs-number">11</span>]: <span class="hljs-number">8</span></code></pre><br>ndarray的元素类型<br><img src="/img/data/04.png" srcset="/img/loading.gif" alt="图4"><br><img src="/img/data/05.png" srcset="/img/loading.gif" alt="图5"><br><img src="/img/data/06.png" srcset="/img/loading.gif" alt="图6">   </p>
 <h4 id="ndarray数组的创建方法"><a href="#ndarray数组的创建方法" class="headerlink" title="ndarray数组的创建方法"></a>ndarray数组的创建方法</h4><ol>
 <li>从python中的列表、元组等类型创建ndarray数组<br><code>x = np,array(list/tuple)</code><br><code>x = np.array(list/tuple, dtype= np.float32)</code><br>当np.array()不指定dtype时，NumPy将根据数据情况关联一个dtype类型。<br><img src="/img/data/07.png" srcset="/img/loading.gif" alt="图7"><br>2）使用numpy中函数创建ndarray数组，如arange, ones,zeros等<br><img src="/img/data/08.png" srcset="/img/loading.gif" alt="图8">   <pre><code class="hljs angelscript">n [<span class="hljs-number">12</span>]: np.arange(<span class="hljs-number">15</span>)
 Out[<span class="hljs-number">12</span>]: <span class="hljs-built_in">array</span>([ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>,  <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>,  <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>,  <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>, <span class="hljs-number">13</span>, <span class="hljs-number">14</span>])
@@ -300,16 +308,13 @@ In [<span class="hljs-number">24</span>]: c
 Out[<span class="hljs-number">24</span>]: <span class="hljs-built_in">array</span>([ <span class="hljs-number">1.</span>  ,  <span class="hljs-number">3.25</span>,  <span class="hljs-number">5.5</span> ,  <span class="hljs-number">7.75</span>,  <span class="hljs-number">1.</span>  ,  <span class="hljs-number">4.</span>  ,  <span class="hljs-number">7.</span>  , <span class="hljs-number">10.</span>  ])</code></pre>
 ndarray数组的维度变换<br><img src="/img/data/11.png" srcset="/img/loading.gif" alt="图11"><br><code>new_a = a.astype(new_type)</code><br>astype()方法一定会创建新的数组（原始数据的一个拷贝），即两个类型一致。<br>ndarray数组向列表的转换<br><code>ls = a.tolist</code><br>从字节流（raw bytes）中创建ndarray数组<br>从文件中读取特定格式，创建ndarray数组  </li>
 </ol>
-<p>数组的索引和切片<br>一维数组的索引和切片，与python的列表类似  </p>
-<pre><code class="hljs angelscript">In [<span class="hljs-number">25</span>]: a = np.<span class="hljs-built_in">array</span>([<span class="hljs-number">9</span>,<span class="hljs-number">8</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>,<span class="hljs-number">5</span>])
+<p>数组的索引和切片<br>一维数组的索引和切片，与python的列表类似<br><pre><code class="hljs angelscript">In [<span class="hljs-number">25</span>]: a = np.<span class="hljs-built_in">array</span>([<span class="hljs-number">9</span>,<span class="hljs-number">8</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>,<span class="hljs-number">5</span>])
 
 In [<span class="hljs-number">26</span>]: a[<span class="hljs-number">2</span>]
 Out[<span class="hljs-number">26</span>]: <span class="hljs-number">7</span>
 
 In [<span class="hljs-number">27</span>]: a[<span class="hljs-number">1</span>:<span class="hljs-number">4</span>:<span class="hljs-number">2</span>]   #起始编号：终止编号（不含）：步长<span class="hljs-number">3</span>元素冒号分割
-Out[<span class="hljs-number">27</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">8</span>, <span class="hljs-number">6</span>])</code></pre>
-<p>多维数组的索引：  </p>
-<pre><code class="hljs angelscript">In [<span class="hljs-number">28</span>]: a = np.arange(<span class="hljs-number">24</span>).reshape((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>))
+Out[<span class="hljs-number">27</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">8</span>, <span class="hljs-number">6</span>])</code></pre><br>多维数组的索引：<br><pre><code class="hljs angelscript">In [<span class="hljs-number">28</span>]: a = np.arange(<span class="hljs-number">24</span>).reshape((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>))
 
 In [<span class="hljs-number">29</span>]: a
 Out[<span class="hljs-number">29</span>]: 
@@ -328,9 +333,7 @@ In [<span class="hljs-number">31</span>]: a[<span class="hljs-number">0</span>,<
 Out[<span class="hljs-number">31</span>]: <span class="hljs-number">6</span>
 
 In [<span class="hljs-number">32</span>]: a[<span class="hljs-number">-1</span>, <span class="hljs-number">-2</span> , <span class="hljs-number">-3</span>]
-Out[<span class="hljs-number">32</span>]: <span class="hljs-number">17</span></code></pre>
-<p>多维数组的切片：  </p>
-<pre><code class="hljs angelscript">In [<span class="hljs-number">33</span>]: a[:, <span class="hljs-number">1</span>, <span class="hljs-number">-3</span>]      #选取一个维度用：
+Out[<span class="hljs-number">32</span>]: <span class="hljs-number">17</span></code></pre><br>多维数组的切片：<br><pre><code class="hljs angelscript">In [<span class="hljs-number">33</span>]: a[:, <span class="hljs-number">1</span>, <span class="hljs-number">-3</span>]      #选取一个维度用：
 Out[<span class="hljs-number">33</span>]: <span class="hljs-built_in">array</span>([ <span class="hljs-number">5</span>, <span class="hljs-number">17</span>])
 
 In [<span class="hljs-number">34</span>]: a[:, <span class="hljs-number">1</span>:<span class="hljs-number">3</span>, :]             #每个维度切片与一维数组相同
@@ -348,10 +351,8 @@ Out[<span class="hljs-number">35</span>]:
         [ <span class="hljs-number">8</span>, <span class="hljs-number">10</span>]],
 
        [[<span class="hljs-number">12</span>, <span class="hljs-number">14</span>],
-        [<span class="hljs-number">16</span>, <span class="hljs-number">18</span>],</code></pre>
-
-<h4 id="narrray数组的运算"><a href="#narrray数组的运算" class="headerlink" title="narrray数组的运算"></a>narrray数组的运算</h4><p>数组与标量之间的运算<br>数组与标量之间的运算作用于数组的每一个元素  </p>
-<pre><code class="hljs angelscript"> a.mean()
+        [<span class="hljs-number">16</span>, <span class="hljs-number">18</span>],</code></pre></p>
+<h4 id="narrray数组的运算"><a href="#narrray数组的运算" class="headerlink" title="narrray数组的运算"></a>narrray数组的运算</h4><p>数组与标量之间的运算<br>数组与标量之间的运算作用于数组的每一个元素<br><pre><code class="hljs angelscript"> a.mean()
 Out[<span class="hljs-number">36</span>]: <span class="hljs-number">11.5</span>
 
 In [<span class="hljs-number">37</span>]: a = a/a.mean()
@@ -364,9 +365,7 @@ Out[<span class="hljs-number">38</span>]:
 
        [[<span class="hljs-number">1.04347826</span>, <span class="hljs-number">1.13043478</span>, <span class="hljs-number">1.2173913</span> , <span class="hljs-number">1.30434783</span>],
         [<span class="hljs-number">1.39130435</span>, <span class="hljs-number">1.47826087</span>, <span class="hljs-number">1.56521739</span>, <span class="hljs-number">1.65217391</span>],
-        [<span class="hljs-number">1.73913043</span>, <span class="hljs-number">1.82608696</span>, <span class="hljs-number">1.91304348</span>, <span class="hljs-number">2.</span>        ]]])</code></pre>
-<p>对ndarray中的数据执行元素极运算的函数<br><img src="/img/data/12.png" srcset="/img/loading.gif" alt="图12"><br><img src="/img/data/13.png" srcset="/img/loading.gif" alt="图13">   </p>
-<pre><code class="hljs angelscript">In [<span class="hljs-number">41</span>]: a = np.arange(<span class="hljs-number">24</span>).reshape((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>))
+        [<span class="hljs-number">1.73913043</span>, <span class="hljs-number">1.82608696</span>, <span class="hljs-number">1.91304348</span>, <span class="hljs-number">2.</span>        ]]])</code></pre><br>对ndarray中的数据执行元素极运算的函数<br><img src="/img/data/12.png" srcset="/img/loading.gif" alt="图12"><br><img src="/img/data/13.png" srcset="/img/loading.gif" alt="图13"><br><pre><code class="hljs angelscript">In [<span class="hljs-number">41</span>]: a = np.arange(<span class="hljs-number">24</span>).reshape((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>))
 
 In [<span class="hljs-number">42</span>]: a
 Out[<span class="hljs-number">42</span>]: 
@@ -430,9 +429,7 @@ In [<span class="hljs-number">49</span>]: b
 Out[<span class="hljs-number">49</span>]: 
 <span class="hljs-built_in">array</span>([[<span class="hljs-number">3.46410162</span>, <span class="hljs-number">3.60555128</span>, <span class="hljs-number">3.74165739</span>, <span class="hljs-number">3.87298335</span>],
        [<span class="hljs-number">4.</span>        , <span class="hljs-number">4.12310563</span>, <span class="hljs-number">4.24264069</span>, <span class="hljs-number">4.35889894</span>],
-       [<span class="hljs-number">4.47213595</span>, <span class="hljs-number">4.58257569</span>, <span class="hljs-number">4.69041576</span>, <span class="hljs-number">4.79583152</span>]])</code></pre>
-<p>NumPy二元函数<br><img src="/img/data/14.png" srcset="/img/loading.gif" alt="图14">   </p>
-<pre><code class="hljs yaml"> <span class="hljs-string">In</span> <span class="hljs-string">[53]:</span> <span class="hljs-string">a</span> <span class="hljs-string">=</span> <span class="hljs-string">np.arange(24).reshape((2,3,4))</span>
+       [<span class="hljs-number">4.47213595</span>, <span class="hljs-number">4.58257569</span>, <span class="hljs-number">4.69041576</span>, <span class="hljs-number">4.79583152</span>]])</code></pre><br>NumPy二元函数<br><img src="/img/data/14.png" srcset="/img/loading.gif" alt="图14"><br><pre><code class="hljs yaml"> <span class="hljs-string">In</span> <span class="hljs-string">[53]:</span> <span class="hljs-string">a</span> <span class="hljs-string">=</span> <span class="hljs-string">np.arange(24).reshape((2,3,4))</span>
 
 <span class="hljs-string">In</span> <span class="hljs-string">[54]:</span> <span class="hljs-string">a</span>
 <span class="hljs-string">Out[54]:</span> 
@@ -474,10 +471,8 @@ Out[<span class="hljs-number">49</span>]:
 
        <span class="hljs-string">[[</span> <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">],</span>
         <span class="hljs-string">[</span> <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">],</span>
-        <span class="hljs-string">[</span> <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">]]])</span></code></pre>
-
-<h4 id="NumPy文件存放与读取"><a href="#NumPy文件存放与读取" class="headerlink" title="NumPy文件存放与读取"></a>NumPy文件存放与读取</h4><p>CSV（Comma-Separated Value, 逗号分割值）<br>CSV是一种常见的文件格式，用来存储批量数据<br>CSV文件<br><code>np.savetxt(frame,array,fmt=&#39;%.18e&#39;, delimiter=None)</code><br>frame: 文件、字符串或者产生器，可以是.gz或.bz2的压缩文件<br>array: 存入文件的数组<br>fmt: 写入文件的格式,例如：%d %.2f %.18e<br>delimiter: 分割字符串，默认是空格<br><code>np.loadtxt(frame, dtype=np.float, delimiter=None, unpack=False)</code><br>unpack:如果True，读入属性将分别写入不同的变量   </p>
-<pre><code class="hljs angelscript">a = np.arange(<span class="hljs-number">100</span>).reshape(<span class="hljs-number">5</span>,<span class="hljs-number">20</span>)
+        <span class="hljs-string">[</span> <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">,</span>  <span class="hljs-literal">True</span><span class="hljs-string">]]])</span></code></pre></p>
+<h4 id="NumPy文件存放与读取"><a href="#NumPy文件存放与读取" class="headerlink" title="NumPy文件存放与读取"></a>NumPy文件存放与读取</h4><p>CSV（Comma-Separated Value, 逗号分割值）<br>CSV是一种常见的文件格式，用来存储批量数据<br>CSV文件<br><code>np.savetxt(frame,array,fmt=&#39;%.18e&#39;, delimiter=None)</code><br>frame: 文件、字符串或者产生器，可以是.gz或.bz2的压缩文件<br>array: 存入文件的数组<br>fmt: 写入文件的格式,例如：%d %.2f %.18e<br>delimiter: 分割字符串，默认是空格<br><code>np.loadtxt(frame, dtype=np.float, delimiter=None, unpack=False)</code><br>unpack:如果True，读入属性将分别写入不同的变量<br><pre><code class="hljs angelscript">a = np.arange(<span class="hljs-number">100</span>).reshape(<span class="hljs-number">5</span>,<span class="hljs-number">20</span>)
 &gt;&gt;&gt; np.savetxt(<span class="hljs-string">'a.csv'</span>, a, fmt=<span class="hljs-string">'%d'</span>, delimiter=<span class="hljs-string">','</span>)
 &gt;&gt;&gt; b = np.loadtxt(<span class="hljs-string">'a.csv'</span>,delimiter=<span class="hljs-string">','</span>)
 &gt;&gt;&gt; b
@@ -502,13 +497,9 @@ Out[<span class="hljs-number">49</span>]:
        [<span class="hljs-number">60</span>, <span class="hljs-number">61</span>, <span class="hljs-number">62</span>, <span class="hljs-number">63</span>, <span class="hljs-number">64</span>, <span class="hljs-number">65</span>, <span class="hljs-number">66</span>, <span class="hljs-number">67</span>, <span class="hljs-number">68</span>, <span class="hljs-number">69</span>, <span class="hljs-number">70</span>, <span class="hljs-number">71</span>, <span class="hljs-number">72</span>, <span class="hljs-number">73</span>, <span class="hljs-number">74</span>, <span class="hljs-number">75</span>,
         <span class="hljs-number">76</span>, <span class="hljs-number">77</span>, <span class="hljs-number">78</span>, <span class="hljs-number">79</span>],
        [<span class="hljs-number">80</span>, <span class="hljs-number">81</span>, <span class="hljs-number">82</span>, <span class="hljs-number">83</span>, <span class="hljs-number">84</span>, <span class="hljs-number">85</span>, <span class="hljs-number">86</span>, <span class="hljs-number">87</span>, <span class="hljs-number">88</span>, <span class="hljs-number">89</span>, <span class="hljs-number">90</span>, <span class="hljs-number">91</span>, <span class="hljs-number">92</span>, <span class="hljs-number">93</span>, <span class="hljs-number">94</span>, <span class="hljs-number">95</span>,
-        <span class="hljs-number">96</span>, <span class="hljs-number">97</span>, <span class="hljs-number">98</span>, <span class="hljs-number">99</span>]])</code></pre>
-<p>CSV只能有效的存储一维和二维数组  </p>
-<p>多维数组的存取<br>a.tofile(frame, sep=’’, format=’%s’)<br>frame:文件、字符串<br>sep: 数据分割字符串，如果是空串，写入文件为二进制<br>format：写入数据的格式  </p>
-<pre><code class="hljs ruby"><span class="hljs-meta">&gt;&gt;</span>&gt; c = np.arange(<span class="hljs-number">100</span>).reshape(<span class="hljs-number">5</span>,<span class="hljs-number">10</span>,<span class="hljs-number">2</span>)
-<span class="hljs-meta">&gt;&gt;</span>&gt; c.tofile(<span class="hljs-string">"c.dat"</span>, format=<span class="hljs-string">'%d'</span>)</code></pre>
-<p><code>np.fromfile(frame, dtype= float, count=-1, sep=&#39;&#39;) </code><br>count: 读入元素的个数，-1表示读入整个文件  </p>
-<pre><code class="hljs lsl">&gt;&gt;&gt; c.tofile(<span class="hljs-string">"c.dat"</span>, sep=<span class="hljs-string">","</span>, format='%d')
+        <span class="hljs-number">96</span>, <span class="hljs-number">97</span>, <span class="hljs-number">98</span>, <span class="hljs-number">99</span>]])</code></pre><br>CSV只能有效的存储一维和二维数组  </p>
+<p>多维数组的存取<br>a.tofile(frame, sep=’’, format=’%s’)<br>frame:文件、字符串<br>sep: 数据分割字符串，如果是空串，写入文件为二进制<br>format：写入数据的格式<br><pre><code class="hljs ruby"><span class="hljs-meta">&gt;&gt;</span>&gt; c = np.arange(<span class="hljs-number">100</span>).reshape(<span class="hljs-number">5</span>,<span class="hljs-number">10</span>,<span class="hljs-number">2</span>)
+<span class="hljs-meta">&gt;&gt;</span>&gt; c.tofile(<span class="hljs-string">"c.dat"</span>, format=<span class="hljs-string">'%d'</span>)</code></pre><br><code>np.fromfile(frame, dtype= float, count=-1, sep=&#39;&#39;)</code><br>count: 读入元素的个数，-1表示读入整个文件<br><pre><code class="hljs lsl">&gt;&gt;&gt; c.tofile(<span class="hljs-string">"c.dat"</span>, sep=<span class="hljs-string">","</span>, format='%d')
 &gt;&gt;&gt; d = np.fromfile(<span class="hljs-string">"c.dat"</span>, dtype=np.int, sep=<span class="hljs-string">","</span>)
 &gt;&gt;&gt; d
 array([ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>,  <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>,  <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>,  <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>, <span class="hljs-number">13</span>, <span class="hljs-number">14</span>, <span class="hljs-number">15</span>, <span class="hljs-number">16</span>,
@@ -572,10 +563,8 @@ array([[[ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span
         [<span class="hljs-number">92</span>, <span class="hljs-number">93</span>],
         [<span class="hljs-number">94</span>, <span class="hljs-number">95</span>],
         [<span class="hljs-number">96</span>, <span class="hljs-number">97</span>],
-        [<span class="hljs-number">98</span>, <span class="hljs-number">99</span>]]])</code></pre>
-<p>该方法需要读取时知道存入文件时数组的维度和元素类型<br> <code>a.tofile()</code>和<code>np.fromefile()</code>需要配合使用<br>可以通过元数据文件来存储额外信息  </p>
-<p>Numpy的便捷文件存取<br><code>np.save(frame,array)</code>或者<code>np.savez(fname,array) </code><br>frame:文件名，以.npy为扩展名，压缩扩展名为.npz<br>array:数组变量<br>np.load（frame）<br>frame：文件名，以.npy为扩展名，压缩扩展名为.npz  </p>
-<pre><code class="hljs lsl">&gt;&gt;&gt; a = np.arange(<span class="hljs-number">100</span>).reshape(<span class="hljs-number">5</span>,<span class="hljs-number">10</span>,<span class="hljs-number">2</span>)
+        [<span class="hljs-number">98</span>, <span class="hljs-number">99</span>]]])</code></pre><br>该方法需要读取时知道存入文件时数组的维度和元素类型<br> <code>a.tofile()</code>和<code>np.fromefile()</code>需要配合使用<br>可以通过元数据文件来存储额外信息  </p>
+<p>Numpy的便捷文件存取<br><code>np.save(frame,array)</code>或者<code>np.savez(fname,array)</code><br>frame:文件名，以.npy为扩展名，压缩扩展名为.npz<br>array:数组变量<br>np.load（frame）<br>frame：文件名，以.npy为扩展名，压缩扩展名为.npz<br><pre><code class="hljs lsl">&gt;&gt;&gt; a = np.arange(<span class="hljs-number">100</span>).reshape(<span class="hljs-number">5</span>,<span class="hljs-number">10</span>,<span class="hljs-number">2</span>)
 &gt;&gt;&gt; np.save(<span class="hljs-string">"a.npy"</span>, a)
 &gt;&gt;&gt; b =np.load(<span class="hljs-string">"a.npy"</span>)
 &gt;&gt;&gt; b
@@ -632,9 +621,7 @@ array([[[ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span
         [<span class="hljs-number">92</span>, <span class="hljs-number">93</span>],
         [<span class="hljs-number">94</span>, <span class="hljs-number">95</span>],
         [<span class="hljs-number">96</span>, <span class="hljs-number">97</span>],
-        [<span class="hljs-number">98</span>, <span class="hljs-number">99</span>]]])</code></pre>
-<p>np.random的随机数函数<br><img src="/img/data/15.png" srcset="/img/loading.gif" alt="图15"><br><img src="/img/data/16.png" srcset="/img/loading.gif" alt="图16">   </p>
-<pre><code class="hljs angelscript"> &gt;&gt;&gt; a = np.random.randint(<span class="hljs-number">100</span>,<span class="hljs-number">200</span>,(<span class="hljs-number">3</span>,<span class="hljs-number">4</span>))
+        [<span class="hljs-number">98</span>, <span class="hljs-number">99</span>]]])</code></pre><br>np.random的随机数函数<br><img src="/img/data/15.png" srcset="/img/loading.gif" alt="图15"><br><img src="/img/data/16.png" srcset="/img/loading.gif" alt="图16"><br><pre><code class="hljs angelscript"> &gt;&gt;&gt; a = np.random.randint(<span class="hljs-number">100</span>,<span class="hljs-number">200</span>,(<span class="hljs-number">3</span>,<span class="hljs-number">4</span>))
 &gt;&gt;&gt; a
 <span class="hljs-built_in">array</span>([[<span class="hljs-number">168</span>, <span class="hljs-number">133</span>, <span class="hljs-number">164</span>, <span class="hljs-number">186</span>],
        [<span class="hljs-number">137</span>, <span class="hljs-number">111</span>, <span class="hljs-number">144</span>, <span class="hljs-number">114</span>],
@@ -688,9 +675,7 @@ In [<span class="hljs-number">17</span>]: p=b/np.sum(b)
 In [<span class="hljs-number">18</span>]: p
 Out[<span class="hljs-number">18</span>]: 
 <span class="hljs-built_in">array</span>([<span class="hljs-number">0.08915055</span>, <span class="hljs-number">0.09083263</span>, <span class="hljs-number">0.14213625</span>, <span class="hljs-number">0.13456686</span>, <span class="hljs-number">0.0883095</span> ,
-       <span class="hljs-number">0.15222876</span>, <span class="hljs-number">0.16400336</span>, <span class="hljs-number">0.13877208</span>])</code></pre>
-<p><img src="/img/data/17.png" srcset="/img/loading.gif" alt="图17">   </p>
-<pre><code class="hljs angelscript">
+       <span class="hljs-number">0.15222876</span>, <span class="hljs-number">0.16400336</span>, <span class="hljs-number">0.13877208</span>])</code></pre><br><img src="/img/data/17.png" srcset="/img/loading.gif" alt="图17"><br><pre><code class="hljs angelscript">
 In [<span class="hljs-number">20</span>]: <span class="hljs-keyword">import</span> numpy as np
 In [<span class="hljs-number">21</span>]: u = np.random.uniform(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,(<span class="hljs-number">3</span>,<span class="hljs-number">4</span>))
 In [<span class="hljs-number">22</span>]: u
@@ -703,10 +688,8 @@ In [<span class="hljs-number">24</span>]: n
 Out[<span class="hljs-number">25</span>]:
 <span class="hljs-built_in">array</span>([[ <span class="hljs-number">8.79560911</span>, <span class="hljs-number">12.64784441</span>, <span class="hljs-number">14.08858882</span>,  <span class="hljs-number">7.24640246</span>],
        [<span class="hljs-number">11.0859235</span> , <span class="hljs-number">13.34351634</span>,  <span class="hljs-number">6.48576609</span>, <span class="hljs-number">16.38133251</span>],
-       [ <span class="hljs-number">8.22931202</span>,  <span class="hljs-number">9.23737404</span>, <span class="hljs-number">12.66597265</span>,  <span class="hljs-number">3.07189174</span>]])</code></pre>
-
-<h4 id="NumPy的统计函数"><a href="#NumPy的统计函数" class="headerlink" title="NumPy的统计函数"></a>NumPy的统计函数</h4><p><img src="/img/data/18.png" srcset="/img/loading.gif" alt="图18">   </p>
-<pre><code class="hljs angelscript"> In [<span class="hljs-number">26</span>]: a = np.arange(<span class="hljs-number">15</span>).reshape(<span class="hljs-number">3</span>,<span class="hljs-number">5</span>)
+       [ <span class="hljs-number">8.22931202</span>,  <span class="hljs-number">9.23737404</span>, <span class="hljs-number">12.66597265</span>,  <span class="hljs-number">3.07189174</span>]])</code></pre></p>
+<h4 id="NumPy的统计函数"><a href="#NumPy的统计函数" class="headerlink" title="NumPy的统计函数"></a>NumPy的统计函数</h4><p><img src="/img/data/18.png" srcset="/img/loading.gif" alt="图18"><br><pre><code class="hljs angelscript"> In [<span class="hljs-number">26</span>]: a = np.arange(<span class="hljs-number">15</span>).reshape(<span class="hljs-number">3</span>,<span class="hljs-number">5</span>)
 In [<span class="hljs-number">27</span>]: a
 Out[<span class="hljs-number">27</span>]: 
 <span class="hljs-built_in">array</span>([[ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>,  <span class="hljs-number">4</span>],
@@ -729,9 +712,7 @@ In [<span class="hljs-number">34</span>]: np.std(a)
 Out[<span class="hljs-number">34</span>]: <span class="hljs-number">4.320493798938574</span>
 
 In [<span class="hljs-number">35</span>]: np.var(a)
-Out[<span class="hljs-number">35</span>]: <span class="hljs-number">18.666666666666668</span></code></pre>
-<p><img src="/img/data/19.png" srcset="/img/loading.gif" alt="图19">   </p>
-<pre><code class="hljs angelscript">In [<span class="hljs-number">38</span>]: b = np.arange(<span class="hljs-number">15</span>,<span class="hljs-number">0</span>,<span class="hljs-number">-1</span>).reshape(<span class="hljs-number">3</span>,<span class="hljs-number">5</span>)
+Out[<span class="hljs-number">35</span>]: <span class="hljs-number">18.666666666666668</span></code></pre><br><img src="/img/data/19.png" srcset="/img/loading.gif" alt="图19"><br><pre><code class="hljs angelscript">In [<span class="hljs-number">38</span>]: b = np.arange(<span class="hljs-number">15</span>,<span class="hljs-number">0</span>,<span class="hljs-number">-1</span>).reshape(<span class="hljs-number">3</span>,<span class="hljs-number">5</span>)
 
 In [<span class="hljs-number">39</span>]: b
 Out[<span class="hljs-number">39</span>]: 
@@ -752,10 +733,8 @@ In [<span class="hljs-number">43</span>]: np.ptp(b)
 Out[<span class="hljs-number">43</span>]: <span class="hljs-number">14</span>
 
 In [<span class="hljs-number">45</span>]: np.median(b)
-Out[<span class="hljs-number">45</span>]: <span class="hljs-number">8.0</span></code></pre>
-
-<h4 id="NumPy的梯度函数"><a href="#NumPy的梯度函数" class="headerlink" title="NumPy的梯度函数"></a>NumPy的梯度函数</h4><p><img src="/img/data/20.png" srcset="/img/loading.gif" alt="图20"><br>梯度：连续值之间的变化率，即斜率。<br>XY坐标轴中连续三个X坐标对应的Y轴值：a, b, c， 其中b的梯度是（c-a）/2  </p>
-<pre><code class="hljs angelscript">In [<span class="hljs-number">46</span>]: c = np.random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">20</span>,(<span class="hljs-number">5</span>))
+Out[<span class="hljs-number">45</span>]: <span class="hljs-number">8.0</span></code></pre></p>
+<h4 id="NumPy的梯度函数"><a href="#NumPy的梯度函数" class="headerlink" title="NumPy的梯度函数"></a>NumPy的梯度函数</h4><p><img src="/img/data/20.png" srcset="/img/loading.gif" alt="图20"><br>梯度：连续值之间的变化率，即斜率。<br>XY坐标轴中连续三个X坐标对应的Y轴值：a, b, c， 其中b的梯度是（c-a）/2<br><pre><code class="hljs angelscript">In [<span class="hljs-number">46</span>]: c = np.random.randint(<span class="hljs-number">0</span>,<span class="hljs-number">20</span>,(<span class="hljs-number">5</span>))
 
 In [<span class="hljs-number">47</span>]: c
 Out[<span class="hljs-number">47</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">13</span>, <span class="hljs-number">13</span>,  <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>, <span class="hljs-number">11</span>])
@@ -786,9 +765,7 @@ Out[<span class="hljs-number">59</span>]:
         [<span class="hljs-number">-20.</span> ,  <span class="hljs-number">25.</span> , <span class="hljs-number">-25.</span> ,  <span class="hljs-number">13.</span> ,  <span class="hljs-number">37.</span> ]]),
  <span class="hljs-built_in">array</span>([[<span class="hljs-number">-37.</span> ,  <span class="hljs-number">-8.5</span>,  <span class="hljs-number">-2.5</span>,  <span class="hljs-number">-1.</span> ,  <span class="hljs-number">23.</span> ],
         [<span class="hljs-number">-17.</span> ,  <span class="hljs-number">-2.5</span>,  <span class="hljs-number">-6.</span> , <span class="hljs-number">-12.</span> ,   <span class="hljs-number">0.</span> ],   #第二层维度的梯度
-        [ <span class="hljs-number">28.</span> ,  <span class="hljs-number">-5.</span> , <span class="hljs-number">-12.</span> ,  <span class="hljs-number">19.</span> ,  <span class="hljs-number">24.</span> ]])]</code></pre>
-
-
+        [ <span class="hljs-number">28.</span> ,  <span class="hljs-number">-5.</span> , <span class="hljs-number">-12.</span> ,  <span class="hljs-number">19.</span> ,  <span class="hljs-number">24.</span> ]])]</code></pre></p>
 
             </article>
             <hr>
