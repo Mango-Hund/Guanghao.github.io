@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>归档 - Liu&#39;s blog</title>
+  <title>友链 - Liu&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -158,61 +158,60 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">共计 15 篇文章</p>
-  <hr>
+<div class="row links">
   
     
-      
-      <p class="h5">2020</p>
-    
-    <a href="/2020/01/15/Linux%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%88%E4%BA%8C%EF%BC%89/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Linux基础知识（二）</span>
-      <span style="float: right;">01-15</span>
-    </a>
+    <div class="card col-lg-4 col-md-6 col-sm-12">
+      <a href="https://hexo.fluid-dev.com/docs/" class="card-body hover-with-bg" target="_blank" rel="noopener">
+        <div class="card-content">
+          
+            <div class="link-avatar my-auto">
+              <img src="/img/favicon.jpg" srcset="/img/loading.gif" alt="Fluid Docs" />
+            </div>
+          
+          <div class="link-text">
+            <div class="link-title">Fluid Docs</div>
+            <div class="link-intro">主题使用指南</div>
+          </div>
+        </div>
+      </a>
+    </div>
   
     
-    <a href="/2020/01/10/Linux%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%88%E4%B8%80%EF%BC%89/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Linux基础知识（一）</span>
-      <span style="float: right;">01-10</span>
-    </a>
+    <div class="card col-lg-4 col-md-6 col-sm-12">
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" class="card-body hover-with-bg" target="_blank" rel="noopener">
+        <div class="card-content">
+          
+            <div class="link-avatar my-auto">
+              <img src="/img/favicon.jpg" srcset="/img/loading.gif" alt="Fluid Repo" />
+            </div>
+          
+          <div class="link-text">
+            <div class="link-title">Fluid Repo</div>
+            <div class="link-intro">主题 GitHub 仓库</div>
+          </div>
+        </div>
+      </a>
+    </div>
   
     
-      
-      <p class="h5">2019</p>
-    
-    <a href="/2019/11/15/%E5%A5%BD%E7%94%A8%E7%9A%84git/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Git&amp;Github</span>
-      <span style="float: right;">11-15</span>
-    </a>
-  
-    
-    <a href="/2019/10/08/VIM%E7%9A%84%E4%BD%BF%E7%94%A8/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">VIM的使用</span>
-      <span style="float: right;">10-08</span>
-    </a>
-  
-    
-    <a href="/2019/06/08/markdown%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">markdown的基本语法</span>
-      <span style="float: right;">06-08</span>
-    </a>
+    <div class="card col-lg-4 col-md-6 col-sm-12">
+      <a href="https://hexo.fluid-dev.com/docs/example/" class="card-body hover-with-bg" target="_blank" rel="noopener">
+        <div class="card-content">
+          
+            <div class="link-avatar my-auto">
+              <img src="/img/favicon.jpg" srcset="/img/loading.gif" alt="Fluid Example" />
+            </div>
+          
+          <div class="link-text">
+            <div class="link-title">Fluid Example</div>
+            <div class="link-intro">主题操作示例</div>
+          </div>
+        </div>
+      </a>
+    </div>
   
 </div>
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/archives/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
-
-
 
               </div>
             </div>
@@ -439,7 +438,7 @@
       if ('false' === 'true') {
         var viewCtn = document.querySelector('#leancloud-post-views-container');
         if (viewCtn || enableIncr) {
-          var target = decodeURI('/archives/page/2/index.html');
+          var target = decodeURI('/links/index.html');
           var viewGetter = getRecord(Counter, target).then((record) => {
             incrArr.push(buildIncrement(record.objectId))
             if (viewCtn) {
@@ -508,7 +507,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "友情链接&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
