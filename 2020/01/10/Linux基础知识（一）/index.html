@@ -209,9 +209,9 @@
 </li>
 <li><p><code>/bin、/usr/bin</code>: 可执行二进制文件的目录，如常用的命令<code>ls 、tar、mv、cat</code>等  </p>
 </li>
-<li><p><code>/dev</code>:  放置linux下的设备文件，访问该目录下的某个文件，相当于访问某个设备，常用的是挂载光驱<code>mount/dev/cdrom/mnt</code> </p>
+<li><p><code>/dev</code>:  放置linux下的设备文件，访问该目录下的某个文件，相当于访问某个设备，常用的是挂载光驱<code>mount/dev/cdrom/mnt </code> </p>
 </li>
-<li><p><code>/boot</code>: 放置linux系统启动时用的一些文件，如linux的内核文件:<code>/boot/vmlinuz</code>，系统引导管理器：<code>/boot/grub</code></p>
+<li><p><code>/boot</code>: 放置linux系统启动时用的一些文件，如linux的内核文件:<code>/boot/vmlinuz</code>，系统引导管理器：<code>/boot/grub  </code></p>
 </li>
 <li><p><code>/etc</code>: 系统配置文件存放的目录, 不建议在此目录存放可执行文件</p>
 </li>
@@ -231,22 +231,22 @@
 </li>
 </ul>
 <p>在职场中，大量的服务器维护工作都是在远程 通过ssh客户端来完成的，并没有图形界面、所有的维护工作都需要命令来完成</p>
-<p>小技巧：<br><code>ctrl + shift + =</code> 放大终端窗口的字体显示<br><code>ctrl + -</code>  缩小终端窗口中的字体显示</p>
+<p>小技巧：<br><code>ctrl + shift + = </code> 放大终端窗口的字体显示<br><code>ctrl + - </code>  缩小终端窗口中的字体显示</p>
 <h3 id="常用的Linux指令"><a href="#常用的Linux指令" class="headerlink" title="常用的Linux指令"></a>常用的Linux指令</h3><p><img src="/img/linux/01.png" srcset="/img/loading.gif" alt="图1"></p>
 <p>自动补全<br>在敲出文件/目录/命令 等等，可以<code>tab</code>补全</p>
 <p>inux终端命令格式<br><code>command [-option] [parameter]</code></p>
 <p>查阅命令帮助信息（知道）</p>
 <ol>
-<li><code>help  command --help</code> </li>
+<li><code>help  command --help </code> </li>
 <li><code>man man command</code><br><img src="/img/linux/02.png" srcset="/img/loading.gif" alt="图2"></li>
 </ol>
 <p>Linux下文件或者目录名称最长可以有256个字符<br>以.开头的文件为隐藏文件，需要用-a 参数才能显示<br><code>.</code>代表当前目录<br><code>..</code>代表上一级目录 </p>
 <h4 id="ls的详细介绍"><a href="#ls的详细介绍" class="headerlink" title="ls的详细介绍"></a>ls的详细介绍</h4><p>ls列出目录下的内容，选项如下<br><img src="/img/linux/03.png" srcset="/img/loading.gif" alt="图3"></p>
 <p>ls通配符的使用<br><img src="/img/linux/04.png" srcset="/img/loading.gif" alt="图4"></p>
 <h4 id="cd的详细介绍"><a href="#cd的详细介绍" class="headerlink" title="cd的详细介绍"></a>cd的详细介绍</h4><p>cd是英文单词change directory 的简写，其功能为更改当前的工作目录，也是用户最常用的命令之一<br>注意： linux所有的目录和文件名都是大小写敏感的<br><img src="/img/linux/05.png" srcset="/img/loading.gif" alt="图5"><br>（~波浪号代表用户家目录）</p>
-<p>相对路径：在输入路径时，最前面不是/或者~，表示相对当前目录 所在的目录位置<br>绝对路劲：在输入路径时，最前面是/或者~，表示 根目录/家目录开始的具体目录位置</p>
+<p>相对路径：在输入路径时，最前面不是/或者<del>，表示相对当前目录 所在的目录位置<br>绝对路劲：在输入路径时，最前面是/或者</del>，表示 根目录/家目录开始的具体目录位置</p>
 <h4 id="touch的详细介绍"><a href="#touch的详细介绍" class="headerlink" title="touch的详细介绍"></a>touch的详细介绍</h4><p>创建文件或者修改文件时间<br>-如果文件不存在，可以创建一个空白文件<br>-如果文件已经存在，可以修改文件的末次修改日期  </p>
-<h4 id="mkdir的详细介绍"><a href="#mkdir的详细介绍" class="headerlink" title="mkdir的详细介绍"></a>mkdir的详细介绍</h4><p>创建一个新的目录<br><code>-p</code>可以递归创建目录<br>新建目录的名称 不能与当前目录中 已有的目录或文件 同名 </p>
+<h4 id="mkdir的详细介绍"><a href="#mkdir的详细介绍" class="headerlink" title="mkdir的详细介绍"></a>mkdir的详细介绍</h4><p>创建一个新的目录<br><code>-p </code>可以递归创建目录<br>新建目录的名称 不能与当前目录中 已有的目录或文件 同名 </p>
 <h4 id="rm的详细介绍"><a href="#rm的详细介绍" class="headerlink" title="rm的详细介绍"></a>rm的详细介绍</h4><p>删除文件或目录<br>使用rm命令要小心，因为文件删除后不能恢复<br>选项<br><code>-f</code>强制删除，忽略不存在的文件，无需提示<br><code>-r</code> 递归地删除目录下的内容，删除文件夹时必须加此参数</p>
 <h4 id="拷贝和移动文件"><a href="#拷贝和移动文件" class="headerlink" title="拷贝和移动文件"></a>拷贝和移动文件</h4><p><img src="/img/linux/06.png" srcset="/img/loading.gif" alt="图6"></p>
 <h5 id="tree"><a href="#tree" class="headerlink" title="tree"></a>tree</h5><p>tree命令可以树状图列出文件目录结构<br>选项<br><code>-d</code>  只显示目录  </p>
@@ -258,13 +258,12 @@
 <h5 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h5><p>Linux系统中<code>grep</code>命令是一种强大的文本搜索工具<br><code>grep</code>允许对文本文件进行 模式查找，所谓模式查找，又被称为正则表达式<br><img src="/img/linux/11.png" srcset="/img/loading.gif" alt="图11"><br><img src="/img/linux/12.png" srcset="/img/loading.gif" alt="图12"><br>常用的两种模式查找<br><img src="/img/linux/13.png" srcset="/img/loading.gif" alt="图13"></p>
 <h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><h5 id="echo-文字内容"><a href="#echo-文字内容" class="headerlink" title="echo 文字内容"></a><code>echo</code> 文字内容</h5><p><code>echo</code>会在终端中显示参数指定的文字，通常会和 重定向联合使用  </p>
 <h5 id="重定向-gt-和-gt-gt"><a href="#重定向-gt-和-gt-gt" class="headerlink" title="重定向&gt;和&gt;&gt;"></a>重定向<code>&gt;</code>和<code>&gt;&gt;</code></h5><p><code>Linux</code>允许将命令执行结果，重定向到一个文件<br>将本应显示在终端上的内容输出/追加到指定文件中<br>其中<br><code>&gt;</code>表示输出，会覆盖文件原有的内容<br><code>&gt;&gt;</code>表示追加，会将内容追加到已有文件的末尾  </p>
-<h5 id="管道（二次处理）"><a href="#管道（二次处理）" class="headerlink" title="管道（二次处理）|"></a>管道（二次处理）<code>|</code></h5><p>linux允许将一个命令的输出 可以通过管道 作为另一个命令的输入<br>可以理解现实生活中的管子，一头塞东西进去，另一头取出来，这里的<br><code>|</code> 分为左右两端，左端塞东西（写） 右端取东西（读） </p>
+<h5 id="管道（二次处理）"><a href="#管道（二次处理）" class="headerlink" title="管道（二次处理）| "></a>管道（二次处理）<code>| </code></h5><p>linux允许将一个命令的输出 可以通过管道 作为另一个命令的输入<br>可以理解现实生活中的管子，一头塞东西进去，另一头取出来，这里的<br><code>|</code> 分为左右两端，左端塞东西（写） 右端取东西（读） </p>
 <p>常用的管道命令有：<br>more：分屏显示内容<br>grep：在命令执行结果的基础上查询指定的文本  </p>
 <h3 id="远程管理常用命令"><a href="#远程管理常用命令" class="headerlink" title="远程管理常用命令"></a>远程管理常用命令</h3><h4 id="关机-重启"><a href="#关机-重启" class="headerlink" title="关机/重启"></a>关机/重启</h4><p><code>shutdown 选项 时间</code><br><code>shutdown</code>命令可以安全关闭或者重新启动系统<br><code>shutdown -r 时间</code>  可以重新启动  <code>shutdown -r now</code> 立即重启  </p>
 <h4 id="查看或配置网卡信息"><a href="#查看或配置网卡信息" class="headerlink" title="查看或配置网卡信息"></a>查看或配置网卡信息</h4><p>网卡<br>网卡是一个专门负责网络通讯的硬件设备<br>IP地址是设置在网卡上的地址信息<br>我们可以把电脑 比作 电话，网卡相当于SIM卡，IP地址相当于电话号码  </p>
 <p>IP地址<br>每台联网的电脑上都有IP地址，是保证电脑之间正常通讯的重要设置<br>注意：每台电脑的IP地址不能相同，否则会出现IP地址冲突，并且没有办法正常通讯<br><img src="/img/linux/14.png" srcset="/img/loading.gif" alt="图14"><br>ifconig可以查看/配置计算机当前的<br><img src="/img/linux/15.png" srcset="/img/loading.gif" alt="图15"></p>
-<p>更方便对应ip地址，可输入：<code>ifconfig | grep inet
-ping</code><br>检测到目标主机是否正常连接<br><code>ping IP</code>地址<br>检测本地网卡工作正常<br><code>ping  127.0.0.1</code><br><code>ping</code> 一般用于检测当前计算机于目标计算机之间的网络是否通畅，数值越大，速度越慢  </p>
+<p>更方便对应ip地址，可输入：<code>ifconfig | grep inet ping</code><br>检测到目标主机是否正常连接<br><code>ping IP</code>地址<br>检测本地网卡工作正常<br><code>ping  127.0.0.1</code><br><code>ping</code> 一般用于检测当前计算机于目标计算机之间的网络是否通畅，数值越大，速度越慢  </p>
 <h4 id="远程登陆和复制文件"><a href="#远程登陆和复制文件" class="headerlink" title="远程登陆和复制文件"></a>远程登陆和复制文件</h4><h5 id="ssh基础（重点）"><a href="#ssh基础（重点）" class="headerlink" title="ssh基础（重点）"></a>ssh基础（重点）</h5><p>在Linux中SSH是非常常用的工具，通过SSH 客户端 我们可以连接到运行了SSH服务器的远程机器上<br>数据传输是加密的，可以防止信息泄露<br>数据传输是压缩的，可以提高传输速度<br>SSH客户端是一种使用Secure Shell（SSH）协议连接到远程计算机的软件程序<br>SSH是目前较可靠，专为远程登录会话和其他网络服务 提供安全性的协议  </p>
 <ol>
 <li><p>域名和端口号<br>域名：由一串用点分隔的名字组成，例如：<code>www.itcast.cn</code>是IP地址的别名，方便用户记忆<br>端口号：通过IP地址可以找到网络上的计算机<br>而通过端口号可以找到计算机上运行的应用程序<br>SSH服务器的默认端口号是22，如果是默认端口号，在连接的时候可以省略<br>常见服务端口号如下：<code>22 80 443</code></p>
@@ -276,10 +275,12 @@ ping</code><br>检测到目标主机是否正常连接<br><code>ping IP</code>�
 <h5 id="SSH高级（知道）"><a href="#SSH高级（知道）" class="headerlink" title="SSH高级（知道）"></a>SSH高级（知道）</h5><ol>
 <li>免密码登陆<br>步骤：<br>配置公钥<br>执行ssh-keygen即可生成SSH钥匙，一路回车即可<br>上传公钥到服务器<br>执行ssh-copy-id -P port ﻿user@remote,可以让远程服务器记住我们的公钥<br><img src="/img/linux/19.png" srcset="/img/loading.gif" alt="图19"></li>
 </ol>
-<p>2）配置别名<br>每次都输入ssh -P port user@remote,时间久了会觉得很麻烦，特别是当user，port和remote都要输入，而且还不好记忆<br>而配置别名可以让我们进一步偷懒，比如用ssh mac来替代上面一长串，那么就在~/.ssh/config里面追加以下内容<br><pre><code class="hljs routeros">Host myserver
+<p>2）配置别名<br>每次都输入ssh -P port user@remote,时间久了会觉得很麻烦，特别是当user，port和remote都要输入，而且还不好记忆<br>而配置别名可以让我们进一步偷懒，比如用ssh mac来替代上面一长串，那么就在~/.ssh/config里面追加以下内容  </p>
+<pre><code class="hljs routeros">Host myserver
 HostName ip地址
 User ithrima
-port 22</code></pre><br>保存之后，即可用ssh mac 实现远程登录了，scp同样可以使用  </p>
+port 22</code></pre>
+<p>保存之后，即可用ssh mac 实现远程登录了，scp同样可以使用  </p>
 
             </article>
             <hr>
