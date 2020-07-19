@@ -1,1028 +1,176 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Liu's blog</title><meta name="description"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yoursite.com/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="website"><meta property="og:title" content="Liu's blog"><meta property="og:url" content="http://yoursite.com/"><meta property="og:site_name" content="Liu's blog"><meta property="og:description"><meta property="og:image" content="http://yoursite.com/img/avatar.png"><meta property="article:published_time" content="2020-07-19T11:45:34.334Z"><meta property="article:modified_time" content="2020-07-19T11:45:34.334Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
 
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
 
-<!-- 样式一（鼠标点击更换样式） -->
-<script src="https://g.joyinshare.com/hc/ribbon.min.js" type="text/javascript"></script>
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
 
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
-  <link rel="icon" type="image/png" href="/img/favicon.jpg">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
-  <meta name="author" content="John Doe">
-  <meta name="keywords" content="">
-  <title>Liu&#39;s blog</title>
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
-
-
-  <script  src="/js/utils.js" ></script>
-<meta name="generator" content="Hexo 4.2.1"></head>
-
-<body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>Hao-Space</strong>&nbsp;</a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-    <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/escape_velocity.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container text-center white-text fadeInUp">
-            <span class="h2" id="subtitle">
-              
-            </span>
-
-            
-          </div>
-
-          
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
-          
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/07/15/%E5%AD%A6%E4%B9%A0%E6%B8%85%E5%8D%95%E2%80%94%E2%80%94%E6%9C%AA%E5%AE%8C%E5%BE%85%E7%BB%AD/" target="_self">
-          <img src="/img/study.jpg" srcset="/img/loading.gif" alt="学习清单——未完待续">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a class="index-header" href="/2020/07/15/%E5%AD%A6%E4%B9%A0%E6%B8%85%E5%8D%95%E2%80%94%E2%80%94%E6%9C%AA%E5%AE%8C%E5%BE%85%E7%BB%AD/">学习清单——未完待续</a>
-
-      <a href="/2020/07/15/%E5%AD%A6%E4%B9%A0%E6%B8%85%E5%8D%95%E2%80%94%E2%80%94%E6%9C%AA%E5%AE%8C%E5%BE%85%E7%BB%AD/" class="index-excerpt">
-        
-        
-          
-        
-        <div>生命不息，学习不止</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-15
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/study/">study</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/life/">life</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/07/09/Unity3D%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89/" target="_self">
-          <img src="/img/unity.jpg" srcset="/img/loading.gif" alt="Unity3D入门（一）">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a class="index-header" href="/2020/07/09/Unity3D%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89/">Unity3D入门（一）</a>
-
-      <a href="/2020/07/09/Unity3D%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89/" class="index-excerpt">
-        
-        
-          
-        
-        <div>VR虚拟车间搭建项目</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-09
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/work/">work</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Unity/">Unity</a>
-            
-              <a href="/tags/C/">C#</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/07/02/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89/" target="_self">
-          <img src="/img/ai.jpg" srcset="/img/loading.gif" alt="吴恩达机器学习（三）">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a class="index-header" href="/2020/07/02/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89/">吴恩达机器学习（三）</a>
-
-      <a href="/2020/07/02/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89/" class="index-excerpt">
-        
-        
-          
-        
-        <div>机器学习经典入门</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-07-02
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/study/">study</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python/">Python</a>
-            
-              <a href="/tags/machine-learning/">machine-learning</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/06/20/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89/" target="_self">
-          <img src="/img/ai.jpg" srcset="/img/loading.gif" alt="吴恩达机器学习（二）">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a class="index-header" href="/2020/06/20/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89/">吴恩达机器学习（二）</a>
-
-      <a href="/2020/06/20/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89/" class="index-excerpt">
-        
-        
-          
-        
-        <div>机器学习经典入门</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-20
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/study/">study</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python/">Python</a>
-            
-              <a href="/tags/machine-learning/">machine-learning</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/06/10/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/" target="_self">
-          <img src="/img/ai.jpg" srcset="/img/loading.gif" alt="吴恩达机器学习（一）">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a class="index-header" href="/2020/06/10/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/">吴恩达机器学习（一）</a>
-
-      <a href="/2020/06/10/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/" class="index-excerpt">
-        
-        
-          
-        
-        <div>机器学习经典入门</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-06-10
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/study/">study</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python/">Python</a>
-            
-              <a href="/tags/machine-learning/">machine-learning</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/03/20/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%89%EF%BC%89/" target="_self">
-          <img src="/img/data.jpg" srcset="/img/loading.gif" alt="数据分析工具（三）">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a class="index-header" href="/2020/03/20/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%89%EF%BC%89/">数据分析工具（三）</a>
-
-      <a href="/2020/03/20/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%89%EF%BC%89/" class="index-excerpt">
-        
-        
-          
-        
-        <div>数据想表达怎么样的含义？</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-03-20
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/study/">study</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python/">Python</a>
-            
-              <a href="/tags/numpy/">numpy</a>
-            
-              <a href="/tags/matplotlib/">matplotlib</a>
-            
-              <a href="/tags/pandas/">pandas</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/03/13/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/" target="_self">
-          <img src="/img/data.jpg" srcset="/img/loading.gif" alt="数据分析工具（二）">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a class="index-header" href="/2020/03/13/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/">数据分析工具（二）</a>
-
-      <a href="/2020/03/13/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/" class="index-excerpt">
-        
-        
-          
-        
-        <div>数据想表达怎么样的含义？</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-03-13
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/study/">study</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python/">Python</a>
-            
-              <a href="/tags/numpy/">numpy</a>
-            
-              <a href="/tags/matplotlib/">matplotlib</a>
-            
-              <a href="/tags/pandas/">pandas</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/03/03/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/" target="_self">
-          <img src="/img/data.jpg" srcset="/img/loading.gif" alt="数据分析工具（一）">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a class="index-header" href="/2020/03/03/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/">数据分析工具（一）</a>
-
-      <a href="/2020/03/03/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/" class="index-excerpt">
-        
-        
-          
-        
-        <div>数据想表达怎么样的含义？</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-03-03
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/study/">study</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python/">Python</a>
-            
-              <a href="/tags/numpy/">numpy</a>
-            
-              <a href="/tags/matplotlib/">matplotlib</a>
-            
-              <a href="/tags/pandas/">pandas</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/02/20/%E7%88%AC%E8%99%AB%EF%BC%88%E4%BA%8C%EF%BC%89/" target="_self">
-          <img src="/img/crawler.png" srcset="/img/loading.gif" alt="爬虫（二）">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a class="index-header" href="/2020/02/20/%E7%88%AC%E8%99%AB%EF%BC%88%E4%BA%8C%EF%BC%89/">爬虫（二）</a>
-
-      <a href="/2020/02/20/%E7%88%AC%E8%99%AB%EF%BC%88%E4%BA%8C%EF%BC%89/" class="index-excerpt">
-        
-        
-          
-        
-        <div>在某一天我觉得肯定会爬取些什么的</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-02-20
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/study/">study</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python/">Python</a>
-            
-              <a href="/tags/Crawler/">Crawler</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/02/15/%E7%88%AC%E8%99%AB%EF%BC%88%E4%B8%80%EF%BC%89/" target="_self">
-          <img src="/img/crawler.png" srcset="/img/loading.gif" alt="爬虫（一）">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 mx-auto index-info">
-      <a class="index-header" href="/2020/02/15/%E7%88%AC%E8%99%AB%EF%BC%88%E4%B8%80%EF%BC%89/">爬虫（一）</a>
-
-      <a href="/2020/02/15/%E7%88%AC%E8%99%AB%EF%BC%88%E4%B8%80%EF%BC%89/" class="index-excerpt">
-        
-        
-          
-        
-        <div>在某一天我觉得肯定会爬取些什么的</div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>&nbsp;2020-02-15
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/study/">study</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Python/">Python</a>
-            
-              <a href="/tags/Crawler/">Crawler</a>
-            
-          </div>
-        
-      </div>
-    </div>
-  </div>
-
-
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
     }
-  </script>
-
-
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    
-  </main>
-
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
-
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-  
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
-    
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- LeanCloud 统计PV -->
-        <span id="leancloud-site-pv-container" style="display: none">
-            总访问量 
-            <span id="leancloud-site-pv"></span>
-             次
-          </span>
-      
-      
-        <!-- LeanCloud 统计UV -->
-        <span id="leancloud-site-uv-container" style="display: none">
-            总访客数 
-            <span id="leancloud-site-uv"></span>
-             人
-          </span>
-      
-
-    
-  </div>
-
-
-    
-
-    
-  </div>
-</footer>
-
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
-
-<!-- Plugins -->
-
-
-  
-    <script  src="/js/lazyload.js" ></script>
-  
-
-
-
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
-
-
-
-  <script defer>
-  (function () {
-    // 查询存储的记录
-    function getRecord(Counter, target) {
-      return new Promise(function (resolve, reject) {
-        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({target})))
-          .then(resp => resp.json())
-          .then(({results, code, error}) => {
-            if (code === 401) {
-              throw error;
-            }
-            if (results && results.length > 0) {
-              var record = results[0];
-              resolve(record);
-            } else {
-              Counter('post', '/classes/Counter', {target, time: 0})
-                .then(resp => resp.json())
-                .then((record, error) => {
-                  if (error) {
-                    throw error;
-                  }
-                  resolve(record);
-                }).catch(error => {
-                console.error('Failed to create', error);
-                reject(error);
-              });
-            }
-          }).catch((error) => {
-          console.error('LeanCloud Counter Error:', error);
-          reject(error);
-        });
-      })
-    }
-
-    // 发起自增请求
-    function increment(Counter, incrArr) {
-      return new Promise(function (resolve, reject) {
-        Counter('post', '/batch', {
-          "requests": incrArr
-        }).then((res) => {
-          res = res.json();
-          if (res.error) {
-            throw res.error;
-          }
-          resolve(res);
-        }).catch((error) => {
-          console.error('Failed to save visitor count', error);
-          reject(error);
-        });
-      });
-    }
-
-    // 构建自增请求体
-    function buildIncrement(objectId) {
-      return {
-        "method": "PUT",
-        "path": `/1.1/classes/Counter/${ objectId }`,
-        "body": {
-          "time": {
-            '__op': 'Increment',
-            'amount': 1
-          }
-        }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
       }
-    }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isSidebar: false
+  }</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">15</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">15</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://i.loli.net/2020/05/01/IuWi8QbHvzjlOPw.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Liu's blog</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site_title">Liu's blog</h1><div id="site_subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll_down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout_page" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/07/15/%E5%AD%A6%E4%B9%A0%E6%B8%85%E5%8D%95%E2%80%94%E2%80%94%E6%9C%AA%E5%AE%8C%E5%BE%85%E7%BB%AD/" title="学习清单——未完待续">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="学习清单——未完待续"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/15/%E5%AD%A6%E4%B9%A0%E6%B8%85%E5%8D%95%E2%80%94%E2%80%94%E6%9C%AA%E5%AE%8C%E5%BE%85%E7%BB%AD/" title="学习清单——未完待续">学习清单——未完待续</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack article-meta__icon sticky"></i><span class="sticky">置顶</span><span class="article-meta__separator">|</span></span><time class="post-meta__date" title="发表于 2020-07-15 21:03:38"><i class="far fa-calendar-alt"></i>2020-07-15</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/study/">study</a></span></div><div class="content">学习清单
+[x] linux基础
+[x] Python
+[x] Git&amp;Github
+[x] Markdown写博客 
+[x] 爬虫
+[x] Numpy、Matplotlib、Pandas
+[ ] 吴恩达机器学习
+[ ] 《算法图解》
+[ ] 开始刷Leecode
+[ ] 《大话数据结构》
+[ ] 《统计学习》、《机器学习实战》
+[ ] Kaggle项目入门
+[ ] 数据挖掘理论算法补充
+[ ] Kaggle、“天池” 项目比赛实战 
+[ ] 实习  
 
-    // 校验是否为有效的 UV
-    function validUV() {
-      var key = 'LeanCloud_UV_Flag';
-      var flag = localStorage.getItem(key);
-      if (flag) {
-        // 距离标记小于 24 小时则不计为 UV
-        if (new Date().getTime() - parseInt(flag) <= 86400000) {
-          return false;
-        }
-      }
-      localStorage.setItem(key, new Date().getTime().toString());
-      return true;
-    }
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/07/09/Unity3D%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89/" title="Unity3D入门（一）">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Unity3D入门（一）"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/09/Unity3D%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89/" title="Unity3D入门（一）">Unity3D入门（一）</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2020-07-09 12:11:38"><i class="far fa-calendar-alt"></i>2020-07-09</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/work/">work</a></span></div><div class="content">Unity3D介绍创建游戏和三维互动内容的开发工具Virtual Reality（VR）利用电脑模拟产生一个三维空间的虚拟世界，并提供视觉、听觉、触觉等感官的模拟。使用者通过各种输入设备与虚拟环境中的事物进行交互，从而产生身临其境的体验。游戏引擎，程序的框架，一款游戏最核心的代码，包含：渲染引擎、碰撞检测系统、音效、脚本引擎、动画系统、人工智能、网络引擎、以及场景管理。使用游戏引擎，开发者可以重用已有的核心技术，将精力集中在游戏逻辑和设计上，从而简单快速的创建游戏。  
 
-    function addCount(Counter) {
-      var enableIncr = 'true' === 'true' && window.location.hostname !== 'localhost';
-      var getterArr = [];
-      var incrArr = [];
+Unity环境搭建
+C#语言基础
+Unity API
+物理引擎1
+3D数学基础
+UGUI  
+Unity高级组件
+IO，协程，多线程
+Unity高级组件应用
+常用数据结构
+AR项目、VR项目
+NGUI-ARPG项目贯穿
+美术资源性能优化
+Shader
+面向对象
+类库开发
+设计模式
+人工智能
+美术规范及优化
+XML及Json
+数据库
+项目制作
 
-      // 请求 PV 并自增
-      var pvCtn = document.querySelector('#leancloud-site-pv-container');
-      if (pvCtn || enableIncr) {
-        var pvGetter = getRecord(Counter, 'site-pv').then((record) => {
-          incrArr.push(buildIncrement(record.objectId))
-          var ele = document.querySelector('#leancloud-site-pv');
-          if (ele) {
-            ele.innerText = record.time + 1;
-            if (pvCtn) {
-              pvCtn.style.display = 'inline';
-            }
-          }
-        });
-        getterArr.push(pvGetter);
-      }
+面板介绍project 工程素材文件、资源，直接拖进去（Assets文件夹。右键可以导出unity包 同样也可以导入。Hierarchy 放游戏对象，从资源中拖过来，创建对象， ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/07/02/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89/" title="吴恩达机器学习（三）">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="吴恩达机器学习（三）"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/02/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89/" title="吴恩达机器学习（三）">吴恩达机器学习（三）</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2020-07-02 18:45:38"><i class="far fa-calendar-alt"></i>2020-07-02</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/study/">study</a></span></div><div class="content"></div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/06/20/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89/" title="吴恩达机器学习（二）">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="吴恩达机器学习（二）"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/06/20/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89/" title="吴恩达机器学习（二）">吴恩达机器学习（二）</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2020-06-20 18:45:38"><i class="far fa-calendar-alt"></i>2020-06-20</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/study/">study</a></span></div><div class="content">分类分类问题，例如Email: 垃圾邮件/不是垃圾邮件Online：信息是真的/信息是假的Tumor：良性的/恶性的$y=\{0,1\}$0:Negative Class负类/1:Positive Class正类将分类器的输出$h_\theta(x)$阀值定位0.5如果$h_\theta\geq0.5$,预测’y=1’如果$h_\theta&lt;0.5$,预测‘y=0’ 
+假设陈述逻辑分类模型我们想要$0\leq h_\theta(x) \leq 1$$h_\theta(x)=g(\theta^Tx)$$g(z)=\frac{1}{1+e^{-z}}$ z是实数 ，g(z)一端趋向1一端趋向0。关于假设h(x)函数的解释：$h_\theta(x)$= 输入x对于y=1的估计概率举例：如果 $x=\begin{bmatrix}x_0 \\ x_1\end{bmatrix}=\begin{bmatrix}1 \\ tumorSize \end{bmatrix}$$h_\theta(x)=0.7$可以说明病人的肿瘤有70%的概率为恶性肿瘤。当特征变量为x，变量的参数为$\theta$，可以 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/06/10/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/" title="吴恩达机器学习（一）">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="吴恩达机器学习（一）"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/06/10/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/" title="吴恩达机器学习（一）">吴恩达机器学习（一）</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2020-06-10 19:45:38"><i class="far fa-calendar-alt"></i>2020-06-10</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/study/">study</a></span></div><div class="content">1 欢迎1.1 什么是机器学习 A computer program is said to learn from experience E with respect  to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E.Supervised learning 监督学习监督学习是指我们给算法一个数据集，其中包含了正确的答案（回归问题、分类问题 ）Unsupervisef learning  无监督学习聚类算法：探究数据集中的数据结构，数据是没有什么标签的，将数据进行归类强化学习：是指智能系统在与环境的连续互动中学习最优行为测略的机器学习问题，本质是学习最优打序管决策  
+2 单变量线性回归2.1 代价函数h_\theta(x)=\theta_0+\theta_1x把$\theta$称为模型参数 Parameter假设函数不同，参数也不同在线性回归中，训练集给出一些点，我们要选择最能拟合的假设函数，合理预测y值 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/03/20/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%89%EF%BC%89/" title="数据分析工具（三）">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据分析工具（三）"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/03/20/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%89%EF%BC%89/" title="数据分析工具（三）">数据分析工具（三）</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2020-03-20 16:45:38"><i class="far fa-calendar-alt"></i>2020-03-20</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/study/">study</a></span></div><div class="content">Pandas 库的引用Pandas是Python第三方库，提供高性能易用数据类型和分析工具。import pandas as pdPandas 基于Numpy实现，常与Numpy和Matplotlib一同使用两个数据类型：Series, DataFrame基于上述数据类型的各类操作基本操作、运算操作、特征类操作、关联类操作NumPy               Pandas基础数据类型          扩展数据类型关注数据的结构表达     关注数据的应用表达维度：数据间关系       数据与索引间关系   
+Pandas库中的Series类型,由一组数据与之相关的数据索引组成index_0 —-&gt;data_aindex_1 —-&gt;data_bindex_2 —-&gt;data_cindex_3 —-&gt;data_d1234567891011121314151617181920In [1]: import pandas as pdIn [2]: a &#x3D; pd.Series([9, 8, 7, 6])In [3]: aOut[3]: 0    91     ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/03/13/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/" title="数据分析工具（二）">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据分析工具（二）"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/03/13/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/" title="数据分析工具（二）">数据分析工具（二）</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2020-03-13 15:45:38"><i class="far fa-calendar-alt"></i>2020-03-13</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/study/">study</a></span></div><div class="content">图像的数组表示图像的RGB色彩模式RGB三个颜色通道的变化和叠加得到各种颜色，其中R红色，取值范围，0-255  
+G绿色，取值范围，0-255*B蓝色，取值范围，0-255RGB形成的颜色包括了人类视力感知的所有颜色PIL库，Python Image LibraryPIL库是一个具有强大图像处理能力的第三方库from PIL import ImageImage 是PIL库中代表一个图像的类（对象）图像是一个由像素组成的二维矩阵，每个元素是一个RGB值12345678In [61]: from PIL import ImageIn [62]: import numpy as npIn [63]: im &#x3D; np.array(Image.open(&quot;&#x2F;home&#x2F;liu&#x2F;Pictures&#x2F;Wallpapers&#x2F;1.jpg&quot;))In [64]: print(im.shape,im.dtype)(853, 1280, 3) uint8图像是一个三维数组  
+图像变换读入图像后，获得像素RGB值，修改后保存为新的文件 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/03/03/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/" title="数据分析工具（一）">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据分析工具（一）"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/03/03/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/" title="数据分析工具（一）">数据分析工具（一）</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2020-03-03 15:45:38"><i class="far fa-calendar-alt"></i>2020-03-03</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/study/">study</a></span></div><div class="content">主题思想一个数据表达一个含义————-&gt;一组数据表达一个或多个含义：与一组数据相关的那些事儿，即如何理解数据表达的含义
+编程工具使用Anaconda IDE集成开发工具需要理解和掌握如下工具的使用：conda、Spyder、IPython常用的python IDE工具IDLE 自带的、默认的、常用的，入门级编写工具，适合入门，300行以内Sublime Text 专为程序员设计，有多种功能和风格Wine 公司维护，收费，适合多人共同开发VS &amp; PTVSEclipse PyDev 需要一定的能力配置PyCharm 社区版免费Canopy 公司维护，工具收费Anaconda 免费开源  
+Anaconda的基本使用conda 是一个工具，用于包管理和环境包管理和pip类似，管理Python的第三方库环境管理包括能够允许用户使用不同版本的python，并能够灵活切换anaconda: 一个集合，包括conda、某版本的python、一批第三方库等IPython 的？命令，可以查看参数IPython %run 用于运行.py程序 （%run在一个空的命名空间执行%） 
+数据的维 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/02/20/%E7%88%AC%E8%99%AB%EF%BC%88%E4%BA%8C%EF%BC%89/" title="爬虫（二）">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="爬虫（二）"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/02/20/%E7%88%AC%E8%99%AB%EF%BC%88%E4%BA%8C%EF%BC%89/" title="爬虫（二）">爬虫（二）</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2020-02-20 21:40:38"><i class="far fa-calendar-alt"></i>2020-02-20</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/study/">study</a></span></div><div class="content">正则表达式regular expression regex  RE正则表达式是用来简洁表达一组字符串的表达式优点是简洁是一种通用的字符串表达框架简洁表达一组字符串的表达式针对字符串表达“简洁”和“特征”思想的工具判断字符串的特征归属用处表达文本类型的特征（病毒、入侵）同时查找或替换一组字符串匹配字符串的全部或部分使用编译：将符合正则表达式语法的字符串转换成正则表达式特征语法正则表达式是由字符和操作符组成RE库是python的标准库，主要用于字符串的匹配 import re正则表达式的表示类型raw string类型（原生字符串类型）re库采用raw string类型表示正则表达式，表示为：r &#39;text&#39; 例如r&#39;[1-9]\d{5}&#39;原生字符串不包含转义符re.search(pattern,string,flag=0)在一个字符串中搜索匹配正则表达式的第一个位置，返回match对象  
 
-      // 请求 UV 并自增
-      var uvCtn = document.querySelector('#leancloud-site-uv-container');
-      if (uvCtn || enableIncr) {
-        var uvGetter = getRecord(Counter, 'site-uv').then((record) => {
-          var vuv = validUV();
-          vuv && incrArr.push(buildIncrement(record.objectId))
-          var ele = document.querySelector('#leancloud-site-uv');
-          if (ele) {
-            ele.innerText = record.time + (vuv ? 1 : 0);
-            if (uvCtn) {
-              uvCtn.style.display = 'inline';
-            }
-          }
-        });
-        getterArr.push(uvGetter);
-      }
+pattern：正则表达式的字符串或原生字符串表示  
+string：待匹配的字符串  
+flags：正则表达式使用时的控制标记  123456&gt;&gt;&gt ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/02/15/%E7%88%AC%E8%99%AB%EF%BC%88%E4%B8%80%EF%BC%89/" title="爬虫（一）">     <img class="post_bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="爬虫（一）"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/02/15/%E7%88%AC%E8%99%AB%EF%BC%88%E4%B8%80%EF%BC%89/" title="爬虫（一）">爬虫（一）</a><div class="article-meta-wrap"><time class="post-meta__date" title="发表于 2020-02-15 20:58:38"><i class="far fa-calendar-alt"></i>2020-02-15</time><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/study/">study</a></span></div><div class="content">  
+集成开发系统文本工具类IDLE是自带的，入门级Sublime Text专为程序员设计，提高编程体验Wine收费，适合多人开发PyCharm简单、集成度较高Canopy公司维护Anaconda开源免费，数据分析，科学计算  
+Python网络爬虫与信息提取equwsts库的安装Requests库的7个主要方法  
 
-      // 如果是文章，请求文章的浏览数，并自增
-      if ('false' === 'true') {
-        var viewCtn = document.querySelector('#leancloud-post-views-container');
-        if (viewCtn || enableIncr) {
-          var target = decodeURI('/index.html');
-          var viewGetter = getRecord(Counter, target).then((record) => {
-            incrArr.push(buildIncrement(record.objectId))
-            if (viewCtn) {
-              var ele = document.querySelector('#leancloud-post-views');
-              if (ele) {
-                ele.innerText = (record.time || 0) + 1;
-                viewCtn.style.display = 'inline';
-              }
-            }
-          });
-          getterArr.push(viewGetter);
-        }
-      }
-
-      // 如果启动计数自增，批量发起自增请求
-      if (enableIncr) {
-        Promise.all(getterArr).then(() => {
-          incrArr.length > 0 && increment(Counter, incrArr);
-        })
-      }
-    }
-
-    var app_id = 'TiyaSIcTbSTjSzxKsX4KmQLG-gzGzoHsz'
-    var app_key = 'SIWw0atj9HA0ctavk2YMoTEI'
-    var server_url = 'https://tiyasict.lc-cn-n1-shared.com'
-
-    function fetchData(api_server) {
-      var Counter = (method, url, data) => {
-        return fetch(`${ api_server }/1.1${ url }`, {
-          method,
-          headers: {
-            'X-LC-Id': app_id,
-            'X-LC-Key': app_key,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data)
-        });
-      };
-
-      addCount(Counter);
-    }
-
-    var api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${ app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
-
-    if (api_server) {
-      fetchData(api_server);
-    } else {
-      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
-        .then(resp => resp.json())
-        .then(({api_server}) => {
-          fetchData('https://' + api_server);
-        });
-    }
-  })();
-</script>
-
-
-
-
-
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "Technologie verändert die Zukunft&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
-</html>
+requests.request()  构造一个请求，支撑以下各方法的基础方法  
+requests.get()         获取HTML网页的主要方法，对应于HTTP的GET  *  
+requests.head()      获取HTML网页头信息的方法，对应于HTTP的HEAD  *  
+requests.post()       向HTML网页提交POST请求的方法，对应于HTTP的POST  
+requests.put()         向HTML网页提交PUT请求的方法，对应于HTTP的PUT  
+requests.patch()     向HTML网页提交局部修改请求，对应于HTTP的PATCH  
+requests.delete()    向HTM ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives"><div class="headline">文章</div><div class="length_num">15</div></a></div><div class="card-info-data-item is-center">      <a href="/tags"><div class="headline">标签</div><div class="length_num">15</div></a></div><div class="card-info-data-item is-center">     <a href="/categories"><div class="headline">分类</div><div class="length_num">3</div></a></div></div><div class="card-info-bookmark is-center"><button class="button--animated" id="bookmark-it" title="加入书签"><i class="fas fa-bookmark"></i><span>加入书签</span></button></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-recent-item"><div class="aside-recent-post"><a href="/2020/07/15/%E5%AD%A6%E4%B9%A0%E6%B8%85%E5%8D%95%E2%80%94%E2%80%94%E6%9C%AA%E5%AE%8C%E5%BE%85%E7%BB%AD/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="学习清单——未完待续" alt="学习清单——未完待续"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/07/15/%E5%AD%A6%E4%B9%A0%E6%B8%85%E5%8D%95%E2%80%94%E2%80%94%E6%9C%AA%E5%AE%8C%E5%BE%85%E7%BB%AD/" title="学习清单——未完待续">学习清单——未完待续</div><time class="aside-post_meta post-meta__date" title="发表于 2020-07-15 21:03:38">2020-07-15</time></div></a></div><div class="aside-recent-post"><a href="/2020/07/09/Unity3D%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="Unity3D入门（一）" alt="Unity3D入门（一）"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/07/09/Unity3D%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89/" title="Unity3D入门（一）">Unity3D入门（一）</div><time class="aside-post_meta post-meta__date" title="发表于 2020-07-09 12:11:38">2020-07-09</time></div></a></div><div class="aside-recent-post"><a href="/2020/07/02/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="吴恩达机器学习（三）" alt="吴恩达机器学习（三）"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/07/02/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89/" title="吴恩达机器学习（三）">吴恩达机器学习（三）</div><time class="aside-post_meta post-meta__date" title="发表于 2020-07-02 18:45:38">2020-07-02</time></div></a></div><div class="aside-recent-post"><a href="/2020/06/20/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="吴恩达机器学习（二）" alt="吴恩达机器学习（二）"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/06/20/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89/" title="吴恩达机器学习（二）">吴恩达机器学习（二）</div><time class="aside-post_meta post-meta__date" title="发表于 2020-06-20 18:45:38">2020-06-20</time></div></a></div><div class="aside-recent-post"><a href="/2020/06/10/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/"><div class="aside-post-cover"><img class="aside-post-bg" data-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" title="吴恩达机器学习（一）" alt="吴恩达机器学习（一）"/></div><div class="aside-post-title"><div class="aside-post_title" href="/2020/06/10/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89/" title="吴恩达机器学习（一）">吴恩达机器学习（一）</div><time class="aside-post_meta post-meta__date" title="发表于 2020-06-10 19:45:38">2020-06-10</time></div></a></div></div></div></div><div class="card-widget card-categories"><div class="card-content"><div class="item-headline"><i class="fas fa-folder-open"></i><span>分类</span></div><ul class="card-category-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/study/"><span class="card-category-list-name">study</span><span class="card-category-list-count">11</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/tool/"><span class="card-category-list-name">tool</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/work/"><span class="card-category-list-name">work</span><span class="card-category-list-count">1</span></a></li>
+                       
+            </ul></div></div><div class="card-widget card-tags"><div class="card-content"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/C/" style="font-size: 16px; color: #999">C#</a> <a href="/tags/Crawler/" style="font-size: 18px; color: #999ea6">Crawler</a> <a href="/tags/Linux/" style="font-size: 18px; color: #999ea6">Linux</a> <a href="/tags/Python/" style="font-size: 22px; color: #99a9bf">Python</a> <a href="/tags/Unity/" style="font-size: 16px; color: #999">Unity</a> <a href="/tags/git/" style="font-size: 16px; color: #999">git</a> <a href="/tags/github/" style="font-size: 16px; color: #999">github</a> <a href="/tags/life/" style="font-size: 16px; color: #999">life</a> <a href="/tags/machine-learning/" style="font-size: 20px; color: #99a4b2">machine-learning</a> <a href="/tags/markdown/" style="font-size: 16px; color: #999">markdown</a> <a href="/tags/matplotlib/" style="font-size: 20px; color: #99a4b2">matplotlib</a> <a href="/tags/numpy/" style="font-size: 20px; color: #99a4b2">numpy</a> <a href="/tags/pandas/" style="font-size: 20px; color: #99a4b2">pandas</a> <a href="/tags/vim/" style="font-size: 16px; color: #999">vim</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 18px; color: #999ea6">操作系统</a></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/07/"><span class="card-archive-list-date">七月 2020</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/06/"><span class="card-archive-list-date">六月 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/03/"><span class="card-archive-list-date">三月 2020</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/02/"><span class="card-archive-list-date">二月 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/01/"><span class="card-archive-list-date">一月 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/11/"><span class="card-archive-list-date">十一月 2019</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/10/"><span class="card-archive-list-date">十月 2019</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/06/"><span class="card-archive-list-date">六月 2019</span><span class="card-archive-list-count">1</span></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="webinfo-article-name">文章数目 :</div><div class="webinfo-article-count">15</div></div><div class="webinfo-item">      <div class="webinfo-site-uv-name">本站访客数 :</div><div class="webinfo-site-uv-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="webinfo-site-name">本站总访问量 :</div><div class="webinfo-site-pv-count" id="busuanzi_value_site_pv"></div></div></div></div></div></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By John Doe</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><button class="translate_chn_to_cht" id="translateLink" title="简繁转换">繁</button><button id="darkmode" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="https://cdn.jsdelivr.net/npm/typed.js"></script><script>var subtitleEffect = true
+if (subtitleEffect) { 
+  var typed = new Typed("#subtitle", {
+    strings: "今日事&#44;今日畢,Never put off till tomorrow what you can do today".split(","),
+    startDelay: 300,
+    typeSpeed: 150,
+    loop: true,
+    backSpeed: 50
+  })
+} else {
+  document.getElementById("subtitle").innerHTML = '今日事&#44;今日畢'
+}</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body></html>
