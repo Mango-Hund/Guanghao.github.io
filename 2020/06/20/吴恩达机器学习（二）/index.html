@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/ocean.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/tomorrow-night-blue.min.css" />
   
 
   
@@ -211,7 +211,7 @@
 <h4 id="高级优化"><a href="#高级优化" class="headerlink" title="高级优化"></a>高级优化</h4><p>优化算法<br>代价函数$J(\theta)$,想得到$\min\limits_\theta J(\theta)$<br>当我们输入参数$\theta$的时候，我们可以使用代码计算  </p>
 <ul>
 <li>$J(\theta)$</li>
-<li>$\frac{\partial}{\partial\theta_j}J(\theta)\quad (for\quad j=0,1,2…,n)$<br>梯度下降：<br>Repeat {<br>$$\theta_j:\theta_j-\alpha\frac{\partial}{\partial\theta_j}J(\theta)$$<br>}<br><img src="/img/machine-learning/16.png" srcset="/img/loading.gif" alt="图16"><br>(共轭梯度法、BFGS、L-BFGS)<br>举例：<br>$\theta=\begin{bmatrix}\theta_1 \ \theta_2\end{bmatrix}$<br>$J(\theta)=(\theta_1-5)^2+(\theta_2-5)^2$<br>$\frac{\partial}{\partial\theta_1}J(\theta)=2(\theta_1-5)$<br>$\frac{\partial}{\partial\theta_2}J(\theta)=2(\theta_2-5)$    <pre><code class="hljs lsl">funtion[jVal,gradient]
+<li>$\frac{\partial}{\partial\theta_j}J(\theta)\quad (for\quad j=0,1,2…,n)$<br>梯度下降：<br>Repeat {<br>$$\theta_j:\theta_j-\alpha\frac{\partial}{\partial\theta_j}J(\theta)$$<br>}<br><img src="/img/machine-learning/16.png" srcset="/img/loading.gif" alt="图16"><br>(共轭梯度法、BFGS、L-BFGS)<br>举例：<br>$\theta=\begin{bmatrix}\theta_1 \ \theta_2\end{bmatrix}$<br>$J(\theta)=(\theta_1-5)^2+(\theta_2-5)^2$<br>$\frac{\partial}{\partial\theta_1}J(\theta)=2(\theta_1-5)$<br>$\frac{\partial}{\partial\theta_2}J(\theta)=2(\theta_2-5)$    <div class="hljs"><pre><code class="hljs lsl">funtion[jVal,gradient]
         = costFunction(theta)
     jVal = (theta(<span class="hljs-number">1</span>)<span class="hljs-number">-5</span>)^<span class="hljs-number">2</span> + ...
     (theta(<span class="hljs-number">2</span>)<span class="hljs-number">-5</span>)^<span class="hljs-number">2</span>;
@@ -221,7 +221,7 @@
 options = optimst('GradObj', 'on','MaxIter','<span class="hljs-number">100</span>');
 initialTheta = zeros(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>);
 [optTheta, functionVal, exitFlag] ...
-    =fminunc(@costFunction,initialTheta,options)</code></pre>
+    =fminunc(@costFunction,initialTheta,options)</code></pre></div>
 
 </li>
 </ul>
