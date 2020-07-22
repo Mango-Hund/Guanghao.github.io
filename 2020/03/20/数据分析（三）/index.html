@@ -204,8 +204,7 @@
             
             <article class="markdown-body">
               <h3 id="Pandas-库的引用"><a href="#Pandas-库的引用" class="headerlink" title="Pandas 库的引用"></a>Pandas 库的引用</h3><p>Pandas是Python第三方库，提供高性能易用数据类型和分析工具。<br><code>import pandas as pd</code><br>Pandas 基于Numpy实现，常与Numpy和Matplotlib一同使用<br>两个数据类型：Series, DataFrame<br>基于上述数据类型的各类操作<br>基本操作、运算操作、特征类操作、关联类操作<br>NumPy               Pandas<br>基础数据类型          扩展数据类型<br>关注数据的结构表达     关注数据的应用表达<br>维度：数据间关系       数据与索引间关系   </p>
-<p>Pandas库中的Series类型,由一组数据与之相关的数据索引组成<br>index_0 —&gt;data_a<br>index_1 —&gt;data_b<br>index_2 —&gt;data_c<br>index_3 —&gt;data_d  </p>
-<div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">1</span>]: <span class="hljs-keyword">import</span> pandas as pd
+<p>Pandas库中的Series类型,由一组数据与之相关的数据索引组成<br>index_0 —-&gt;data_a<br>index_1 —-&gt;data_b<br>index_2 —-&gt;data_c<br>index_3 —-&gt;data_d<br><div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">1</span>]: <span class="hljs-keyword">import</span> pandas as pd
 
 In [<span class="hljs-number">2</span>]: a = pd.Series([<span class="hljs-number">9</span>, <span class="hljs-number">8</span>, <span class="hljs-number">7</span>, <span class="hljs-number">6</span>])
 
@@ -224,9 +223,7 @@ a    <span class="hljs-number">9</span>
 b    <span class="hljs-number">8</span>
 c    <span class="hljs-number">7</span>
 d    <span class="hljs-number">6</span>
-dtype: <span class="hljs-built_in">int</span>64</code></pre></div>
-<p>从标量值创建  </p>
-<div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">7</span>]: <span class="hljs-keyword">import</span> pandas as pd
+dtype: <span class="hljs-built_in">int</span>64</code></pre></div><br>从标量值创建<br><div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">7</span>]: <span class="hljs-keyword">import</span> pandas as pd
 
 In [<span class="hljs-number">8</span>]: s = pd.Series(<span class="hljs-number">25</span>, index=[<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>])
 
@@ -235,9 +232,7 @@ Out[<span class="hljs-number">9</span>]:
 a    <span class="hljs-number">25</span>
 b    <span class="hljs-number">25</span>
 c    <span class="hljs-number">25</span>
-dtype: <span class="hljs-built_in">int</span>64</code></pre></div>
-<p>从字典类型创建   </p>
-<div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">10</span>]: d = pd.Series(&#123;<span class="hljs-string">'a'</span>:<span class="hljs-number">9</span>, <span class="hljs-string">'b'</span>:<span class="hljs-number">8</span>, <span class="hljs-string">'c'</span>:<span class="hljs-number">7</span>&#125;)
+dtype: <span class="hljs-built_in">int</span>64</code></pre></div><br>从字典类型创建<br><div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">10</span>]: d = pd.Series(&#123;<span class="hljs-string">'a'</span>:<span class="hljs-number">9</span>, <span class="hljs-string">'b'</span>:<span class="hljs-number">8</span>, <span class="hljs-string">'c'</span>:<span class="hljs-number">7</span>&#125;)
 
 In [<span class="hljs-number">11</span>]: d
 Out[<span class="hljs-number">11</span>]: 
@@ -254,9 +249,7 @@ c    <span class="hljs-number">7.0</span>
 a    <span class="hljs-number">9.0</span>
 b    <span class="hljs-number">8.0</span>
 d    NaN
-dtype: <span class="hljs-built_in">float</span>64</code></pre></div>
-<p>从ndarray类型创建  </p>
-<div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">14</span>]: <span class="hljs-keyword">import</span> pandas as pd
+dtype: <span class="hljs-built_in">float</span>64</code></pre></div><br>从ndarray类型创建<br><div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">14</span>]: <span class="hljs-keyword">import</span> pandas as pd
 
 In [<span class="hljs-number">15</span>]: <span class="hljs-keyword">import</span> numpy as np
 
@@ -269,9 +262,7 @@ Out[<span class="hljs-number">17</span>]:
 <span class="hljs-number">2</span>    <span class="hljs-number">2</span>
 <span class="hljs-number">3</span>    <span class="hljs-number">3</span>
 <span class="hljs-number">4</span>    <span class="hljs-number">4</span>
-dtype: <span class="hljs-built_in">int</span>64</code></pre></div>
-<p>Series类型的基本操作  </p>
-<div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">19</span>]: a
+dtype: <span class="hljs-built_in">int</span>64</code></pre></div><br>Series类型的基本操作<br><div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">19</span>]: a
 Out[<span class="hljs-number">19</span>]: 
 a    <span class="hljs-number">9</span>
 b    <span class="hljs-number">8</span>
@@ -283,8 +274,7 @@ In [<span class="hljs-number">20</span>]: b.index
 In [<span class="hljs-number">21</span>]: a.index
 Out[<span class="hljs-number">21</span>]: Index([<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>], dtype=<span class="hljs-string">'object'</span>)            #.index 获得索引/.valus获得数据
 In [<span class="hljs-number">22</span>]: a.values
-Out[<span class="hljs-number">22</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">9</span>, <span class="hljs-number">8</span>, <span class="hljs-number">7</span>, <span class="hljs-number">6</span>])</code></pre></div>
-<div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">27</span>]: b = pd.Series([<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>], index=[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>])
+Out[<span class="hljs-number">22</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">9</span>, <span class="hljs-number">8</span>, <span class="hljs-number">7</span>, <span class="hljs-number">6</span>])</code></pre></div><br><div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">27</span>]: b = pd.Series([<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>], index=[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>])
 
 In [<span class="hljs-number">28</span>]: b
 Out[<span class="hljs-number">28</span>]: 
@@ -312,9 +302,7 @@ Out[<span class="hljs-number">32</span>]:
 c    <span class="hljs-number">7</span>
 d    <span class="hljs-number">6</span>
 a    <span class="hljs-number">8</span>
-dtype: <span class="hljs-built_in">int</span>64</code></pre></div>
-<p>Series类型的操作类似于ndarray类型<br>索引方法相同，采用[]<br>NumPy中运算和操作可用于Series类型<br>可以通过自定义索引的列表进行切片<br>可以通过自动索引进行切片，如果含有自定义索引，它们也会被保留下来  </p>
-<div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">34</span>]: <span class="hljs-keyword">import</span> pandas as pd
+dtype: <span class="hljs-built_in">int</span>64</code></pre></div><br>Series类型的操作类似于ndarray类型<br>索引方法相同，采用[]<br>NumPy中运算和操作可用于Series类型<br>可以通过自定义索引的列表进行切片<br>可以通过自动索引进行切片，如果含有自定义索引，它们也会被保留下来<br><div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">34</span>]: <span class="hljs-keyword">import</span> pandas as pd
 
 In [<span class="hljs-number">35</span>]: <span class="hljs-keyword">import</span> numpy as np
 
@@ -375,9 +363,7 @@ b    NaN
 c    <span class="hljs-number">8.0</span>
 d    <span class="hljs-number">8.0</span>
 e    NaN
-dtype: <span class="hljs-built_in">float</span>64</code></pre></div>
-<p>Series类型在运算中会自动对齐不同索引的数据<br>Series对象和索引都可以有一个名字，存储在属性.name中<br>Series对象可以随时修改并立刻生效  </p>
-<div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">53</span>]: <span class="hljs-keyword">import</span> pandas as pd
+dtype: <span class="hljs-built_in">float</span>64</code></pre></div><br>Series类型在运算中会自动对齐不同索引的数据<br>Series对象和索引都可以有一个名字，存储在属性.name中<br>Series对象可以随时修改并立刻生效<br><div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">53</span>]: <span class="hljs-keyword">import</span> pandas as pd
 
 In [<span class="hljs-number">54</span>]: b = pd.Series([<span class="hljs-number">9</span>,<span class="hljs-number">8</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>],[<span class="hljs-string">'a'</span>,<span class="hljs-string">'b'</span>,<span class="hljs-string">'c'</span>,<span class="hljs-string">'d'</span>])
 
@@ -404,18 +390,18 @@ a    <span class="hljs-number">20</span>
 b     <span class="hljs-number">8</span>
 c    <span class="hljs-number">20</span>
 d     <span class="hljs-number">6</span>
-Name: Series, dtype: <span class="hljs-built_in">int</span>64</code></pre></div>
-
-<p>Pandas库的DataFrame类型<br>DataFrame类型由共同相同索引的一组列组成<br>index_0 —&gt;data_a     data_1            data_w<br>index_1 —&gt;data_b     data_2     ….   data_x<br>index_2 —&gt;data_c     data_3            data_y<br>index_3 —&gt;data_d     data_4            data_z<br>DataFrame是一个表格型的数据类型，每列值类型可以不同<br>DataFrame既有行索引、也有列索引<br>DataFrame常用于表达二维数据，但可以表达多维数据<br>可以由：  </p>
+Name: Series, dtype: <span class="hljs-built_in">int</span>64</code></pre></div></p>
+<p>Pandas库的DataFrame类型<br>DataFrame类型由共同相同索引的一组列组成<br>index_0 —-&gt;data_a     data_1            data_w<br>index_1 —-&gt;data_b     data_2     ….   data_x<br>index_2 —-&gt;data_c     data_3            data_y<br>index_3 —-&gt;data_d     data_4            data_z<br>DataFrame是一个表格型的数据类型，每列值类型可以不同<br>DataFrame既有行索引、也有列索引<br>DataFrame常用于表达二维数据，但可以表达多维数据<br>可以由：  </p>
 <ul>
 <li>二维ndarray对象  </li>
 <li>由一维ndarray、列表、字典、元组或者Series构成的字典  </li>
 <li>Series类型  </li>
 <li>其他的DaraFrame类型 </li>
 </ul>
-<h4 id="Pandas库的DataFrame类型"><a href="#Pandas库的DataFrame类型" class="headerlink" title="Pandas库的DataFrame类型"></a>Pandas库的DataFrame类型</h4><p>DataFrame类型由共同相同索引的一组列组成<br>index_0 —&gt;data_a     data_1            data_w<br>index_1 —&gt;data_b     data_2     ….   data_x<br>index_2 —&gt;data_c     data_3            data_y<br>index_3 —&gt;data_d     data_4            data_z<br>DataFrame是一个表格型的数据类型，每列值类型可以不同<br>DataFrame既有行索引、也有列索引<br>DataFrame常用于表达二维数据，但可以表达多维数据<br>可以由：<br>*二维ndarray对象<br>*由一维ndarray、列表、字典、元组或者Series构成的字典<br>*Series类型<br>*其他的DaraFrame类型</p>
-<p>二维ndarray对象创建</p>
-<div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">62</span>]: <span class="hljs-keyword">import</span> pandas as pd
+<h4 id="Pandas库的DataFrame类型"><a href="#Pandas库的DataFrame类型" class="headerlink" title="Pandas库的DataFrame类型"></a>Pandas库的DataFrame类型</h4><p>DataFrame类型由共同相同索引的一组列组成<br>index_0 —-&gt;data_a     data_1            data_w<br>index_1 —-&gt;data_b     data_2     ….   data_x<br>index_2 —-&gt;data_c     data_3            data_y<br>index_3 —-&gt;data_d     data_4            data_z<br>DataFrame是一个表格型的数据类型，每列值类型可以不同<br>DataFrame既有行索引、也有列索引<br>DataFrame常用于表达二维数据，但可以表达多维数据<br>可以由：<br><em>二维ndarray对象
+</em>由一维ndarray、列表、字典、元组或者Series构成的字典<br><em>Series类型
+</em>其他的DaraFrame类型</p>
+<p>二维ndarray对象创建<br><div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">62</span>]: <span class="hljs-keyword">import</span> pandas as pd
 
 In [<span class="hljs-number">63</span>]: <span class="hljs-keyword">import</span> numpy as np
 
@@ -427,9 +413,7 @@ Out[<span class="hljs-number">65</span>]:
 <span class="hljs-number">0</span>  <span class="hljs-number">0</span>  <span class="hljs-number">1</span>  <span class="hljs-number">2</span>  <span class="hljs-number">3</span>  <span class="hljs-number">4</span>
 <span class="hljs-number">1</span>  <span class="hljs-number">5</span>  <span class="hljs-number">6</span>  <span class="hljs-number">7</span>  <span class="hljs-number">8</span>  <span class="hljs-number">9</span>
 
-In [<span class="hljs-number">66</span>]:</code></pre></div>
-<p>从一维ndarray对象字典创建  </p>
-<div class="hljs"><pre><code class="hljs prolog"><span class="hljs-symbol">In</span> [<span class="hljs-number">67</span>]: dt = &#123;<span class="hljs-string">'one'</span>: pd.<span class="hljs-symbol">Series</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span> ,<span class="hljs-number">3</span>], index=[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>]), <span class="hljs-string">'two'</span>:pd.<span class="hljs-symbol">Series</span>
+In [<span class="hljs-number">66</span>]:</code></pre></div><br>从一维ndarray对象字典创建<br><div class="hljs"><pre><code class="hljs prolog"><span class="hljs-symbol">In</span> [<span class="hljs-number">67</span>]: dt = &#123;<span class="hljs-string">'one'</span>: pd.<span class="hljs-symbol">Series</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span> ,<span class="hljs-number">3</span>], index=[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>]), <span class="hljs-string">'two'</span>:pd.<span class="hljs-symbol">Series</span>
     ...: ([<span class="hljs-number">9</span>,<span class="hljs-number">8</span>,<span class="hljs-number">7</span>,<span class="hljs-number">6</span>], index=[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>])&#125;
 
 <span class="hljs-symbol">In</span> [<span class="hljs-number">68</span>]: d = pd.<span class="hljs-symbol">DataFrame</span>(dt)
@@ -449,9 +433,7 @@ d  <span class="hljs-symbol">NaN</span>    <span class="hljs-number">6</span>
    two three
 b    <span class="hljs-number">8</span>   <span class="hljs-symbol">NaN</span>
 c    <span class="hljs-number">7</span>   <span class="hljs-symbol">NaN</span>
-d    <span class="hljs-number">6</span>   <span class="hljs-symbol">NaN</span></code></pre></div>
-<p>从列表类型的字典创建  </p>
-<div class="hljs"><pre><code class="hljs prolog"><span class="hljs-symbol">In</span> [<span class="hljs-number">73</span>]: dl = &#123;<span class="hljs-string">'one'</span>: [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>], <span class="hljs-string">'two'</span>:[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>]&#125;
+d    <span class="hljs-number">6</span>   <span class="hljs-symbol">NaN</span></code></pre></div><br>从列表类型的字典创建<br><div class="hljs"><pre><code class="hljs prolog"><span class="hljs-symbol">In</span> [<span class="hljs-number">73</span>]: dl = &#123;<span class="hljs-string">'one'</span>: [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>], <span class="hljs-string">'two'</span>:[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>]&#125;
 <span class="hljs-symbol">In</span> [<span class="hljs-number">75</span>]: d = pd.<span class="hljs-symbol">DataFrame</span>(dl, index = [<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>])
 
 <span class="hljs-symbol">In</span> [<span class="hljs-number">76</span>]: d
@@ -462,10 +444,8 @@ b    <span class="hljs-number">2</span>   b
 c    <span class="hljs-number">3</span>   c
 d    <span class="hljs-number">4</span>   d
 
-<span class="hljs-symbol">In</span> [<span class="hljs-number">77</span>]:</code></pre></div>
-<p><img src="/img/data/43.png" srcset="/img/loading.gif" alt="图43"><br>如何改变Series和DataFrame对象？<br>增加或重排：重新索引  .reindex()能够改变或重排Series和DataFrame索引<br><img src="/img/data/44.png" srcset="/img/loading.gif" alt="图44"><br><img src="/img/data/45.png" srcset="/img/loading.gif" alt="图45"><br><img src="/img/data/46.png" srcset="/img/loading.gif" alt="图46"><br>Series 和DataFrame的索引是Index类型<br>Index对象是不可修改类型<br><img src="/img/data/47.png" srcset="/img/loading.gif" alt="图47"><br><img src="/img/data/48.png" srcset="/img/loading.gif" alt="图48"><br>使用.drop()能够删除Series和DataFrame指定行或列索引<br><img src="/img/data/49.png" srcset="/img/loading.gif" alt="图49">   </p>
-<h4 id="Pandas库的算术运算法则"><a href="#Pandas库的算术运算法则" class="headerlink" title="Pandas库的算术运算法则"></a>Pandas库的算术运算法则</h4><p>算术运算根据行列索引，补齐后运算，运算默认产生浮点数<br>补齐时缺项填充NaN（空值）<br>二维和一维、一维和零维间为广播运算<br>采用+-*/符号进行的二元运算产生新的对象  </p>
-<div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">78</span>]: <span class="hljs-keyword">import</span> pandas as pd
+<span class="hljs-symbol">In</span> [<span class="hljs-number">77</span>]:</code></pre></div><br><img src="/img/data/43.png" srcset="/img/loading.gif" alt="图43"><br>如何改变Series和DataFrame对象？<br>增加或重排：重新索引  .reindex()能够改变或重排Series和DataFrame索引<br><img src="/img/data/44.png" srcset="/img/loading.gif" alt="图44"><br><img src="/img/data/45.png" srcset="/img/loading.gif" alt="图45"><br><img src="/img/data/46.png" srcset="/img/loading.gif" alt="图46"><br>Series 和DataFrame的索引是Index类型<br>Index对象是不可修改类型<br><img src="/img/data/47.png" srcset="/img/loading.gif" alt="图47"><br><img src="/img/data/48.png" srcset="/img/loading.gif" alt="图48"><br>使用.drop()能够删除Series和DataFrame指定行或列索引<br><img src="/img/data/49.png" srcset="/img/loading.gif" alt="图49">   </p>
+<h4 id="Pandas库的算术运算法则"><a href="#Pandas库的算术运算法则" class="headerlink" title="Pandas库的算术运算法则"></a>Pandas库的算术运算法则</h4><p>算术运算根据行列索引，补齐后运算，运算默认产生浮点数<br>补齐时缺项填充NaN（空值）<br>二维和一维、一维和零维间为广播运算<br>采用+-*/符号进行的二元运算产生新的对象<br><div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">78</span>]: <span class="hljs-keyword">import</span> pandas as pd
 
 In [<span class="hljs-number">79</span>]: <span class="hljs-keyword">import</span> numpy as np
 
@@ -502,9 +482,7 @@ Out[<span class="hljs-number">85</span>]:
 <span class="hljs-number">0</span>   <span class="hljs-number">0.0</span>   <span class="hljs-number">1.0</span>    <span class="hljs-number">4.0</span>    <span class="hljs-number">9.0</span> NaN
 <span class="hljs-number">1</span>  <span class="hljs-number">20.0</span>  <span class="hljs-number">30.0</span>   <span class="hljs-number">42.0</span>   <span class="hljs-number">56.0</span> NaN
 <span class="hljs-number">2</span>  <span class="hljs-number">80.0</span>  <span class="hljs-number">99.0</span>  <span class="hljs-number">120.0</span>  <span class="hljs-number">143.0</span> NaN
-<span class="hljs-number">3</span>   NaN   NaN    NaN    NaN NaN</code></pre></div>
-<p><img src="/img/data/50.png" srcset="/img/loading.gif" alt="图50">   </p>
-<div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">86</span>]: b.add(a, fill_value = <span class="hljs-number">100</span>)
+<span class="hljs-number">3</span>   NaN   NaN    NaN    NaN NaN</code></pre></div><br><img src="/img/data/50.png" srcset="/img/loading.gif" alt="图50"><br><div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">86</span>]: b.add(a, fill_value = <span class="hljs-number">100</span>)
 Out[<span class="hljs-number">86</span>]: 
        <span class="hljs-number">0</span>      <span class="hljs-number">1</span>      <span class="hljs-number">2</span>      <span class="hljs-number">3</span>      <span class="hljs-number">4</span>
 <span class="hljs-number">0</span>    <span class="hljs-number">0.0</span>    <span class="hljs-number">2.0</span>    <span class="hljs-number">4.0</span>    <span class="hljs-number">6.0</span>  <span class="hljs-number">104.0</span>
@@ -518,9 +496,7 @@ Out[<span class="hljs-number">87</span>]:
 <span class="hljs-number">0</span>   <span class="hljs-number">0.0</span>   <span class="hljs-number">1.0</span>    <span class="hljs-number">4.0</span>    <span class="hljs-number">9.0</span>  <span class="hljs-number">0.0</span>
 <span class="hljs-number">1</span>  <span class="hljs-number">20.0</span>  <span class="hljs-number">30.0</span>   <span class="hljs-number">42.0</span>   <span class="hljs-number">56.0</span>  <span class="hljs-number">0.0</span>
 <span class="hljs-number">2</span>  <span class="hljs-number">80.0</span>  <span class="hljs-number">99.0</span>  <span class="hljs-number">120.0</span>  <span class="hljs-number">143.0</span>  <span class="hljs-number">0.0</span>
-<span class="hljs-number">3</span>   <span class="hljs-number">0.0</span>   <span class="hljs-number">0.0</span>    <span class="hljs-number">0.0</span>    <span class="hljs-number">0.0</span>  <span class="hljs-number">0.0</span></code></pre></div>
-<p>fill_value 参数代替NaN，代替后参与运算  </p>
-<div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">88</span>]: b
+<span class="hljs-number">3</span>   <span class="hljs-number">0.0</span>   <span class="hljs-number">0.0</span>    <span class="hljs-number">0.0</span>    <span class="hljs-number">0.0</span>  <span class="hljs-number">0.0</span></code></pre></div><br>fill_value 参数代替NaN，代替后参与运算<br><div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">88</span>]: b
 Out[<span class="hljs-number">88</span>]: 
     <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
 <span class="hljs-number">0</span>   <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
@@ -552,9 +528,7 @@ Out[<span class="hljs-number">92</span>]:
 <span class="hljs-number">0</span>   <span class="hljs-number">0.0</span>   <span class="hljs-number">0.0</span>   <span class="hljs-number">0.0</span>   <span class="hljs-number">0.0</span> NaN
 <span class="hljs-number">1</span>   <span class="hljs-number">5.0</span>   <span class="hljs-number">5.0</span>   <span class="hljs-number">5.0</span>   <span class="hljs-number">5.0</span> NaN
 <span class="hljs-number">2</span>  <span class="hljs-number">10.0</span>  <span class="hljs-number">10.0</span>  <span class="hljs-number">10.0</span>  <span class="hljs-number">10.0</span> NaN
-<span class="hljs-number">3</span>  <span class="hljs-number">15.0</span>  <span class="hljs-number">15.0</span>  <span class="hljs-number">15.0</span>  <span class="hljs-number">15.0</span> NaN</code></pre></div>
-<p>不同维度间为广播运算，一维Series默认在轴1参与运算<br>比较运算<br>同维度运算，尺寸一致<br>不同维度运算为广播运算，运算在轴1<br>Python 数据特征的提取<br> Pandas库的数据排序<br><code>.sort_index()方法在指定轴上根据索引进行排序，默认升序</code><br><code>.sort_index(axis=,ascending=True)</code>  </p>
-<div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">94</span>]: <span class="hljs-keyword">import</span> pandas as pd
+<span class="hljs-number">3</span>  <span class="hljs-number">15.0</span>  <span class="hljs-number">15.0</span>  <span class="hljs-number">15.0</span>  <span class="hljs-number">15.0</span> NaN</code></pre></div><br>不同维度间为广播运算，一维Series默认在轴1参与运算<br>比较运算<br>同维度运算，尺寸一致<br>不同维度运算为广播运算，运算在轴1<br>Python 数据特征的提取<br> Pandas库的数据排序<br><code>.sort_index()方法在指定轴上根据索引进行排序，默认升序</code><br><code>.sort_index(axis=,ascending=True)</code><br><div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">94</span>]: <span class="hljs-keyword">import</span> pandas as pd
 
 In [<span class="hljs-number">95</span>]: <span class="hljs-keyword">import</span> numpy as np
 
@@ -598,9 +572,7 @@ Out[<span class="hljs-number">102</span>]:
 c   <span class="hljs-number">4</span>   <span class="hljs-number">3</span>   <span class="hljs-number">2</span>   <span class="hljs-number">1</span>   <span class="hljs-number">0</span>
 a   <span class="hljs-number">9</span>   <span class="hljs-number">8</span>   <span class="hljs-number">7</span>   <span class="hljs-number">6</span>   <span class="hljs-number">5</span>
 d  <span class="hljs-number">14</span>  <span class="hljs-number">13</span>  <span class="hljs-number">12</span>  <span class="hljs-number">11</span>  <span class="hljs-number">10</span>
-b  <span class="hljs-number">19</span>  <span class="hljs-number">18</span>  <span class="hljs-number">17</span>  <span class="hljs-number">16</span>  <span class="hljs-number">15</span></code></pre></div>
-<p><code> .sort_value()</code>方法在指定轴上根据数值进行排序，默认升序<br><code>Series.sort_values(axis=0, ascending=True) </code><br><code>DataFrame.sort_values(by, axis = 0, ascending=True) </code><br>by : axis轴上某个索引或者索引列表  </p>
-<div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">105</span>]: c = b.sort_values(<span class="hljs-number">2</span>, ascending=False)
+b  <span class="hljs-number">19</span>  <span class="hljs-number">18</span>  <span class="hljs-number">17</span>  <span class="hljs-number">16</span>  <span class="hljs-number">15</span></code></pre></div><br><code>.sort_value()</code>方法在指定轴上根据数值进行排序，默认升序<br><code>Series.sort_values(axis=0, ascending=True)</code><br><code>DataFrame.sort_values(by, axis = 0, ascending=True)</code><br>by : axis轴上某个索引或者索引列表<br><div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">105</span>]: c = b.sort_values(<span class="hljs-number">2</span>, ascending=False)
 
 In [<span class="hljs-number">106</span>]: c
 Out[<span class="hljs-number">106</span>]: 
@@ -618,10 +590,8 @@ Out[<span class="hljs-number">108</span>]:
 c   <span class="hljs-number">4</span>   <span class="hljs-number">3</span>   <span class="hljs-number">2</span>   <span class="hljs-number">1</span>   <span class="hljs-number">0</span>
 a   <span class="hljs-number">9</span>   <span class="hljs-number">8</span>   <span class="hljs-number">7</span>   <span class="hljs-number">6</span>   <span class="hljs-number">5</span>
 d  <span class="hljs-number">14</span>  <span class="hljs-number">13</span>  <span class="hljs-number">12</span>  <span class="hljs-number">11</span>  <span class="hljs-number">10</span>
-b  <span class="hljs-number">19</span>  <span class="hljs-number">18</span>  <span class="hljs-number">17</span>  <span class="hljs-number">16</span>  <span class="hljs-number">15</span></code></pre></div>
-<p>NaN统一放到末尾  </p>
-<h4 id="Pandas基本分析函数"><a href="#Pandas基本分析函数" class="headerlink" title="Pandas基本分析函数"></a>Pandas基本分析函数</h4><p>适用于Series和DataFrame类型<br><img src="/img/data/51.png" srcset="/img/loading.gif" alt="图51"><br><img src="/img/data/52.png" srcset="/img/loading.gif" alt="图52">  </p>
-<div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">109</span>]: c =pd.Series([<span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">7</span>, <span class="hljs-number">6</span>], index=[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>])
+b  <span class="hljs-number">19</span>  <span class="hljs-number">18</span>  <span class="hljs-number">17</span>  <span class="hljs-number">16</span>  <span class="hljs-number">15</span></code></pre></div><br>NaN统一放到末尾  </p>
+<h4 id="Pandas基本分析函数"><a href="#Pandas基本分析函数" class="headerlink" title="Pandas基本分析函数"></a>Pandas基本分析函数</h4><p>适用于Series和DataFrame类型<br><img src="/img/data/51.png" srcset="/img/loading.gif" alt="图51"><br><img src="/img/data/52.png" srcset="/img/loading.gif" alt="图52"><br><div class="hljs"><pre><code class="hljs angelscript">In [<span class="hljs-number">109</span>]: c =pd.Series([<span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">7</span>, <span class="hljs-number">6</span>], index=[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'d'</span>])
 
 In [<span class="hljs-number">110</span>]: c
 Out[<span class="hljs-number">110</span>]: 
@@ -641,11 +611,9 @@ min      <span class="hljs-number">6.000000</span>
 <span class="hljs-number">50</span>%      <span class="hljs-number">7.500000</span>
 <span class="hljs-number">75</span>%      <span class="hljs-number">8.250000</span>
 max      <span class="hljs-number">9.000000</span>
-dtype: <span class="hljs-built_in">float</span>64</code></pre></div>
-<p>只适用于Series类型</p>
+dtype: <span class="hljs-built_in">float</span>64</code></pre></div><br>只适用于Series类型</p>
 <p><img src="/img/data/53.png" srcset="/img/loading.gif" alt="图53">   </p>
-<p>数据的累计统计分析<br>适用于Series和DataFrame类型<br><img src="/img/data/54.png" srcset="/img/loading.gif" alt="图54">   </p>
-<div class="hljs"><pre><code class="hljs angelscript"> In [<span class="hljs-number">1</span>]: <span class="hljs-keyword">import</span> pandas as pd
+<p>数据的累计统计分析<br>适用于Series和DataFrame类型<br><img src="/img/data/54.png" srcset="/img/loading.gif" alt="图54"><br><div class="hljs"><pre><code class="hljs angelscript"> In [<span class="hljs-number">1</span>]: <span class="hljs-keyword">import</span> pandas as pd
 
 In [<span class="hljs-number">2</span>]: <span class="hljs-keyword">import</span> numpy as np
 
@@ -689,9 +657,7 @@ Out[<span class="hljs-number">8</span>]:
 c   <span class="hljs-number">0</span>   <span class="hljs-number">1</span>   <span class="hljs-number">2</span>   <span class="hljs-number">3</span>   <span class="hljs-number">4</span>
 a   <span class="hljs-number">5</span>   <span class="hljs-number">6</span>   <span class="hljs-number">7</span>   <span class="hljs-number">8</span>   <span class="hljs-number">9</span>
 d  <span class="hljs-number">10</span>  <span class="hljs-number">11</span>  <span class="hljs-number">12</span>  <span class="hljs-number">13</span>  <span class="hljs-number">14</span>
-b  <span class="hljs-number">15</span>  <span class="hljs-number">16</span>  <span class="hljs-number">17</span>  <span class="hljs-number">18</span>  <span class="hljs-number">19</span></code></pre></div>
-<p>适用于Series和DataFrame类型，滚动计算（窗口计算）<br><img src="/img/data/55.png" srcset="/img/loading.gif" alt="图55">  </p>
-<div class="hljs"><pre><code class="hljs angelscript"> In [<span class="hljs-number">10</span>]: <span class="hljs-keyword">import</span> pandas as pd
+b  <span class="hljs-number">15</span>  <span class="hljs-number">16</span>  <span class="hljs-number">17</span>  <span class="hljs-number">18</span>  <span class="hljs-number">19</span></code></pre></div><br>适用于Series和DataFrame类型，滚动计算（窗口计算）<br><img src="/img/data/55.png" srcset="/img/loading.gif" alt="图55"><br><div class="hljs"><pre><code class="hljs angelscript"> In [<span class="hljs-number">10</span>]: <span class="hljs-keyword">import</span> pandas as pd
 
 In [<span class="hljs-number">11</span>]: <span class="hljs-keyword">import</span> numpy as np
 
@@ -719,8 +685,7 @@ Out[<span class="hljs-number">15</span>]:
 c   NaN   NaN   NaN   NaN   NaN
 a   NaN   NaN   NaN   NaN   NaN
 d  <span class="hljs-number">15.0</span>  <span class="hljs-number">18.0</span>  <span class="hljs-number">21.0</span>  <span class="hljs-number">24.0</span>  <span class="hljs-number">27.0</span>
-b  <span class="hljs-number">30.0</span>  <span class="hljs-number">33.0</span>  <span class="hljs-number">36.0</span>  <span class="hljs-number">39.0</span>  <span class="hljs-number">42.0</span></code></pre></div>
-
+b  <span class="hljs-number">30.0</span>  <span class="hljs-number">33.0</span>  <span class="hljs-number">36.0</span>  <span class="hljs-number">39.0</span>  <span class="hljs-number">42.0</span></code></pre></div></p>
 <h4 id="数据的相关分析"><a href="#数据的相关分析" class="headerlink" title="数据的相关分析"></a>数据的相关分析</h4><p>两个事物，表示为X和Y，如何判断它们之间的相关性？  </p>
 <ul>
 <li>X增大，Y增大，两个变量正相关  </li>
