@@ -162,7 +162,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.3k 字
+      3.4k 字
     </span>
   
 
@@ -203,7 +203,7 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><p>regular expression regex  RE<br>正则表达式是用来简洁表达一组字符串的表达式<br>优点是简洁<br><img src="/img/Crawler/22.png" srcset="/img/loading.gif" alt="图22"><br>是一种通用的字符串表达框架<br>简洁表达一组字符串的表达式<br>针对字符串表达“简洁”和“特征”思想的工具<br>判断字符串的特征归属<br>用处<br>表达文本类型的特征（病毒、入侵）<br>同时查找或替换一组字符串<br>匹配字符串的全部或部分<br>使用<br>编译：将符合正则表达式语法的字符串转换成正则表达式特征<br>语法<br>正则表达式是由字符和操作符组成<br><img src="/img/Crawler/23.png" srcset="/img/loading.gif" alt="图23"><br><img src="/img/Crawler/24.png" srcset="/img/loading.gif" alt="图24"><br>RE库是python的标准库，主要用于字符串的匹配 <code>import re</code><br>正则表达式的表示类型<br><code>raw string</code>类型（原生字符串类型）<br>re库采用raw string类型表示正则表达式，表示为：<code>r &#39;text&#39;</code> 例如<code>r&#39;[1-9]\d{5}&#39;</code><br>原生字符串不包含转义符<br><img src="/img/Crawler/26.png" srcset="/img/loading.gif" alt="图26"><br>re.search(pattern,string,flag=0)<br>在一个字符串中搜索匹配正则表达式的第一个位置，返回match对象  </p>
+              <h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><p>regular expression regex  RE<br>正则表达式是用来简洁表达一组字符串的表达式<br>优点是简洁<br><img src="/img/Crawler/22.png" srcset="/img/loading.gif" alt="图22"><br>是一种通用的字符串表达框架<br>简洁表达一组字符串的表达式<br>针对字符串表达“简洁”和“特征”思想的工具<br>判断字符串的特征归属<br>用处<br>表达文本类型的特征（病毒、入侵）<br>同时查找或替换一组字符串<br>匹配字符串的全部或部分<br>使用<br>编译：将符合正则表达式语法的字符串转换成正则表达式特征<br>语法<br>正则表达式是由字符和操作符组成<br><img src="/img/Crawler/23.png" srcset="/img/loading.gif" alt="图23"><br><img src="/img/Crawler/24.png" srcset="/img/loading.gif" alt="图24"><br>RE库是python的标准库，主要用于字符串的匹配 <code>import re </code><br>正则表达式的表示类型<br><code>raw string </code>类型（原生字符串类型）<br>re库采用raw string类型表示正则表达式，表示为：<code>r &#39;text&#39;</code> 例如<code> r&#39;[1-9]\d{5}&#39;</code><br>原生字符串不包含转义符<br><img src="/img/Crawler/26.png" srcset="/img/loading.gif" alt="图26"><br>re.search(pattern,string,flag=0)<br>在一个字符串中搜索匹配正则表达式的第一个位置，返回match对象  </p>
 <ul>
 <li>pattern：正则表达式的字符串或原生字符串表示  </li>
 <li>string：待匹配的字符串  </li>
@@ -269,9 +269,11 @@
 <span class="hljs-meta">&gt;&gt;&gt; </span>re,sub(<span class="hljs-string">r'[1-9]\d&#123;5&#125;'</span>, <span class="hljs-string">':zipcode'</span>, <span class="hljs-string">'BLT100081 TSU100084'</span>)
 <span class="hljs-meta">&gt;&gt;&gt; </span>re.sub(<span class="hljs-string">r'[1-9]\d&#123;5&#125;'</span>, <span class="hljs-string">':zipcode'</span>, <span class="hljs-string">'BLT100081 TSU100084'</span>)
 <span class="hljs-string">'BLT:zipcode TSU:zipcode'</span></code></pre></div>
-<img src="/img/Crawler/28.png" srcset="/img/loading.gif" alt="图28"><br><code>egex = re.compile(pattern,flags=0)</code><br>将正则表达式的字符串形式编译成正则表达式对象<br>*pattern：正则表达式的字符串或原生字符串表示  </li>
+<img src="/img/Crawler/28.png" srcset="/img/loading.gif" alt="图28"><br><code>egex = re.compile(pattern,flags=0)</code><br>将正则表达式的字符串形式编译成正则表达式对象  </li>
+<li>pattern：正则表达式的字符串或原生字符串表示  </li>
 </ul>
-<p>*flags ：正则表达式使用时的控制标记<br>RE库的match对象<br><div class="hljs"><pre><code class="hljs python">RE库的match对象  
+<p>*flags ：正则表达式使用时的控制标记<br>RE库的match对象  </p>
+<div class="hljs"><pre><code class="hljs python">RE库的match对象  
 ﻿&gt;&gt;&gt; <span class="hljs-keyword">import</span> re
 <span class="hljs-meta">&gt;&gt;&gt; </span>match = re.search(<span class="hljs-string">r'[1-9]\d&#123;5&#125;'</span>, <span class="hljs-string">'BLT 100081'</span>)
 <span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">if</span> match:
@@ -280,7 +282,9 @@
 <span class="hljs-number">100081</span>
 <span class="hljs-meta">&gt;&gt;&gt; </span>typr(match)
 <span class="hljs-meta">&gt;&gt;&gt; </span>type(match)
-&lt;<span class="hljs-class"><span class="hljs-keyword">class</span> '<span class="hljs-title">_sre</span>.<span class="hljs-title">SRE_Match</span>'&gt;</span></code></pre></div><br><img src="/img/Crawler/29.png" srcset="/img/loading.gif" alt="图29"><br><img src="/img/Crawler/30.png" srcset="/img/loading.gif" alt="图30"><br><div class="hljs"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> re
+&lt;<span class="hljs-class"><span class="hljs-keyword">class</span> '<span class="hljs-title">_sre</span>.<span class="hljs-title">SRE_Match</span>'&gt;</span></code></pre></div>
+<p><img src="/img/Crawler/29.png" srcset="/img/loading.gif" alt="图29"><br><img src="/img/Crawler/30.png" srcset="/img/loading.gif" alt="图30"> </p>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> re
 <span class="hljs-meta">&gt;&gt;&gt; </span>m = re.search(<span class="hljs-string">r'[1-9]\d'</span>, <span class="hljs-string">'BIT100081 TSU100084'</span>)
 <span class="hljs-meta">&gt;&gt;&gt; </span>m.string
 <span class="hljs-string">'BIT100081 TSU100084'</span>
@@ -295,11 +299,15 @@ re.compile(<span class="hljs-string">'[1-9]\\d'</span>)
 <span class="hljs-meta">&gt;&gt;&gt; </span>m.start()
 <span class="hljs-number">3</span>
 <span class="hljs-meta">&gt;&gt;&gt; </span>m.span()
-(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>)</code></pre></div><br>RE库的贪婪匹配和最小匹配<br><div class="hljs"><pre><code class="hljs awk">match = re.search(<span class="hljs-string">r'PY.*N'</span>, <span class="hljs-string">'PYANBNCNDN'</span> 
+(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>)</code></pre></div>
+<p>RE库的贪婪匹配和最小匹配 </p>
+<div class="hljs"><pre><code class="hljs awk">match = re.search(<span class="hljs-string">r'PY.*N'</span>, <span class="hljs-string">'PYANBNCNDN'</span> 
 match.group(<span class="hljs-number">0</span>) <span class="hljs-comment">#re库默认采用贪婪匹配，即输出匹配最长的子串</span>
-match = re.search(<span class="hljs-string">r'PY.*？N'</span>, <span class="hljs-string">'PYANBNCNDN'</span>) <span class="hljs-comment">#输出最小的匹配</span></code></pre></div><br><img src="/img/Crawler/31.png" srcset="/img/loading.gif" alt="图31">  </p>
+match = re.search(<span class="hljs-string">r'PY.*？N'</span>, <span class="hljs-string">'PYANBNCNDN'</span>) <span class="hljs-comment">#输出最小的匹配</span></code></pre></div>
+<p><img src="/img/Crawler/31.png" srcset="/img/loading.gif" alt="图31">  </p>
 <h4 id="淘宝商店比价定向爬虫"><a href="#淘宝商店比价定向爬虫" class="headerlink" title="淘宝商店比价定向爬虫"></a>淘宝商店比价定向爬虫</h4><p>功能描述<br>目标：获取淘宝搜索页面的信息，提取其中的商品名称和价格。<br>理解：<br>淘宝的搜索接口<br>翻页的处理<br>技术路线：requests-re   </p>
-<p>程序的结构设计<br>步骤1：提交商品搜索请求，循环获取页面<br>步骤2：对于每个页面，提取商品名称和价格信息<br>步骤3：将信息输出到屏幕上<br><div class="hljs"><pre><code class="hljs python">
+<p>程序的结构设计<br>步骤1：提交商品搜索请求，循环获取页面<br>步骤2：对于每个页面，提取商品名称和价格信息<br>步骤3：将信息输出到屏幕上  </p>
+<div class="hljs"><pre><code class="hljs python">
 <span class="hljs-comment">#CrowTaobaoPrice.py</span>
 <span class="hljs-keyword">import</span> requests
 <span class="hljs-keyword">import</span> re
@@ -346,8 +354,9 @@ match = re.search(<span class="hljs-string">r'PY.*？N'</span>, <span class="hlj
             <span class="hljs-keyword">continue</span>
     printGoodsList(infoList)
      
-main()</code></pre></div></p>
-<h4 id="股票数据定向爬虫"><a href="#股票数据定向爬虫" class="headerlink" title="股票数据定向爬虫"></a>股票数据定向爬虫</h4><p>目标：获取上交所和深交所所有股票的名称和交易信息<br>输出：保存到文件中<br>技术路线：requests-bs4-re<br>选取原则：股票信息静态存在于HTML页面中，非js代码生成，没有robots协议限制<br>选取方法：浏览器F12，源代码查看等<br>选取心态：不要纠结于某个网站，多找信息源尝试<br>程序的结构设计<br>步骤1：从东方财富网获取股票列表<br>步骤2：根据股票列表逐个到百度股票获取个股信息<br>步骤3：将结果存储到文件<br><div class="hljs"><pre><code class="hljs python"><span class="hljs-comment">#CrawBaiduStocksB.py</span>
+main()</code></pre></div>
+<h4 id="股票数据定向爬虫"><a href="#股票数据定向爬虫" class="headerlink" title="股票数据定向爬虫"></a>股票数据定向爬虫</h4><p>目标：获取上交所和深交所所有股票的名称和交易信息<br>输出：保存到文件中<br>技术路线：requests-bs4-re<br>选取原则：股票信息静态存在于HTML页面中，非js代码生成，没有robots协议限制<br>选取方法：浏览器F12，源代码查看等<br>选取心态：不要纠结于某个网站，多找信息源尝试<br>程序的结构设计<br>步骤1：从东方财富网获取股票列表<br>步骤2：根据股票列表逐个到百度股票获取个股信息<br>步骤3：将结果存储到文件  </p>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-comment">#CrawBaiduStocksB.py</span>
 <span class="hljs-keyword">import</span> requests
 <span class="hljs-keyword">from</span> bs4 <span class="hljs-keyword">import</span> BeautifulSoup
 <span class="hljs-keyword">import</span> traceback
@@ -418,7 +427,8 @@ main()</code></pre></div></p>
     getStockList(slist, stock_list_url)
     getStockInfo(slist, stock_info_url, output_file)
  
-main()</code></pre></div></p>
+main()</code></pre></div>
+
 <h3 id="Scrapy-框架与实例"><a href="#Scrapy-框架与实例" class="headerlink" title="Scrapy 框架与实例"></a>Scrapy 框架与实例</h3><p>Scrapy是功能强大的爬虫框架<br>爬虫框架是实现爬虫功能的一个软件结构和功能组件集合<br>爬虫框架是一个半成品，能够帮助用户实现专业网络爬虫<br>Scrapy爬虫框架结构：<br><img src="/img/Crawler/32.png" srcset="/img/loading.gif" alt="图32"><br><code>Downloader Middleware</code><br>目的：实施Engine、Scheduler和Downlaoder之间进行用户可配置的控制<br>功能：修改、丢弃、新增请求或者响应<br><code>Spider</code>（用户主要编写模块）<br>解析Downloader返回的响应（Response）<br>产生爬取项（scrapyed item）<br>产生额外的爬取请求（Requests）<br><code>Item Pipelines</code>（需要用户自己编写代码）<br>以流水线方式处理Spider产生的爬取项<br>由一组操作顺序组成，类似流水线，每个操作是一个Item Pipeline类型<br>可能操作包括：清理、检验和查重爬取项中的HTML数据、将数据存储到数据库<br><code>Spider Middleware</code><br>目的：对请求和爬取项的再处理<br>功能：修改、丢弃、新增请求或者爬取项<br>用户可以编写配置代码<br><img src="/img/Crawler/33.png" srcset="/img/loading.gif" alt="图33"><br>Scrapy命令行格式：<br><code>&gt;scrapy&lt;command&gt;[options][args]</code><br><img src="/img/Crawler/34.png" srcset="/img/loading.gif" alt="图34"><br>产生步骤：  </p>
 <ol>
 <li>建立一个Scapy爬虫工程  </li>
@@ -448,14 +458,16 @@ Created spider <span class="hljs-string">'demo'</span> <span class="hljs-keyword
         <span class="hljs-keyword">with</span> open(fname, <span class="hljs-string">'wb'</span>) <span class="hljs-keyword">as</span> f:
             f.write(response.body)
         self.log(<span class="hljs-string">'Saved file %s.'</span> % name)</code></pre></div>
-<code>scrapy crawl  demo</code>运行爬虫<br>parse()用于处理响应，解析内容形成字典，发现新的URL爬取请求</li>
+<code>scrapy crawl  demo </code>运行爬虫<br>parse()用于处理响应，解析内容形成字典，发现新的URL爬取请求</li>
 </ol>
-<h4 id="Yield关键字"><a href="#Yield关键字" class="headerlink" title="Yield关键字"></a>Yield关键字</h4><p>生成器是一个不断产生值的函数<br>包含yield语句的函数是一个生成器<br>生成器每次产生一个值（yield语句），函数被冻结，被唤醒后再产生一个值<br><div class="hljs"><pre><code class="hljs ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">gen</span><span class="hljs-params">(n)</span></span><span class="hljs-symbol">:</span>
+<h4 id="Yield关键字"><a href="#Yield关键字" class="headerlink" title="Yield关键字"></a>Yield关键字</h4><p>生成器是一个不断产生值的函数<br>包含yield语句的函数是一个生成器<br>生成器每次产生一个值（yield语句），函数被冻结，被唤醒后再产生一个值   </p>
+<div class="hljs"><pre><code class="hljs ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">gen</span><span class="hljs-params">(n)</span></span><span class="hljs-symbol">:</span>
     <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n)<span class="hljs-symbol">:</span>
         <span class="hljs-keyword">yield</span> i**<span class="hljs-number">2</span>
-        <span class="hljs-comment">#产生一个小于n的所有整数的平方值</span></code></pre></div><br>生成器相比一次列出所有内容的优势<br>更节省存储空间<br>响应更迅速<br>使用更灵活  </p>
+        <span class="hljs-comment">#产生一个小于n的所有整数的平方值</span></code></pre></div>
+<p>生成器相比一次列出所有内容的优势<br>更节省存储空间<br>响应更迅速<br>使用更灵活  </p>
 <p>Scrapy爬虫的使用步骤：<br>步骤1：创建一个工程和Spider模板<br>步骤2：编写Spider<br>步骤3：编写Item Pipeline<br>步骤4：优化配置策略  </p>
-<p>爬虫的数据类型：Request 类、Response类、Item类<br>Request类 <code>class scrapy.http.Request()</code><br>Request对象表示一个HTTP请求<br>由spider生成，由Downlaoder执行  </p>
+<p>爬虫的数据类型：Request 类、Response类、Item类<br>Request类 <code>class scrapy.http.Request() </code><br>Request对象表示一个HTTP请求<br>由spider生成，由Downlaoder执行  </p>
 <ul>
 <li>url               Request对应请求的URL地址</li>
 <li>method       对应的请求方法， ‘GET’ ‘POST’等</li>
@@ -476,12 +488,15 @@ Created spider <span class="hljs-string">'demo'</span> <span class="hljs-keyword
 </ul>
 <p>Item类 <code>class scrapy.item.Item()</code><br>Item对象表示一个从HTML页面中提取的信息内容<br>由Spider生成，由Item Pipeline处理<br>Item类似于字典类型，可以按照字典类型操作  </p>
 <p>Scrapy爬虫支持多种HTML信息提取方法<br>Beautiful Soup<br>Ixml<br>re<br>XPath Selector<br>CSS Selector  </p>
-<p><code>&lt;HTML&gt;.css(&#39;a::attr(href)&#39;).extract</code>  # a:标签名称  href：标签属性</p>
+<p><code>&lt;HTML&gt;.css(&#39;a::attr(href)&#39;).extract </code>  # a:标签名称  href：标签属性</p>
 <h4 id="股票数据Scrapy爬虫实例"><a href="#股票数据Scrapy爬虫实例" class="headerlink" title="股票数据Scrapy爬虫实例"></a>股票数据Scrapy爬虫实例</h4><p>功能描述：<br>技术路线：Scrapy<br>目标：获取上交所和深交所所有股票的名称和交易信息<br>输出：保存到文件中   </p>
-<p>获取股票列表：<br>东方财富网：<a href="http://quote.eastmoney.com/stocklist.html" target="_blank" rel="noopener">http://quote.eastmoney.com/stocklist.html</a><br>获取个股信息：<br>百度股票： <a href="https://gupiao.baidu.com/stock/" target="_blank" rel="noopener">https://gupiao.baidu.com/stock/</a><br>单个股票：<a href="https://gupiao.baidu.com/stock/sz002439.html" target="_blank" rel="noopener">https://gupiao.baidu.com/stock/sz002439.html</a><br>步骤：<br>1.建立工程和Spider模板<br><div class="hljs"><pre><code class="hljs armasm"><span class="hljs-symbol">scrapy</span> startproject <span class="hljs-keyword">BaiduStocks</span>
+<p>获取股票列表：<br>东方财富网：<a href="http://quote.eastmoney.com/stocklist.html" target="_blank" rel="noopener">http://quote.eastmoney.com/stocklist.html</a><br>获取个股信息：<br>百度股票： <a href="https://gupiao.baidu.com/stock/" target="_blank" rel="noopener">https://gupiao.baidu.com/stock/</a><br>单个股票：<a href="https://gupiao.baidu.com/stock/sz002439.html" target="_blank" rel="noopener">https://gupiao.baidu.com/stock/sz002439.html</a><br>步骤：<br>1.建立工程和Spider模板  </p>
+<div class="hljs"><pre><code class="hljs armasm"><span class="hljs-symbol">scrapy</span> startproject <span class="hljs-keyword">BaiduStocks</span>
 <span class="hljs-keyword">cd </span><span class="hljs-keyword">BaiduStocks</span>
 <span class="hljs-keyword">scrapy </span>genspider stocks <span class="hljs-keyword">baidu.com</span>
-<span class="hljs-keyword">进一步修改spider/stocks.py文件</span></code></pre></div><br>2.编写Spider<br>配置stocks.py文件<br>修改对返回页面的处理<br>修改对新增URL爬取请求的处理<br><div class="hljs"><pre><code class="hljs python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span>
+<span class="hljs-keyword">进一步修改spider/stocks.py文件</span></code></pre></div>
+<p>2.编写Spider<br>配置stocks.py文件<br>修改对返回页面的处理<br>修改对新增URL爬取请求的处理  </p>
+<div class="hljs"><pre><code class="hljs python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span>
 <span class="hljs-keyword">import</span> scrapy
 <span class="hljs-keyword">import</span> re
 
@@ -515,7 +530,9 @@ Created spider <span class="hljs-string">'demo'</span> <span class="hljs-keyword
         infoDict.update(
             &#123;<span class="hljs-string">'股票名称'</span>:re.findall(<span class="hljs-string">'\s.*\('</span>,name)[<span class="hljs-number">0</span>].split()[<span class="hljs-number">0</span>] +\
             re.findall(<span class="hljs-string">'\&gt;.*\&lt;'</span>, name)[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>:<span class="hljs-number">-1</span>]&#125;)
-        <span class="hljs-keyword">yield</span> infoDict</code></pre></div><br>3.编写ITEM Pipelines<br>配置pipelines.py文件<br>定义对爬取项（Scraped Item）的处理类<br><div class="hljs"><pre><code class="hljs ruby">
+        <span class="hljs-keyword">yield</span> infoDict</code></pre></div>
+<p>3.编写ITEM Pipelines<br>配置pipelines.py文件<br>定义对爬取项（Scraped Item）的处理类  </p>
+<div class="hljs"><pre><code class="hljs ruby">
 <span class="hljs-comment"># -*- coding: utf-8 -*-</span>
 
 <span class="hljs-comment"># Define your item pipelines here</span>
@@ -541,9 +558,11 @@ Created spider <span class="hljs-string">'demo'</span> <span class="hljs-keyword
             <span class="hljs-keyword">self</span>.f.write(line)
         <span class="hljs-symbol">except:</span>
             pass
-        <span class="hljs-keyword">return</span> item</code></pre></div><br>配置ITEM_PIPELINES选项<br><div class="hljs"><pre><code class="hljs ebnf"><span class="hljs-attribute">ITEM_PIPELINES</span> = &#123;
+        <span class="hljs-keyword">return</span> item</code></pre></div>
+<p>配置ITEM_PIPELINES选项  </p>
+<div class="hljs"><pre><code class="hljs ebnf"><span class="hljs-attribute">ITEM_PIPELINES</span> = &#123;
     <span class="hljs-string">'BaiduStocks.pipelines.BaidustocksInfoPipeline'</span>: 300,
-&#125;</code></pre></div></p>
+&#125;</code></pre></div>
 <h4 id="优化实例"><a href="#优化实例" class="headerlink" title="优化实例"></a>优化实例</h4><p>配置并发连接选项<br><img src="/img/Crawler/35.png" srcset="/img/loading.gif" alt="图35"></p>
 
             </article>
