@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/monokai.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github.min.css" />
   
 
   
@@ -223,11 +223,11 @@
 <li><code>r.apparent_encoding</code>         从内容中分析出响应内容的编码方式（备选编码方式）  </li>
 <li><code>r.content</code>             HTTP响应内容的二进制形式  </li>
 </ul>
-<div class="hljs"><pre><code class="hljs ruby"><span class="hljs-meta">&gt;&gt;</span>&gt; import requests
+<pre><code class="hljs ruby"><span class="hljs-meta">&gt;&gt;</span>&gt; import requests
 <span class="hljs-meta">&gt;&gt;</span>&gt; r = requests.get(<span class="hljs-string">"http://www.baidu.com"</span>) 
 <span class="hljs-meta">&gt;&gt;</span>&gt; r.status_code <span class="hljs-number">200</span> 
 <span class="hljs-meta">&gt;&gt;</span>&gt; r.encoding = <span class="hljs-string">'utf-8'</span> 
-<span class="hljs-meta">&gt;&gt;</span>&gt; r.text﻿​</code></pre></div>
+<span class="hljs-meta">&gt;&gt;</span>&gt; r.text﻿​</code></pre>
 <p><code>requests.request(url,  **kwarges)</code><br>url: 拟获取页面的url链接<br>**kwarge: 12个控制访问的参数:<br>paras字典或者字节序列，作为参数增加URL中<br>data 字典、字节序列或文件对象，作为Request的内容<br>json JSON格式的数据，作为Request的内容<br>headers 字典，HTTP定制头（模拟浏览器）<br>cookies 字典或CookieJar， Request中的cookie<br>auth  元组，支持HTTP认证功能<br>files  字典类型，传输文件<br>timeout  设定超时时间，秒为单位<br>proxies 字典类型，设定访问服务器，可以增加登录认证<br>allow_redirects: True/False, 默认为True，重定向开关<br>stream: True/False ，默认为True，获取内容立即下载开关<br>verify True、False，默认为True，认证SSL证书开关<br>cert 本地SSL证书的路径<br><code>requests.head(url. **kwargs) </code><br><code>r = requests.head(&#39;http://httpbin.org/get&#39;&#39;)</code><br>可以用很少的流量获取网络的概要信息<br><code>requests.post(url, data=None,json=None,**kwargs)</code><br><code>payload = {&#39;key1&#39; : &#39;value1&#39;, &#39;key2&#39; : &#39;value2&#39;}</code><br><code>r = requests.post(&#39;http://httpbin.org/post&#39;, data = payload)</code><br>向URL POST一个字典，自动编码为form（表单）<br>如果不提交键对，只提交字符串，则会向ULR POST一个字符串，自动编码为data<br><code>requests.put(url, data=None,**kwargs)</code><br><code>requests.delete(url, **kwargs)</code><br><code>requests.get(url, params=None, **kwargs)</code>  </p>
 <h3 id="爬取网页的通用代码框架"><a href="#爬取网页的通用代码框架" class="headerlink" title="爬取网页的通用代码框架"></a>爬取网页的通用代码框架</h3><p>理解requests库的异常  </p>
 <ul>
@@ -236,7 +236,7 @@
 <li><code>requests.URLRequired </code>            URL缺失异常  </li>
 <li><code>requests.TooManyRedircts</code>       超过最大重定向次数，产生重定向异常  </li>
 <li><code>requests.ConnectionTimeout</code>    连接远程服务器超时异常  </li>
-<li><code>requests.Timeout</code>                      请求URL超时，产生超时异常  <div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests
+<li><code>requests.Timeout</code>                      请求URL超时，产生超时异常  <pre><code class="hljs python"><span class="hljs-keyword">import</span> requests
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getHTMLText</span><span class="hljs-params">(url)</span>:</span>
     <span class="hljs-keyword">try</span>:
         r = requests.get(url, timeout=<span class="hljs-number">30</span>)
@@ -247,18 +247,18 @@
         <span class="hljs-keyword">return</span> <span class="hljs-string">"产生异常"</span>
 <span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
     url = <span class="hljs-string">"http://www.baidu.com"</span>
-    print(getHTMLText(url))</code></pre></div>
+    print(getHTMLText(url))</code></pre>
 <h3 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h3>HTTP, Hypertext Transfer Protocol, 超文本传输协议。<br>HTTP是基于“请求与响应” 模式的、无状态的应用层协议。<br>HTTP URL实例：<br><a href="http://www.bit.edu.cn/" target="_blank" rel="noopener">http://www.bit.edu.cn</a><br><a href="http://220.181.111.188/duty" target="_blank" rel="noopener">http://220.181.111.188/duty</a><br>HTTP URL的理解：URL是通过HTTP协议存储资源的Internet路径，一个URL对应一个数据资源<br>HTTP协议对资源的操作<br>GET            请求获得URL位置的资源<br>HEAD         请求获取URL位置资源的响应信息报告，即获得该资源的头部信息<br>POST         请求向URL位置资源后附加新的数据<br>PUT            请求向URL位置存储一个资源，覆盖原URL位置的资源<br>PATCH        请求局部更新URL位置的资源，即改变该处资源的部分内容<br>DELETE    请求删除URL位置存储的资源  </li>
 </ul>
 <p>理解PATCH和PUT的区别：<br>假设URL位置有一组数据UserInfo， 包括UserID、UserName等20个字段。<br>需求：用户修改了UserName，其他不变。<br>*采用PATCH，仅向URL提交UserName的局部更新请求<br>*采用PUT，必须将所有20个字段一并提交到URL，未提交的字段被删除<br>PATCH的最主要好处是节省带宽。  </p>
-<h3 id="网络爬虫的尺寸："><a href="#网络爬虫的尺寸：" class="headerlink" title="网络爬虫的尺寸："></a>网络爬虫的尺寸：</h3><div class="hljs"><pre><code class="hljs asciidoc">-----------------------------------------------------
+<h3 id="网络爬虫的尺寸："><a href="#网络爬虫的尺寸：" class="headerlink" title="网络爬虫的尺寸："></a>网络爬虫的尺寸：</h3><pre><code class="hljs asciidoc">-----------------------------------------------------
 小规模，数据量小  中规模，数据规模较大    大规模，搜索引擎
 爬取速度不敏感    爬取速度敏感           爬取速度关键
 Request库       Scrapy库             定制开发
 -----------------------------------------------------
-爬取网页 玩转网页  爬取网站，爬取系列网站   爬取全网</code></pre></div>
+爬取网页 玩转网页  爬取网站，爬取系列网站   爬取全网</code></pre>
 <p>第一个实例，爬取京东商品信息  </p>
-<div class="hljs"><pre><code class="hljs arduino"><span class="hljs-keyword">import</span> requests
+<pre><code class="hljs arduino"><span class="hljs-keyword">import</span> requests
 url = <span class="hljs-string">"https://item.jd.com/2967929.html"</span>
 <span class="hljs-keyword">try</span>:
     r = requests.<span class="hljs-built_in">get</span>(url)
@@ -266,9 +266,9 @@ url = <span class="hljs-string">"https://item.jd.com/2967929.html"</span>
     r.encoding r.apparaent_encoding
     <span class="hljs-built_in">print</span>(r.<span class="hljs-built_in">text</span>[:<span class="hljs-number">1000</span>])
 except:
-    <span class="hljs-built_in">print</span>(爬取失败)</code></pre></div>
+    <span class="hljs-built_in">print</span>(爬取失败)</code></pre>
 <p> 第二个实例，爬取亚马逊页面信息</p>
-<div class="hljs"><pre><code class="hljs routeros">import requests
+<pre><code class="hljs routeros">import requests
 url = <span class="hljs-string">"http://www.amazon.cn/gp/product/B01MBL5Z3Y"</span>
 try:
     kv = &#123;<span class="hljs-string">'user-agent'</span>:<span class="hljs-string">'Mozilla/5.0'</span>&#125;
@@ -277,9 +277,9 @@ try:
     r.encoding = r.apparent_encoding
     <span class="hljs-builtin-name">print</span>(r.text[1000:2000])
 except:
-    <span class="hljs-builtin-name">print</span>(<span class="hljs-string">"爬取失败"</span>)</code></pre></div>
+    <span class="hljs-builtin-name">print</span>(<span class="hljs-string">"爬取失败"</span>)</code></pre>
 <p>第三个实例，百度/360搜索</p>
-<div class="hljs"><pre><code class="hljs routeros">
+<pre><code class="hljs routeros">
 import requests
 keyword  = <span class="hljs-string">"Python"</span>
 try:
@@ -289,9 +289,9 @@ try:
     r.raise_for_status()
     <span class="hljs-builtin-name">print</span>(len(r.text))
 except:
-    <span class="hljs-builtin-name">print</span>(<span class="hljs-string">"爬取失败"</span>)</code></pre></div>
+    <span class="hljs-builtin-name">print</span>(<span class="hljs-string">"爬取失败"</span>)</code></pre>
 <p>第四个实例，网络图片的爬取和存储</p>
-<div class="hljs"><pre><code class="hljs lua">import requests
+<pre><code class="hljs lua">import requests
 import <span class="hljs-built_in">os</span> #路径操作：<span class="hljs-built_in">os</span>.<span class="hljs-built_in">path</span>子库，处理文件路径及信息、进程管理：启动系统中的其他程序、环境参数：获得系统中软硬件信息等环境参数
 url = <span class="hljs-string">"http://img0.dili360.com/pic/2020/04/29/5ea8e963e9e4f5663028305.jpg"</span>
 root = <span class="hljs-string">"/home/liu/Pictures/"</span>
@@ -308,9 +308,9 @@ try:
     <span class="hljs-keyword">else</span>:
     <span class="hljs-built_in">print</span>(文件已经存在)
 except:
-    <span class="hljs-built_in">print</span>(<span class="hljs-string">"爬取失败"</span>)</code></pre></div>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"爬取失败"</span>)</code></pre>
 <p>第五个实例，IP地址归属地的自动查询</p>
-<div class="hljs"><pre><code class="hljs processing"><span class="hljs-keyword">import</span> requests
+<pre><code class="hljs processing"><span class="hljs-keyword">import</span> requests
 url = <span class="hljs-string">"http://m.ip138.com/ip.asp?ip="</span>
 <span class="hljs-keyword">try</span>:
     r = requests.<span class="hljs-built_in">get</span>(url+<span class="hljs-string">'202.204.80.112'</span>)
@@ -318,17 +318,17 @@ url = <span class="hljs-string">"http://m.ip138.com/ip.asp?ip="</span>
     r.encoding = r.apparent_encoding
     <span class="hljs-built_in">print</span>(r.<span class="hljs-built_in">text</span>[<span class="hljs-number">-500</span>:])
 except:
-    <span class="hljs-built_in">print</span>(<span class="hljs-string">"爬取失败"</span>)</code></pre></div>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"爬取失败"</span>)</code></pre>
 
 <h3 id="掌握定向网络数据爬取和网页解析的基本能力"><a href="#掌握定向网络数据爬取和网页解析的基本能力" class="headerlink" title="掌握定向网络数据爬取和网页解析的基本能力"></a>掌握定向网络数据爬取和网页解析的基本能力</h3><h4 id="Beautiful-Soup库的入门和使用"><a href="#Beautiful-Soup库的入门和使用" class="headerlink" title="Beautiful Soup库的入门和使用"></a>Beautiful Soup库的入门和使用</h4><p>演示HTML页面地址：<br><a href="http://python123.io/ws/demo.html" target="_blank" rel="noopener">http://python123.io/ws/demo.html</a>  </p>
 <p>打开网页的源代码（HTML 5.0）</p>
-<div class="hljs"><pre><code class="hljs coffeescript"><span class="hljs-keyword">from</span> bs4 <span class="hljs-keyword">import</span> BeautifulSoup <span class="hljs-comment">#bs4是一个类</span>
+<pre><code class="hljs coffeescript"><span class="hljs-keyword">from</span> bs4 <span class="hljs-keyword">import</span> BeautifulSoup <span class="hljs-comment">#bs4是一个类</span>
 soup = BeautifulSoup(<span class="hljs-string">'&lt;p&gt;data&lt;/p&gt;'</span>, <span class="hljs-string">'html.parser'</span>)  
-<span class="hljs-built_in">print</span>(soup.prettify())</code></pre></div>
+<span class="hljs-built_in">print</span>(soup.prettify())</code></pre>
 <p>BeautifulSoup库的基本元素<br><img src="/img/Crawler/02.png" srcset="/img/loading.gif" alt="图2"><br>BeautifulSoup库是解析、遍历、维护“标签树”的功能库<br><img src="/img/Crawler/03.png" srcset="/img/loading.gif" alt="图3"><br>BeautifulSoup库的引用<br>BeautifulSoup库，也叫bs4<br><code>from bs4 import BeautifulSoup</code><br><img src="/img/Crawler/04.png" srcset="/img/loading.gif" alt="图4"><br>这三者是等价的关系</p>
-<div class="hljs"><pre><code class="hljs lisp">from bs4 import BeautifulSoup
+<pre><code class="hljs lisp">from bs4 import BeautifulSoup
 soup = BeautifulSoup(<span class="hljs-string">"&lt;html&gt;data&lt;html&gt;"</span>, <span class="hljs-string">"html.parser"</span>)
-soup2 = BeautifulSoup(<span class="hljs-name">open</span>(<span class="hljs-string">"/home/liu/Document/demo.htmnl"</span>), html.parser)</code></pre></div>
+soup2 = BeautifulSoup(<span class="hljs-name">open</span>(<span class="hljs-string">"/home/liu/Document/demo.htmnl"</span>), html.parser)</code></pre>
 <p>BeaytifulSoup库的解析器  </p>
 <ul>
 <li>bs4的HTML解析器   BeautifulSoup(mk, ‘html.parser’)  安装ps4库  </li>
@@ -337,7 +337,7 @@ soup2 = BeautifulSoup(<span class="hljs-name">open</span>(<span class="hljs-stri
 <li>html5lib的解析器      BeautifulSoup(mk. ‘html5lib’)       pip install html5lib  </li>
 </ul>
 <p>BeautifulSoup 类的基本元素<br>Tag 标签，最基本的信息组织单元，分别用&lt;&gt;和&lt;/&gt;表明开头和结尾<br>Name  标签的名字  <code>&lt;p&gt;...&lt;/p&gt;</code>的名字是‘p’，格式：<tag>.name<br>Atrributes 标签的属性，字典形式组织，格式：<code>&lt;tag&gt;.attrs</code><br>NavigableString 　标签内非属性字符串，&lt;&gt;…&lt;/.&gt;字符串，格式：<tag>string 可以跨越多个标签形式<br>Comment  标签内字符串的注释部分，一种特殊的Comment类型  </p>
-<div class="hljs"><pre><code class="hljs vim">&gt;&gt;&gt; from bs4 import BeautifulSoup
+<pre><code class="hljs vim">&gt;&gt;&gt; from bs4 import BeautifulSoup
 &gt;&gt;&gt; soup = BeautifulSoup(demo, <span class="hljs-string">"html.parser"</span>)
 &gt;&gt;&gt; <span class="hljs-keyword">print</span>(soup.prettify())
 <span class="hljs-symbol">&lt;html&gt;</span>
@@ -416,14 +416,14 @@ NameError: name <span class="hljs-string">'BeaytifulSoup'</span> <span class="hl
 &gt;&gt;&gt; newsoup.<span class="hljs-keyword">p</span>.<span class="hljs-built_in">string</span>
 <span class="hljs-string">'this is not a comment'</span>
 &gt;&gt;&gt; <span class="hljs-built_in">type</span>(newsoup.<span class="hljs-keyword">p</span>.<span class="hljs-built_in">string</span>)
-&lt;class <span class="hljs-string">'bs4.element.NavigableString'</span>&gt;</code></pre></div>
+&lt;class <span class="hljs-string">'bs4.element.NavigableString'</span>&gt;</code></pre>
 <p>HTML的基本格式<br><img src="/img/Crawler/05.png" srcset="/img/loading.gif" alt="图5">  </p>
 <ul>
 <li>contents  子节点的列表，将<code>&lt;tag&gt;</code>所有儿子节点存入列表</li>
 <li>children   子节点的迭代类型，与.contents类似，用于循环遍历儿子节点</li>
 <li>descendants   子孙节点的迭代类型，包含所有子孙节点，用于循环遍历<br>标签树的上行遍历  </li>
 <li>parent  节点的父亲标签</li>
-<li>parents   节点先辈标签的迭代类型，用于循环遍历先辈节点<div class="hljs"><pre><code class="hljs mel">soup = BeautifulSoup(demo, <span class="hljs-string">"html.parser"</span>)
+<li>parents   节点先辈标签的迭代类型，用于循环遍历先辈节点<pre><code class="hljs mel">soup = BeautifulSoup(demo, <span class="hljs-string">"html.parser"</span>)
 <span class="hljs-keyword">for</span> <span class="hljs-keyword">parent</span> <span class="hljs-keyword">in</span> soup.a.parents:
     <span class="hljs-keyword">if</span> <span class="hljs-keyword">parent</span> is None:
         <span class="hljs-keyword">print</span>(<span class="hljs-keyword">parent</span>)
@@ -432,18 +432,18 @@ NameError: name <span class="hljs-string">'BeaytifulSoup'</span> <span class="hl
 p
 body
 html
-[document]</code></pre></div>
+[document]</code></pre>
 标签库的平行遍历  </li>
 <li>next_sibling 返回按照HTML文本顺序的下一个平行节点标签  </li>
 <li>previous_sibling 返回按照HTML文本顺序的上一个平行节点标签 </li>
 <li>.next_siblings 迭代类型，返回按照HTML文本顺序的后续所有平行节点标签  </li>
 <li>.previous_siblings 迭代类型， 返回按照HTML文本顺序的前续所有平行节点标签  </li>
-<li>所有的平行遍历发生在同一个父亲节点之下<div class="hljs"><pre><code class="hljs bash"><span class="hljs-keyword">for</span> sibling <span class="hljs-keyword">in</span> soup.a.next_siblings:
+<li>所有的平行遍历发生在同一个父亲节点之下<pre><code class="hljs bash"><span class="hljs-keyword">for</span> sibling <span class="hljs-keyword">in</span> soup.a.next_siblings:
     <span class="hljs-built_in">print</span>(sibling) <span class="hljs-comment">#遍历后续节点</span>
     
 <span class="hljs-keyword">for</span> sibling <span class="hljs-keyword">in</span> soup.a.previous_siblings:
-    <span class="hljs-built_in">print</span>(sibling)<span class="hljs-comment">#遍历前续节点</span></code></pre></div>
-基于bs4库的HTML格式输出<br><img src="/img/Crawler/06.png" srcset="/img/loading.gif" alt="图6"><div class="hljs"><pre><code class="hljs xml">
+    <span class="hljs-built_in">print</span>(sibling)<span class="hljs-comment">#遍历前续节点</span></code></pre>
+基于bs4库的HTML格式输出<br><img src="/img/Crawler/06.png" srcset="/img/loading.gif" alt="图6"><pre><code class="hljs xml">
 &gt;&gt;&gt; print(soup.prettify())
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -469,27 +469,27 @@ html
    .
   <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
-bs4库的编码<div class="hljs"><pre><code class="hljs stylus">soup = BeautifulSoup(<span class="hljs-string">"&lt;p&gt;中文&lt;/p&gt;"</span>, <span class="hljs-string">"html, parser"</span>)
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+bs4库的编码<pre><code class="hljs stylus">soup = BeautifulSoup(<span class="hljs-string">"&lt;p&gt;中文&lt;/p&gt;"</span>, <span class="hljs-string">"html, parser"</span>)
 soup<span class="hljs-selector-class">.p</span>.string
 <span class="hljs-string">'中文'</span>
 <span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(soup.p.prettify()</span></span>)
 &lt;p&gt;
 中文
-&lt;p/&gt;</code></pre></div>
+&lt;p/&gt;</code></pre>
 信息组织与提取方法<br>信息的标记<br>标记的信息可形成信息组织结构，增加了信息维度<br>标记后的信息可用于通信、存储或展示<br>标记后的结构与信息一样具有重要价值<br><img src="/img/Crawler/07.png" srcset="/img/loading.gif" alt="图7"><br>HTML可以通过预定义的&lt;&gt;…&lt;/&gt;标签形式组织不同类型的信息<br>XML eXtensible Markup Language (基于HTML发展而来)<br><img src="/img/Crawler/08.png" srcset="/img/loading.gif" alt="图8"><br><img src="/img/Crawler/09.png" srcset="/img/loading.gif" alt="图9"><br>JSON javaScript Object Notation<br>有类型的键值对key:value<br><img src="/img/Crawler/10.png" srcset="/img/loading.gif" alt="图10"><br><img src="/img/Crawler/11.png" srcset="/img/loading.gif" alt="图11"><br><img src="/img/Crawler/12.png" srcset="/img/loading.gif" alt="图12"><br>YAML YAML Ain’t Markup Language<br>无类型键值对 key：value<br><img src="/img/Crawler/13.png" srcset="/img/loading.gif" alt="图13"><br><img src="/img/Crawler/14.png" srcset="/img/loading.gif" alt="图14"><br><img src="/img/Crawler/15.png" srcset="/img/loading.gif" alt="图15"><br><img src="/img/Crawler/16.png" srcset="/img/loading.gif" alt="图17"><br>XML 最早的通用信息标记语言，可扩展性好，但繁琐          Internet 上的信息交互与传递<br>JSON 信息有类型，适合程序处理（js），相比XML简洁   移动应用云端和节点的信息通信，无注释<br>YAML 信息无类型，文本信息比例最高，可读性好       各类系统的配置文件，有注释易读  </li>
 </ul>
 <p>信息提取的一般方法<br>方法一：完整解析信息的 标记形式，再提取关键信息<br>XML JSON YAML<br>需要标记解析器  例如：bs4库的标签树遍历<br>优点：信息解析准确<br>缺点：提取过程繁琐，速度慢<br>方法二：无视任何标记形式，直接搜索关键信息<br>对信息的文本查找函数即可<br>优点： 提取过程简洁，速度较快<br>缺点： 提取结果准确性与信息内容相关<br>方法三：融合方法：结合形式解析与搜索方法，提取关键信息<br>XML JSON YAML搜索<br>需要标记解析器及文本查找函数  </p>
 <p>实例：提取HTML中所有的URL连接<br>思路：<br>（1）搜索到所有<code>&lt;a&gt;</code>标签<br>（2）解析<code>&lt;a&gt;</code>标签格式，提取href后的链接内容</p>
-<div class="hljs"><pre><code class="hljs lasso">&gt;&gt;&gt; soup = BeautifulSoup(demo, <span class="hljs-string">"html.parser"</span>)
+<pre><code class="hljs lasso">&gt;&gt;&gt; soup = BeautifulSoup(demo, <span class="hljs-string">"html.parser"</span>)
 &gt;&gt;&gt; for <span class="hljs-keyword">link</span> <span class="hljs-keyword">in</span> soup.find_all(<span class="hljs-string">'a'</span>):
 <span class="hljs-params">...</span>     print(<span class="hljs-keyword">link</span>.get(<span class="hljs-string">'href'</span>))
 <span class="hljs-params">...</span> 
 http:<span class="hljs-comment">//www.icourse163.org/course/BIT-268001</span>
-http:<span class="hljs-comment">//www.icourse163.org/course/BIT-1001870001</span></code></pre></div>
+http:<span class="hljs-comment">//www.icourse163.org/course/BIT-1001870001</span></code></pre>
 <p>返回一个列表类型，存储查找的结果<br>name：对标签名称的检索字符串<br>attrs: 对标签属性值的检索字符串，可标注属性检索<br>recursive: 是否对子孙全部检索，默认True<br>string:&lt;&gt;…&lt;/&gt;中字符串区域的检索字符串<br><code>&lt;tag&gt;(..) </code>等价于 <code>&lt;tag&gt;.find_all(..) </code><br><code>soup(..)</code>等价于 <code>soup.find_all(..)</code><br><img src="/img/Crawler/18.png" srcset="/img/loading.gif" alt="图18">  </p>
 <h3 id="实例：最好大学排名"><a href="#实例：最好大学排名" class="headerlink" title="实例：最好大学排名"></a>实例：最好大学排名</h3><p>功能描述<br>输入：大学排名URL链接 <a href="http://www.zuihaodaxue.com/zuihaodaxuepaiming2019.html" target="_blank" rel="noopener">http://www.zuihaodaxue.com/zuihaodaxuepaiming2019.html</a><br>输出：大学排名信息的屏幕输出（排名，大学名称，总分）<br>技术路线：requests-bs4<br>定向爬虫：仅对输入的URL进行爬取，不扩展爬取。<br>程序的结构设计：<br>步骤一：从网络上获取大学排名网页内容   getHTMLText()<br>步骤二：提取网页内容中信息到合适的数据结构   fillUnivList()<br>步骤三：利用数据结构展示并输出结果  printUnivList<br>实例编写：<br><img src="/img/Crawler/19.png" srcset="/img/loading.gif" alt="图19">  </p>
-<div class="hljs"><pre><code class="hljs python"><span class="hljs-comment">#CrawUnivRankingA.py</span>
+<pre><code class="hljs python"><span class="hljs-comment">#CrawUnivRankingA.py</span>
 <span class="hljs-keyword">import</span> requests
 <span class="hljs-keyword">from</span> bs4 <span class="hljs-keyword">import</span> BeautifulSoup
 <span class="hljs-keyword">import</span> bs4
@@ -521,14 +521,14 @@ http:<span class="hljs-comment">//www.icourse163.org/course/BIT-1001870001</span
     url = <span class="hljs-string">'https://www.zuihaodaxue.cn/zuihaodaxuepaiming2016.html'</span>
     html = getHTMLText(url)
     fillUnivList(uinfo, html)
-    printUnivList(uinfo, <span class="hljs-number">20</span>) <span class="hljs-comment"># 20 univs</span></code></pre></div>
+    printUnivList(uinfo, <span class="hljs-number">20</span>) <span class="hljs-comment"># 20 univs</span></code></pre>
 <p><img src="/img/Crawler/20.png" srcset="/img/loading.gif" alt="图20"><br>中文对齐问题的解决<br>采用中文字符的空格填充chr（12288）  </p>
-<div class="hljs"><pre><code class="hljs routeros">def printUnivList(ulist, num):
+<pre><code class="hljs routeros">def printUnivList(ulist, num):
     tplt = <span class="hljs-string">"&#123;0:^10&#125;\t&#123;1:&#123;3&#125;^10&#125;\t&#123;2:^10&#125;"</span>
     <span class="hljs-builtin-name">print</span>(tplt.format(<span class="hljs-string">"排名"</span>,<span class="hljs-string">"学校名称"</span>,<span class="hljs-string">"总分"</span>,chr(12288)))
     <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(num):
         <span class="hljs-attribute">u</span>=ulist[i]
-        <span class="hljs-builtin-name">print</span>(tplt.format(u[0],u[1],u[2],chr(12288)))</code></pre></div>
+        <span class="hljs-builtin-name">print</span>(tplt.format(u[0],u[1],u[2],chr(12288)))</code></pre>
 <p><img src="/img/Crawler/21.png" srcset="/img/loading.gif" alt="图21">  </p>
 
             </article>

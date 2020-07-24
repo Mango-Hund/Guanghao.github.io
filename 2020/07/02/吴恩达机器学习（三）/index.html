@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/monokai.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github.min.css" />
   
 
   
@@ -292,8 +292,8 @@
 <h3 id="大规模机器学习"><a href="#大规模机器学习" class="headerlink" title="大规模机器学习"></a>大规模机器学习</h3><h4 id="随机梯度下降"><a href="#随机梯度下降" class="headerlink" title="随机梯度下降"></a>随机梯度下降</h4><p>代价函数 $cost(\theta,(x^{(i)},y^{(i)}))=\frac{1}{2}(h_\theta(x^{(i)})-y^{(i)})^2$<br>目标优化函数<br>$$J_{train}(\theta)=\frac{1}{m}\sum^m_{i=1}cost(\theta,(x^{(i)},y^{(i)}))$$</p>
 <ol>
 <li>将所有m个训练样本重新随机排列</li>
-<li>Repeat{<br>  for i:=1,…,m{   <div class="hljs"><pre><code>$\theta_j:=\theta_j-\alpha(h_\theta(x^{(i)})-y^{(i)})x_j^{(i)}$  
-(for every j=0,...,n)  </code></pre></div>
+<li>Repeat{<br>  for i:=1,…,m{   <pre><code>$\theta_j:=\theta_j-\alpha(h_\theta(x^{(i)})-y^{(i)})x_j^{(i)}$  
+(for every j=0,...,n)  </code></pre>
   }  </li>
 </ol>
 <p>}<br>循环1～10次就好了  </p>

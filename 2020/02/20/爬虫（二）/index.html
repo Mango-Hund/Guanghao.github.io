@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/monokai.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github.min.css" />
   
 
   
@@ -207,16 +207,16 @@
 <ul>
 <li>pattern：正则表达式的字符串或原生字符串表示  </li>
 <li>string：待匹配的字符串  </li>
-<li>flags：正则表达式使用时的控制标记<br><img src="/img/Crawler/27.png" srcset="/img/loading.gif" alt="图27">  <div class="hljs"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> re
+<li>flags：正则表达式使用时的控制标记<br><img src="/img/Crawler/27.png" srcset="/img/loading.gif" alt="图27">  <pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> re
 <span class="hljs-meta">&gt;&gt;&gt; </span>match = re.search(<span class="hljs-string">r'[1-9]\d&#123;5&#125;'</span>, <span class="hljs-string">'BIT 100081'</span>)
 <span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">if</span> match:
 <span class="hljs-meta">... </span>    print(match.group(<span class="hljs-number">0</span>))<span class="hljs-comment">#group() 同group（0）就是匹配正则表达式整体结果</span>
 <span class="hljs-meta">... </span>
-<span class="hljs-number">100081</span></code></pre></div>
+<span class="hljs-number">100081</span></code></pre>
 <code>re.match(pattern,string,flags=0)</code><br>从一个字符串的开始位置匹配正则表达式，返回match对象。  </li>
 <li>pattern：正则表达式的字符串或原生字符串表示  </li>
 <li>string：待匹配的字符串  </li>
-<li>flags：正则表达式使用时的控制标记  <div class="hljs"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> re
+<li>flags：正则表达式使用时的控制标记  <pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> re
 <span class="hljs-meta">&gt;&gt;&gt; </span>match = re.search(<span class="hljs-string">r'[1-9]\d&#123;5&#125;'</span>, <span class="hljs-string">'BIT 100081'</span>)
 <span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">if</span> match:
 <span class="hljs-meta">... </span>    print(match.group(<span class="hljs-number">0</span>))
@@ -231,49 +231,49 @@
 <span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">if</span> match:
 <span class="hljs-meta">... </span>    match.group(<span class="hljs-number">0</span>)
 <span class="hljs-meta">... </span>
-<span class="hljs-string">'100081'</span></code></pre></div>
+<span class="hljs-string">'100081'</span></code></pre>
 <code>re.findall(pattern,string,flags=0)</code><br>搜索字符串，以列表类型返回所有能匹配的子串  </li>
 <li>pattern：正则表达式的字符串或原生字符串表示  </li>
 <li>string：待匹配的字符串  </li>
-<li>flags：正则表达式使用时的控制标记  <div class="hljs"><pre><code class="hljs python"> &gt;&gt;&gt; <span class="hljs-keyword">import</span> re
+<li>flags：正则表达式使用时的控制标记  <pre><code class="hljs python"> &gt;&gt;&gt; <span class="hljs-keyword">import</span> re
 <span class="hljs-meta">&gt;&gt;&gt; </span>ls = re.findall(<span class="hljs-string">r'[1-9]\d&#123;5&#125;'</span>, <span class="hljs-string">'BIL100081 TSU100025'</span>)
 <span class="hljs-meta">&gt;&gt;&gt; </span>ls
-[<span class="hljs-string">'100081'</span>, <span class="hljs-string">'100025'</span>]</code></pre></div>
+[<span class="hljs-string">'100081'</span>, <span class="hljs-string">'100025'</span>]</code></pre>
 <code>re.split(pattern,string,maxsplit=0,flags=0)</code><br>将一个字符串按照正则表达式匹配的结果进行分割，返回列表类型  </li>
 <li>pattern：正则表达式的字符串或原生字符串表示  </li>
 <li>string：待匹配的字符串  </li>
 <li>flags：正则表达式使用时的控制标记  </li>
-<li>maxspilt: 最大分割数，剩余部分作为最后一个元素输出  <div class="hljs"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> re
+<li>maxspilt: 最大分割数，剩余部分作为最后一个元素输出  <pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> re
 <span class="hljs-meta">&gt;&gt;&gt; </span>ls = re.split(<span class="hljs-string">r'[1-9]\d&#123;5&#125;'</span>, <span class="hljs-string">'BIL100081 TSU100025'</span>)
 <span class="hljs-meta">&gt;&gt;&gt; </span>ls
 [<span class="hljs-string">'BIL'</span>, <span class="hljs-string">' TSU'</span>, <span class="hljs-string">''</span>]
 <span class="hljs-meta">&gt;&gt;&gt; </span>ls = re.split(<span class="hljs-string">r'[1-9]\d&#123;5&#125;'</span>, <span class="hljs-string">'BIL100081 TSU100025'</span>, maxsplit=<span class="hljs-number">1</span>) 
 <span class="hljs-meta">&gt;&gt;&gt; </span>ls
-[<span class="hljs-string">'BIL'</span>, <span class="hljs-string">' TSU100025'</span>]</code></pre></div>
+[<span class="hljs-string">'BIL'</span>, <span class="hljs-string">' TSU100025'</span>]</code></pre>
 <code>re.finditer(pattern,string,flags=0)</code><br>搜索字符串，返回一个匹配结果的迭代类型，每个迭代元素是match对象  </li>
 <li>pattern：正则表达式的字符串或原生字符串表示  </li>
 <li>string：待匹配的字符串  </li>
-<li>flags：正则表达式使用时的控制标记<div class="hljs"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> re
+<li>flags：正则表达式使用时的控制标记<pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> re
 <span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> re.finditer(<span class="hljs-string">r'[1-9]\d&#123;5&#125;'</span>, <span class="hljs-string">'BIT100081 TSU100084'</span>):
 <span class="hljs-meta">... </span>    <span class="hljs-keyword">if</span> m:
 <span class="hljs-meta">... </span>            print(m.group(<span class="hljs-number">0</span>))
 <span class="hljs-meta">... </span>
 <span class="hljs-number">100081</span>
-<span class="hljs-number">100084</span></code></pre></div>
+<span class="hljs-number">100084</span></code></pre>
 <code>re.sub(pattern,repl,string,count=0,flags=0)</code><br>在一个字符串中替换所有匹配正则表达式的子串，返回替换后的字符串</li>
 <li>pattern：正则表达式的字符串或原生字符串表示</li>
 <li>repl: 替换字符串的字符串</li>
 <li>string：待匹配的字符串</li>
 <li>count：匹配的最大替换次数</li>
-<li>flags：正则表达式使用时的控制标记<div class="hljs"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> re
+<li>flags：正则表达式使用时的控制标记<pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> re
 <span class="hljs-meta">&gt;&gt;&gt; </span>re,sub(<span class="hljs-string">r'[1-9]\d&#123;5&#125;'</span>, <span class="hljs-string">':zipcode'</span>, <span class="hljs-string">'BLT100081 TSU100084'</span>)
 <span class="hljs-meta">&gt;&gt;&gt; </span>re.sub(<span class="hljs-string">r'[1-9]\d&#123;5&#125;'</span>, <span class="hljs-string">':zipcode'</span>, <span class="hljs-string">'BLT100081 TSU100084'</span>)
-<span class="hljs-string">'BLT:zipcode TSU:zipcode'</span></code></pre></div>
+<span class="hljs-string">'BLT:zipcode TSU:zipcode'</span></code></pre>
 <img src="/img/Crawler/28.png" srcset="/img/loading.gif" alt="图28"><br><code>egex = re.compile(pattern,flags=0)</code><br>将正则表达式的字符串形式编译成正则表达式对象  </li>
 <li>pattern：正则表达式的字符串或原生字符串表示  </li>
 </ul>
 <p>*flags ：正则表达式使用时的控制标记<br>RE库的match对象  </p>
-<div class="hljs"><pre><code class="hljs python">RE库的match对象  
+<pre><code class="hljs python">RE库的match对象  
 ﻿&gt;&gt;&gt; <span class="hljs-keyword">import</span> re
 <span class="hljs-meta">&gt;&gt;&gt; </span>match = re.search(<span class="hljs-string">r'[1-9]\d&#123;5&#125;'</span>, <span class="hljs-string">'BLT 100081'</span>)
 <span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">if</span> match:
@@ -282,9 +282,9 @@
 <span class="hljs-number">100081</span>
 <span class="hljs-meta">&gt;&gt;&gt; </span>typr(match)
 <span class="hljs-meta">&gt;&gt;&gt; </span>type(match)
-&lt;<span class="hljs-class"><span class="hljs-keyword">class</span> '<span class="hljs-title">_sre</span>.<span class="hljs-title">SRE_Match</span>'&gt;</span></code></pre></div>
+&lt;<span class="hljs-class"><span class="hljs-keyword">class</span> '<span class="hljs-title">_sre</span>.<span class="hljs-title">SRE_Match</span>'&gt;</span></code></pre>
 <p><img src="/img/Crawler/29.png" srcset="/img/loading.gif" alt="图29"><br><img src="/img/Crawler/30.png" srcset="/img/loading.gif" alt="图30"> </p>
-<div class="hljs"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> re
+<pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> re
 <span class="hljs-meta">&gt;&gt;&gt; </span>m = re.search(<span class="hljs-string">r'[1-9]\d'</span>, <span class="hljs-string">'BIT100081 TSU100084'</span>)
 <span class="hljs-meta">&gt;&gt;&gt; </span>m.string
 <span class="hljs-string">'BIT100081 TSU100084'</span>
@@ -299,15 +299,15 @@ re.compile(<span class="hljs-string">'[1-9]\\d'</span>)
 <span class="hljs-meta">&gt;&gt;&gt; </span>m.start()
 <span class="hljs-number">3</span>
 <span class="hljs-meta">&gt;&gt;&gt; </span>m.span()
-(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>)</code></pre></div>
+(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>)</code></pre>
 <p>RE库的贪婪匹配和最小匹配 </p>
-<div class="hljs"><pre><code class="hljs awk">match = re.search(<span class="hljs-string">r'PY.*N'</span>, <span class="hljs-string">'PYANBNCNDN'</span> 
+<pre><code class="hljs awk">match = re.search(<span class="hljs-string">r'PY.*N'</span>, <span class="hljs-string">'PYANBNCNDN'</span> 
 match.group(<span class="hljs-number">0</span>) <span class="hljs-comment">#re库默认采用贪婪匹配，即输出匹配最长的子串</span>
-match = re.search(<span class="hljs-string">r'PY.*？N'</span>, <span class="hljs-string">'PYANBNCNDN'</span>) <span class="hljs-comment">#输出最小的匹配</span></code></pre></div>
+match = re.search(<span class="hljs-string">r'PY.*？N'</span>, <span class="hljs-string">'PYANBNCNDN'</span>) <span class="hljs-comment">#输出最小的匹配</span></code></pre>
 <p><img src="/img/Crawler/31.png" srcset="/img/loading.gif" alt="图31">  </p>
 <h4 id="淘宝商店比价定向爬虫"><a href="#淘宝商店比价定向爬虫" class="headerlink" title="淘宝商店比价定向爬虫"></a>淘宝商店比价定向爬虫</h4><p>功能描述<br>目标：获取淘宝搜索页面的信息，提取其中的商品名称和价格。<br>理解：<br>淘宝的搜索接口<br>翻页的处理<br>技术路线：requests-re   </p>
 <p>程序的结构设计<br>步骤1：提交商品搜索请求，循环获取页面<br>步骤2：对于每个页面，提取商品名称和价格信息<br>步骤3：将信息输出到屏幕上  </p>
-<div class="hljs"><pre><code class="hljs python">
+<pre><code class="hljs python">
 <span class="hljs-comment">#CrowTaobaoPrice.py</span>
 <span class="hljs-keyword">import</span> requests
 <span class="hljs-keyword">import</span> re
@@ -354,9 +354,9 @@ match = re.search(<span class="hljs-string">r'PY.*？N'</span>, <span class="hlj
             <span class="hljs-keyword">continue</span>
     printGoodsList(infoList)
      
-main()</code></pre></div>
+main()</code></pre>
 <h4 id="股票数据定向爬虫"><a href="#股票数据定向爬虫" class="headerlink" title="股票数据定向爬虫"></a>股票数据定向爬虫</h4><p>目标：获取上交所和深交所所有股票的名称和交易信息<br>输出：保存到文件中<br>技术路线：requests-bs4-re<br>选取原则：股票信息静态存在于HTML页面中，非js代码生成，没有robots协议限制<br>选取方法：浏览器F12，源代码查看等<br>选取心态：不要纠结于某个网站，多找信息源尝试<br>程序的结构设计<br>步骤1：从东方财富网获取股票列表<br>步骤2：根据股票列表逐个到百度股票获取个股信息<br>步骤3：将结果存储到文件  </p>
-<div class="hljs"><pre><code class="hljs python"><span class="hljs-comment">#CrawBaiduStocksB.py</span>
+<pre><code class="hljs python"><span class="hljs-comment">#CrawBaiduStocksB.py</span>
 <span class="hljs-keyword">import</span> requests
 <span class="hljs-keyword">from</span> bs4 <span class="hljs-keyword">import</span> BeautifulSoup
 <span class="hljs-keyword">import</span> traceback
@@ -427,14 +427,14 @@ main()</code></pre></div>
     getStockList(slist, stock_list_url)
     getStockInfo(slist, stock_info_url, output_file)
  
-main()</code></pre></div>
+main()</code></pre>
 
 <h3 id="Scrapy-框架与实例"><a href="#Scrapy-框架与实例" class="headerlink" title="Scrapy 框架与实例"></a>Scrapy 框架与实例</h3><p>Scrapy是功能强大的爬虫框架<br>爬虫框架是实现爬虫功能的一个软件结构和功能组件集合<br>爬虫框架是一个半成品，能够帮助用户实现专业网络爬虫<br>Scrapy爬虫框架结构：<br><img src="/img/Crawler/32.png" srcset="/img/loading.gif" alt="图32"><br><code>Downloader Middleware</code><br>目的：实施Engine、Scheduler和Downlaoder之间进行用户可配置的控制<br>功能：修改、丢弃、新增请求或者响应<br><code>Spider</code>（用户主要编写模块）<br>解析Downloader返回的响应（Response）<br>产生爬取项（scrapyed item）<br>产生额外的爬取请求（Requests）<br><code>Item Pipelines</code>（需要用户自己编写代码）<br>以流水线方式处理Spider产生的爬取项<br>由一组操作顺序组成，类似流水线，每个操作是一个Item Pipeline类型<br>可能操作包括：清理、检验和查重爬取项中的HTML数据、将数据存储到数据库<br><code>Spider Middleware</code><br>目的：对请求和爬取项的再处理<br>功能：修改、丢弃、新增请求或者爬取项<br>用户可以编写配置代码<br><img src="/img/Crawler/33.png" srcset="/img/loading.gif" alt="图33"><br>Scrapy命令行格式：<br><code>&gt;scrapy&lt;command&gt;[options][args]</code><br><img src="/img/Crawler/34.png" srcset="/img/loading.gif" alt="图34"><br>产生步骤：  </p>
 <ol>
 <li>建立一个Scapy爬虫工程  </li>
 <li>在工程中产生一个Scrapy爬虫  </li>
 <li>配置产生的spider爬虫  </li>
-<li>运行爬虫，获取网页  <div class="hljs"><pre><code class="hljs livecodeserver">oot@liu-PC:/home/liu/Documents/learn<span class="hljs-comment"># scrapy startproject scrapydemo</span>
+<li>运行爬虫，获取网页  <pre><code class="hljs livecodeserver">oot@liu-PC:/home/liu/Documents/learn<span class="hljs-comment"># scrapy startproject scrapydemo</span>
 New Scrapy project <span class="hljs-string">'scrapydemo'</span>, <span class="hljs-keyword">using</span> template <span class="hljs-built_in">directory</span> <span class="hljs-string">'/usr/lib/python3/dist-packages/scrapy/templates/project'</span>, created <span class="hljs-keyword">in</span>:
  /home/liu/Documents/learn/scrapydemo
 You can <span class="hljs-built_in">start</span> your <span class="hljs-keyword">first</span> spider <span class="hljs-keyword">with</span>:
@@ -443,8 +443,8 @@ You can <span class="hljs-built_in">start</span> your <span class="hljs-keyword"
 root@liu-PC:/home/liu/Documents/learn<span class="hljs-comment"># cd scrapydemo/</span>
 root@liu-PC:/home/liu/Documents/learn/scrapydemo<span class="hljs-comment"># scrapy genspider demo python123.io</span>
 Created spider <span class="hljs-string">'demo'</span> <span class="hljs-keyword">using</span> template <span class="hljs-string">'basic'</span> <span class="hljs-keyword">in</span> module:
- scrapydemo.spiders.demo﻿​</code></pre></div>
-<div class="hljs"><pre><code class="hljs python"> -*- coding: utf<span class="hljs-number">-8</span> -*-
+ scrapydemo.spiders.demo﻿​</code></pre>
+<pre><code class="hljs python"> -*- coding: utf<span class="hljs-number">-8</span> -*-
 <span class="hljs-keyword">import</span> scrapy
 
 
@@ -457,14 +457,14 @@ Created spider <span class="hljs-string">'demo'</span> <span class="hljs-keyword
         fname = response.url.split(<span class="hljs-string">'/'</span>)[<span class="hljs-number">-1</span>]
         <span class="hljs-keyword">with</span> open(fname, <span class="hljs-string">'wb'</span>) <span class="hljs-keyword">as</span> f:
             f.write(response.body)
-        self.log(<span class="hljs-string">'Saved file %s.'</span> % name)</code></pre></div>
+        self.log(<span class="hljs-string">'Saved file %s.'</span> % name)</code></pre>
 <code>scrapy crawl  demo </code>运行爬虫<br>parse()用于处理响应，解析内容形成字典，发现新的URL爬取请求</li>
 </ol>
 <h4 id="Yield关键字"><a href="#Yield关键字" class="headerlink" title="Yield关键字"></a>Yield关键字</h4><p>生成器是一个不断产生值的函数<br>包含yield语句的函数是一个生成器<br>生成器每次产生一个值（yield语句），函数被冻结，被唤醒后再产生一个值   </p>
-<div class="hljs"><pre><code class="hljs ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">gen</span><span class="hljs-params">(n)</span></span><span class="hljs-symbol">:</span>
+<pre><code class="hljs ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">gen</span><span class="hljs-params">(n)</span></span><span class="hljs-symbol">:</span>
     <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n)<span class="hljs-symbol">:</span>
         <span class="hljs-keyword">yield</span> i**<span class="hljs-number">2</span>
-        <span class="hljs-comment">#产生一个小于n的所有整数的平方值</span></code></pre></div>
+        <span class="hljs-comment">#产生一个小于n的所有整数的平方值</span></code></pre>
 <p>生成器相比一次列出所有内容的优势<br>更节省存储空间<br>响应更迅速<br>使用更灵活  </p>
 <p>Scrapy爬虫的使用步骤：<br>步骤1：创建一个工程和Spider模板<br>步骤2：编写Spider<br>步骤3：编写Item Pipeline<br>步骤4：优化配置策略  </p>
 <p>爬虫的数据类型：Request 类、Response类、Item类<br>Request类 <code>class scrapy.http.Request() </code><br>Request对象表示一个HTTP请求<br>由spider生成，由Downlaoder执行  </p>
@@ -491,12 +491,12 @@ Created spider <span class="hljs-string">'demo'</span> <span class="hljs-keyword
 <p><code>&lt;HTML&gt;.css(&#39;a::attr(href)&#39;).extract </code>  # a:标签名称  href：标签属性</p>
 <h4 id="股票数据Scrapy爬虫实例"><a href="#股票数据Scrapy爬虫实例" class="headerlink" title="股票数据Scrapy爬虫实例"></a>股票数据Scrapy爬虫实例</h4><p>功能描述：<br>技术路线：Scrapy<br>目标：获取上交所和深交所所有股票的名称和交易信息<br>输出：保存到文件中   </p>
 <p>获取股票列表：<br>东方财富网：<a href="http://quote.eastmoney.com/stocklist.html" target="_blank" rel="noopener">http://quote.eastmoney.com/stocklist.html</a><br>获取个股信息：<br>百度股票： <a href="https://gupiao.baidu.com/stock/" target="_blank" rel="noopener">https://gupiao.baidu.com/stock/</a><br>单个股票：<a href="https://gupiao.baidu.com/stock/sz002439.html" target="_blank" rel="noopener">https://gupiao.baidu.com/stock/sz002439.html</a><br>步骤：<br>1.建立工程和Spider模板  </p>
-<div class="hljs"><pre><code class="hljs armasm"><span class="hljs-symbol">scrapy</span> startproject <span class="hljs-keyword">BaiduStocks</span>
+<pre><code class="hljs armasm"><span class="hljs-symbol">scrapy</span> startproject <span class="hljs-keyword">BaiduStocks</span>
 <span class="hljs-keyword">cd </span><span class="hljs-keyword">BaiduStocks</span>
 <span class="hljs-keyword">scrapy </span>genspider stocks <span class="hljs-keyword">baidu.com</span>
-<span class="hljs-keyword">进一步修改spider/stocks.py文件</span></code></pre></div>
+<span class="hljs-keyword">进一步修改spider/stocks.py文件</span></code></pre>
 <p>2.编写Spider<br>配置stocks.py文件<br>修改对返回页面的处理<br>修改对新增URL爬取请求的处理  </p>
-<div class="hljs"><pre><code class="hljs python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span>
+<pre><code class="hljs python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span>
 <span class="hljs-keyword">import</span> scrapy
 <span class="hljs-keyword">import</span> re
 
@@ -530,9 +530,9 @@ Created spider <span class="hljs-string">'demo'</span> <span class="hljs-keyword
         infoDict.update(
             &#123;<span class="hljs-string">'股票名称'</span>:re.findall(<span class="hljs-string">'\s.*\('</span>,name)[<span class="hljs-number">0</span>].split()[<span class="hljs-number">0</span>] +\
             re.findall(<span class="hljs-string">'\&gt;.*\&lt;'</span>, name)[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>:<span class="hljs-number">-1</span>]&#125;)
-        <span class="hljs-keyword">yield</span> infoDict</code></pre></div>
+        <span class="hljs-keyword">yield</span> infoDict</code></pre>
 <p>3.编写ITEM Pipelines<br>配置pipelines.py文件<br>定义对爬取项（Scraped Item）的处理类  </p>
-<div class="hljs"><pre><code class="hljs ruby">
+<pre><code class="hljs ruby">
 <span class="hljs-comment"># -*- coding: utf-8 -*-</span>
 
 <span class="hljs-comment"># Define your item pipelines here</span>
@@ -558,11 +558,11 @@ Created spider <span class="hljs-string">'demo'</span> <span class="hljs-keyword
             <span class="hljs-keyword">self</span>.f.write(line)
         <span class="hljs-symbol">except:</span>
             pass
-        <span class="hljs-keyword">return</span> item</code></pre></div>
+        <span class="hljs-keyword">return</span> item</code></pre>
 <p>配置ITEM_PIPELINES选项  </p>
-<div class="hljs"><pre><code class="hljs ebnf"><span class="hljs-attribute">ITEM_PIPELINES</span> = &#123;
+<pre><code class="hljs ebnf"><span class="hljs-attribute">ITEM_PIPELINES</span> = &#123;
     <span class="hljs-string">'BaiduStocks.pipelines.BaidustocksInfoPipeline'</span>: 300,
-&#125;</code></pre></div>
+&#125;</code></pre>
 <h4 id="优化实例"><a href="#优化实例" class="headerlink" title="优化实例"></a>优化实例</h4><p>配置并发连接选项<br><img src="/img/Crawler/35.png" srcset="/img/loading.gif" alt="图35"></p>
 
             </article>
