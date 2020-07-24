@@ -214,10 +214,14 @@
 </li>
 <li><p>能够独立运行一个、几个或全部python代码块，更容易看到中间变量的值，从而进行调试</p>
 </li>
-<li>可以插入Markdown说明文字和Latex数学公式，让枯燥的代码充满颜值，可读性爆表</li>
-<li>能够调用Ipython丰富的“魔法函数”，比如程序计时、重复运行、显示图片等</li>
-<li>写好的代码和文档能够以网页和ppt的形式在线分享。<a href="https://nbviewer.jupyter.org/" target="_blank" rel="noopener">在线看Jupyter notebook文件</a><br></li>
-<li>可以在云端远程服务器运行，不需本地安装配置各种环境。<a href="https://jupyter.org/try" target="_blank" rel="noopener">体验一下</a><br></li>
+<li><p>可以插入Markdown说明文字和Latex数学公式，让枯燥的代码充满颜值，可读性爆表</p>
+</li>
+<li><p>能够调用Ipython丰富的“魔法函数”，比如程序计时、重复运行、显示图片等</p>
+</li>
+<li><p>写好的代码和文档能够以网页和ppt的形式在线分享。<a href="https://nbviewer.jupyter.org/" target="_blank" rel="noopener">在线看Jupyter notebook文件</a><br></p>
+</li>
+<li><p>可以在云端远程服务器运行，不需本地安装配置各种环境。<a href="https://jupyter.org/try" target="_blank" rel="noopener">体验一下</a><br></p>
+</li>
 </ul>
 <p>比如下图，包含了Markdown说明文档、代码块、代码运行结果、图片嵌入等元素，特别适合Python数据科学和机器学习撰写文档。</p>
 <p><img src="/img/jupyter/2.png" srcset="/img/loading.gif" alt="jupyter notebook代码分块运行、嵌入Markdown文档和图片"></p>
@@ -236,6 +240,7 @@
 <h2 id="安装Jupyter-notebook"><a href="#安装Jupyter-notebook" class="headerlink" title="安装Jupyter notebook"></a>安装Jupyter notebook</h2><p>如果你安装了python数据科学全家桶Anaconda，那么其中自带了Jupyter notebook。</p>
 <p>如果你没安装Anaconda，可以直接在命令行里运行这行命令</p>
 <pre><code class="hljs shell">pip install jupyter -i https://pypi.tuna.tsinghua.edu.cn/simple</code></pre>
+
 <h2 id="运行Jupyter-notebook"><a href="#运行Jupyter-notebook" class="headerlink" title="运行Jupyter notebook"></a>运行Jupyter notebook</h2><p>打开命令行，输入<code>jupter notebook</code>，回车。稍等片刻即可跳出浏览器网页。</p>
 <p><img src="/img/jupyter/4.png" srcset="/img/loading.gif" alt="jupyter notebook打开界面"></p>
 <p>点击右边的New-Python3即可创建python文档。</p>
@@ -278,6 +283,7 @@
 &gt;我是引用，我这行开头有一个灰色竖杠
 
 [<span class="hljs-string">我是外部链接，点我上百度</span>](<span class="hljs-link">www.baidu.com</span>)</code></pre>
+
 <p><img src="/img/jupyter/9.png" srcset="/img/loading.gif" alt="编辑Markdown单元格"></p>
 <p>然后按<code>shift</code>+<code>Enter</code>运行该单元格。</p>
 <p><img src="/img/jupyter/10.png" srcset="/img/loading.gif" alt="Markdown渲染效果"></p>
@@ -303,9 +309,11 @@
 <p><img src="/img/jupyter/12.png" srcset="/img/loading.gif" alt="编辑模式快捷键"></p>
 <h2 id="在Markdown单元格中输入数学公式"><a href="#在Markdown单元格中输入数学公式" class="headerlink" title="在Markdown单元格中输入数学公式"></a>在Markdown单元格中输入数学公式</h2><p>分别在两个Markdown单元格内输入以下内容：</p>
 <pre><code class="hljs latex">这是爱因斯坦的质能转换方程$E&#x3D;mc^2$，揭示了质量和能量之间的关系</code></pre>
+
 <pre><code class="hljs latex">这是一元二次方程求解公式
 $$x &#x3D; \frac&#123;-b\pm \sqrt&#123;b^2-4ac&#125;&#125;&#123;2a&#125;$$
 初中数学内容</code></pre>
+
 <p><img src="/img/jupyter/13.png" srcset="/img/loading.gif" alt="在Markdown单元格中输入Latex公式"></p>
 <p>按<code>shift</code>+<code>Enter</code>渲染运行：</p>
 <p><img src="/img/jupyter/14.png" srcset="/img/loading.gif" alt="渲染之后的Latex数学公式"></p>
