@@ -301,20 +301,23 @@ datingDataMat,datingLabels = file2matrix(<span class="hljs-string">'/home/liu/Do
 
 
 
+<div class="hljs"><pre><code class="hljs angelscript"><span class="hljs-built_in">array</span>([[<span class="hljs-number">4.0920000e+04</span>, <span class="hljs-number">8.3269760e+00</span>, <span class="hljs-number">9.5395200e-01</span>],
+        [<span class="hljs-number">1.4488000e+04</span>, <span class="hljs-number">7.1534690e+00</span>, <span class="hljs-number">1.6739040e+00</span>],
+        [<span class="hljs-number">2.6052000e+04</span>, <span class="hljs-number">1.4418710e+00</span>, <span class="hljs-number">8.0512400e-01</span>],
+           ...,
+        [<span class="hljs-number">2.6575000e+04</span>, <span class="hljs-number">1.0650102e+01</span>, <span class="hljs-number">8.6662700e-01</span>],
+        [<span class="hljs-number">4.8111000e+04</span>, <span class="hljs-number">9.1345280e+00</span>, <span class="hljs-number">7.2804500e-01</span>],
+        [<span class="hljs-number">4.3757000e+04</span>, <span class="hljs-number">7.8826010e+00</span>, <span class="hljs-number">1.3324460e+00</span>]])</code></pre></div>
 
-<div class="hljs"><pre><code>array([[4.0920000e+04, 8.3269760e+00, 9.5395200e-01],
-       [1.4488000e+04, 7.1534690e+00, 1.6739040e+00],
-       [2.6052000e+04, 1.4418710e+00, 8.0512400e-01],
-       ...,
-       [2.6575000e+04, 1.0650102e+01, 8.6662700e-01],
-       [4.8111000e+04, 9.1345280e+00, 7.2804500e-01],
-       [4.3757000e+04, 7.8826010e+00, 1.3324460e+00]])</code></pre></div>
+
+
 <div class="hljs"><pre><code class="hljs python">datingLabels[<span class="hljs-number">0</span>:<span class="hljs-number">20</span>]</code></pre></div>
 
 
 
+<div class="hljs"><pre><code class="hljs json">[<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]</code></pre></div>
 
-<div class="hljs"><pre><code>[3, 2, 1, 1, 1, 1, 3, 3, 1, 3, 1, 1, 2, 1, 1, 1, 1, 1, 2, 3]</code></pre></div>
+
 <h2 id="分析数据：使用Matplotlib创建散点图"><a href="#分析数据：使用Matplotlib创建散点图" class="headerlink" title="分析数据：使用Matplotlib创建散点图"></a>分析数据：使用Matplotlib创建散点图</h2><div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib
 <span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
 fig = plt.figure()
@@ -354,26 +357,32 @@ plt.show()</code></pre></div>
 
 
 
-
-<div class="hljs"><pre><code>array([[0.44832535, 0.39805139, 0.56233353],
-       [0.15873259, 0.34195467, 0.98724416],
-       [0.28542943, 0.06892523, 0.47449629],
+<div class="hljs"><pre><code class="hljs angelscript"><span class="hljs-built_in">array</span>([[<span class="hljs-number">0.44832535</span>, <span class="hljs-number">0.39805139</span>, <span class="hljs-number">0.56233353</span>],
+       [<span class="hljs-number">0.15873259</span>, <span class="hljs-number">0.34195467</span>, <span class="hljs-number">0.98724416</span>],
+       [<span class="hljs-number">0.28542943</span>, <span class="hljs-number">0.06892523</span>, <span class="hljs-number">0.47449629</span>],
        ...,
-       [0.29115949, 0.50910294, 0.51079493],
-       [0.52711097, 0.43665451, 0.4290048 ],
-       [0.47940793, 0.3768091 , 0.78571804]])</code></pre></div>
+       [<span class="hljs-number">0.29115949</span>, <span class="hljs-number">0.50910294</span>, <span class="hljs-number">0.51079493</span>],
+       [<span class="hljs-number">0.52711097</span>, <span class="hljs-number">0.43665451</span>, <span class="hljs-number">0.4290048</span> ],
+       [<span class="hljs-number">0.47940793</span>, <span class="hljs-number">0.3768091</span> , <span class="hljs-number">0.78571804</span>]])</code></pre></div>
+
+
+
 <div class="hljs"><pre><code class="hljs python">ranges</code></pre></div>
 
 
 
+<div class="hljs"><pre><code class="hljs angelscript"><span class="hljs-built_in">array</span>([<span class="hljs-number">9.1273000e+04</span>, <span class="hljs-number">2.0919349e+01</span>, <span class="hljs-number">1.6943610e+00</span>])</code></pre></div>
 
-<div class="hljs"><pre><code>array([9.1273000e+04, 2.0919349e+01, 1.6943610e+00])</code></pre></div>
+
+
 <div class="hljs"><pre><code class="hljs python">minVals</code></pre></div>
 
 
 
+<div class="hljs"><pre><code class="hljs angelscript"><span class="hljs-built_in">array</span>([<span class="hljs-number">0.</span>      , <span class="hljs-number">0.</span>      , <span class="hljs-number">0.001156</span>])</code></pre></div>
 
-<div class="hljs"><pre><code>array([0.      , 0.      , 0.001156])</code></pre></div>
+
+
 <div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> numpy <span class="hljs-keyword">import</span> *
 <span class="hljs-keyword">import</span> operator 
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">datingClassTest</span><span class="hljs-params">()</span>:</span>
@@ -915,11 +924,11 @@ plt.show()</code></pre></div>
 
 
 <div class="hljs"><pre><code class="hljs python">classifyPerson()</code></pre></div>
+<div class="hljs"><pre><code class="hljs angelscript">percentage of time spent palying video games?<span class="hljs-number">20</span>
+frequent flier miles earned per year?<span class="hljs-number">2000</span>
+liters of ice cream consumed per year?<span class="hljs-number">1</span>
+You will probaly like <span class="hljs-keyword">this</span> person: <span class="hljs-keyword">in</span> large doses</code></pre></div>
 
-<div class="hljs"><pre><code>percentage of time spent palying video games?20
-frequent flier miles earned per year?2000
-liters of ice cream consumed per year?1
-You will probaly like this person: in large doses</code></pre></div>
 <h1 id="示例：手写识别系统"><a href="#示例：手写识别系统" class="headerlink" title="示例：手写识别系统"></a>示例：手写识别系统</h1><p>构造的系统识别1-9位数字，且需要识别的数字用图形处理软件，处理成具有相同大小色彩的黑白图像。</p>
 <h2 id="准备数据：将图像转换为测试向量"><a href="#准备数据：将图像转换为测试向量" class="headerlink" title="准备数据：将图像转换为测试向量"></a>准备数据：将图像转换为测试向量</h2><div class="hljs"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">img2vector</span><span class="hljs-params">(filename)</span>:</span>
     returnVect = zeros((<span class="hljs-number">1</span>,<span class="hljs-number">1024</span>))
@@ -938,9 +947,11 @@ You will probaly like this person: in large doses</code></pre></div>
 
 
 
+<div class="hljs"><pre><code class="hljs angelscript"><span class="hljs-built_in">array</span>([<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>,
+       <span class="hljs-number">1.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>])</code></pre></div>
 
-<div class="hljs"><pre><code>array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 1., 1.,
-       1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])</code></pre></div>
+
+
 <div class="hljs"><pre><code class="hljs python"><span class="hljs-keyword">from</span> os <span class="hljs-keyword">import</span> listdir
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handwritingClassTest</span><span class="hljs-params">()</span>:</span>
     hwLabels = []
