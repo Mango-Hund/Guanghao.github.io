@@ -122,7 +122,7 @@ if (autoChangeMode === '1') {
 <li>数据库</li>
 <li>项目制作</li>
 </ul>
-<h4 id="面板介绍"><a href="#面板介绍" class="headerlink" title="面板介绍"></a>面板介绍</h4><p><strong>project</strong> 工程素材文件、资源，直接拖进去（Assets文件夹。右键可以导出unity包 同样也可以导入。<br><img src= "/img/loading.gif" data-src="/img/unity/01.png" alt="图1"><br><strong>Hierarchy</strong> 放游戏对象，从资源中拖过来，创建对象，使用对象。<br><strong>Scene</strong> 对游戏对象进行操作，旋转、平移等：  </p>
+<h4 id="面板介绍"><a href="#面板介绍" class="headerlink" title="面板介绍"></a>面板介绍</h4><p><strong>project</strong> 工程素材文件、资源，直接拖进去（Assets文件夹。右键可以导出unity包 同样也可以导入。<br><img src= "/img/loading.gif" data-src="/2020/07/09/Unity3D%E5%85%A5%E9%97%A8/unity/01.png" alt="图1"><br><strong>Hierarchy</strong> 放游戏对象，从资源中拖过来，创建对象，使用对象。<br><strong>Scene</strong> 对游戏对象进行操作，旋转、平移等：  </p>
 <ol>
 <li>按下鼠标滚轮拖动场景，滑动滚轮缩放场景。</li>
 <li>鼠标右键旋转场景，点击“小手”后，通过左键移动场景。</li>
@@ -130,8 +130,8 @@ if (autoChangeMode === '1') {
 <li>在Scene面板中选中物体后按F键，或在Hierarchy面板双击物体，可将物体设置为场景视图的中心。</li>
 <li>按住alt键同时通过鼠标左键围绕某物体旋转场景，鼠标右键缩放场景。  </li>
 </ol>
-<p><strong>Game</strong>面板 游戏运行之后进行预览<br>播放暂停键，运行暂停游戏<br><strong>Inspector</strong>面板，显示当前选定的游戏对象附加的组件及其属性信息。为重要游戏物体选择图标。<br><img src= "/img/loading.gif" data-src="/img/unity/02.png" alt="图2">   </p>
-<h4 id="摆放物体"><a href="#摆放物体" class="headerlink" title="摆放物体"></a>摆放物体</h4><p>放置单面平板<br><img src= "/img/loading.gif" data-src="/img/unity/03.png" alt="图3"><br>放置完之后点reset，使之置于零点，便于开发<br>变换切换：  </p>
+<p><strong>Game</strong>面板 游戏运行之后进行预览<br>播放暂停键，运行暂停游戏<br><strong>Inspector</strong>面板，显示当前选定的游戏对象附加的组件及其属性信息。为重要游戏物体选择图标。<br><img src= "/img/loading.gif" data-src="/2020/07/09/Unity3D%E5%85%A5%E9%97%A8/unity/02.png" alt="图2">   </p>
+<h4 id="摆放物体"><a href="#摆放物体" class="headerlink" title="摆放物体"></a>摆放物体</h4><p>放置单面平板<br><img src= "/img/loading.gif" data-src="/2020/07/09/Unity3D%E5%85%A5%E9%97%A8/unity/03.png" alt="图3"><br>放置完之后点reset，使之置于零点，便于开发<br>变换切换：  </p>
 <ul>
 <li>左边是改变游戏对象的轴心点<br>Center:设置轴心点在物体的中心<br>Pivot：使用物体本身的轴心  </li>
 <li>右边是改变物体的坐标，Global：世界坐标;Local：自身坐标  </li>
@@ -149,19 +149,19 @@ if (autoChangeMode === '1') {
 <li>创建网格过滤器：Component-Mesh-MeshFilter 设置Mesh属性。</li>
 <li>创建网格渲染器：Component-Mesh-Mesh Renderer 设置材质Material属性。</li>
 </ol>
-<p><img src= "/img/loading.gif" data-src="/img/unity/04.png" alt="图4">   </p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/09/Unity3D%E5%85%A5%E9%97%A8/unity/04.png" alt="图4">   </p>
 <h4 id="材质"><a href="#材质" class="headerlink" title="材质"></a>材质</h4><p>材质：物体的质地，指色彩、纹理、光滑度、透明度、反射率、发光度等等。实际就是Shader的实例。<br>Shader着色器：专门用来渲染3D图形的技术，可以使纹理以某种方式展现。实际上就是一段嵌入到渲染管线中的程序，可以控制GPU运算图像效果的算法。<br>Texture纹理：附加到物体表面的贴图。<br>在资源中右键创建  </p>
 <ul>
 <li>渲染模式<br>Opaque 不透明，默认选项<br>Transparent 透明，用于半透明和全透明物体，如玻璃<br>Cutout 镂空，用于完全透明或完全不透明物体，如栅栏<br>Fade渐变，用于需要淡入淡出的物体。</li>
 </ul>
-<p><img src= "/img/loading.gif" data-src="/img/unity/05.png" alt="图5"><br>Main Maps</p>
+<p><img src= "/img/loading.gif" data-src="/2020/07/09/Unity3D%E5%85%A5%E9%97%A8/unity/05.png" alt="图5"><br>Main Maps</p>
 <ul>
 <li>Albedo 基础贴图：决定物体表面纹理与颜色。</li>
 <li>Metallic金属：使用金属特性模拟外观。</li>
 <li>Specular 镜面反射：使用镜面特性模拟外观</li>
 <li>Smoothness光滑度：设置物体表面光滑程度。</li>
 <li>Normal Map 法线贴图：描述物体表面凹凸程度。</li>
-<li>Emission 自发光：控制物体表面自发光颜色和贴图。<br>—None 不影响环境<br>—Realitime 实时动态改变<br>—Backed 烘焙生效  </li>
+<li>Emission 自发光：控制物体表面自发光颜色和贴图。<br>–None 不影响环境<br>–Realitime 实时动态改变<br>–Backed 烘焙生效  </li>
 <li>Tiling 平铺：沿着不同的轴，纹理平铺个数。</li>
 <li>Offset 偏移：滑动纹理。</li>
 </ul>
@@ -189,7 +189,7 @@ if (autoChangeMode === '1') {
 <ul>
 <li>设置摄像机Clear Flags 属性为Skybox</li>
 <li>方式一：摄像机添加组件Skybox</li>
-<li>方法二：光照窗口<br>Window-Lighting-Environment Lighting —Skybox可作为反射源将天空色彩反射到场景中的物体。</li>
+<li>方法二：光照窗口<br>Window-Lighting-Environment Lighting –Skybox可作为反射源将天空色彩反射到场景中的物体。</li>
 </ul>
 <p>天空盒材质种类：6 Sided、Procedural、Cubemap<br>属性：</p>
 <ul>
@@ -203,7 +203,7 @@ if (autoChangeMode === '1') {
 <li>Viewport Rect 视口矩形：标明这台相机视图将会在屏幕上绘制的屏幕坐标。<br> X：摄像机视图的开始水平位置<br> Y：摄像机视图的开始垂直位置<br> W宽度：摄像机输出在屏幕上的宽度<br> H高度：摄像机输出在屏幕上的高度</li>
 <li>Depth 深度：相机在渲染顺序上的位置。具有较低深度的摄像机将在较高深度的摄像机之前渲染。  </li>
 </ul>
-<h4 id="渲染管线"><a href="#渲染管线" class="headerlink" title="渲染管线"></a>渲染管线</h4><p>图形数据在GPU上经过运算处理，最后输出到屏幕的过程。<br><img src= "/img/loading.gif" data-src="/img/unity/06.png" alt="图6"><br>顶点处理：接收模型顶点的数据;坐标系转换。<br>图元装配：组装面，连接相邻的顶点，绘制为三角面。<br>光栅化： 计算三角面上的像素，并为后面着色阶段提供合理的插值参数。<br>像素处理：对每个像素区域进行着色。写入到缓存中。<br>缓存：一个存储像素数据的内存块，最重要的缓存是帧缓存与深度缓存。帧缓存：存储每个像素的色彩，即渲染后的图像。帧缓存常常在显存中，显卡不断读取并输出到屏幕中。深度缓存z-buffer：存储像素的深度信息，即物体到摄像机的距离。光栅化时便于计算各像素的深度值，如果新的深度值比现有值更近，则像素颜色被写到帧缓存，并替换深度缓存。    </p>
+<h4 id="渲染管线"><a href="#渲染管线" class="headerlink" title="渲染管线"></a>渲染管线</h4><p>图形数据在GPU上经过运算处理，最后输出到屏幕的过程。<br><img src= "/img/loading.gif" data-src="/2020/07/09/Unity3D%E5%85%A5%E9%97%A8/unity/06.png" alt="图6"><br>顶点处理：接收模型顶点的数据;坐标系转换。<br>图元装配：组装面，连接相邻的顶点，绘制为三角面。<br>光栅化： 计算三角面上的像素，并为后面着色阶段提供合理的插值参数。<br>像素处理：对每个像素区域进行着色。写入到缓存中。<br>缓存：一个存储像素数据的内存块，最重要的缓存是帧缓存与深度缓存。帧缓存：存储每个像素的色彩，即渲染后的图像。帧缓存常常在显存中，显卡不断读取并输出到屏幕中。深度缓存z-buffer：存储像素的深度信息，即物体到摄像机的距离。光栅化时便于计算各像素的深度值，如果新的深度值比现有值更近，则像素颜色被写到帧缓存，并替换深度缓存。    </p>
 <p>即时遮挡剔除</p>
 <ul>
 <li>即时遮挡剔除Instant Occlusion Culling</li>
@@ -222,22 +222,22 @@ if (autoChangeMode === '1') {
 <p>直接光照：</p>
 <ul>
 <li>从光源直接发出的光，通过Light组件实现</li>
-<li>Type类型：灯光对象的当前类型<br>—Directional Light 平行光：平行发射光线，可以照射场景里所有物体，用于模拟太阳。<br>—Point Light点光源：在灯光位置上向四周发射光线，可以照射其范围内的所有对象，用于模拟灯泡。<br>—Spot Light聚光灯：在灯光位置上向圆锥区域发射光线，只有在这个区域内的物体才会受到光线照射，用于模拟探照灯。<br>—Area Light区域光：由一个面向一个方向发射光线，只照射该区域内的物体，仅烘焙时有效，用在光线较为集中的区域。<br>—Range范围：光从物体的中心发射的范围。仅适用于点光源和聚光灯。<br>—Spot Angle 聚光角度：灯光的聚光角度，只适用于聚光灯。<br>—Color颜色：光线的明亮程度。<br>—Intensity强度：光线的明亮程度。<br>—Culling Mask 选择遮蔽层：选择要照射的层Layer。</li>
-<li>Shadow Type阴影类型：Hard硬阴影、Soft软阴影<br>—Strength 硬度：阴影的黑暗程度。<br>—Resolution 分辨率：设置阴影的细节程度。<br>—Bias 偏移：物体与阴影的偏移。  </li>
-<li>通过Mesh Renderer组件启用禁用阴影<br>—Cast/Receive Shadows 当前物体是否投射/接收阴影。<br>—Off 不投射阴影，On投射阴影，Two Sided 双面阴影，Shadows Only 隐藏物体只投射阴影</li>
+<li>Type类型：灯光对象的当前类型<br>–Directional Light 平行光：平行发射光线，可以照射场景里所有物体，用于模拟太阳。<br>–Point Light点光源：在灯光位置上向四周发射光线，可以照射其范围内的所有对象，用于模拟灯泡。<br>–Spot Light聚光灯：在灯光位置上向圆锥区域发射光线，只有在这个区域内的物体才会受到光线照射，用于模拟探照灯。<br>–Area Light区域光：由一个面向一个方向发射光线，只照射该区域内的物体，仅烘焙时有效，用在光线较为集中的区域。<br>–Range范围：光从物体的中心发射的范围。仅适用于点光源和聚光灯。<br>–Spot Angle 聚光角度：灯光的聚光角度，只适用于聚光灯。<br>–Color颜色：光线的明亮程度。<br>–Intensity强度：光线的明亮程度。<br>–Culling Mask 选择遮蔽层：选择要照射的层Layer。</li>
+<li>Shadow Type阴影类型：Hard硬阴影、Soft软阴影<br>–Strength 硬度：阴影的黑暗程度。<br>–Resolution 分辨率：设置阴影的细节程度。<br>–Bias 偏移：物体与阴影的偏移。  </li>
+<li>通过Mesh Renderer组件启用禁用阴影<br>–Cast/Receive Shadows 当前物体是否投射/接收阴影。<br>–Off 不投射阴影，On投射阴影，Two Sided 双面阴影，Shadows Only 隐藏物体只投射阴影</li>
 <li>阴影剔除：设置显示阴影的距离<br>Edit-&gt;Project Settings-&gt;Quality-&gt;Shadows Disdance  </li>
 </ul>
 <p>环境光照：  </p>
 <ul>
 <li>作用于场景内所有物体的光照，通过Environment Lighting中的Ambient控制。</li>
-<li>Ambient Source 环境光源<br>—Skybox通过天空盒颜色设置环境光照<br>—Gradient梯度颜色<br>Sky 天空颜色、Equator 地平线颜色、Ground 地面颜色<br>—Ambient Color纯色  </li>
+<li>Ambient Source 环境光源<br>–Skybox通过天空盒颜色设置环境光照<br>–Gradient梯度颜色<br>Sky 天空颜色、Equator 地平线颜色、Ground 地面颜色<br>–Ambient Color纯色  </li>
 <li>Ambient Intensity 环境光强度     </li>
-<li>Ambient GI 环境光GI模式<br>—Realtime 实时更新，环境光源会改变选择此项<br>—Backed  烘焙，环境光源不会改变选择此项。  </li>
+<li>Ambient GI 环境光GI模式<br>–Realtime 实时更新，环境光源会改变选择此项<br>–Backed  烘焙，环境光源不会改变选择此项。  </li>
 </ul>
 <p>反射光照</p>
 <ul>
 <li>根据天空盒或立方体贴图计算的作用于所有物体的反射效果，通过Environment Lighting中Reflection控制。</li>
-<li>Reflection Source反射源<br>—Skybox天空盒<br>Resolution 分辨率 Compression 是否压缩<br>—Custom 自定义<br>Cubemap 立方体贴图  </li>
+<li>Reflection Source反射源<br>–Skybox天空盒<br>Resolution 分辨率 Compression 是否压缩<br>–Custom 自定义<br>Cubemap 立方体贴图  </li>
 <li>Reflection Intensity 反射强度  </li>
 <li>Reflection Bounces 使用Reflection Probe 后允许不同游戏对象间来回反弹的次数。  </li>
 </ul>
@@ -267,7 +267,7 @@ if (autoChangeMode === '1') {
 <li>点击Build按钮（如果勾选Auto编辑器会景的改动修复光照效果  </li>
 </ol>
 <ul>
-<li>Light组件Baking属性：烘焙模式<br> —Realtime 仅实时光照时起作用<br> —Baked 仅烘焙时起作用<br> —Mixed 混合，烘焙和实时光照都起作用<br>可以通过Scene面板的Baked模式查看光照贴图。  </li>
+<li>Light组件Baking属性：烘焙模式<br> –Realtime 仅实时光照时起作用<br> –Baked 仅烘焙时起作用<br> –Mixed 混合，烘焙和实时光照都起作用<br>可以通过Scene面板的Baked模式查看光照贴图。  </li>
 </ul>
 </li>
 </ul>
