@@ -1,0 +1,2158 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python时空数据分析(一) | Liu's blog</title><meta name="description" content="基础的数据处理"><meta name="keywords" content="Python,data"><meta name="author" content="Guanghao"><meta name="copyright" content="Guanghao"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.jpg"><link rel="canonical" href="http://lguanghao.com/2020/02/20/Python%E6%97%B6%E7%A9%BA%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%901/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="Python时空数据分析(一)"><meta property="og:url" content="http://lguanghao.com/2020/02/20/Python%E6%97%B6%E7%A9%BA%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%901/"><meta property="og:site_name" content="Liu's blog"><meta property="og:description" content="基础的数据处理"><meta property="og:image" content="http://lguanghao.com/img/time.jpg"><meta property="article:published_time" content="2020-02-20T13:40:38.000Z"><meta property="article:modified_time" content="2020-09-06T16:42:14.000Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="prev" title="数据分析工具（一）" href="http://lguanghao.com/2020/03/03/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/"><link rel="next" title="爬虫（二）" href="http://lguanghao.com/2020/02/20/%E7%88%AC%E8%99%AB%EF%BC%88%E4%BA%8C%EF%BC%89/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-09-07 00:42:14'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">24</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">19</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基础的数据处理"><span class="toc-number">1.</span> <span class="toc-text">基础的数据处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#出租车数据的基础处理-由gps生成OD-交通出行量"><span class="toc-number">1.1.</span> <span class="toc-text">出租车数据的基础处理,由gps生成OD(交通出行量)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#读取租车数据"><span class="toc-number">1.1.1.</span> <span class="toc-text">读取租车数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础的数据操作"><span class="toc-number">1.1.2.</span> <span class="toc-text">基础的数据操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据的筛选"><span class="toc-number">1.1.3.</span> <span class="toc-text">数据的筛选</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取-删除-定义DataFrame的某一列"><span class="toc-number">1.1.4.</span> <span class="toc-text">获取&#x2F;删除&#x2F;定义DataFrame的某一列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取某一列某一行的数据"><span class="toc-number">1.1.5.</span> <span class="toc-text">获取某一列某一行的数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据清洗"><span class="toc-number">1.2.</span> <span class="toc-text">数据清洗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#识别OD"><span class="toc-number">1.3.</span> <span class="toc-text">识别OD</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#将上下车的状态整理为OD"><span class="toc-number">1.3.1.</span> <span class="toc-text">将上下车的状态整理为OD</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#出租车数据的集计与基础图表绘制"><span class="toc-number">2.</span> <span class="toc-text">出租车数据的集计与基础图表绘制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#读取数据"><span class="toc-number">2.1.</span> <span class="toc-text">读取数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#每小时GPS数据量绘图"><span class="toc-number">2.2.</span> <span class="toc-text">每小时GPS数据量绘图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#将需要绘制的数据算出来"><span class="toc-number">2.2.1.</span> <span class="toc-text">将需要绘制的数据算出来</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开始绘图"><span class="toc-number">2.2.2.</span> <span class="toc-text">开始绘图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#订单的持续时间箱型图"><span class="toc-number">2.3.</span> <span class="toc-text">订单的持续时间箱型图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用两种方式绘图"><span class="toc-number">2.3.1.</span> <span class="toc-text">用两种方式绘图</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#出租车数据的地理信息处理"><span class="toc-number">3.</span> <span class="toc-text">出租车数据的地理信息处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#读取shp文件"><span class="toc-number">3.1.</span> <span class="toc-text">读取shp文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#栅格化"><span class="toc-number">3.2.</span> <span class="toc-text">栅格化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将数据对应到栅格"><span class="toc-number">3.3.</span> <span class="toc-text">将数据对应到栅格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集计栅格OD-全天-高峰时段"><span class="toc-number">3.4.</span> <span class="toc-text">集计栅格OD(全天 高峰时段)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#绘制栅格的OD图"><span class="toc-number">3.5.</span> <span class="toc-text">绘制栅格的OD图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#先绘制前20行"><span class="toc-number">3.5.1.</span> <span class="toc-text">先绘制前20行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#画出全部的OD"><span class="toc-number">3.5.2.</span> <span class="toc-text">画出全部的OD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用GeoDataFrame自带plot函数绘制"><span class="toc-number">3.5.3.</span> <span class="toc-text">用GeoDataFrame自带plot函数绘制</span></a></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/mountains.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Liu's blog</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Python时空数据分析(一)</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-02-20 21:40:38"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2020-02-20</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-09-07 00:42:14"><i class="fas fa-history fa-fw"></i> 更新于 2020-09-07</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/study/">study</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>字数总计:</span><span class="word-count">7.4k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>阅读时长: 36 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="基础的数据处理"><a href="#基础的数据处理" class="headerlink" title="基础的数据处理"></a>基础的数据处理</h1><h2 id="出租车数据的基础处理-由gps生成OD-交通出行量"><a href="#出租车数据的基础处理-由gps生成OD-交通出行量" class="headerlink" title="出租车数据的基础处理,由gps生成OD(交通出行量)"></a>出租车数据的基础处理,由gps生成OD(交通出行量)</h2><h3 id="读取租车数据"><a href="#读取租车数据" class="headerlink" title="读取租车数据"></a>读取租车数据</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd <span class="comment">#读取数据</span></span><br><span class="line">data = pd.read_csv(<span class="string">'/home/liu/Documents/pygeo-tutorial/data-sample/TaxiData-Sample'</span>,header = <span class="literal">None</span>)</span><br><span class="line"><span class="comment">#对于一个没有字段名标题的数据,默认情况下会把数据第一行默认为字段名标题,为了解决这个问题，</span></span><br><span class="line"><span class="comment">#添加“header=None”，告诉函数，读取的原始文件数据没有列索引。因此，read_csv为自动加上列索引</span></span><br><span class="line">data.columns = [<span class="string">'VehicleNum'</span>,<span class="string">'Stime'</span>,<span class="string">'Lng'</span>,<span class="string">'Lat'</span>,<span class="string">'OpenStatus'</span>,<span class="string">'Speed'</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#显示数据前5行</span></span><br><span class="line">data.head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VehicleNum</th>
+      <th>Stime</th>
+      <th>Lng</th>
+      <th>Lat</th>
+      <th>OpenStatus</th>
+      <th>Speed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>22271</td>
+      <td>22:54:04</td>
+      <td>114.167000</td>
+      <td>22.718399</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>22271</td>
+      <td>18:26:26</td>
+      <td>114.190598</td>
+      <td>22.647800</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>22271</td>
+      <td>18:35:18</td>
+      <td>114.201401</td>
+      <td>22.649700</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>22271</td>
+      <td>16:02:46</td>
+      <td>114.233498</td>
+      <td>22.725901</td>
+      <td>0</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>22271</td>
+      <td>21:41:17</td>
+      <td>114.233597</td>
+      <td>22.720900</td>
+      <td>0</td>
+      <td>19</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<ul>
+<li>VehicleNum——车牌  </li>
+<li>Stime——时间  </li>
+<li>Lng——经度  </li>
+<li>Lat——纬度  </li>
+<li>OpenStatus——是否有乘客(0没乘客,1有乘客)  </li>
+<li>Speed——速度  </li>
+</ul>
+<h3 id="基础的数据操作"><a href="#基础的数据操作" class="headerlink" title="基础的数据操作"></a>基础的数据操作</h3><p>读取数据时读进来的是DataFrame格式的数据表,而一个DataFrame中的每一列,则为一个Series.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(data)</span><br></pre></td></tr></table></figure>
+<pre><code>pandas.core.frame.DataFrame
+</code></pre><p>取DataFrame的某一列</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(data[<span class="string">'Lng'</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>pandas.core.series.Series
+</code></pre><p>如果取某一列或者某几列,想得到的是DataFrame</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(data[[<span class="string">'Lng'</span>,<span class="string">'Lat'</span>]])</span><br></pre></td></tr></table></figure>
+<pre><code>pandas.core.frame.DataFrame
+</code></pre><h3 id="数据的筛选"><a href="#数据的筛选" class="headerlink" title="数据的筛选"></a>数据的筛选</h3><p>在筛选数据的时候,一般用<code>data[条件]</code>的格式<br>其中的条件,是对data每一行数据的true和false布尔变量的Series  </p>
+<p>例如想得到车牌号为22271的所有数据<br>首先我们要获得一个布尔变量的Series,这个Series对应的是data的每一行.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(data[<span class="string">'VehicleNum'</span>]==<span class="number">22271</span>).head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>0    True
+1    True
+2    True
+3    True
+4    True
+Name: VehicleNum, dtype: bool
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#得到车牌照为22271的所有数据</span></span><br><span class="line">data[data[<span class="string">'VehicleNum'</span>]==<span class="number">22271</span>].head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VehicleNum</th>
+      <th>Stime</th>
+      <th>Lng</th>
+      <th>Lat</th>
+      <th>OpenStatus</th>
+      <th>Speed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>22271</td>
+      <td>22:54:04</td>
+      <td>114.167000</td>
+      <td>22.718399</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>22271</td>
+      <td>18:26:26</td>
+      <td>114.190598</td>
+      <td>22.647800</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>22271</td>
+      <td>18:35:18</td>
+      <td>114.201401</td>
+      <td>22.649700</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>22271</td>
+      <td>16:02:46</td>
+      <td>114.233498</td>
+      <td>22.725901</td>
+      <td>0</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>22271</td>
+      <td>21:41:17</td>
+      <td>114.233597</td>
+      <td>22.720900</td>
+      <td>0</td>
+      <td>19</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<p>如果我们想对data删去所有牌照为22271的数据  </p>
+<blockquote>
+<p>data[-(条件)]</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#删除车牌照为22271的所有数据</span></span><br><span class="line">data[-(data[<span class="string">'VehicleNum'</span>]==<span class="number">22271</span>)].head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VehicleNum</th>
+      <th>Stime</th>
+      <th>Lng</th>
+      <th>Lat</th>
+      <th>OpenStatus</th>
+      <th>Speed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1437</th>
+      <td>35807</td>
+      <td>01:53:46</td>
+      <td>113.809898</td>
+      <td>22.626801</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1438</th>
+      <td>35807</td>
+      <td>01:43:46</td>
+      <td>113.813301</td>
+      <td>22.623600</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1439</th>
+      <td>35807</td>
+      <td>01:14:15</td>
+      <td>113.847000</td>
+      <td>22.594700</td>
+      <td>0</td>
+      <td>41</td>
+    </tr>
+    <tr>
+      <th>1440</th>
+      <td>35807</td>
+      <td>02:01:41</td>
+      <td>113.852501</td>
+      <td>22.625700</td>
+      <td>0</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>1441</th>
+      <td>35807</td>
+      <td>01:01:59</td>
+      <td>113.897003</td>
+      <td>22.551901</td>
+      <td>0</td>
+      <td>42</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h3 id="获取-删除-定义DataFrame的某一列"><a href="#获取-删除-定义DataFrame的某一列" class="headerlink" title="获取/删除/定义DataFrame的某一列"></a>获取/删除/定义DataFrame的某一列</h3><p>获取列不会影响到data,在操作后将得到的表重新赋值给data才有影响</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data[[<span class="string">'Stime'</span>]].head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Stime</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>22:54:04</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>18:26:26</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>18:35:18</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>16:02:46</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>21:41:17</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义列'Speed1'为Speed列的两倍,注意,此操作会影响到data</span></span><br><span class="line">data[<span class="string">'Speed1'</span>]=data[<span class="string">'Speed'</span>]*<span class="number">2</span></span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line">data.loc[:,<span class="string">'Speed1'</span>] = data[<span class="string">'Speed'</span>]*<span class="number">2</span>  <span class="comment">#loc函数主要通过行标签索引行数据,loc[]算是前闭加后闭,索引某一列数据loc[:,'a']</span></span><br><span class="line"><span class="comment">#iloc 主要是通过行号获取行数据,iloc[0:1]是前闭后开的</span></span><br><span class="line">data.head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VehicleNum</th>
+      <th>Stime</th>
+      <th>Lng</th>
+      <th>Lat</th>
+      <th>OpenStatus</th>
+      <th>Speed</th>
+      <th>Speed1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>22271</td>
+      <td>22:54:04</td>
+      <td>114.167000</td>
+      <td>22.718399</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>22271</td>
+      <td>18:26:26</td>
+      <td>114.190598</td>
+      <td>22.647800</td>
+      <td>0</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>22271</td>
+      <td>18:35:18</td>
+      <td>114.201401</td>
+      <td>22.649700</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>22271</td>
+      <td>16:02:46</td>
+      <td>114.233498</td>
+      <td>22.725901</td>
+      <td>0</td>
+      <td>24</td>
+      <td>48</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>22271</td>
+      <td>21:41:17</td>
+      <td>114.233597</td>
+      <td>22.720900</td>
+      <td>0</td>
+      <td>19</td>
+      <td>38</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#删除列'Stime'操作不会影响到data,在操作后必须将得到的表重新赋值给data才有影响  </span></span><br><span class="line">data.drop([<span class="string">'Stime'</span>],axis=<span class="number">1</span>).head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VehicleNum</th>
+      <th>Lng</th>
+      <th>Lat</th>
+      <th>OpenStatus</th>
+      <th>Speed</th>
+      <th>Speed1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>22271</td>
+      <td>114.167000</td>
+      <td>22.718399</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>22271</td>
+      <td>114.190598</td>
+      <td>22.647800</td>
+      <td>0</td>
+      <td>4</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>22271</td>
+      <td>114.201401</td>
+      <td>22.649700</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>22271</td>
+      <td>114.233498</td>
+      <td>22.725901</td>
+      <td>0</td>
+      <td>24</td>
+      <td>48</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>22271</td>
+      <td>114.233597</td>
+      <td>22.720900</td>
+      <td>0</td>
+      <td>19</td>
+      <td>38</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h3 id="获取某一列某一行的数据"><a href="#获取某一列某一行的数据" class="headerlink" title="获取某一列某一行的数据"></a>获取某一列某一行的数据</h3><p>在获取某行某列的数据时,记得一定要用iloc(按表目前排列的顺序取),不能用loc(按index取)<br>因为在做完筛选\排序等操作,表就不是按index来排列.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获取Stime列的第4行数据</span></span><br><span class="line">data[<span class="string">'Stime'</span>].loc[<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>&#39;16:02:46&#39;
+</code></pre><h2 id="数据清洗"><a href="#数据清洗" class="headerlink" title="数据清洗"></a>数据清洗</h2><p>首先,将数据按车牌,时间排序,特别要注意,data排序后需要再赋值给data,否则没有作用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data = data.sort_values(by = [<span class="string">'VehicleNum'</span>,<span class="string">'Stime'</span>])</span><br><span class="line"><span class="comment">#by:指定列名(axis=0或’index’)或索引值(axis=1或’columns’)ascending:是否按指定列的数组升序排列，默认为True，即升序排列</span></span><br><span class="line">data.head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VehicleNum</th>
+      <th>Stime</th>
+      <th>Lng</th>
+      <th>Lat</th>
+      <th>OpenStatus</th>
+      <th>Speed</th>
+      <th>Speed1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>39</th>
+      <td>22271</td>
+      <td>00:00:49</td>
+      <td>114.266502</td>
+      <td>22.728201</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>397</th>
+      <td>22271</td>
+      <td>00:01:48</td>
+      <td>114.266502</td>
+      <td>22.728201</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1413</th>
+      <td>22271</td>
+      <td>00:02:47</td>
+      <td>114.266502</td>
+      <td>22.728201</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>244</th>
+      <td>22271</td>
+      <td>00:03:46</td>
+      <td>114.266502</td>
+      <td>22.728201</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>247</th>
+      <td>22271</td>
+      <td>00:04:45</td>
+      <td>114.268898</td>
+      <td>22.729500</td>
+      <td>0</td>
+      <td>11</td>
+      <td>22</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<p>在pandas的数据处理过程中,我们筛掉不要的数据用下面的方法是最好的</p>
+<blockquote>
+<p>data[条件]是保留符合条件的数据<br>data[-(条件)]是删除符合条件的数据</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Series的shift()函数能够将数据按顺序后移一位</span><br><span class="line">Series的shift(-1)函数能够将数据按顺序前移一位</span><br><span class="line">因此我们要判断的是，如果：</span><br><span class="line">后一位和前一位相等，但是后一位与中间一位不等，那么中间一位的数据就要删除（前一条数据，中间一条数据，后一条数据的车牌必须相等）</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#筛选之前的数据量</span></span><br><span class="line">len(data)</span><br></pre></td></tr></table></figure>
+<pre><code>1601307
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">################################################</span></span><br><span class="line"><span class="comment">#用到的条件是:</span></span><br><span class="line"><span class="comment">#1.后一位和前一位相等 </span></span><br><span class="line"><span class="comment">#2.但是后一位和中间一位不等</span></span><br><span class="line"><span class="comment">#3.前一条数据,后一条数据的车牌相等</span></span><br><span class="line"><span class="comment">#4.中间一条数据,后一条数据的车牌相等</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#各条件之间的交集可以用</span></span><br><span class="line"><span class="comment">#data[(条件1)&amp;(条件2)]</span></span><br><span class="line"><span class="comment">#各条件之间的并集可以用</span></span><br><span class="line"><span class="comment">#data[(条件1)|(条件2)]</span></span><br><span class="line"></span><br><span class="line">data = data[-((data[<span class="string">'OpenStatus'</span>].shift(<span class="number">-1</span>) == data[<span class="string">'OpenStatus'</span>].shift())&amp;</span><br><span class="line">              (data[<span class="string">'OpenStatus'</span>].shift(<span class="number">-1</span>) != data[<span class="string">'OpenStatus'</span>])&amp;</span><br><span class="line">              (data[<span class="string">'VehicleNum'</span>].shift(<span class="number">-1</span>) == data[<span class="string">'VehicleNum'</span>].shift())&amp;</span><br><span class="line">              (data[<span class="string">'VehicleNum'</span>].shift(<span class="number">-1</span>) == data[<span class="string">'VehicleNum'</span>]))]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">len(data)</span><br></pre></td></tr></table></figure>
+<pre><code>1598866
+</code></pre><h2 id="识别OD"><a href="#识别OD" class="headerlink" title="识别OD"></a>识别OD</h2><p>乘客上下车的状态变化识别</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = data.drop([<span class="string">'Speed1'</span>], axis = <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data.head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VehicleNum</th>
+      <th>Stime</th>
+      <th>Lng</th>
+      <th>Lat</th>
+      <th>OpenStatus</th>
+      <th>Speed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>39</th>
+      <td>22271</td>
+      <td>00:00:49</td>
+      <td>114.266502</td>
+      <td>22.728201</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>397</th>
+      <td>22271</td>
+      <td>00:01:48</td>
+      <td>114.266502</td>
+      <td>22.728201</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1413</th>
+      <td>22271</td>
+      <td>00:02:47</td>
+      <td>114.266502</td>
+      <td>22.728201</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>244</th>
+      <td>22271</td>
+      <td>00:03:46</td>
+      <td>114.266502</td>
+      <td>22.728201</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>247</th>
+      <td>22271</td>
+      <td>00:04:45</td>
+      <td>114.268898</td>
+      <td>22.729500</td>
+      <td>0</td>
+      <td>11</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<p>把下一条数据的信息与前一条信息做比较,这样就能很方便地比较出这条数据和下条数据的差异,在字段名字后面加个1,代表后面一条数据的值.<br>另外定义StatusChange为下一条数据的OpenStatus减去这一条数据的OpenStatus.  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">data.loc[:,<span class="string">'OpenStatus1'</span>] = data[<span class="string">'OpenStatus'</span>].shift(<span class="number">-1</span>)</span><br><span class="line">data.loc[:,<span class="string">'VehicleNum1'</span>] = data[<span class="string">'VehicleNum'</span>].shift(<span class="number">-1</span>)</span><br><span class="line">data.loc[:,<span class="string">'Lng1'</span>] = data[<span class="string">'Lng'</span>].shift(<span class="number">-1</span>)</span><br><span class="line">data.loc[:,<span class="string">'Lat1'</span>] = data[<span class="string">'Lat'</span>].shift(<span class="number">-1</span>)</span><br><span class="line">data.loc[:,<span class="string">'Stime1'</span>] = data[<span class="string">'Stime'</span>].shift(<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">data.loc[:,<span class="string">'StatusChange'</span>] = data[<span class="string">'OpenStatus1'</span>]-data[<span class="string">'OpenStatus'</span>]</span><br><span class="line">data.head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VehicleNum</th>
+      <th>Stime</th>
+      <th>Lng</th>
+      <th>Lat</th>
+      <th>OpenStatus</th>
+      <th>Speed</th>
+      <th>OpenStatus1</th>
+      <th>VehicleNum1</th>
+      <th>Lng1</th>
+      <th>Lat1</th>
+      <th>Stime1</th>
+      <th>StatusChange</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>39</th>
+      <td>22271</td>
+      <td>00:00:49</td>
+      <td>114.266502</td>
+      <td>22.728201</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>22271.0</td>
+      <td>114.266502</td>
+      <td>22.728201</td>
+      <td>00:01:48</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>397</th>
+      <td>22271</td>
+      <td>00:01:48</td>
+      <td>114.266502</td>
+      <td>22.728201</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>22271.0</td>
+      <td>114.266502</td>
+      <td>22.728201</td>
+      <td>00:02:47</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1413</th>
+      <td>22271</td>
+      <td>00:02:47</td>
+      <td>114.266502</td>
+      <td>22.728201</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>22271.0</td>
+      <td>114.266502</td>
+      <td>22.728201</td>
+      <td>00:03:46</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>244</th>
+      <td>22271</td>
+      <td>00:03:46</td>
+      <td>114.266502</td>
+      <td>22.728201</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>22271.0</td>
+      <td>114.268898</td>
+      <td>22.729500</td>
+      <td>00:04:45</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>247</th>
+      <td>22271</td>
+      <td>00:04:45</td>
+      <td>114.268898</td>
+      <td>22.729500</td>
+      <td>0</td>
+      <td>11</td>
+      <td>0.0</td>
+      <td>22271.0</td>
+      <td>114.272003</td>
+      <td>22.731199</td>
+      <td>00:05:44</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h3 id="将上下车的状态整理为OD"><a href="#将上下车的状态整理为OD" class="headerlink" title="将上下车的状态整理为OD"></a>将上下车的状态整理为OD</h3><p>两个条件:</p>
+<ol>
+<li>StatusChange字段为1或者-1</li>
+<li>这条数据和下一条数据的车辆ID必须是相同的</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data = data[((data[<span class="string">'StatusChange'</span>] == <span class="number">1</span>)|(data[<span class="string">'StatusChange'</span>] == <span class="number">-1</span>))&amp;(data[<span class="string">'VehicleNum'</span>] == data[<span class="string">'VehicleNum1'</span>])]</span><br><span class="line">data.head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VehicleNum</th>
+      <th>Stime</th>
+      <th>Lng</th>
+      <th>Lat</th>
+      <th>OpenStatus</th>
+      <th>Speed</th>
+      <th>OpenStatus1</th>
+      <th>VehicleNum1</th>
+      <th>Lng1</th>
+      <th>Lat1</th>
+      <th>Stime1</th>
+      <th>StatusChange</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1548741</th>
+      <td>22334</td>
+      <td>00:00:52</td>
+      <td>114.111130</td>
+      <td>22.576750</td>
+      <td>1</td>
+      <td>13</td>
+      <td>0.0</td>
+      <td>22334.0</td>
+      <td>114.111130</td>
+      <td>22.576750</td>
+      <td>00:01:04</td>
+      <td>-1.0</td>
+    </tr>
+    <tr>
+      <th>1548351</th>
+      <td>22334</td>
+      <td>00:07:44</td>
+      <td>114.080498</td>
+      <td>22.554182</td>
+      <td>0</td>
+      <td>11</td>
+      <td>1.0</td>
+      <td>22334.0</td>
+      <td>114.080498</td>
+      <td>22.554182</td>
+      <td>00:07:57</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1549620</th>
+      <td>22334</td>
+      <td>00:17:58</td>
+      <td>114.084915</td>
+      <td>22.540850</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0.0</td>
+      <td>22334.0</td>
+      <td>114.084915</td>
+      <td>22.540850</td>
+      <td>00:18:16</td>
+      <td>-1.0</td>
+    </tr>
+    <tr>
+      <th>1547182</th>
+      <td>22334</td>
+      <td>00:18:56</td>
+      <td>114.084915</td>
+      <td>22.540850</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1.0</td>
+      <td>22334.0</td>
+      <td>114.084915</td>
+      <td>22.540850</td>
+      <td>00:19:05</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1547627</th>
+      <td>22334</td>
+      <td>00:44:47</td>
+      <td>114.056236</td>
+      <td>22.633383</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0.0</td>
+      <td>22334.0</td>
+      <td>114.056236</td>
+      <td>22.633383</td>
+      <td>00:44:52</td>
+      <td>-1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#data数据保留一些我们需要的字段</span></span><br><span class="line">data = data[[<span class="string">'VehicleNum'</span>,<span class="string">'Stime'</span>,<span class="string">'Lng'</span>,<span class="string">'Lat'</span>,<span class="string">'StatusChange'</span>]]</span><br><span class="line">data.head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VehicleNum</th>
+      <th>Stime</th>
+      <th>Lng</th>
+      <th>Lat</th>
+      <th>StatusChange</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1548741</th>
+      <td>22334</td>
+      <td>00:00:52</td>
+      <td>114.111130</td>
+      <td>22.576750</td>
+      <td>-1.0</td>
+    </tr>
+    <tr>
+      <th>1548351</th>
+      <td>22334</td>
+      <td>00:07:44</td>
+      <td>114.080498</td>
+      <td>22.554182</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1549620</th>
+      <td>22334</td>
+      <td>00:17:58</td>
+      <td>114.084915</td>
+      <td>22.540850</td>
+      <td>-1.0</td>
+    </tr>
+    <tr>
+      <th>1547182</th>
+      <td>22334</td>
+      <td>00:18:56</td>
+      <td>114.084915</td>
+      <td>22.540850</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1547627</th>
+      <td>22334</td>
+      <td>00:44:47</td>
+      <td>114.056236</td>
+      <td>22.633383</td>
+      <td>-1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<p>现在就得到了乘客哪里上车,哪里下车.而我们需要的OD数据形式是,每一行记录包括了信息:车辆ID,上车时间,上车地点,下车时间,下车地点.  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">data = data.rename(columns = &#123;<span class="string">'Lng'</span>:<span class="string">'SLng'</span>,<span class="string">'Lat'</span>:<span class="string">'SLat'</span>&#125;)</span><br><span class="line">data[<span class="string">'ELng'</span>] = data[<span class="string">'SLng'</span>].shift(<span class="number">-1</span>)</span><br><span class="line">data[<span class="string">'ELat'</span>] = data[<span class="string">'SLat'</span>].shift(<span class="number">-1</span>)</span><br><span class="line">data[<span class="string">'Etime'</span>] = data[<span class="string">'Stime'</span>].shift(<span class="number">-1</span>)</span><br><span class="line">data = data[data[<span class="string">'StatusChange'</span>] == <span class="number">1</span>]</span><br><span class="line">data = data.drop(<span class="string">'StatusChange'</span>,axis = <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data.head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VehicleNum</th>
+      <th>Stime</th>
+      <th>SLng</th>
+      <th>SLat</th>
+      <th>ELng</th>
+      <th>ELat</th>
+      <th>Etime</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1548351</th>
+      <td>22334</td>
+      <td>00:07:44</td>
+      <td>114.080498</td>
+      <td>22.554182</td>
+      <td>114.084915</td>
+      <td>22.540850</td>
+      <td>00:17:58</td>
+    </tr>
+    <tr>
+      <th>1547182</th>
+      <td>22334</td>
+      <td>00:18:56</td>
+      <td>114.084915</td>
+      <td>22.540850</td>
+      <td>114.056236</td>
+      <td>22.633383</td>
+      <td>00:44:47</td>
+    </tr>
+    <tr>
+      <th>1547511</th>
+      <td>22334</td>
+      <td>02:38:35</td>
+      <td>114.091637</td>
+      <td>22.543200</td>
+      <td>114.093498</td>
+      <td>22.554382</td>
+      <td>02:46:52</td>
+    </tr>
+    <tr>
+      <th>1547789</th>
+      <td>22334</td>
+      <td>03:58:46</td>
+      <td>114.038818</td>
+      <td>22.553232</td>
+      <td>114.052299</td>
+      <td>22.604366</td>
+      <td>04:13:57</td>
+    </tr>
+    <tr>
+      <th>1547764</th>
+      <td>22334</td>
+      <td>06:30:11</td>
+      <td>114.031250</td>
+      <td>22.519550</td>
+      <td>114.067886</td>
+      <td>22.521299</td>
+      <td>06:41:19</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data.to_csv(<span class="string">'/home/liu/Documents/pygeo-tutorial/data-sample/TaxiOD-Sample1'</span>, index = <span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="出租车数据的集计与基础图表绘制"><a href="#出租车数据的集计与基础图表绘制" class="headerlink" title="出租车数据的集计与基础图表绘制"></a>出租车数据的集计与基础图表绘制</h1><h2 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#读取GPS数据</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = pd.read_csv(<span class="string">'/home/liu/Documents/pygeo-tutorial/data-sample/TaxiData-Sample'</span>, header = <span class="literal">None</span>)</span><br><span class="line">data.columns = [<span class="string">'VehicleNum'</span>, <span class="string">'Stime'</span>, <span class="string">'Lng'</span>, <span class="string">'Lat'</span>, <span class="string">'OpenStatus'</span>, <span class="string">'Speed'</span>]</span><br><span class="line">data.head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VehicleNum</th>
+      <th>Stime</th>
+      <th>Lng</th>
+      <th>Lat</th>
+      <th>OpenStatus</th>
+      <th>Speed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>22271</td>
+      <td>22:54:04</td>
+      <td>114.167000</td>
+      <td>22.718399</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>22271</td>
+      <td>18:26:26</td>
+      <td>114.190598</td>
+      <td>22.647800</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>22271</td>
+      <td>18:35:18</td>
+      <td>114.201401</td>
+      <td>22.649700</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>22271</td>
+      <td>16:02:46</td>
+      <td>114.233498</td>
+      <td>22.725901</td>
+      <td>0</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>22271</td>
+      <td>21:41:17</td>
+      <td>114.233597</td>
+      <td>22.720900</td>
+      <td>0</td>
+      <td>19</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TaxiOD = pd.read_csv(<span class="string">'/home/liu/Documents/pygeo-tutorial/data-sample/TaxiOD.csv'</span>)</span><br><span class="line">TaxiOD.columns = [<span class="string">'VehicleNum'</span>,<span class="string">'Stime'</span>,<span class="string">'SLng'</span>,<span class="string">'SLat'</span>,<span class="string">'Elng'</span>,<span class="string">'Elat'</span>,<span class="string">'Etime'</span>]</span><br><span class="line">TaxiOD.head()</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VehicleNum</th>
+      <th>Stime</th>
+      <th>SLng</th>
+      <th>SLat</th>
+      <th>Elng</th>
+      <th>Elat</th>
+      <th>Etime</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>22223</td>
+      <td>00:03:23</td>
+      <td>114.167465</td>
+      <td>22.562468</td>
+      <td>114.225235</td>
+      <td>22.552750</td>
+      <td>00:10:48</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>22223</td>
+      <td>00:11:33</td>
+      <td>114.227150</td>
+      <td>22.554167</td>
+      <td>114.229218</td>
+      <td>22.560217</td>
+      <td>00:15:19</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>22223</td>
+      <td>00:17:13</td>
+      <td>114.231354</td>
+      <td>22.562166</td>
+      <td>114.255798</td>
+      <td>22.590967</td>
+      <td>00:29:06</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>22223</td>
+      <td>00:36:45</td>
+      <td>114.240196</td>
+      <td>22.563650</td>
+      <td>114.119965</td>
+      <td>22.566668</td>
+      <td>00:54:42</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>22223</td>
+      <td>01:01:14</td>
+      <td>114.135414</td>
+      <td>22.575933</td>
+      <td>114.166748</td>
+      <td>22.608267</td>
+      <td>01:08:17</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h2 id="每小时GPS数据量绘图"><a href="#每小时GPS数据量绘图" class="headerlink" title="每小时GPS数据量绘图"></a>每小时GPS数据量绘图</h2><h3 id="将需要绘制的数据算出来"><a href="#将需要绘制的数据算出来" class="headerlink" title="将需要绘制的数据算出来"></a>将需要绘制的数据算出来</h3><p>该步骤主要用到df.groupby功能<br>我们要集计每小时的数据,那就需要由一列的内容表示数据属于哪个小时,然后以那列数据为集记.因此这里我们对data的Stime列处理,得到该时间所属的小时.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment">#1.时间当成字符串,用str自带slice方法取前两位</span></span><br><span class="line">timeflag = time.time()<span class="comment">#返回当前时间的时间戳</span></span><br><span class="line">data[<span class="string">'Hour'</span>] = data[<span class="string">'Stime'</span>].str.slice(<span class="number">0</span>,<span class="number">2</span>)<span class="comment">#把时间当成字符串,用列自带的str方法,取前两位</span></span><br><span class="line"><span class="comment">#计算耗时</span></span><br><span class="line">print(<span class="string">'方法1'</span>,time.time()-timeflag,<span class="string">'s'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#2.把时间当成字符串,遍历取字符串前两位</span></span><br><span class="line">timeflag = time.time()</span><br><span class="line">data[<span class="string">'Hour'</span>] = data[<span class="string">'Stime'</span>].apply(<span class="keyword">lambda</span> r:r[:<span class="number">2</span>]) <span class="comment">#当函数参数已经存在于一个元组或字典中时,间接地调用函数.</span></span><br><span class="line">print(<span class="string">'方法2'</span>,time.time()-timeflag,<span class="string">'s'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#3.转换为时间格式后取小时</span></span><br><span class="line"><span class="comment">#timeflag = time.time()</span></span><br><span class="line"><span class="comment">#data['Hour'] = pd.to_datetime(data['Stime']).apply(lambda r: r.hour)</span></span><br><span class="line"><span class="comment">#print('方法3',time.time()-timeflag,'s')</span></span><br></pre></td></tr></table></figure>
+<pre><code>方法1 1.1978394985198975 s
+方法2 0.5706005096435547 s
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data[<span class="string">'Hour'</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>0          22
+1          18
+2          18
+3          16
+4          21
+           ..
+1601302    20
+1601303    20
+1601304    20
+1601305    20
+1601306    20
+Name: Hour, Length: 1601307, dtype: object
+</code></pre><p>用df.groupby().count()计数<br>group的列都会变成index,所以我们用.reset_index(),将index重新变成列  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hourcount = data.groupby(data[<span class="string">'Stime'</span>].apply(<span class="keyword">lambda</span> r:r[:<span class="number">2</span>]))[<span class="string">'VehicleNum'</span>].count().reset_index()</span><br><span class="line">hourcount.head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Stime</th>
+      <th>VehicleNum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>00</td>
+      <td>68745</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>01</td>
+      <td>63142</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>02</td>
+      <td>60680</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>03</td>
+      <td>57494</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>04</td>
+      <td>57060</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h3 id="开始绘图"><a href="#开始绘图" class="headerlink" title="开始绘图"></a>开始绘图</h3><p>使用matplotlib包来绘制每小时GPS数据量的图表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#一般,用matplotlib绘图的代码由3部分组成</span></span><br><span class="line"><span class="comment">#第一部分:创建图</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment">#创建一个图用plt.figure</span></span><br><span class="line"><span class="comment">#其中fig可以想象是整张图,ax是图上其中一个画板</span></span><br><span class="line"><span class="comment">#plt是画笔</span></span><br><span class="line">fig = plt.figure(<span class="number">1</span>,(<span class="number">8</span>,<span class="number">4</span>))</span><br><span class="line">ax = plt.subplot(<span class="number">111</span>)</span><br><span class="line"><span class="comment">#告诉画笔,我们在ax上画图</span></span><br><span class="line">plt.sca(ax)</span><br><span class="line"></span><br><span class="line"><span class="comment">#第二部分:绘制</span></span><br><span class="line"><span class="comment">#用plt.plot画折线</span></span><br><span class="line">plt.plot(hourcount[<span class="string">'Stime'</span>],hourcount[<span class="string">'VehicleNum'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#第三部分:调整</span></span><br><span class="line">plt.title(<span class="string">'Hourly data Volume'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-src="/img/time_data/output_10_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">fig     = plt.figure(<span class="number">1</span>,(<span class="number">8</span>,<span class="number">4</span>),dpi = <span class="number">250</span>)    </span><br><span class="line">ax      = plt.subplot(<span class="number">111</span>)</span><br><span class="line">plt.sca(ax)</span><br><span class="line"></span><br><span class="line"><span class="comment">#折线图调整颜色加上数据点</span></span><br><span class="line">plt.plot(hourcount[<span class="string">'Stime'</span>],hourcount[<span class="string">'VehicleNum'</span>],<span class="string">'k-'</span>,hourcount[<span class="string">'Stime'</span>],hourcount[<span class="string">'VehicleNum'</span>],<span class="string">'k.'</span>)</span><br><span class="line"><span class="comment">#加上条形图</span></span><br><span class="line">plt.bar(hourcount[<span class="string">'Stime'</span>],hourcount[<span class="string">'VehicleNum'</span>],width =<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'Hourly data Volume'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#把y轴起点固定在0</span></span><br><span class="line">plt.ylim(<span class="number">0</span>,<span class="number">80000</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Data volumn'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Hour'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-src="/img/time_data/output_11_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TaxiOD.head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VehicleNum</th>
+      <th>Stime</th>
+      <th>SLng</th>
+      <th>SLat</th>
+      <th>Elng</th>
+      <th>Elat</th>
+      <th>Etime</th>
+      <th>order_time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>22223</td>
+      <td>00:03:23</td>
+      <td>114.167465</td>
+      <td>22.562468</td>
+      <td>114.225235</td>
+      <td>22.552750</td>
+      <td>00:10:48</td>
+      <td>445</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>22223</td>
+      <td>00:11:33</td>
+      <td>114.227150</td>
+      <td>22.554167</td>
+      <td>114.229218</td>
+      <td>22.560217</td>
+      <td>00:15:19</td>
+      <td>226</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>22223</td>
+      <td>00:17:13</td>
+      <td>114.231354</td>
+      <td>22.562166</td>
+      <td>114.255798</td>
+      <td>22.590967</td>
+      <td>00:29:06</td>
+      <td>713</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>22223</td>
+      <td>00:36:45</td>
+      <td>114.240196</td>
+      <td>22.563650</td>
+      <td>114.119965</td>
+      <td>22.566668</td>
+      <td>00:54:42</td>
+      <td>1077</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>22223</td>
+      <td>01:01:14</td>
+      <td>114.135414</td>
+      <td>22.575933</td>
+      <td>114.166748</td>
+      <td>22.608267</td>
+      <td>01:08:17</td>
+      <td>423</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">orderNum = TaxiOD.groupby(data[<span class="string">'Stime'</span>].apply(<span class="keyword">lambda</span> r:r[:<span class="number">2</span>]))[<span class="string">'Etime'</span>].count().reset_index()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">fig     = plt.figure(<span class="number">1</span>,(<span class="number">8</span>,<span class="number">4</span>),dpi = <span class="number">250</span>)    </span><br><span class="line">ax      = plt.subplot(<span class="number">111</span>)</span><br><span class="line">plt.sca(ax)</span><br><span class="line"></span><br><span class="line"><span class="comment">#折线图调整颜色加上数据点</span></span><br><span class="line">plt.plot(orderNum[<span class="string">'Stime'</span>],orderNum[<span class="string">'Etime'</span>],<span class="string">'k-'</span>,orderNum[<span class="string">'Stime'</span>],orderNum[<span class="string">'Etime'</span>],<span class="string">'k.'</span>)</span><br><span class="line"><span class="comment">#加上条形图</span></span><br><span class="line">plt.bar(orderNum[<span class="string">'Stime'</span>],orderNum[<span class="string">'Etime'</span>],width =<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'Hourly order Volume'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#把y轴起点固定在0</span></span><br><span class="line">plt.ylim(<span class="number">0</span>,<span class="number">80000</span>)</span><br><span class="line">plt.ylabel(<span class="string">'order volumn'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Hour'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-src="/img/time_data/output_14_0.png" alt="png"></p>
+<h2 id="订单的持续时间箱型图"><a href="#订单的持续时间箱型图" class="headerlink" title="订单的持续时间箱型图"></a>订单的持续时间箱型图</h2><p>订单的持续时间计算<br>这里,我想绘制一下订单的持续时间分布图,从TaxiOD来计算每个订单的持续时间吧<br>我们创建一列,叫order_time,记录的是从Stime到Etime经过的时间,单位是s</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TaxiOD = TaxiOD[-TaxiOD[<span class="string">'Etime'</span>].isnull()]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#方法1:直接硬算</span></span><br><span class="line">TaxiOD[<span class="string">'order_time'</span>] = TaxiOD[<span class="string">'Etime'</span>].str.slice(<span class="number">0</span>,<span class="number">2</span>).astype(<span class="string">'int'</span>)*<span class="number">3600</span>+\</span><br><span class="line">TaxiOD[<span class="string">'Etime'</span>].str.slice(<span class="number">3</span>,<span class="number">5</span>).astype(<span class="string">'int'</span>)*<span class="number">60</span>+\</span><br><span class="line">TaxiOD[<span class="string">'Etime'</span>].str.slice(<span class="number">6</span>,<span class="number">8</span>).astype(<span class="string">'int'</span>)-\</span><br><span class="line">TaxiOD[<span class="string">'Stime'</span>].str.slice(<span class="number">0</span>,<span class="number">2</span>).astype(<span class="string">'int'</span>)*<span class="number">3600</span>-\</span><br><span class="line">TaxiOD[<span class="string">'Stime'</span>].str.slice(<span class="number">3</span>,<span class="number">5</span>).astype(<span class="string">'int'</span>)*<span class="number">60</span>-\</span><br><span class="line">TaxiOD[<span class="string">'Stime'</span>].str.slice(<span class="number">6</span>,<span class="number">8</span>).astype(<span class="string">'int'</span>)</span><br><span class="line"><span class="comment">#方法2:转换为时间格式,相减后提取秒</span></span><br><span class="line"><span class="comment">#TaxiOD['order_time'] = (pd.to_datetime(TaxiOD['Etime'])-pd.to_datetime(TaxiOD['Stime']))</span></span><br><span class="line"><span class="comment">#TaxiOD['order_time'] = TaxiOD['order_time'].apply(lambda r:r.seconds)</span></span><br></pre></td></tr></table></figure>
+<h3 id="用两种方式绘图"><a href="#用两种方式绘图" class="headerlink" title="用两种方式绘图"></a>用两种方式绘图</h3><p>首先用plt.boxplot绘制全部数据分布的箱型图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(<span class="number">1</span>,(<span class="number">7</span>,<span class="number">3</span>),dpi = <span class="number">250</span>)</span><br><span class="line">ax  = plt.subplot(<span class="number">111</span>)</span><br><span class="line">plt.sca(ax)</span><br><span class="line"></span><br><span class="line">plt.boxplot(TaxiOD[<span class="string">'order_time'</span>]/<span class="number">60</span>)</span><br><span class="line"></span><br><span class="line">plt.ylabel(<span class="string">'minutes'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'order time'</span>)</span><br><span class="line">plt.ylim(<span class="number">0</span>,<span class="number">60</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-src="/img/time_data/output_19_0.png" alt="png"></p>
+<p>画出每小时分组的订单时间分布</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TaxiOD[<span class="string">'Hour'</span>] = TaxiOD[<span class="string">'Stime'</span>].str.slice(<span class="number">0</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(<span class="number">1</span>,(<span class="number">10</span>,<span class="number">5</span>),dpi = <span class="number">250</span>)</span><br><span class="line">ax = plt.subplot(<span class="number">111</span>)</span><br><span class="line">plt.sca(ax)</span><br><span class="line">hour = TaxiOD[<span class="string">'Hour'</span>].drop_duplicates().sort_values()</span><br><span class="line"><span class="comment">#drop_duplicates()函数是对df格式的数据,去除特定列下面的重复行,返回Df格式的数据</span></span><br><span class="line">datas = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(hour)):</span><br><span class="line">    datas.append(TaxiOD[TaxiOD[<span class="string">'Hour'</span>]==hour.iloc[i]][<span class="string">'order_time'</span>]/<span class="number">60</span>)</span><br><span class="line"><span class="comment">#绘制</span></span><br><span class="line">plt.boxplot(datas)</span><br><span class="line"><span class="comment">#更改x轴ticks的文字</span></span><br><span class="line">plt.xticks(range(<span class="number">1</span>,len(hour)+<span class="number">1</span>),list(hour))</span><br><span class="line">plt.ylabel(<span class="string">'Order time(minutes)'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Order start time'</span>)</span><br><span class="line">plt.ylim(<span class="number">0</span>,<span class="number">60</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-src="/img/time_data/output_22_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">fig = plt.figure(<span class="number">1</span>,(<span class="number">10</span>,<span class="number">5</span>),dpi = <span class="number">250</span>)</span><br><span class="line">ax = plt.subplot(<span class="number">111</span>)</span><br><span class="line">plt.sca(ax)</span><br><span class="line"></span><br><span class="line">sns.boxplot(x = <span class="string">'Hour'</span>, y = TaxiOD[<span class="string">"order_time"</span>]/<span class="number">60</span>, data = TaxiOD, ax=ax)</span><br><span class="line"></span><br><span class="line">plt.ylabel(<span class="string">'Order time(minutes)'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Order start time'</span>)</span><br><span class="line">plt.ylim(<span class="number">0</span>,<span class="number">60</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-src="/img/time_data/output_23_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="出租车数据的地理信息处理"><a href="#出租车数据的地理信息处理" class="headerlink" title="出租车数据的地理信息处理"></a>出租车数据的地理信息处理</h1><h2 id="读取shp文件"><a href="#读取shp文件" class="headerlink" title="读取shp文件"></a>读取shp文件</h2><ul>
+<li>.shp 存储的是几何要素的的空间信息，也就是XY坐标</li>
+<li>.shx 存储的是有关<em>.shp存储的索引信息。它记录了在</em>.shp中，空间数据是如何存储的，XY坐标的输入点在哪里，有多少XY坐标对等信息</li>
+<li>.dbf 存储地理数据的属性信息的dBase表</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#导入必要的包</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment">#绘制图用的包</span></span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment">#geopandas包</span></span><br><span class="line"><span class="keyword">import</span> geopandas </span><br><span class="line"><span class="comment">#shapely包</span></span><br><span class="line"><span class="keyword">from</span> shapely.geometry <span class="keyword">import</span> point,Polygon,shape</span><br><span class="line"><span class="comment">#读取shapefile文件</span></span><br><span class="line">shp = <span class="string">'/home/liu/Documents/pygeo-tutorial/shapefile/sz.shp'</span></span><br><span class="line">sz = geopandas.GeoDataFrame.from_file(shp,encoding = <span class="string">'utf-8'</span>)</span><br><span class="line"><span class="comment">#绘制</span></span><br><span class="line">sz.plot()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;AxesSubplot:&gt;
+</code></pre><p><img src= "/img/loading.gif" data-src="/img/time_data/output_1_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sz.head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>centroid_x</th>
+      <th>centroid_y</th>
+      <th>qh</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>114.143157</td>
+      <td>22.577605</td>
+      <td>罗湖</td>
+      <td>POLYGON ((114.10006 22.53431, 114.09969 22.535...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>114.041535</td>
+      <td>22.546180</td>
+      <td>福田</td>
+      <td>POLYGON ((113.98578 22.51348, 113.98558 22.523...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>114.270206</td>
+      <td>22.596432</td>
+      <td>盐田</td>
+      <td>POLYGON ((114.22772 22.54290, 114.22643 22.543...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>113.851387</td>
+      <td>22.679120</td>
+      <td>宝安</td>
+      <td>MULTIPOLYGON (((113.81831 22.54676, 113.81816 ...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>113.926290</td>
+      <td>22.766157</td>
+      <td>光明</td>
+      <td>POLYGON ((113.98587 22.80304, 113.98605 22.802...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sz[<span class="string">'geometry'</span>].iloc[<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-src="/img/time_data/output_3_0.svg" alt="svg"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type(sz[<span class="string">'geometry'</span>].iloc[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<pre><code>shapely.geometry.polygon.Polygon
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#用unary_union可以将一个geopandas的所有记录合并为一个图形,合并出来的结果是Polygon</span></span><br><span class="line">sz.unary_union</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-src="/img/time_data/output_5_0.svg" alt="svg"></p>
+<h2 id="栅格化"><a href="#栅格化" class="headerlink" title="栅格化"></a>栅格化</h2><p>我们需要能够直接批量算出来一批经纬度的栅格编号<br>栅格化的原理<br>栅格编号(loncol,latcol)<br>栅格中心点坐标(hblon,hblat)</p>
+<p>每个网格的长度:  </p>
+<script type="math/tex; mode=display">x = 500</script><p>计算每个网格的经度和纬度增加:</p>
+<script type="math/tex; mode=display">\Delta Lon = \frac{x\cdot 360}{2\pi\cdot R_e\cdot cos(\frac{(lat_1-lat_2)\cdot \pi}{360})}</script><script type="math/tex; mode=display">\Delta Lat =\frac{x\cdot 360}{2\pi\cdot R_e}</script><p>$R_e:地球半径$</p>
+<p>计算每个网格的坐标ID:  </p>
+<script type="math/tex; mode=display">LonID = \frac{m-(lon_1-\frac{\Delta Lon}{2})}{\Delta Lon}</script><script type="math/tex; mode=display">LonID = \frac{a-(lat_1-\frac{\Delta Lat}{2})}{\Delta Lat}</script><p>m：输入点的经度</p>
+<p>n：输入点的纬度</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#栅格化代码</span></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line">testlon = <span class="number">114</span></span><br><span class="line">testlat = <span class="number">22.5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#划定栅格划分范围</span></span><br><span class="line">lon1 = <span class="number">113.75194</span></span><br><span class="line">lon2 = <span class="number">114.624187</span></span><br><span class="line">lat1 = <span class="number">22.447837</span></span><br><span class="line">lat2 = <span class="number">22.864748</span></span><br><span class="line"></span><br><span class="line">latStart = min(lat1,lat2)</span><br><span class="line">lonStart = min(lon1,lon2)</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义栅格大小</span></span><br><span class="line">accuracy = <span class="number">500</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#计算栅格经纬度增加量大小 \Delta Lon和\Delta Lat</span></span><br><span class="line">deltaLon = accuracy * <span class="number">360</span>/(<span class="number">2</span> * math.pi * <span class="number">6371004</span> * math.cos((lat1 + lat2) * math.pi /<span class="number">360</span>))</span><br><span class="line">deltaLat = accuracy * <span class="number">360</span>/(<span class="number">2</span> * math.pi * <span class="number">6371004</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#计算栅格的经纬度编号</span></span><br><span class="line">LONCOL=divmod(float(testlon) - (lonStart - deltaLon / <span class="number">2</span>) , deltaLon)[<span class="number">0</span>]</span><br><span class="line">LATCOL=divmod(float(testlat) - (latStart - deltaLat / <span class="number">2</span>) , deltaLat)[<span class="number">0</span>] </span><br><span class="line"><span class="comment">#divmod() 函数把除数和余数运算结果结合起来，返回一个包含商和余数的元组(a // b, a % b)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#计算栅格的中心点经纬度</span></span><br><span class="line">HBLON = LONCOL*deltaLon + (lonStart - deltaLon/<span class="number">2</span>)</span><br><span class="line">HBLAT = LATCOL*deltaLon + (latStart - deltaLat/<span class="number">2</span>)</span><br><span class="line"><span class="comment">#格子编号*格子宽+起始坐标-半个格子宽 = 格子中心横坐标</span></span><br><span class="line"></span><br><span class="line">LONCOL,LATCOL,HBLON,HBLAT,deltaLon,deltaLat</span><br></pre></td></tr></table></figure>
+<pre><code>(51.0,
+ 12.0,
+ 113.99800701150498,
+ 22.504060066467282,
+ 0.004872614089207591,
+ 0.004496605206422906)
+</code></pre><p>生成栅格的geopandas数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> shapely.geometry <span class="keyword">import</span> Point,Polygon,shape</span><br><span class="line">Polygon([(HBLON+deltaLon/<span class="number">2</span>,HBLAT-deltaLat/<span class="number">2</span>),</span><br><span class="line">        (HBLON+deltaLon/<span class="number">2</span>,HBLAT+deltaLat/<span class="number">2</span>),</span><br><span class="line">        (HBLON-deltaLon/<span class="number">2</span>,HBLAT+deltaLat/<span class="number">2</span>),</span><br><span class="line">        (HBLON-deltaLon/<span class="number">2</span>,HBLAT-deltaLat/<span class="number">2</span>)])<span class="comment">#多边形建模</span></span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-src="/img/time_data/output_11_0.svg" alt="svg"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> geopandas</span><br><span class="line"><span class="keyword">from</span> shapely.geometry <span class="keyword">import</span> Point,Polygon,shape</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义空geopandas表</span></span><br><span class="line">data = geopandas.GeoDataFrame()</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义空的list,后面循环一次就往里面加东西</span></span><br><span class="line">LONCOL = []</span><br><span class="line">LATCOL = []</span><br><span class="line">geometry = []</span><br><span class="line">HBLON1 = []</span><br><span class="line">HBLAT1 = []</span><br><span class="line"></span><br><span class="line"><span class="comment">#计算总共要生成多少个栅格</span></span><br><span class="line">lonsnum = int((lon2-lon1)/deltaLon)+<span class="number">1</span></span><br><span class="line">latsnum = int((lat2-lat1)/deltaLat)+<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(lonsnum):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(latsnum):</span><br><span class="line">        HBLON = i*deltaLon + (lonStart - deltaLon/<span class="number">2</span>)</span><br><span class="line">        HBLAT = j*deltaLat + (latStart - deltaLat/<span class="number">2</span>)</span><br><span class="line">        LONCOL.append(i)</span><br><span class="line">        LATCOL.append(j)</span><br><span class="line">        HBLON1.append(HBLON)</span><br><span class="line">        HBLAT1.append(HBLAT)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#生成栅格的Polygon形状</span></span><br><span class="line">        <span class="comment">#这里我们用周围的栅格推算三个顶点的位置,否则生成的栅格因为小数点取值问题出现小缝隙</span></span><br><span class="line">        HBLON_1 = (i+<span class="number">1</span>)*deltaLon + (lonStart - deltaLon / <span class="number">2</span>)</span><br><span class="line">        HBLAT_1 = (j+<span class="number">1</span>)*deltaLat + (latStart - deltaLat / <span class="number">2</span>)</span><br><span class="line">        geometry.append(Polygon([</span><br><span class="line">        (HBLON-deltaLon/<span class="number">2</span>,HBLAT-deltaLat/<span class="number">2</span>),</span><br><span class="line">        (HBLON_1-deltaLon/<span class="number">2</span>,HBLAT-deltaLat/<span class="number">2</span>),</span><br><span class="line">        (HBLON_1-deltaLon/<span class="number">2</span>,HBLAT_1-deltaLat/<span class="number">2</span>),</span><br><span class="line">        (HBLON-deltaLon/<span class="number">2</span>,HBLAT_1-deltaLat/<span class="number">2</span>)]))</span><br><span class="line">        </span><br><span class="line"><span class="comment">#为geopandas文件的每一列赋值为刚刚的list</span></span><br><span class="line">data[<span class="string">'LONCOL'</span>] = LONCOL</span><br><span class="line">data[<span class="string">'LATCOL'</span>] = LATCOL</span><br><span class="line">data[<span class="string">'HBLON'</span>] = HBLON1</span><br><span class="line">data[<span class="string">'HBLAT'</span>] = HBLAT1</span><br><span class="line">data[<span class="string">'geometry'</span>] = geometry</span><br><span class="line"></span><br><span class="line">data.plot()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;AxesSubplot:&gt;
+</code></pre><p><img src= "/img/loading.gif" data-src="/img/time_data/output_12_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data.head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LONCOL</th>
+      <th>LATCOL</th>
+      <th>HBLON</th>
+      <th>HBLAT</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>113.749504</td>
+      <td>22.445589</td>
+      <td>POLYGON ((113.74707 22.44334, 113.75194 22.443...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>113.749504</td>
+      <td>22.450085</td>
+      <td>POLYGON ((113.74707 22.44784, 113.75194 22.447...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>2</td>
+      <td>113.749504</td>
+      <td>22.454582</td>
+      <td>POLYGON ((113.74707 22.45233, 113.75194 22.452...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>3</td>
+      <td>113.749504</td>
+      <td>22.459079</td>
+      <td>POLYGON ((113.74707 22.45683, 113.75194 22.456...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>4</td>
+      <td>113.749504</td>
+      <td>22.463575</td>
+      <td>POLYGON ((113.74707 22.46133, 113.75194 22.461...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grid = data[data.intersects(sz.unary_union)]</span><br><span class="line">grid.plot()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;AxesSubplot:&gt;
+</code></pre><p><img src= "/img/loading.gif" data-src="/img/time_data/output_14_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#保存</span></span><br><span class="line">grid.to_file(<span class="string">'/home/liu/Documents/pygeo-tutorial/shapefile/grid'</span>,encoding = <span class="string">'utf-8'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="将数据对应到栅格"><a href="#将数据对应到栅格" class="headerlink" title="将数据对应到栅格"></a>将数据对应到栅格</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">TaxiOD = pd.read_csv(<span class="string">'/home/liu/Documents/pygeo-tutorial/data-sample/TaxiOD.csv'</span>)</span><br><span class="line">TaxiOD.columns = [<span class="string">'VehicleNum'</span>, <span class="string">'Stime'</span>, <span class="string">'SLng'</span>, <span class="string">'SLat'</span>, </span><br><span class="line">       <span class="string">'ELng'</span>, <span class="string">'ELat'</span>,<span class="string">'Etime'</span>]</span><br><span class="line">TaxiOD.head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VehicleNum</th>
+      <th>Stime</th>
+      <th>SLng</th>
+      <th>SLat</th>
+      <th>ELng</th>
+      <th>ELat</th>
+      <th>Etime</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>22223</td>
+      <td>00:03:23</td>
+      <td>114.167465</td>
+      <td>22.562468</td>
+      <td>114.225235</td>
+      <td>22.552750</td>
+      <td>00:10:48</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>22223</td>
+      <td>00:11:33</td>
+      <td>114.227150</td>
+      <td>22.554167</td>
+      <td>114.229218</td>
+      <td>22.560217</td>
+      <td>00:15:19</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>22223</td>
+      <td>00:17:13</td>
+      <td>114.231354</td>
+      <td>22.562166</td>
+      <td>114.255798</td>
+      <td>22.590967</td>
+      <td>00:29:06</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>22223</td>
+      <td>00:36:45</td>
+      <td>114.240196</td>
+      <td>22.563650</td>
+      <td>114.119965</td>
+      <td>22.566668</td>
+      <td>00:54:42</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>22223</td>
+      <td>01:01:14</td>
+      <td>114.135414</td>
+      <td>22.575933</td>
+      <td>114.166748</td>
+      <td>22.608267</td>
+      <td>01:08:17</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">TaxiOD = TaxiOD[-TaxiOD[<span class="string">'ELng'</span>].isnull()].copy() <span class="comment">#copy() 函数返回一个字典的浅复制</span></span><br><span class="line"><span class="comment">#计算起点栅格的经纬度编号</span></span><br><span class="line">TaxiOD[<span class="string">'SLONCOL'</span>] = ((TaxiOD[<span class="string">'SLng'</span>] - (lonStart - deltaLon / <span class="number">2</span>))/deltaLon).astype(<span class="string">'int'</span>)</span><br><span class="line">TaxiOD[<span class="string">'SLATCOL'</span>] = ((TaxiOD[<span class="string">'SLat'</span>] - (latStart - deltaLat / <span class="number">2</span>))/deltaLat).astype(<span class="string">'int'</span>)</span><br><span class="line"><span class="comment">#计算起点栅格的中心点经纬度</span></span><br><span class="line">TaxiOD[<span class="string">'SHBLON'</span>] = TaxiOD[<span class="string">'SLONCOL'</span>]*deltaLon + (lonStart - deltaLon / <span class="number">2</span>)</span><br><span class="line">TaxiOD[<span class="string">'SHBLAT'</span>] = TaxiOD[<span class="string">'SLATCOL'</span>]*deltaLat + (latStart - deltaLat / <span class="number">2</span>)</span><br><span class="line"><span class="comment">#计算终点栅格的经纬度编号</span></span><br><span class="line">TaxiOD[<span class="string">'ELONCOL'</span>] = ((TaxiOD[<span class="string">'ELng'</span>] - (lonStart - deltaLon / <span class="number">2</span>))/deltaLon).astype(<span class="string">'int'</span>)</span><br><span class="line">TaxiOD[<span class="string">'ELATCOL'</span>] = ((TaxiOD[<span class="string">'ELat'</span>] - (latStart - deltaLat / <span class="number">2</span>))/deltaLat).astype(<span class="string">'int'</span>) </span><br><span class="line"><span class="comment">#计算终点栅格的中心点经纬度</span></span><br><span class="line">TaxiOD[<span class="string">'EHBLON'</span>] = TaxiOD[<span class="string">'ELONCOL'</span>]*deltaLon + (lonStart - deltaLon / <span class="number">2</span>)</span><br><span class="line">TaxiOD[<span class="string">'EHBLAT'</span>] = TaxiOD[<span class="string">'ELATCOL'</span>]*deltaLat + (latStart - deltaLat / <span class="number">2</span>)</span><br><span class="line"><span class="comment">#筛选去掉起点终点在同一个格子里的OD</span></span><br><span class="line">TaxiOD = TaxiOD[-((TaxiOD[<span class="string">'SLONCOL'</span>]==TaxiOD[<span class="string">'ELONCOL'</span>])&amp;(TaxiOD[<span class="string">'SLATCOL'</span>]==TaxiOD[<span class="string">'ELATCOL'</span>]))]</span><br><span class="line"><span class="comment">#筛选去掉不在研究范围内的栅格，TaxiOD的LONCOL、LATCOL都需要在我们的范围内</span></span><br><span class="line">TaxiOD = TaxiOD[(TaxiOD[<span class="string">'SLONCOL'</span>]&gt;=<span class="number">0</span>) &amp; (TaxiOD[<span class="string">'SLATCOL'</span>]&gt;=<span class="number">0</span>) &amp;(TaxiOD[<span class="string">'ELONCOL'</span>]&gt;=<span class="number">0</span>) &amp; (TaxiOD[<span class="string">'ELATCOL'</span>]&gt;=<span class="number">0</span>)&amp;</span><br><span class="line">(TaxiOD[<span class="string">'SLONCOL'</span>]&lt;=lonsnum) &amp; (TaxiOD[<span class="string">'SLATCOL'</span>]&lt;=latsnum) &amp;(TaxiOD[<span class="string">'ELONCOL'</span>]&lt;=lonsnum) &amp; (TaxiOD[<span class="string">'ELATCOL'</span>]&lt;=latsnum)]</span><br><span class="line"></span><br><span class="line">TaxiOD.head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>VehicleNum</th>
+      <th>Stime</th>
+      <th>SLng</th>
+      <th>SLat</th>
+      <th>ELng</th>
+      <th>ELat</th>
+      <th>Etime</th>
+      <th>SLONCOL</th>
+      <th>SLATCOL</th>
+      <th>SHBLON</th>
+      <th>SHBLAT</th>
+      <th>ELONCOL</th>
+      <th>ELATCOL</th>
+      <th>EHBLON</th>
+      <th>EHBLAT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>22223</td>
+      <td>00:03:23</td>
+      <td>114.167465</td>
+      <td>22.562468</td>
+      <td>114.225235</td>
+      <td>22.552750</td>
+      <td>00:10:48</td>
+      <td>85</td>
+      <td>25</td>
+      <td>114.163676</td>
+      <td>22.558004</td>
+      <td>97</td>
+      <td>23</td>
+      <td>114.222147</td>
+      <td>22.549011</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>22223</td>
+      <td>00:11:33</td>
+      <td>114.227150</td>
+      <td>22.554167</td>
+      <td>114.229218</td>
+      <td>22.560217</td>
+      <td>00:15:19</td>
+      <td>98</td>
+      <td>24</td>
+      <td>114.227020</td>
+      <td>22.553507</td>
+      <td>98</td>
+      <td>25</td>
+      <td>114.227020</td>
+      <td>22.558004</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>22223</td>
+      <td>00:17:13</td>
+      <td>114.231354</td>
+      <td>22.562166</td>
+      <td>114.255798</td>
+      <td>22.590967</td>
+      <td>00:29:06</td>
+      <td>98</td>
+      <td>25</td>
+      <td>114.227020</td>
+      <td>22.558004</td>
+      <td>103</td>
+      <td>32</td>
+      <td>114.251383</td>
+      <td>22.589480</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>22223</td>
+      <td>00:36:45</td>
+      <td>114.240196</td>
+      <td>22.563650</td>
+      <td>114.119965</td>
+      <td>22.566668</td>
+      <td>00:54:42</td>
+      <td>100</td>
+      <td>26</td>
+      <td>114.236765</td>
+      <td>22.562500</td>
+      <td>76</td>
+      <td>26</td>
+      <td>114.119822</td>
+      <td>22.562500</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>22223</td>
+      <td>01:01:14</td>
+      <td>114.135414</td>
+      <td>22.575933</td>
+      <td>114.166748</td>
+      <td>22.608267</td>
+      <td>01:08:17</td>
+      <td>79</td>
+      <td>28</td>
+      <td>114.134440</td>
+      <td>22.571494</td>
+      <td>85</td>
+      <td>36</td>
+      <td>114.163676</td>
+      <td>22.607466</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h2 id="集计栅格OD-全天-高峰时段"><a href="#集计栅格OD-全天-高峰时段" class="headerlink" title="集计栅格OD(全天 高峰时段)"></a>集计栅格OD(全天 高峰时段)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OD = TaxiOD.groupby([<span class="string">'SLONCOL'</span>,<span class="string">'SLATCOL'</span>,<span class="string">'ELONCOL'</span>,<span class="string">'ELATCOL'</span>])[<span class="string">'VehicleNum'</span>].count().reset_index()</span><br><span class="line">OD = OD.sort_values(by = <span class="string">'VehicleNum'</span>,ascending = <span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="绘制栅格的OD图"><a href="#绘制栅格的OD图" class="headerlink" title="绘制栅格的OD图"></a>绘制栅格的OD图</h2><h3 id="先绘制前20行"><a href="#先绘制前20行" class="headerlink" title="先绘制前20行"></a>先绘制前20行</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#取前20的OD</span></span><br><span class="line">Topod = OD.iloc[:<span class="number">20</span>].copy()</span><br><span class="line"></span><br><span class="line"><span class="comment">#计算起点栅格的中心点经纬度</span></span><br><span class="line">Topod[<span class="string">'SHBLON'</span>] = Topod[<span class="string">'SLONCOL'</span>] * deltaLon + (lonStart - deltaLon / <span class="number">2</span>)</span><br><span class="line">Topod[<span class="string">'SHBLAT'</span>] = Topod[<span class="string">'SLATCOL'</span>] * deltaLat + (latStart - deltaLat / <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#计算终点栅格的中心点经纬度</span></span><br><span class="line">Topod[<span class="string">'EHBLON'</span>] = Topod[<span class="string">'ELONCOL'</span>] * deltaLon + (lonStart - deltaLon / <span class="number">2</span>)</span><br><span class="line">Topod[<span class="string">'EHBLAT'</span>] = Topod[<span class="string">'ELATCOL'</span>] * deltaLat + (latStart - deltaLat / <span class="number">2</span>)</span><br><span class="line">Topod.head()</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SLONCOL</th>
+      <th>SLATCOL</th>
+      <th>ELONCOL</th>
+      <th>ELATCOL</th>
+      <th>VehicleNum</th>
+      <th>SHBLON</th>
+      <th>SHBLAT</th>
+      <th>EHBLON</th>
+      <th>EHBLAT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>113365</th>
+      <td>63</td>
+      <td>17</td>
+      <td>65</td>
+      <td>16</td>
+      <td>298</td>
+      <td>114.056478</td>
+      <td>22.522031</td>
+      <td>114.066224</td>
+      <td>22.517534</td>
+    </tr>
+    <tr>
+      <th>155022</th>
+      <td>75</td>
+      <td>21</td>
+      <td>74</td>
+      <td>19</td>
+      <td>275</td>
+      <td>114.114950</td>
+      <td>22.540017</td>
+      <td>114.110077</td>
+      <td>22.531024</td>
+    </tr>
+    <tr>
+      <th>113808</th>
+      <td>63</td>
+      <td>18</td>
+      <td>65</td>
+      <td>16</td>
+      <td>235</td>
+      <td>114.056478</td>
+      <td>22.526528</td>
+      <td>114.066224</td>
+      <td>22.517534</td>
+    </tr>
+    <tr>
+      <th>160281</th>
+      <td>76</td>
+      <td>21</td>
+      <td>74</td>
+      <td>19</td>
+      <td>173</td>
+      <td>114.119822</td>
+      <td>22.540017</td>
+      <td>114.110077</td>
+      <td>22.531024</td>
+    </tr>
+    <tr>
+      <th>122609</th>
+      <td>65</td>
+      <td>17</td>
+      <td>63</td>
+      <td>18</td>
+      <td>172</td>
+      <td>114.066224</td>
+      <td>22.522031</td>
+      <td>114.056478</td>
+      <td>22.526528</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#导入绘图包</span></span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">fig     = plt.figure(<span class="number">1</span>,(<span class="number">10</span>,<span class="number">8</span>),dpi = <span class="number">250</span>)    </span><br><span class="line">ax      = plt.subplot(<span class="number">111</span>)</span><br><span class="line">plt.sca(ax)</span><br><span class="line"></span><br><span class="line"><span class="comment">#把刚才生成的栅格在ax上绘制</span></span><br><span class="line">grid.plot(ax =ax,edgecolor = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.8</span>),facecolor = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),linewidths=<span class="number">0.2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#把合并的行政区划变成一个geopandas，在ax上绘制</span></span><br><span class="line">SZ_all = geopandas.GeoDataFrame()</span><br><span class="line">SZ_all[<span class="string">'geometry'</span>] = [sz.unary_union]</span><br><span class="line">SZ_all.plot(ax = ax,edgecolor = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>),facecolor = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),linewidths=<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-src="/img/time_data/output_24_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">fig     = plt.figure(<span class="number">1</span>,(<span class="number">10</span>,<span class="number">8</span>),dpi = <span class="number">250</span>)    </span><br><span class="line">ax      = plt.subplot(<span class="number">111</span>)</span><br><span class="line">plt.sca(ax)</span><br><span class="line"></span><br><span class="line">grid.plot(ax =ax,edgecolor = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.8</span>),facecolor = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),linewidths=<span class="number">0.2</span>)</span><br><span class="line">SZ_all.plot(ax = ax,edgecolor = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>),facecolor = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),linewidths=<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(Topod)):</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    plt.plot([Topod[<span class="string">'SHBLON'</span>].iloc[i],Topod[<span class="string">'EHBLON'</span>].iloc[i]],[Topod[<span class="string">'SHBLAT'</span>].iloc[i],Topod[<span class="string">'EHBLAT'</span>].iloc[i]])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#不显示坐标轴</span></span><br><span class="line">plt.axis(<span class="string">'off'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-src="/img/time_data/output_25_0.png" alt="png"></p>
+<h3 id="画出全部的OD"><a href="#画出全部的OD" class="headerlink" title="画出全部的OD"></a>画出全部的OD</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">OD1 = OD[OD[<span class="string">'VehicleNum'</span>]&gt;<span class="number">10</span>].copy()</span><br><span class="line"></span><br><span class="line"><span class="comment">#OD从小到大排序方便我们后续操作，因为我们希望小的OD先画，放在最底下，大的OD后画，放在最上面</span></span><br><span class="line">OD1 = OD1.sort_values(by = <span class="string">'VehicleNum'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#计算起点栅格的中心点经纬度</span></span><br><span class="line">OD1[<span class="string">'SHBLON'</span>] = OD1[<span class="string">'SLONCOL'</span>] * deltaLon + (lonStart - deltaLon / <span class="number">2</span>)</span><br><span class="line">OD1[<span class="string">'SHBLAT'</span>] = OD1[<span class="string">'SLATCOL'</span>] * deltaLat + (latStart - deltaLat / <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#计算终点栅格的中心点经纬度</span></span><br><span class="line">OD1[<span class="string">'EHBLON'</span>] = OD1[<span class="string">'ELONCOL'</span>] * deltaLon + (lonStart - deltaLon / <span class="number">2</span>)</span><br><span class="line">OD1[<span class="string">'EHBLAT'</span>] = OD1[<span class="string">'ELATCOL'</span>] * deltaLat + (latStart - deltaLat / <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#对OD分5组，生成一个取值为0-1的列，每组的值相同，用以表示OD的粗细，取名linewidth</span></span><br><span class="line">step = <span class="number">5</span></span><br><span class="line">OD1[<span class="string">'linewidth'</span>] = (np.array(range(len(OD1)))*step/len(OD1)).astype(<span class="string">'int'</span>)/step+<span class="number">0.1</span></span><br><span class="line">OD1.head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>SLONCOL</th>
+      <th>SLATCOL</th>
+      <th>ELONCOL</th>
+      <th>ELATCOL</th>
+      <th>VehicleNum</th>
+      <th>SHBLON</th>
+      <th>SHBLAT</th>
+      <th>EHBLON</th>
+      <th>EHBLAT</th>
+      <th>linewidth</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>41465</th>
+      <td>37</td>
+      <td>17</td>
+      <td>34</td>
+      <td>21</td>
+      <td>11</td>
+      <td>113.929790</td>
+      <td>22.522031</td>
+      <td>113.915173</td>
+      <td>22.540017</td>
+      <td>0.1</td>
+    </tr>
+    <tr>
+      <th>93970</th>
+      <td>59</td>
+      <td>27</td>
+      <td>61</td>
+      <td>20</td>
+      <td>11</td>
+      <td>114.036988</td>
+      <td>22.566997</td>
+      <td>114.046733</td>
+      <td>22.535521</td>
+      <td>0.1</td>
+    </tr>
+    <tr>
+      <th>149728</th>
+      <td>74</td>
+      <td>20</td>
+      <td>76</td>
+      <td>27</td>
+      <td>11</td>
+      <td>114.110077</td>
+      <td>22.535521</td>
+      <td>114.119822</td>
+      <td>22.566997</td>
+      <td>0.1</td>
+    </tr>
+    <tr>
+      <th>38433</th>
+      <td>36</td>
+      <td>18</td>
+      <td>37</td>
+      <td>18</td>
+      <td>11</td>
+      <td>113.924918</td>
+      <td>22.526528</td>
+      <td>113.929790</td>
+      <td>22.526528</td>
+      <td>0.1</td>
+    </tr>
+    <tr>
+      <th>138355</th>
+      <td>71</td>
+      <td>23</td>
+      <td>68</td>
+      <td>23</td>
+      <td>11</td>
+      <td>114.095459</td>
+      <td>22.549011</td>
+      <td>114.080841</td>
+      <td>22.549011</td>
+      <td>0.1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">fig     = plt.figure(<span class="number">1</span>,(<span class="number">10</span>,<span class="number">8</span>),dpi = <span class="number">250</span>)    </span><br><span class="line">ax      = plt.subplot(<span class="number">111</span>)</span><br><span class="line">plt.sca(ax)</span><br><span class="line"></span><br><span class="line"><span class="comment">#把刚才生成的栅格在ax上绘制</span></span><br><span class="line">grid.plot(ax = ax,edgecolor = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.8</span>),facecolor = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),linewidths=<span class="number">0.2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#绘制整个深圳的范围</span></span><br><span class="line">SZ_all.plot(ax = ax,edgecolor = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>),facecolor = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),linewidths=<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置colormap的数据</span></span><br><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line">vmax = OD[<span class="string">'VehicleNum'</span>].max()</span><br><span class="line"><span class="comment">#设定一个标准化的工具，设定OD的colormap最大最小值，他的作用是norm(count)就会将count标准化到0-1的范围内</span></span><br><span class="line">norm = mpl.colors.Normalize(vmin=<span class="number">0</span>,vmax=vmax)</span><br><span class="line"><span class="comment">#设定colormap的颜色</span></span><br><span class="line">cmapname = <span class="string">'autumn_r'</span></span><br><span class="line"><span class="comment">#cmap是一个获取颜色的工具，cmap(a)会返回颜色，其中a是0-1之间的值</span></span><br><span class="line">cmap = matplotlib.cm.get_cmap(cmapname)</span><br><span class="line"></span><br><span class="line"><span class="comment">#绘制OD</span></span><br><span class="line">timeflag = time.time()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(OD1)):</span><br><span class="line">    <span class="comment">###########################你需要在下面写代码#############################</span></span><br><span class="line">    <span class="comment">#设定plt.plot里面的参数alpha和color和linewidth</span></span><br><span class="line">    plt.plot([OD1[<span class="string">'SHBLON'</span>].iloc[i],OD1[<span class="string">'EHBLON'</span>].iloc[i]],[OD1[<span class="string">'SHBLAT'</span>].iloc[i],OD1[<span class="string">'EHBLAT'</span>].iloc[i]],\</span><br><span class="line">            linewidth = OD1[<span class="string">'linewidth'</span>].iloc[i],color = cmap(norm(OD1[<span class="string">'VehicleNum'</span>].iloc[i])),alpha=<span class="number">0.5</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">###################################################################################</span></span><br><span class="line">print(<span class="string">'绘制OD用时'</span>,time.time()-timeflag,<span class="string">'秒'</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment">#不显示坐标轴</span></span><br><span class="line">plt.axis(<span class="string">'off'</span>)    </span><br><span class="line"></span><br><span class="line"><span class="comment">#绘制假的colorbar，这是因为，我们画的OD是线，没办法直接画出来colorbar</span></span><br><span class="line"><span class="comment">#所以我们在一个看不见的地方画了一个叫imshow的东西，他的范围是0到vmax</span></span><br><span class="line"><span class="comment">#然后我们再对imshow添加colorbar</span></span><br><span class="line">plt.imshow([[<span class="number">0</span>,vmax]], cmap=cmap)</span><br><span class="line"><span class="comment">#设定colorbar的大小和位置</span></span><br><span class="line">cax = plt.axes([<span class="number">0.08</span>, <span class="number">0.4</span>, <span class="number">0.02</span>, <span class="number">0.3</span>])</span><br><span class="line">plt.colorbar(cax=cax)</span><br><span class="line"></span><br><span class="line"><span class="comment">#然后要把镜头调整回到深圳地图那，不然镜头就在imshow那里了</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ax.set_xlim(<span class="number">113.6</span>,<span class="number">114.8</span>)</span><br><span class="line">ax.set_ylim(<span class="number">22.4</span>,<span class="number">22.9</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<pre><code>绘制OD用时 5.278459548950195 秒
+</code></pre><p><img src= "/img/loading.gif" data-src="/img/time_data/output_28_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">len(OD1)</span><br></pre></td></tr></table></figure>
+<pre><code>5319
+</code></pre><h3 id="用GeoDataFrame自带plot函数绘制"><a href="#用GeoDataFrame自带plot函数绘制" class="headerlink" title="用GeoDataFrame自带plot函数绘制"></a>用GeoDataFrame自带plot函数绘制</h3><p>如果遍历绘制OD，绘制速度比较慢，绘制5319条OD用时31s。<br>但是，如果把DataFrame变成GeoDataFrame，然后用自带的plot函数绘制，会快很多</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> shapely.geometry <span class="keyword">import</span> LineString</span><br><span class="line">OD1[<span class="string">'geometry'</span>] = OD1.apply(<span class="keyword">lambda</span> r:LineString([[r[<span class="string">'SHBLON'</span>],r[<span class="string">'SHBLAT'</span>]],[r[<span class="string">'EHBLON'</span>],r[<span class="string">'EHBLAT'</span>]]]),axis = <span class="number">1</span>)</span><br><span class="line"><span class="comment">#LineStrings构造函数传入参数是2个或多个点序列,返回坐标</span></span><br><span class="line">OD1 = geopandas.GeoDataFrame(OD1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">fig     = plt.figure(<span class="number">1</span>,(<span class="number">10</span>,<span class="number">8</span>),dpi = <span class="number">250</span>)    </span><br><span class="line">ax      = plt.subplot(<span class="number">111</span>)</span><br><span class="line">plt.sca(ax)</span><br><span class="line"></span><br><span class="line"><span class="comment">#计时</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">timeflag = time.time()</span><br><span class="line"><span class="comment">#绘制底图</span></span><br><span class="line">grid.plot(ax = ax,edgecolor = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.8</span>),facecolor = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),linewidths=<span class="number">0.2</span>)</span><br><span class="line">SZ_all.plot(ax = ax,edgecolor = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>),facecolor = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),linewidths=<span class="number">0.5</span>)</span><br><span class="line">print(<span class="string">'绘制底图用时'</span>,time.time()-timeflag,<span class="string">'秒'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置colormap的数据</span></span><br><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line">vmax = OD[<span class="string">'VehicleNum'</span>].max()</span><br><span class="line">cmapname = <span class="string">'autumn_r'</span></span><br><span class="line">cmap = matplotlib.cm.get_cmap(cmapname)</span><br><span class="line"></span><br><span class="line">timeflag = time.time()</span><br><span class="line"><span class="comment">#绘制OD</span></span><br><span class="line">OD1.plot(ax = ax,column = <span class="string">'VehicleNum'</span>,vmax = vmax,vmin = <span class="number">0</span>,cmap = cmap,linewidth = OD1[<span class="string">'linewidth'</span>])</span><br><span class="line">print(<span class="string">'绘制OD用时'</span>,time.time()-timeflag,<span class="string">'秒'</span>)</span><br><span class="line"></span><br><span class="line">plt.axis(<span class="string">'off'</span>)    </span><br><span class="line">plt.imshow([[<span class="number">0</span>,vmax]], cmap=cmap)</span><br><span class="line">cax = plt.axes([<span class="number">0.08</span>, <span class="number">0.4</span>, <span class="number">0.02</span>, <span class="number">0.3</span>])</span><br><span class="line">plt.colorbar(cax=cax)</span><br><span class="line">ax.set_xlim(<span class="number">113.6</span>,<span class="number">114.8</span>)</span><br><span class="line">ax.set_ylim(<span class="number">22.4</span>,<span class="number">22.9</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<pre><code>绘制底图用时 1.735227346420288 秒
+绘制OD用时 0.26875901222229004 秒
+</code></pre><p><img src= "/img/loading.gif" data-src="/img/time_data/output_32_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#集计</span></span><br><span class="line">Odistribution = OD.groupby([<span class="string">'SLONCOL'</span>,<span class="string">'SLATCOL'</span>])[<span class="string">'VehicleNum'</span>].sum().reset_index()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将集计的结果与栅格的geopandas执行merge操作</span></span><br><span class="line">gridtoplot = pd.merge(grid,Odistribution.rename(columns = &#123;<span class="string">'SLONCOL'</span>:<span class="string">'LONCOL'</span>,<span class="string">'SLATCOL'</span>:<span class="string">'LATCOL'</span>&#125;),on = [<span class="string">'LONCOL'</span>,<span class="string">'LATCOL'</span>])</span><br><span class="line">gridtoplot = gridtoplot.rename(columns = &#123;<span class="string">'VehicleNum'</span>:<span class="string">'count'</span>&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">fig     = plt.figure(<span class="number">1</span>,(<span class="number">10</span>,<span class="number">8</span>),dpi = <span class="number">250</span>)    </span><br><span class="line">ax      = plt.subplot(<span class="number">111</span>)</span><br><span class="line">plt.sca(ax)</span><br><span class="line"></span><br><span class="line"><span class="comment">#设置colormap的数据</span></span><br><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line">vmax = gridtoplot[<span class="string">'count'</span>].max()</span><br><span class="line"><span class="comment">#设定一个标准化的工具，设定OD的colormap最大最小值，他的作用是norm(count)就会将count标准化到0-1的范围内</span></span><br><span class="line">norm = mpl.colors.Normalize(vmin=<span class="number">0</span>,vmax=vmax)</span><br><span class="line"><span class="comment">#设定colormap的颜色</span></span><br><span class="line">cmapname = <span class="string">'autumn_r'</span></span><br><span class="line"><span class="comment">#cmap是一个获取颜色的工具，cmap(a)会返回颜色，其中a是0-1之间的值</span></span><br><span class="line">cmap = matplotlib.cm.get_cmap(cmapname)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#将gridtoplot这个geodataframe进行绘制</span></span><br><span class="line"><span class="comment">#提示：用gridtoplot.plot，设定里面的参数是column = 'count'，以count这一列来绘制。参数cmap = cmap设定它的颜色</span></span><br><span class="line"><span class="comment">###########################你需要在下面写代码#############################</span></span><br><span class="line"><span class="comment">#gridtoplot.plot(...)</span></span><br><span class="line">gridtoplot.plot(ax = ax, column = <span class="string">'count'</span>, vmax = vmax, vmin=<span class="number">0</span>, cmap = cmap)</span><br><span class="line"></span><br><span class="line"><span class="comment">###################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#绘制整个深圳的范围</span></span><br><span class="line">SZ_all.plot(ax = ax,edgecolor = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>),facecolor = (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),linewidths=<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#不显示坐标轴</span></span><br><span class="line">plt.axis(<span class="string">'off'</span>)    </span><br><span class="line"></span><br><span class="line"><span class="comment">#绘制假的colorbar，这是因为，我们画的OD是线，没办法直接画出来colorbar</span></span><br><span class="line"><span class="comment">#所以我们在一个看不见的地方画了一个叫imshow的东西，他的范围是0到vmax</span></span><br><span class="line"><span class="comment">#然后我们再对imshow添加colorbar</span></span><br><span class="line">plt.imshow([[<span class="number">0</span>,vmax]], cmap=cmap)</span><br><span class="line"><span class="comment">#设定colorbar的大小和位置</span></span><br><span class="line">cax = plt.axes([<span class="number">0.08</span>, <span class="number">0.4</span>, <span class="number">0.02</span>, <span class="number">0.3</span>])</span><br><span class="line">plt.colorbar(cax=cax)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#然后要把镜头调整回到深圳地图那，不然镜头就在imshow那里了</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ax.set_xlim(<span class="number">113.6</span>,<span class="number">114.8</span>)</span><br><span class="line">ax.set_ylim(<span class="number">22.4</span>,<span class="number">22.9</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/loading.gif" data-src="/img/time_data/output_35_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Guanghao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://lguanghao.com/2020/02/20/Python%E6%97%B6%E7%A9%BA%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%901/">http://lguanghao.com/2020/02/20/Python%E6%97%B6%E7%A9%BA%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%901/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://lguanghao.com" target="_blank">Liu's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/data/">data</a></div><div class="post_share"><div class="social-share" data-image="/img/css.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/03/03/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/"><img class="prev-cover" data-src="/img/data.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">数据分析工具（一）</div></div></a></div><div class="next-post pull-right"><a href="/2020/02/20/%E7%88%AC%E8%99%AB%EF%BC%88%E4%BA%8C%EF%BC%89/"><img class="next-cover" data-src="/img/crawler.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">爬虫（二）</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2020/07/26/列表的切片问题/" title="列表切片的问题"><img class="relatedPosts_cover" data-src="/img/white-dog.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-26</div><div class="relatedPosts_title">列表切片的问题</div></div></a></div><div class="relatedPosts_item"><a href="/2020/07/22/Jupyter notebook快速上手/" title="Jupyter-notebook"><img class="relatedPosts_cover" data-src="/img/jupyter.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-22</div><div class="relatedPosts_title">Jupyter-notebook</div></div></a></div><div class="relatedPosts_item"><a href="/2020/07/02/吴恩达机器学习（三）/" title="吴恩达机器学习（三）"><img class="relatedPosts_cover" data-src="/img/ai.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-02</div><div class="relatedPosts_title">吴恩达机器学习（三）</div></div></a></div><div class="relatedPosts_item"><a href="/2020/06/20/吴恩达机器学习（二）/" title="吴恩达机器学习（二）"><img class="relatedPosts_cover" data-src="/img/ai.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-20</div><div class="relatedPosts_title">吴恩达机器学习（二）</div></div></a></div><div class="relatedPosts_item"><a href="/2020/06/10/吴恩达机器学习（一）/" title="吴恩达机器学习（一）"><img class="relatedPosts_cover" data-src="/img/ai.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-10</div><div class="relatedPosts_title">吴恩达机器学习（一）</div></div></a></div><div class="relatedPosts_item"><a href="/2020/03/20/数据分析（三）/" title="数据分析工具（三）"><img class="relatedPosts_cover" data-src="/img/data.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-20</div><div class="relatedPosts_title">数据分析工具（三）</div></div></a></div></div></div></article></main><footer id="footer" style="background-image: url(/img/mountains.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 By Guanghao</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script defer id="ribbon" src="/js/third-party/canvas-ribbon.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body></html>
